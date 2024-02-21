@@ -5,7 +5,7 @@
 [![R-CMD-check](https://github.com/benjaminhlina/nichetool/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/benjaminhlina/nichetool/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-{nichetools} is a complementary package to [{nicheROVER)}]() that allows the user to extract Bayesian estimates from data objects created by [{nicherover}]() (e.g., niche size and similarities).
+{nichetools} is a complementary package to [{nicheROVER}]() that allows the user to extract Bayesian estimates from data objects created by [{nicherover}]() (e.g., niche size and similarities).
 
 ## Installation
 
