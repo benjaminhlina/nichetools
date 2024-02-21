@@ -96,6 +96,12 @@ This name is the same for <code>dat_mu</code>and <code>dat_sigma</code>. Default
 <dd><p>character string that is the column name of the first isotope.
 This name is the same for <code>dat_mu</code>and <code>dat_sigma</code>. Defaults to <code>"cal_d13c"</code>.</p></dd>
 
+
+<dt>p_ell</dt>
+<dd><p>is the confidence interval of each ellipse estimate.
+Default is 0.95 (i.e., 95% confidence interval).
+This name is the same for <code>dat_mu</code>and <code>dat_sigma</code>. Defaults to <code>"cal_d13c"</code>.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -107,6 +113,13 @@ the user what step it is on. After the last step it will complete a few more
 processes and then return the total time the function ran.</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># ellipse &lt;- sigma_ellipse()</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
 
