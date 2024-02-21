@@ -39,6 +39,10 @@ This name is the same for \code{dat_mu}and \code{dat_sigma}. Defaults to \code{"
 
 \item{isotope_b}{character string that is the column name of the first isotope.
 This name is the same for \code{dat_mu}and \code{dat_sigma}. Defaults to \code{"cal_d13c"}.}
+
+\item{p_ell}{is the confidence interval of each ellipse estimate.
+Default is 0.95 (i.e., 95\% confidence interval).
+This name is the same for \code{dat_mu}and \code{dat_sigma}. Defaults to \code{"cal_d13c"}.}
 }
 \value{
 a data frame containing 100 estimates for each \code{sample_number} of each
@@ -49,4 +53,8 @@ processes and then return the total time the function ran.
 \description{
 This function allows the user to supply Bayesian estimates of mu and sigma to
 create estimated Bayesian ellipse for niche region.
+}
+\examples{
+# ellipse <- sigma_ellipse()
+
 }
