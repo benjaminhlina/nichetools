@@ -2,6 +2,7 @@
 
 export(sigma_ellipse)
 import(dplyr)
+import(ellipse)
 import(purrr)
 import(tibble)
 import(tidyr)
