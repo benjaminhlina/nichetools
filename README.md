@@ -1,26 +1,16 @@
 
-# nichetool
+# nichetools
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/benjaminhlina/nichetool/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/benjaminhlina/nichetool/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-The goal of nichetool is to ...
+{nichetools} is a complementary package to [{nicheROVER)}]() that allows the user to extract Bayesian estimates from data objects created by [{nicherover}]() (e.g., niche size and similarities).
 
 ## Installation
 
-You can install the development version of nichetool like so:
-
+You can install the development version of nichetools using the following:
 ``` r
-# FILL THIS IN! HOW CAN PEOPLE INSTALL YOUR DEV PACKAGE?
+install.packages("devtools")
+devtools::install_github("benjaminhlina/nichetools")
 ```
-
-## Example
-
-This is a basic example which shows you how to solve a common problem:
-
-``` r
-library(nichetool)
-## basic example code
-```
-
