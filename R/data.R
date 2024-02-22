@@ -34,7 +34,6 @@
 #'    \item{species}{species abbreviation}
 #'    \item{isotope}{column with isotope name}
 #'    \item{sample_number}{sample number from 1-1000}
-#'
 #'    \item{d15n}{estimate of sigma for d15n produced from `niw.post()`}
 #'    \item{d13c}{estimate of sigma for d13c produced from `niw.post()`}
 #' }
