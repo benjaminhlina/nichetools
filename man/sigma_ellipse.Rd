@@ -41,8 +41,7 @@ This name is the same for \code{dat_mu}and \code{dat_sigma}. Defaults to \code{"
 This name is the same for \code{dat_mu}and \code{dat_sigma}. Defaults to \code{"cal_d13c"}.}
 
 \item{p_ell}{is the confidence interval of each ellipse estimate.
-Default is 0.95 (i.e., 95\% confidence interval).
-This name is the same for \code{dat_mu}and \code{dat_sigma}. Defaults to \code{"cal_d13c"}.}
+Default is 0.95 (i.e., 95\% confidence interval).}
 }
 \value{
 a data frame containing 100 estimates for each \code{sample_number} of each

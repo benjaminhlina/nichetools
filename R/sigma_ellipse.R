@@ -22,7 +22,6 @@
 #' This name is the same for `dat_mu`and `dat_sigma`. Defaults to `"cal_d13c"`.
 #' @param p_ell is the confidence interval of each ellipse estimate.
 #' Default is 0.95 (i.e., 95% confidence interval).
-#' This name is the same for `dat_mu`and `dat_sigma`. Defaults to `"cal_d13c"`.
 #'
 #' @return a data frame containing 100 estimates for each `sample_number` of each
 #' `sample_name`. As the function runs, it will produce progress bars and tell
