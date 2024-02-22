@@ -9,6 +9,7 @@ Description: This package is complementary to {nicheROVER} as it allows
         package {nicheROVER}. 
 Imports: dplyr, 
          ellipse,
+         nicheROVER, 
          purrr, 
          tibble,
          tidyr
