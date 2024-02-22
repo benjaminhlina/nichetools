@@ -8,9 +8,5 @@
 
 library(testthat)
 library(nichetools)
-library(dplyr)
-library(janitor)
-library(nicheROVER)
-library(purrr)
 
 test_check("nichetools")
