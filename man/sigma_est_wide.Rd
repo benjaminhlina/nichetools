@@ -11,7 +11,6 @@ data frame containing 8,0000 rows and 7 variables
 \item{species}{species abbreviation}
 \item{isotope}{column with isotope name}
 \item{sample_number}{sample number from 1-1000}
-
 \item{d15n}{estimate of sigma for d15n produced from \code{niw.post()}}
 \item{d13c}{estimate of sigma for d13c produced from \code{niw.post()}}
 }
