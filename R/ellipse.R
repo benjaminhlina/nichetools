@@ -40,7 +40,7 @@
 
 
 # ---- function ----
-sigma_ellipse <- function(
+ellipse <- function(
     dat_mu,
     dat_sigma,
     name = "sample_name",
@@ -102,19 +102,15 @@ sigma_ellipse <- function(
 
   # prepare mu for ellipse
   mu <- dat_mu %>%
-    dplyr::group_split(sample_name, sample_number) %>%
-    purrr::map(~ .x %>%
-                 dplyr::select(mu_est) %>%
-                 .$mu_est, .progress = "Prepare mu for ellipse"
-    )
+    dplyr::select(sample_name, sample_number, mu_est) %>%
+    dplyr::group_split(sample_name, sample_number)
 
   # preppare sigama for epplipse
   sigma <- dat_sigma %>%
+    dplyr::select(sample_name, sample_nubmer, cal_d15n, cal_d13c) %>%
     dplyr::group_split(sample_name, sample_number) %>%
     purrr::map(~ .x %>%
-                 dplyr::select(cal_d15n, cal_d13c) %>%
-                 as.matrix(2, 2, dimnames = c("cal_d15n", "cal_d13c"),
-                 ), .progress = "Prepare sigma for ellipse"
+                 as.matrix(2, 2), .progress = "Prepare sigma for ellipse"
     )
 
 
