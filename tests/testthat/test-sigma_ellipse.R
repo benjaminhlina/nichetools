@@ -2,7 +2,6 @@
 
 # ---- fish data frame from ----
 
-
 test_that("check if names are wrong", {
   expect_error(
     sigma_ellipse(
