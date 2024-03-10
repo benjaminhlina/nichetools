@@ -3,6 +3,7 @@
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/benjaminhlina/nichetool/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/benjaminhlina/nichetool/actions/workflows/R-CMD-check.yaml)
+[![codecov](https://codecov.io/gh/benjaminhlina/nichetools/graph/badge.svg?token=mk3RjaD0hb)](https://codecov.io/gh/benjaminhlina/nichetools)
 <!-- badges: end -->
 
 {nichetools} is a complementary package to [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html) that allows the user to extract Bayesian estimates from data objects created by [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html) (e.g., niche size and similarities).
