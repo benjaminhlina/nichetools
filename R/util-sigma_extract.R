@@ -7,8 +7,12 @@
 sigma_extract <-  function(data,
                            isotope_a = NULL,
                            isotope_b = NULL) {
+  # Check if data is a list
+  if (!is.list(data)) {
+    cli::cli_abort("Input 'data' must be a list.")
+  }
 
-
+  # defaults of isotpoep a and b
   if (is.null(isotope_a)) {
     isotope_a <- "d15n"
   }
@@ -18,15 +22,15 @@ sigma_extract <-  function(data,
   }
   # Check if isotope_a is character
   if (!is.character(isotope_a)) {
-    cli::cli_abort("Parameter 'isotope_a' must be a character vector.")
+    cli::cli_abort("The supplied argument for 'isotope_a' must be a character.")
   }
 
   # Check if isotope_b is character
   if (!is.character(isotope_b)) {
-    cli::cli_abort("Parameter 'isotope_b' must be a character vector.")
+    cli::cli_abort("The supplied argument for 'isotope_b' must be a character.")
   }
 
-  # extract sigma
+  # extract sigm
   df_sigma <- purrr::map(data, pluck, 2) |>
     purrr::imap(~ tibble::as_tibble(.x) |>
            dplyr::mutate(
