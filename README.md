@@ -17,9 +17,10 @@ install.packages("devtools")
 devtools::install_github("benjaminhlina/nichetools")
 ```
 
-# This packages is currently in development, use at your own risk: 
 
-## Progress
+### This packages is currently in development, use at your own risk: 
+
+#### Progress
 -   [X] create mu_extract
     -   [ ] build tests for mu_extract
 -   [X] create sigma_extract
