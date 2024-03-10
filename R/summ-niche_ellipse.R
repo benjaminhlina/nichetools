@@ -14,7 +14,7 @@
 #' @param isotope_a character string that is the column name of the first
 #' isotope used in `dat_sigma`. Defaults to `"d15n"`.
 #' @param isotope_b character string that is the column name of the second
-#' isotope used in `dat_sigma`. Defaults to `d13c"`.
+#' isotope used in `dat_sigma`. Defaults to `"d13c"`.
 #'
 #' @examples
 #' # ellipse <- sigma_ellipse()
@@ -38,7 +38,7 @@ niche_ellipse <- function(
   # options(error = recover)
   start_time <- Sys.time()
 
-  # # fix nameing if not supplid
+  # fix nameing if not supplid
   if(!any(names(dat_sigma) %in% c("d15n",
                                   "d13c"))) {
       # Check if isotope_a and isotope_b are specified
