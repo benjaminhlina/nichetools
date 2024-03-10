@@ -39,3 +39,16 @@
 #' }
 #'
 "sigma_est_wide"
+
+#' Estimates of mu and sigma from Normal-Inverse-Wishart (NIW) prior
+#'
+#' Estimates of sigma from Normal-Inverse-Wishart (NIW) priors for example data
+#' frame produced using `niw.post()` from
+#' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html)
+#'
+#'
+#' @format A list with elements mu and Sigma of sizes c(nsamples, length(lambda))
+#'  and c(dim(Psi),
+#' }
+#'
+"niw_fish_post"
