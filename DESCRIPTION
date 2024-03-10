@@ -12,6 +12,7 @@ Imports:
     cli,
     dplyr,
     ellipse,
+    lifecycle,
     nicheROVER,
     purrr,
     tibble,
