@@ -9,24 +9,12 @@
 #' @param dat_sigma a data frame containing sigma Bayesian estimates.
 #' This data frame needs be in wide format that is sigma/covariance matrices stacked
 #' onto of each other.
-#' @param name character string that is the column name of each grouping used
-#' (e.g, species) to create mu and sigma Bayesian estimates. This name is the same for
-#' `dat_mu`and `dat_sigma`. Defaults to `"sample_name"`.
-#' @param number character string that is the column name of each Bayesian estimate.
-#' This name is the same for `dat_mu`and `dat_sigma`. Defaults to `"sample_number"`.
-#' @param mu_name character string that is the column name of the mu estimate in
-#' `dat_mu`. Defaults to `"mu_est"`.
-#' @param isotope_a character string that is the column name of the first isotope.
-#' This name is the same for `dat_mu`and `dat_sigma`. Defaults to `"cal_d15n"`.
-#' @param isotope_b character string that is the column name of the first isotope.
-#' This name is the same for `dat_mu`and `dat_sigma`. Defaults to `"cal_d13c"`.
 #' @param p_ell is the confidence interval of each ellipse estimate.
 #' Default is 0.95 (i.e., 95% confidence interval).
-#'
-#' @return a data frame containing 100 estimates for each `sample_number` of each
-#' `sample_name`. As the function runs, it will produce progress bars and tell
-#' the user what step it is on. After the last step it will complete a few more
-#' processes and then return the total time the function ran.
+#' @param isotope_a character string that is the column name of the first
+#' isotope used in `dat_sigma`. Defaults to `"d15n"`.
+#' @param isotope_b character string that is the column name of the second
+#' isotope used in `dat_sigma`. Defaults to `d13c"`.
 #'
 #' @examples
 #' # ellipse <- sigma_ellipse()
