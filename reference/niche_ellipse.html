@@ -48,11 +48,8 @@ create estimated Bayesian ellipse for niche region.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">niche_ellipse</span><span class="op">(</span></span>
 <span>  <span class="va">dat_mu</span>,</span>
 <span>  <span class="va">dat_sigma</span>,</span>
-<span>  name <span class="op">=</span> <span class="st">"sample_name"</span>,</span>
-<span>  number <span class="op">=</span> <span class="st">"sample_number"</span>,</span>
-<span>  mu_name <span class="op">=</span> <span class="st">"mu_est"</span>,</span>
-<span>  isotope_a <span class="op">=</span> <span class="st">"cal_d15n"</span>,</span>
-<span>  isotope_b <span class="op">=</span> <span class="st">"cal_d13c"</span>,</span>
+<span>  isotope_a <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  isotope_b <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  p_ell <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -71,30 +68,14 @@ This data frame needs be in wide format that is sigma/covariance matrices stacke
 onto of each other.</p></dd>
 
 
-<dt>name</dt>
-<dd><p>character string that is the column name of each grouping used
-(e.g, species) to create mu and sigma Bayesian estimates. This name is the same for
-<code>dat_mu</code>and <code>dat_sigma</code>. Defaults to <code>"sample_name"</code>.</p></dd>
-
-
-<dt>number</dt>
-<dd><p>character string that is the column name of each Bayesian estimate.
-This name is the same for <code>dat_mu</code>and <code>dat_sigma</code>. Defaults to <code>"sample_number"</code>.</p></dd>
-
-
-<dt>mu_name</dt>
-<dd><p>character string that is the column name of the mu estimate in
-<code>dat_mu</code>. Defaults to <code>"mu_est"</code>.</p></dd>
-
-
 <dt>isotope_a</dt>
-<dd><p>character string that is the column name of the first isotope.
-This name is the same for <code>dat_mu</code>and <code>dat_sigma</code>. Defaults to <code>"cal_d15n"</code>.</p></dd>
+<dd><p>character string that is the column name of the first
+isotope used in <code>dat_sigma</code>. Defaults to <code>"d15n"</code>.</p></dd>
 
 
 <dt>isotope_b</dt>
-<dd><p>character string that is the column name of the first isotope.
-This name is the same for <code>dat_mu</code>and <code>dat_sigma</code>. Defaults to <code>"cal_d13c"</code>.</p></dd>
+<dd><p>character string that is the column name of the second
+isotope used in <code>dat_sigma</code>. Defaults to <code>d13c"</code>.</p></dd>
 
 
 <dt>p_ell</dt>
@@ -102,15 +83,6 @@ This name is the same for <code>dat_mu</code>and <code>dat_sigma</code>. Default
 Default is 0.95 (i.e., 95% confidence interval).</p></dd>
 
 </dl></div>
-    <div class="section level2">
-    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    
-
-<p>a data frame containing 100 estimates for each <code>sample_number</code> of each
-<code>sample_name</code>. As the function runs, it will produce progress bars and tell
-the user what step it is on. After the last step it will complete a few more
-processes and then return the total time the function ran.</p>
-    </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
