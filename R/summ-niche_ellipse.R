@@ -31,75 +31,78 @@
 niche_ellipse <- function(
     dat_mu,
     dat_sigma,
-    name = "sample_name",
-    number = "sample_number",
-    mu_name = "mu_est",
-    isotope_a = "cal_d15n",
-    isotope_b ="cal_d13c",
+    isotope_a = NULL,
+    isotope_b = NULL,
     p_ell = NULL
 ) {
+  # options(error = recover)
   start_time <- Sys.time()
 
   # # fix nameing if not supplid
+  if(!any(names(dat_sigma) %in% c("d15n",
+                                  "d13c"))) {
+      # Check if isotope_a and isotope_b are specified
+      if (!is.null(isotope_a) && !is.null(isotope_b)) {
+        dat_sigma$d15n <- dat_sigma[[isotope_a]]
+        dat_sigma[[isotope_a]] <- NULL
 
-  if(!any(names(dat_sigma) %in% c("sample_number",
-                                  "sample_name",
-                                  "cal_d15n",
-                                  "cal_d13c"))) {
-    start_time <- Sys.time()
-
-    dat_sigma$sample_name <- dat_sigma[[name]]
-    dat_sigma[[name]] <- NULL
-
-    dat_sigma$sample_number <- dat_sigma[[number]]
-    dat_sigma[[number]] <- NULL
-
-    dat_sigma$cal_d15n <- dat_sigma[[isotope_a]]
-    dat_sigma[[isotope_a]] <- NULL
-
-    dat_sigma$cal_d13c <- dat_sigma[[isotope_b]]
-    dat_sigma[[isotope_b]] <- NULL
-
-  }
-  if(!any(names(dat_mu) %in% c("sample_number",
-                               "sample_name",
-                               "mu_est",
-                               "cal_d15n",
-                               "cal_d13c"))) {
-
-    dat_mu$sample_name <- dat_mu[[name]]
-    dat_mu[[name]] <- NULL
-
-    dat_mu$sample_number <- dat_mu[[number]]
-    dat_mu[[number]] <- NULL
-
-    dat_mu$cal_d15n <- dat_mu[[isotope_a]]
-    dat_mu[[isotope_a]] <- NULL
-
-    dat_mu$cal_d13c <- dat_mu[[isotope_b]]
-    dat_mu[[isotope_b]] <- NULL
-
-    dat_mu$mu_est <- dat_mu[[mu_name]]
-    dat_mu[[mu_name]] <- NULL
-
-  }
+        dat_sigma$d13c <- dat_sigma[[isotope_b]]
+        dat_sigma[[isotope_b]] <- NULL
+      } else {
+        # Handle the case where isotope_a or isotope_b is not specified
+        cli::cli_abort("Both 'isotope_a' and 'isotope_b' must be specified when
+                       dat_sigma 'd15n' and 'd13c' are named differently.")
+      }
+    }
+#   if(!any(names(dat_mu) %in% c("sample_number",
+#                                "sample_name",
+#                                "mu_est",
+#                                "cal_d15n",
+#                                "cal_d13c"))) {
+#
+#     dat_mu$sample_name <- dat_mu[[name]]
+#     dat_mu[[name]] <- NULL
+#
+#     dat_mu$sample_number <- dat_mu[[number]]
+#     dat_mu[[number]] <- NULL
+#
+#     dat_mu$cal_d15n <- dat_mu[[isotope_a]]
+#     dat_mu[[isotope_a]] <- NULL
+#
+#     dat_mu$cal_d13c <- dat_mu[[isotope_b]]
+#     dat_mu[[isotope_b]] <- NULL
+#
+#     dat_mu$mu_est <- dat_mu[[mu_name]]
+#     dat_mu[[mu_name]] <- NULL
+#
+#   } else {
+#     # Handle the case where 'name' or 'number' is not defined
+#     stop("Variables 'name' and 'number' must be defined.")
+#   }
   # set p ellipse
   if(is.null(p_ell)) {
     p_ell <- 0.95
   }
-
+  # Additional parameter validation, if needed
+  if (!is.null(p_ell)) {
+    if (!is.numeric(p_ell) || p_ell < 0 || p_ell > 1) {
+      cli::cli_abort("Parameter '{.var}' must be a numeric value between 0 and 1.")
+    }
+  }
   # prepare mu for ellipse
-  mu <- dat_mu %>%
-    dplyr::select(sample_name, sample_number, mu_est) %>%
-    dplyr::group_split(sample_name, sample_number) %>%
+  mu <- dat_mu |>
+    dplyr::select(sample_name, sample_number, mu_est) |>
+    dplyr::group_split(sample_name, sample_number) |>
     map(~ .x$mu_est,
         .progress = "Prepare mu for ellipse")
 
   # preppare sigama for epplipse
-  sigma <- dat_sigma %>%
-    dplyr::select(sample_name, sample_number, cal_d15n, cal_d13c) %>%
-    dplyr::group_split(sample_name, sample_number) %>%
-    purrr::map(~ cbind(.x$cal_d15n, .x$cal_d13c) %>%
+  #
+  # Erroring at isotope names fix
+  sigma <- dat_sigma |>
+    dplyr::select(sample_name, sample_number, d15n, d13c) |>
+    dplyr::group_split(sample_name, sample_number) |>
+    purrr::map(~ cbind(.x$d15n, .x$d13c) |>
                  as.matrix(2, 2), .progress = "Prepare sigma for ellipse"
     )
 
