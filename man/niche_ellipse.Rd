@@ -25,7 +25,7 @@ onto of each other.}
 isotope used in \code{dat_sigma}. Defaults to \code{"d15n"}.}
 
 \item{isotope_b}{character string that is the column name of the second
-isotope used in \code{dat_sigma}. Defaults to \verb{d13c"}.}
+isotope used in \code{dat_sigma}. Defaults to \code{"d13c"}.}
 
 \item{p_ell}{is the confidence interval of each ellipse estimate.
 Default is 0.95 (i.e., 95\% confidence interval).}
