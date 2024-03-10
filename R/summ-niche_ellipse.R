@@ -113,27 +113,27 @@ niche_ellipse <- function(
     .progress = "Create ellipses")
 
   # Converting ellipse estimates into tibble
-  ellipse_dat <- ellipse_dat %>%
-    purrr::map(~ .x %>%
+  ellipse_dat <- ellipse_dat |>
+    purrr::map(~ .x |>
                  tibble::as_tibble(),
                .progress = "Converting ellipse estimates into tibble"
     )
   # create names to join name each ellimate of the list
-  list_names <- dat_sigma %>%
-    dplyr::group_by(sample_name, sample_number) %>%
-    dplyr::group_keys() %>%
+  list_names <- dat_sigma |>
+    dplyr::group_by(sample_name, sample_number) |>
+    dplyr::group_keys() |>
     dplyr::mutate(sample_name_num = paste(sample_name, sample_number, sep = ":"))
 
   names(ellipse_dat) <- list_names$sample_name_num
 
   # bind and rename columns
-  all_ellipses <- dplyr::bind_rows(ellipse_dat, .id = "ellipse_name") %>%
+  all_ellipses <- dplyr::bind_rows(ellipse_dat, .id = "ellipse_name") |>
     dplyr::rename(
       isotope_a = x,
       isotope_b = y
-    ) %>%
+    ) |>
     tidyr::separate(ellipse_name,
-                    into = c("sample_name", "sample_number"), sep = ":") %>%
+                    into = c("sample_name", "sample_number"), sep = ":") |>
     dplyr::mutate(
       sample_number = as.numeric(sample_number)
     )
