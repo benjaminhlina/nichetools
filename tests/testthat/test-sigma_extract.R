@@ -93,4 +93,19 @@ test_that("that supplying both isotope names works ", {
 
 }
 )
+test_that("that isotope a and b will throw erros if charcter not supplied", {
+  expect_error(df <- sigma_extract(
+    data = niw_fish_post,
+    isotope_a = 10,
 
+  ), regexp = "The supplied argument for 'isotope_a' must be a character."
+  )
+  expect_error(df <- sigma_extract(
+    data = niw_fish_post,
+    isotope_b = 10,
+
+  ), regexp = "The supplied argument for 'isotope_b' must be a character"
+  )
+
+}
+)
