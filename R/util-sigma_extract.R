@@ -1,6 +1,19 @@
 #' Sigma extract
 #'
-#' Extract estiamtes of sigma from functions from {nicheROVER}.
+#' Extract Bayesian estimates of sigma from the function `niw.post()` from
+#' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
+#'
+#' @param data a list object created by `niw.post()` from
+#' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html)
+#' @param isotope_a character string to supply for the first
+#' isotope used in `niw.post()`. Defaults to `"d15n"`.
+#' @param isotope_b character string to supply for the first
+#' isotope used in `niw.post()`. Defaults to `"d13c"`.
+#'
+#' @examples
+#'df_sigma_test <- sigma_extract(
+#'data = niw_fish_post
+#')
 #'
 #' @export
 

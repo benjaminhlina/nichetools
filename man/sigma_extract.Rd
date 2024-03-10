@@ -6,6 +6,23 @@
 \usage{
 sigma_extract(data, isotope_a = NULL, isotope_b = NULL)
 }
+\arguments{
+\item{data}{a list object created by \code{niw.post()} from
+\href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}}
+
+\item{isotope_a}{character string to supply for the first
+isotope used in \code{niw.post()}. Defaults to \code{"d15n"}.}
+
+\item{isotope_b}{character string to supply for the first
+isotope used in \code{niw.post()}. Defaults to \code{"d13c"}.}
+}
 \description{
-Extract estiamtes of sigma from functions from {nicheROVER}.
+Extract Bayesian estimates of sigma from the function \code{niw.post()} from
+\href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.
+}
+\examples{
+df_sigma_test <- sigma_extract(
+data = niw_fish_post
+)
+
 }
