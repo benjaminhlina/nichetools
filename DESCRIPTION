@@ -8,17 +8,18 @@ Description: This package is complementary to {nicheROVER} as it allows
         the user to extract Bayesian estimates from data objects created by  
         package {nicheROVER}. 
 Depends: R (>= 2.10)
-Imports: dplyr, 
-         ellipse,
-         nicheROVER, 
-         purrr, 
-         tibble,
-         tidyr
+Imports: 
+    dplyr,
+    ellipse,
+    nicheROVER,
+    purrr,
+    tibble,
+    tidyr
 License: CC0
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.1
 URL: https://benjaminhlina.github.io/nichetool/
 Suggests: 
     testthat (>= 3.0.0)
