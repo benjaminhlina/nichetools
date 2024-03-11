@@ -84,7 +84,7 @@ niche_ellipse <- function(
   mu <- dat_mu |>
     dplyr::select(sample_name, sample_number, mu_est) |>
     dplyr::group_split(sample_name, sample_number) |>
-    map(~ .x$mu_est,
+    purrr::map(~ .x$mu_est,
         .progress = "Prepare mu for ellipse")
 
   # preppare sigama for epplipse
