@@ -1,6 +1,15 @@
 #' Mu extract
 #'
-#' Extract estimates of mu from functions from {nicheROVER}.
+#' Extract Bayesian estimates of mue from the function `niw.post()` from
+#' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
+#'
+#' #' @param data a list object created by `niw.post()` from
+#' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html)
+#'
+#' @examples
+#' df_mu <- mu_extract(
+#' data = niw_fish_post
+#' )
 #'
 #' @export
 mu_extract <- function(data) {
