@@ -35,10 +35,21 @@ niche_ellipse <- function(
     dat_sigma,
     isotope_a = NULL,
     isotope_b = NULL,
-    p_ell = NULL
+    p_ell = NULL,
+    message = TRUE
 ) {
   # options(error = recover)
   start_time <- Sys.time()
+
+
+  # Check if dat_mu is a data.frame
+  if (!inherits(x = dat_mu, what = c("tbl_df", "tbl", "data.frame"))) {
+    cli::cli_abort("Input 'dat_mu' must be class data.frame.")
+  }
+  # Check if dat_sigma is a data.frame
+  if (!inherits(dat_sigma, what = c("tbl_df", "tbl", "data.frame"))) {
+    cli::cli_abort("Input 'dat_sigma' must be class data.frame.")
+  }
 
   # fix nameing if not supplid
   if(!any(names(dat_sigma) %in% c("d15n",
