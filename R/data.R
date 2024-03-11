@@ -48,7 +48,6 @@
 #'
 #'
 #' @format A list with elements mu and Sigma of sizes c(nsamples, length(lambda))
-#'  and c(dim(Psi),
-#' }
+#'  and c(dim(Psi).
 #'
 "niw_fish_post"
