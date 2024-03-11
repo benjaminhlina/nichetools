@@ -54,40 +54,14 @@ niche_ellipse <- function(
   }
 
 
+  if (is.null(isotope_a)) {
+    isotope_a <- "d15n"
+  }
+  if (is.null(isotope_b)) {
+    isotope_b <- "d13c"
+  }
 
-  # fix nameing if not supplid
-  if(!any(names(dat_sigma) %in% c("d15n",
-                                  "d13c"))) {
-      # Check if isotope_a and isotope_b are specified
-      if (!is.null(isotope_a) && !is.null(isotope_b)) {
-        dat_sigma$d15n <- dat_sigma[[isotope_a]]
-        dat_sigma[[isotope_a]] <- NULL
 
-        dat_sigma$d13c <- dat_sigma[[isotope_b]]
-        dat_sigma[[isotope_b]] <- NULL
-      } else {
-        # Handle the case where isotope_a or isotope_b is not specified
-        cli::cli_abort("Both 'isotope_a' and 'isotope_b' must be specified when
-                       dat_sigma 'd15n' and 'd13c' are named differently.")
-      }
-    }
-#   if(!any(names(dat_mu) %in% c("sample_number",
-#                                "sample_name",
-#                                "mu_est",
-#                                "cal_d15n",
-#                                "cal_d13c"))) {
-#
-#     dat_mu$sample_name <- dat_mu[[name]]
-#     dat_mu[[name]] <- NULL
-#
-#     dat_mu$sample_number <- dat_mu[[number]]
-#     dat_mu[[number]] <- NULL
-#
-#     dat_mu$cal_d15n <- dat_mu[[isotope_a]]
-#     dat_mu[[isotope_a]] <- NULL
-#
-#     dat_mu$cal_d13c <- dat_mu[[isotope_b]]
-#     dat_mu[[isotope_b]] <- NULL
 #
 #     dat_mu$mu_est <- dat_mu[[mu_name]]
 #     dat_mu[[mu_name]] <- NULL
