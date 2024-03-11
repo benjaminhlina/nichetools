@@ -72,6 +72,51 @@ isotope used in <code>niw.post()</code>. Defaults to <code>"d13c"</code>.</p></d
 <span class="r-in"><span>data <span class="op">=</span> <span class="va">niw_fish_post</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># ---- To understand how niw_fish_post is being created ----</span></span></span>
+<span class="r-in"><span><span class="co"># ---- Uncomment the code below to create object from nicheROVER ----</span></span></span>
+<span class="r-in"><span><span class="co"># {</span></span></span>
+<span class="r-in"><span><span class="co"># library(dplyr)</span></span></span>
+<span class="r-in"><span><span class="co"># library(janitor)</span></span></span>
+<span class="r-in"><span><span class="co"># library(nicheROVER)</span></span></span>
+<span class="r-in"><span><span class="co"># library(nichetools)</span></span></span>
+<span class="r-in"><span><span class="co"># library(purrr)</span></span></span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># gab fish dataframe, and remove sulfer for the example</span></span></span>
+<span class="r-in"><span><span class="co"># df &lt;- fish %&gt;%</span></span></span>
+<span class="r-in"><span><span class="co">#   janitor::clean_names()</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># create number of samples used in nicheROVER</span></span></span>
+<span class="r-in"><span><span class="co"># nsample &lt;- 1000</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># split the data frame by species and select isotopes of interest</span></span></span>
+<span class="r-in"><span><span class="co"># df_split &lt;- df %&gt;%</span></span></span>
+<span class="r-in"><span><span class="co"># split(.$species) %&gt;%</span></span></span>
+<span class="r-in"><span><span class="co"># map(~ select(., d15n, d13c))</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># extract the names of each list to name each object in list</span></span></span>
+<span class="r-in"><span><span class="co"># df_names &lt;- df %&gt;%</span></span></span>
+<span class="r-in"><span><span class="co"># group_by(species) %&gt;%</span></span></span>
+<span class="r-in"><span><span class="co"># group_keys() %&gt;%</span></span></span>
+<span class="r-in"><span><span class="co"># ungroup() %&gt;%</span></span></span>
+<span class="r-in"><span><span class="co"># mutate(</span></span></span>
+<span class="r-in"><span><span class="co"># id = 1:nrow(.)</span></span></span>
+<span class="r-in"><span><span class="co"># )</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># name each object in list</span></span></span>
+<span class="r-in"><span><span class="co"># names(df_split) &lt;- df_names$species</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># create niw posterior samples</span></span></span>
+<span class="r-in"><span><span class="co"># niw_fish_post &lt;- df_split %&gt;%</span></span></span>
+<span class="r-in"><span><span class="co"># map(~niw.post(nsample = nsample, X = .))</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># we can then use sigma_extract() to extract mu from niw_fish_post</span></span></span>
+<span class="r-in"><span><span class="co"># df_sigmaa &lt;- sigma_extract(</span></span></span>
+<span class="r-in"><span><span class="co"># data = niw_fish_post</span></span></span>
+<span class="r-in"><span><span class="co"># )</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

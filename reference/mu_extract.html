@@ -52,15 +52,61 @@ nicheROVER."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>data</dt>
 <dd><p>a list object created by <code>niw.post()</code> from
-<a href="https://cran.r-project.org/web/packages/nicheROVER/index.html" class="external-link">nicheROVER</a></p></dd>
+<a href="https://cran.r-project.org/web/packages/nicheROVER/index.html" class="external-link">nicheROVER</a>.</p></dd>
 
 </dl></div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">df_mu</span> <span class="op">&lt;-</span> <span class="fu">mu_extract</span><span class="op">(</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">df_mu</span> <span class="op">&lt;-</span> <span class="fu">mu_extract</span><span class="op">(</span></span></span>
 <span class="r-in"><span>data <span class="op">=</span> <span class="va">niw_fish_post</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># ---- To understand how niw_fish_post is being created ----</span></span></span>
+<span class="r-in"><span><span class="co"># ---- Uncomment the code below to create object from nicheROVER ----</span></span></span>
+<span class="r-in"><span><span class="co"># {</span></span></span>
+<span class="r-in"><span><span class="co"># library(dplyr)</span></span></span>
+<span class="r-in"><span><span class="co"># library(janitor)</span></span></span>
+<span class="r-in"><span><span class="co"># library(nicheROVER)</span></span></span>
+<span class="r-in"><span><span class="co"># library(nichetools)</span></span></span>
+<span class="r-in"><span><span class="co"># library(purrr)</span></span></span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># gab fish dataframe, and remove sulfer for the example</span></span></span>
+<span class="r-in"><span><span class="co"># df &lt;- fish %&gt;%</span></span></span>
+<span class="r-in"><span><span class="co">#   janitor::clean_names()</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># create number of samples used in nicheROVER</span></span></span>
+<span class="r-in"><span><span class="co"># nsample &lt;- 1000</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># split the data frame by species and select isotopes of interest</span></span></span>
+<span class="r-in"><span><span class="co"># df_split &lt;- df %&gt;%</span></span></span>
+<span class="r-in"><span><span class="co"># split(.$species) %&gt;%</span></span></span>
+<span class="r-in"><span><span class="co"># map(~ select(., d15n, d13c))</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># extract the names of each list to name each object in list</span></span></span>
+<span class="r-in"><span><span class="co"># df_names &lt;- df %&gt;%</span></span></span>
+<span class="r-in"><span><span class="co"># group_by(species) %&gt;%</span></span></span>
+<span class="r-in"><span><span class="co"># group_keys() %&gt;%</span></span></span>
+<span class="r-in"><span><span class="co"># ungroup() %&gt;%</span></span></span>
+<span class="r-in"><span><span class="co"># mutate(</span></span></span>
+<span class="r-in"><span><span class="co"># id = 1:nrow(.)</span></span></span>
+<span class="r-in"><span><span class="co"># )</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># name each object in list</span></span></span>
+<span class="r-in"><span><span class="co"># names(df_split) &lt;- df_names$species</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># create niw posterior samples</span></span></span>
+<span class="r-in"><span><span class="co"># niw_fish_post &lt;- df_split %&gt;%</span></span></span>
+<span class="r-in"><span><span class="co"># map(~niw.post(nsample = nsample, X = .))</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># we can then use mu_extract() to extract mu from niw_fish_post</span></span></span>
+<span class="r-in"><span><span class="co"># df_mu &lt;- mu_extract(</span></span></span>
+<span class="r-in"><span><span class="co"># data = niw_fish_post</span></span></span>
+<span class="r-in"><span><span class="co"># )</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
