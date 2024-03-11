@@ -50,7 +50,8 @@ create estimated Bayesian ellipse for niche region.</p>
 <span>  <span class="va">dat_sigma</span>,</span>
 <span>  isotope_a <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  isotope_b <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  p_ell <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  p_ell <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  message <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -75,12 +76,17 @@ isotope used in <code>dat_sigma</code>. Defaults to <code>"d15n"</code>.</p></dd
 
 <dt>isotope_b</dt>
 <dd><p>character string that is the column name of the second
-isotope used in <code>dat_sigma</code>. Defaults to <code>"d13c"</code>.</p></dd>
+isotope used in <code>dat_sigma</code>. Defaults to <code>"  d13c"</code>.</p></dd>
 
 
 <dt>p_ell</dt>
 <dd><p>is the confidence interval of each ellipse estimate.
 Default is 0.95 (i.e., 95% confidence interval).</p></dd>
+
+
+<dt>message</dt>
+<dd><p>Control whether the time processing is displayed after the
+end of the function. Default is <code>TRUE</code>.</p></dd>
 
 </dl></div>
 
