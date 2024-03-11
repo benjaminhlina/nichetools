@@ -55,6 +55,17 @@ nicheROVER."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs
 <a href="https://cran.r-project.org/web/packages/nicheROVER/index.html" class="external-link">nicheROVER</a>.</p></dd>
 
 </dl></div>
+    <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+    
+
+<p>Returns a tibble of extracted estimates of mu that are created by
+niw.post()` from
+<a href="https://cran.r-project.org/web/packages/nicheROVER/index.html" class="external-link">nicheROVER</a>.
+The tibble will contain five columns in the following order, metric,
+sample_name, sample_number, and the names of the isotope
+columns (e.g., d15n and d13c).</p>
+    </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
@@ -75,22 +86,22 @@ nicheROVER."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs
 <span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># gab fish dataframe, and remove sulfer for the example</span></span></span>
-<span class="r-in"><span><span class="co"># df &lt;- fish %&gt;%</span></span></span>
+<span class="r-in"><span><span class="co"># df &lt;- fish |&gt;</span></span></span>
 <span class="r-in"><span><span class="co">#   janitor::clean_names()</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># create number of samples used in nicheROVER</span></span></span>
 <span class="r-in"><span><span class="co"># nsample &lt;- 1000</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># split the data frame by species and select isotopes of interest</span></span></span>
-<span class="r-in"><span><span class="co"># df_split &lt;- df %&gt;%</span></span></span>
-<span class="r-in"><span><span class="co"># split(.$species) %&gt;%</span></span></span>
+<span class="r-in"><span><span class="co"># df_split &lt;- df |&gt;</span></span></span>
+<span class="r-in"><span><span class="co"># split(.$species) |&gt;</span></span></span>
 <span class="r-in"><span><span class="co"># map(~ select(., d15n, d13c))</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># extract the names of each list to name each object in list</span></span></span>
-<span class="r-in"><span><span class="co"># df_names &lt;- df %&gt;%</span></span></span>
-<span class="r-in"><span><span class="co"># group_by(species) %&gt;%</span></span></span>
-<span class="r-in"><span><span class="co"># group_keys() %&gt;%</span></span></span>
-<span class="r-in"><span><span class="co"># ungroup() %&gt;%</span></span></span>
+<span class="r-in"><span><span class="co"># df_names &lt;- df |&gt;</span></span></span>
+<span class="r-in"><span><span class="co"># group_by(species) |&gt;</span></span></span>
+<span class="r-in"><span><span class="co"># group_keys() |&gt;</span></span></span>
+<span class="r-in"><span><span class="co"># ungroup() |&gt;</span></span></span>
 <span class="r-in"><span><span class="co"># mutate(</span></span></span>
 <span class="r-in"><span><span class="co"># id = 1:nrow(.)</span></span></span>
 <span class="r-in"><span><span class="co"># )</span></span></span>
@@ -99,7 +110,7 @@ nicheROVER."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs
 <span class="r-in"><span><span class="co"># names(df_split) &lt;- df_names$species</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># create niw posterior samples</span></span></span>
-<span class="r-in"><span><span class="co"># niw_fish_post &lt;- df_split %&gt;%</span></span></span>
+<span class="r-in"><span><span class="co"># niw_fish_post &lt;- df_split |&gt;</span></span></span>
 <span class="r-in"><span><span class="co"># map(~niw.post(nsample = nsample, X = .))</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
