@@ -21,7 +21,7 @@ sigma_extract <-  function(data,
                            isotope_a = NULL,
                            isotope_b = NULL) {
   # Check if data is a list
-  if (!is.list(data)) {
+  if (!inherits(data, "list")) {
     cli::cli_abort("Input 'data' must be a list.")
   }
 
@@ -43,12 +43,14 @@ sigma_extract <-  function(data,
     cli::cli_abort("The supplied argument for 'isotope_b' must be a character.")
   }
 
+
+  id_isotope <- c(isotope_a, isotope_b)
   # extract sigm
-  df_sigma <- purrr::map(data, pluck, 2) |>
+  df_sigma <- purrr::map(data, purrr::pluck, 2) |>
     purrr::imap(~ tibble::as_tibble(.x) |>
            dplyr::mutate(
              metric = "sigma",
-             id = c(isotope_a, isotope_b),
+             id = id_isotope,
              sample_name = .y
            )
     ) |>
