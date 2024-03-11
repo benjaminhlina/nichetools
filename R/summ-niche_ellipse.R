@@ -158,8 +158,10 @@ niche_ellipse <- function(
   end_time <- Sys.time()
 
   time_spent <- round((end_time - start_time), digits = 2)
-
-  message("Total time processing was ", time_spent, " mins")
+  if (message) {
+    cli::cli_alert(paste("Total time processing was", time_spent, units(time_spent),
+                       sep = " "))
+  }
 
   return(all_ellipses)
 
