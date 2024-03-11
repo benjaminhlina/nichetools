@@ -71,20 +71,30 @@ mu_extract <- function(data) {
   if (!inherits(data, "list")) {
     cli::cli_abort("Input 'data' must be a list.")
   }
+
+  col_names <- purrr::map(data, purrr::pluck, 1) |>
+    purrr::imap(~ tibble::as_tibble(.x)) |>
+    dplyr::bind_rows() |>
+    names()
+
   # extract mu
-  df_mu <- purrr::map(data, purrr::pluck, 1) %>%
-    purrr::imap(~ tibble::as_tibble(.x) %>%
+  df_mu <- purrr::map(data, purrr::pluck, 1) |>
+    purrr::imap(~ tibble::as_tibble(.x) |>
            dplyr::mutate(
              metric = "mu",
              sample_name = .y
            )
-    ) %>%
-    dplyr::bind_rows() %>%
-    dplyr::group_by(sample_name) %>%
+    ) |>
+    dplyr::bind_rows() |>
+    dplyr::group_by(sample_name) |>
     dplyr::mutate(
       sample_number = 1:1000
-    ) %>%
+    ) |>
     dplyr::ungroup()
+
+
+  df_mu <- df_mu |>
+    dplyr::select(metric:sample_number, all_of(col_names))
 
   return(df_mu)
 }
