@@ -4,7 +4,7 @@
 \name{nichetools-package}
 \alias{nichetools}
 \alias{nichetools-package}
-\title{nichetools: complementary package to {nicheROVER}}
+\title{nichetools: Complementary package to `{nicheROVER}`}
 \description{
 This package is complementary to {nicheROVER} as it allows the user to extract Bayesian estimates from data objects created by package {nicheROVER}.
 }
