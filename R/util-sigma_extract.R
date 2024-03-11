@@ -11,7 +11,7 @@
 #' isotope used in `niw.post()`. Defaults to `"d13c"`.
 #'
 #' @examples
-#'df_sigma_test <- sigma_extract(
+#'df_sigma <- sigma_extract(
 #'data = niw_fish_post
 #')
 #'
