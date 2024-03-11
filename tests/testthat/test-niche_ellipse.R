@@ -117,20 +117,19 @@ test_that("p_ell errors when given a charcter  or value outside of range", {
 
 
 test_that("Test print out of message for run time", {
-  n_test <- capture.output(
-    niche_ellipse(dat_mu = mu_est_long,
-                  dat_sigma = sigma_est_wide)
-  )
-  expect_output(n_test,"Total time processing was")
+
+  expect_message(niche_ellipse(dat_mu = mu_est_long,
+                               dat_sigma = sigma_est_wide),
+                 "Total time processing was")
 })
 
 
 test_that("test print out doesn't show when set to false", {
-  n_test_2 <- capture.output(
-    niche_ellipse(dat_mu = mu_est_long,
-                  dat_sigma = sigma_est_wide,
-                  message = FALSE)
-  )
 
-  expect_false("Total time processing was" %in% n_test_2)
+  expect_no_message(niche_ellipse(dat_mu = mu_est_long,
+                                  dat_sigma = sigma_est_wide,
+                                  message = FALSE)
+  )
 })
+
+
