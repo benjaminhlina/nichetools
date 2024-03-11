@@ -60,17 +60,17 @@ niche_ellipse <- function(
   if (is.null(isotope_b)) {
     isotope_b <- "d13c"
   }
+  # Validate if isotope_a is a character
+  if (!is.character(isotope_a)) {
+    cli::cli_abort("Argument 'isotope_a' must be a character.")
+  }
+
+  # Validate if isotope_b is a character
+  if (!is.character(isotope_b)) {
+    cli::cli_abort("Argument 'isotope_b' must be a character.")
+  }
 
 
-#
-#     dat_mu$mu_est <- dat_mu[[mu_name]]
-#     dat_mu[[mu_name]] <- NULL
-#
-#   } else {
-#     # Handle the case where 'name' or 'number' is not defined
-#     stop("Variables 'name' and 'number' must be defined.")
-#   }
-  # set p ellipse
   if(is.null(p_ell)) {
     p_ell <- 0.95
   }
