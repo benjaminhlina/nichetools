@@ -16,7 +16,7 @@ test_that("Test if object class returned is data.frame ", {
     message = FALSE
   )
   expect_s3_class(object = n_ellipse_test, class = c("tbl_df", "tbl",
-                                                       "data.frame")
+                                                     "data.frame")
   )
   # excreted dimensions
   expected_rows <- 400000
@@ -46,34 +46,29 @@ test_that("Test if objects supplied are data.frame ", {
 
   expect_error(
     niche_ellipse(dat_mu = invalid_dat_mu, dat_sigma = invalid_dat_sigma)
-  , "Input 'dat_mu' must be class data.frame.")
+    , "Input 'dat_mu' must be class data.frame.")
 
 })
-# test_that("check if no error are wrong", {
-#   expect_no_error(
-#     niche_ellipse(
-#       dat_mu = mu_est_long,
-#       dat_sigma = sigma_est_wide,
-#       # isotope_a = "cal_d15n",
-#       # isotope_b = "cal_d13c",
-#     )
-# )
-# })
-#
-# test_that("check if it will take new names ", {
-#
-#   # sigma_est_wide$a <- sigma_est_wide$d15n
-#   # sigma_est_wide$d15n <- NULL
-#   # sigma_est_wide$b <- sigma_est_wide$d13c
-#   #
-#   #
-#   # expect_error(
-#   #   niche_ellipse(
-#   #   dat_mu = mu_est_long,
-#   #   dat_sigma = sigma_est_wide,
-#   #   isotope_a = a,
-#   #   isotope_b = b
-#   # )
-#   # )
-# })
-#
+
+
+test_that("Check if naming works", {
+  expect_no_error(
+    n_ellipse_test <- niche_ellipse(
+      dat_mu = mu_est_long,
+      dat_sigma = sigma_est_wide,
+      message = FALSE,
+      isotope_a = "cal_d15n",
+      isotope_b = "cal_d13c",
+    )
+
+  )
+  expect_true("cal_d15n" %in% names(n_ellipse_test))
+  expect_true("cal_d13c" %in% names(n_ellipse_test))
+
+  expected_names <- c("sample_name", "sample_number", "cal_d15n",
+                      "cal_d13c")
+
+
+  expect_equal(names(n_ellipse_test), expected_names)
+})
+
