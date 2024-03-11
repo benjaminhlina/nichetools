@@ -7,5 +7,16 @@
 mu_extract(data)
 }
 \description{
-Extract estimates of mu from functions from {nicheROVER}.
+Extract Bayesian estimates of mue from the function \code{niw.post()} from
+\href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.
+}
+\details{
+#' @param data a list object created by \code{niw.post()} from
+\href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}
+}
+\examples{
+df_mu <- mu_extract(
+data = niw_fish_post
+)
+
 }
