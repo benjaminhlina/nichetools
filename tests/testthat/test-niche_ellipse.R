@@ -116,3 +116,11 @@ test_that("p_ell errors when given a charcter  or value outside of range", {
 )
 
 
+test_that("Test print out of message for run time", {
+  expect_output(niche_ellipse(dat_mu = mu_est_long,
+                dat_sigma = sigma_est_wide),
+                "Total time processing was"
+  )
+
+})
+
