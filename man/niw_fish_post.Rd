@@ -6,8 +6,7 @@
 \title{Estimates of mu and sigma from Normal-Inverse-Wishart (NIW) prior}
 \format{
 A list with elements mu and Sigma of sizes c(nsamples, length(lambda))
-and c(dim(Psi),
-}
+and c(dim(Psi).
 }
 \usage{
 niw_fish_post
