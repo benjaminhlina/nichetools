@@ -72,3 +72,32 @@ test_that("Check if naming works", {
   expect_equal(names(n_ellipse_test), expected_names)
 })
 
+
+test_that("Parameter 'p_ell' is set and validated correctly", {
+  # Test case 1: p_ell is NULL, it should be set to 0.95
+  # p_ell_null <- NULL
+  expect_no_error(
+    n_ellipse_test <- niche_ellipse(
+      dat_mu = mu_est_long,
+      dat_sigma = sigma_est_wide,
+      message = FALSE,
+      p_ell = 0.75
+    )
+)
+    expect_equal(n_ellipse_test$isotope_a[1], 13.8)
+    expect_equal(n_ellipse_test$isotope_b[1], -22.4)
+})
+
+test_that("p_ell errors when given a charcter  or value outside of range", {
+
+  # Test case 3: p_ell is not numeric, it should raise an error
+  expect_error(niche_ellipse(dat_mu, dat_sigma, p_ell = "invalid"),
+               "Parameter 'p_ell' must be a numeric value between 0 and 1.")
+
+  # Test case 4: p_ell is numeric but outside the valid range,
+  expect_error(niche_ellipse(dat_mu, dat_sigma, p_ell = 1.5),
+               "Parameter 'p_ell' must be a numeric value between 0 and 1.")
+}
+)
+
+
