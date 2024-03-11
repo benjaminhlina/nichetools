@@ -10,6 +10,14 @@ mu_extract(data)
 \item{data}{a list object created by \code{niw.post()} from
 \href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.}
 }
+\value{
+Returns a tibble of extracted estimates of mu that are created by
+niw.post()` from
+\href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.
+The tibble will contain five columns in the following order, metric,
+sample_name, sample_number, and the names of the isotope
+columns (e.g., d15n and d13c).
+}
 \description{
 Extract Bayesian estimates of mue from the function \code{niw.post()} from
 \href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.
@@ -32,22 +40,22 @@ data = niw_fish_post
 # }
 
 # gab fish dataframe, and remove sulfer for the example
-# df <- fish \%>\%
+# df <- fish |>
 #   janitor::clean_names()
 
 # create number of samples used in nicheROVER
 # nsample <- 1000
 
 # split the data frame by species and select isotopes of interest
-# df_split <- df \%>\%
-# split(.$species) \%>\%
+# df_split <- df |>
+# split(.$species) |>
 # map(~ select(., d15n, d13c))
 
 # extract the names of each list to name each object in list
-# df_names <- df \%>\%
-# group_by(species) \%>\%
-# group_keys() \%>\%
-# ungroup() \%>\%
+# df_names <- df |>
+# group_by(species) |>
+# group_keys() |>
+# ungroup() |>
 # mutate(
 # id = 1:nrow(.)
 # )
@@ -56,7 +64,7 @@ data = niw_fish_post
 # names(df_split) <- df_names$species
 
 # create niw posterior samples
-# niw_fish_post <- df_split \%>\%
+# niw_fish_post <- df_split |>
 # map(~niw.post(nsample = nsample, X = .))
 
 
