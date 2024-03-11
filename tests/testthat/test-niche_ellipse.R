@@ -82,9 +82,9 @@ test_that("Parameter 'p_ell' is can take other values than 0.95", {
       message = FALSE,
       p_ell = 0.75
     )
-)
-    expect_equal(n_ellipse_test$isotope_a[1], 13.8, tolerance = 0.1)
-    expect_equal(n_ellipse_test$isotope_b[1], -22.4, tolerance = 0.1)
+  )
+  expect_equal(n_ellipse_test$isotope_a[1], 13.8, tolerance = 0.1)
+  expect_equal(n_ellipse_test$isotope_b[1], -22.4, tolerance = 0.1)
 })
 test_that("Parameter 'p_ell' is set and validated correctly", {
   # Test case 1: p_ell is NULL, it should be set to 0.95
@@ -94,9 +94,9 @@ test_that("Parameter 'p_ell' is set and validated correctly", {
       dat_sigma = sigma_est_wide,
       message = FALSE,
     )
-)
-    expect_equal(n_ellipse_test$isotope_a[1], 14.3, tolerance = 0.1)
-    expect_equal(n_ellipse_test$isotope_b[1], -21.7, tolerance = 0.1)
+  )
+  expect_equal(n_ellipse_test$isotope_a[1], 14.3, tolerance = 0.1)
+  expect_equal(n_ellipse_test$isotope_b[1], -21.7, tolerance = 0.1)
 })
 
 
@@ -117,10 +117,20 @@ test_that("p_ell errors when given a charcter  or value outside of range", {
 
 
 test_that("Test print out of message for run time", {
-  expect_output(niche_ellipse(dat_mu = mu_est_long,
-                dat_sigma = sigma_est_wide),
-                "Total time processing was"
+  n_test <- capture.output(
+    niche_ellipse(dat_mu = mu_est_long,
+                  dat_sigma = sigma_est_wide)
   )
-
+  expect_output(n_test,"Total time processing was")
 })
 
+
+test_that("test print out doesn't show when set to false", {
+  n_test_2 <- capture.output(
+    niche_ellipse(dat_mu = mu_est_long,
+                  dat_sigma = sigma_est_wide,
+                  message = FALSE)
+  )
+
+  expect_false("Total time processing was" %in% n_test_2)
+})
