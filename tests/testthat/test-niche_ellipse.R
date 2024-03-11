@@ -73,9 +73,8 @@ test_that("Check if naming works", {
 })
 
 
-test_that("Parameter 'p_ell' is set and validated correctly", {
-  # Test case 1: p_ell is NULL, it should be set to 0.95
-  # p_ell_null <- NULL
+test_that("Parameter 'p_ell' is can take other values than 0.95", {
+  # Test case 1: p_ell is 0.75,
   expect_no_error(
     n_ellipse_test <- niche_ellipse(
       dat_mu = mu_est_long,
@@ -87,6 +86,20 @@ test_that("Parameter 'p_ell' is set and validated correctly", {
     expect_equal(n_ellipse_test$isotope_a[1], 13.8, tolerance = 0.1)
     expect_equal(n_ellipse_test$isotope_b[1], -22.4, tolerance = 0.1)
 })
+test_that("Parameter 'p_ell' is set and validated correctly", {
+  # Test case 1: p_ell is NULL, it should be set to 0.95
+  expect_no_error(
+    n_ellipse_test <- niche_ellipse(
+      dat_mu = mu_est_long,
+      dat_sigma = sigma_est_wide,
+      message = FALSE,
+    )
+)
+    expect_equal(n_ellipse_test$isotope_a[1], 14.3, tolerance = 0.1)
+    expect_equal(n_ellipse_test$isotope_b[1], -21.7, tolerance = 0.1)
+})
+
+
 
 test_that("p_ell errors when given a charcter  or value outside of range", {
 
