@@ -21,7 +21,7 @@ Extract Bayesian estimates of sigma from the function \code{niw.post()} from
 \href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.
 }
 \examples{
-df_sigma_test <- sigma_extract(
+df_sigma <- sigma_extract(
 data = niw_fish_post
 )
 
