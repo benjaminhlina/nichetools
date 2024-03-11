@@ -123,8 +123,8 @@ niche_ellipse <- function(
   # bind and rename columns
   all_ellipses <- dplyr::bind_rows(ellipse_dat, .id = "ellipse_name") |>
     dplyr::rename(
-      isotope_a = x,
-      isotope_b = y
+      {{isotope_a}} := x,
+      {{isotope_b}} := y
     ) |>
     tidyr::separate(ellipse_name,
                     into = c("sample_name", "sample_number"), sep = ":") |>
