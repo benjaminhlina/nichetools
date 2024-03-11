@@ -6,6 +6,13 @@
 #' @param data a list object created by `niw.post()` from
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
 #'
+#'@return Returns a tibble of extracted estimates of mu that are created by
+#' niw.post()` from
+#' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
+#' The tibble will contain five columns in the following order, metric,
+#' sample_name, sample_number, and the names of the isotope
+#' columns (e.g., d15n and d13c).
+#'
 #' @examples
 #'
 #'
