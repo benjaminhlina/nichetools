@@ -14,7 +14,9 @@
 #' @param isotope_a character string that is the column name of the first
 #' isotope used in `dat_sigma`. Defaults to `"d15n"`.
 #' @param isotope_b character string that is the column name of the second
-#' isotope used in `dat_sigma`. Defaults to `"d13c"`.
+#' isotope used in `dat_sigma`. Defaults to `"  d13c"`.
+#' @param message Control whether the time processing is displayed after the
+#' end of the function. Default is `TRUE`.
 #'
 #' @examples
 #' # ellipse <- sigma_ellipse()
