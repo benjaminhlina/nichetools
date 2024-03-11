@@ -83,8 +83,8 @@ test_that("Parameter 'p_ell' is can take other values than 0.95", {
       p_ell = 0.75
     )
   )
-  expect_equal(n_ellipse_test$isotope_a[1], 13.8, tolerance = 0.1)
-  expect_equal(n_ellipse_test$isotope_b[1], -22.4, tolerance = 0.1)
+  expect_equal(n_ellipse_test$d15n[1], 13.8, tolerance = 0.1)
+  expect_equal(n_ellipse_test$d13c[1], -22.4, tolerance = 0.1)
 })
 test_that("Parameter 'p_ell' is set and validated correctly", {
   # Test case 1: p_ell is NULL, it should be set to 0.95
@@ -95,8 +95,8 @@ test_that("Parameter 'p_ell' is set and validated correctly", {
       message = FALSE,
     )
   )
-  expect_equal(n_ellipse_test$isotope_a[1], 14.3, tolerance = 0.1)
-  expect_equal(n_ellipse_test$isotope_b[1], -21.7, tolerance = 0.1)
+  expect_equal(n_ellipse_test$d15n[1], 14.3, tolerance = 0.1)
+  expect_equal(n_ellipse_test$d13c[1], -21.7, tolerance = 0.1)
 })
 
 
