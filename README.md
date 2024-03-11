@@ -27,7 +27,7 @@ devtools::install_github("benjaminhlina/nichetools")
 -   [X] create `sigma_extract()`
     -   [X] build tests for `sigma_extract()`
 -   [X] create `niche_ellipse()`
-    -   [ ] build tests for `niche_ellipse()`
+    -   [X] build tests for `niche_ellipse()`
 -   [ ] create `overlap_extract()`
     -   [ ] build tests for `overlap_extract()`
 -   [ ] create `niche_size_extract()` 
