@@ -5,18 +5,24 @@
 #' @export
 mu_extract <- function(data) {
 
-  df_mu <- map(data, pluck, 1) %>%
-    imap(~ as_tibble(.x) %>%
-           mutate(
+  # Check if data is a list
+  if (!inherits(data, "list")) {
+    cli::cli_abort("Input 'data' must be a list.")
+  }
+  # extract mu
+  df_mu <- purrr::map(data, purrr::pluck, 1) %>%
+    purrr::imap(~ tibble::as_tibble(.x) %>%
+           dplyr::mutate(
              metric = "mu",
              sample_name = .y
            )
     ) %>%
-    bind_rows() %>%
-    group_by(sample_name) %>%
-    mutate(
+    dplyr::bind_rows() %>%
+    dplyr::group_by(sample_name) %>%
+    dplyr::mutate(
       sample_number = 1:1000
     ) %>%
-    ungroup()
+    dplyr::ungroup()
+
   return(df_mu)
 }
