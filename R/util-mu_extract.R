@@ -3,7 +3,7 @@
 #' Extract Bayesian estimates of mue from the function `niw.post()` from
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
 #'
-#' #' @param data a list object created by `niw.post()` from
+#' @param data a list object created by `niw.post()` from
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html)
 #'
 #' @examples
