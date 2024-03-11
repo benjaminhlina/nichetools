@@ -25,6 +25,7 @@
 #' @import dplyr
 #' @import ellipse
 #' @import purrr
+#' @import rlang
 #' @import tibble
 #' @import tidyr
 #' @export
