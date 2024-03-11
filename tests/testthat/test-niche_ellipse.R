@@ -3,7 +3,7 @@
 # ---- fish data frame from ----
 
 test_that("check if no error are wrong", {
-  expect_error(
+  expect_no_error(
     niche_ellipse(
       dat_mu = mu_est_long,
       dat_sigma = sigma_est_wide
