@@ -73,6 +73,25 @@ test_that("Check if naming works", {
 })
 
 
+test_that("Test if isotope_a errors if not a charcters", {
+  expect_error(niche_ellipse(
+    dat_mu = mu_est_long,
+    dat_sigma = sigma_est_wide,
+    message = FALSE,
+    isotope_a = 6), regexp = "Argument 'isotope_a' must be a character."
+  )
+})
+
+test_that("Test if isotope_b errors if not a charcters", {
+  expect_error(niche_ellipse(
+    dat_mu = mu_est_long,
+    dat_sigma = sigma_est_wide,
+    message = FALSE,
+    isotope_b = 4), regexp = "Argument 'isotope_b' must be a character."
+  )
+})
+
+
 test_that("Parameter 'p_ell' is can take other values than 0.95", {
   # Test case 1: p_ell is 0.75,
   expect_no_error(
@@ -131,5 +150,3 @@ test_that("test print out doesn't show when set to false", {
                                   message = FALSE)
   )
 })
-
-
