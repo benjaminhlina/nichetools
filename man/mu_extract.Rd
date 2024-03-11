@@ -8,15 +8,61 @@ mu_extract(data)
 }
 \arguments{
 \item{data}{a list object created by \code{niw.post()} from
-\href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}}
+\href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.}
 }
 \description{
 Extract Bayesian estimates of mue from the function \code{niw.post()} from
 \href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.
 }
 \examples{
+
+
 df_mu <- mu_extract(
 data = niw_fish_post
 )
+
+# ---- To understand how niw_fish_post is being created ----
+# ---- Uncomment the code below to create object from nicheROVER ----
+# {
+# library(dplyr)
+# library(janitor)
+# library(nicheROVER)
+# library(nichetools)
+# library(purrr)
+# }
+
+# gab fish dataframe, and remove sulfer for the example
+# df <- fish \%>\%
+#   janitor::clean_names()
+
+# create number of samples used in nicheROVER
+# nsample <- 1000
+
+# split the data frame by species and select isotopes of interest
+# df_split <- df \%>\%
+# split(.$species) \%>\%
+# map(~ select(., d15n, d13c))
+
+# extract the names of each list to name each object in list
+# df_names <- df \%>\%
+# group_by(species) \%>\%
+# group_keys() \%>\%
+# ungroup() \%>\%
+# mutate(
+# id = 1:nrow(.)
+# )
+
+# name each object in list
+# names(df_split) <- df_names$species
+
+# create niw posterior samples
+# niw_fish_post <- df_split \%>\%
+# map(~niw.post(nsample = nsample, X = .))
+
+
+# we can then use mu_extract() to extract mu from niw_fish_post
+# df_mu <- mu_extract(
+# data = niw_fish_post
+# )
 
 }
