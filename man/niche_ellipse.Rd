@@ -9,7 +9,8 @@ niche_ellipse(
   dat_sigma,
   isotope_a = NULL,
   isotope_b = NULL,
-  p_ell = NULL
+  p_ell = NULL,
+  message = TRUE
 )
 }
 \arguments{
@@ -25,10 +26,13 @@ onto of each other.}
 isotope used in \code{dat_sigma}. Defaults to \code{"d15n"}.}
 
 \item{isotope_b}{character string that is the column name of the second
-isotope used in \code{dat_sigma}. Defaults to \code{"d13c"}.}
+isotope used in \code{dat_sigma}. Defaults to \code{"  d13c"}.}
 
 \item{p_ell}{is the confidence interval of each ellipse estimate.
 Default is 0.95 (i.e., 95\% confidence interval).}
+
+\item{message}{Control whether the time processing is displayed after the
+end of the function. Default is \code{TRUE}.}
 }
 \description{
 This function allows the user to supply Bayesian estimates of mu and sigma to
