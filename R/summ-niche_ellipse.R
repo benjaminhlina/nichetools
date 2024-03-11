@@ -18,6 +18,7 @@
 #' @param message Control whether the time processing is displayed after the
 #' end of the function. Default is `TRUE`.
 #'
+#'
 #' @examples
 #' # ellipse <- sigma_ellipse()
 #'
@@ -50,6 +51,8 @@ niche_ellipse <- function(
   if (!inherits(dat_sigma, what = c("tbl_df", "tbl", "data.frame"))) {
     cli::cli_abort("Input 'dat_sigma' must be class data.frame.")
   }
+
+
 
   # fix nameing if not supplid
   if(!any(names(dat_sigma) %in% c("d15n",
@@ -99,7 +102,7 @@ niche_ellipse <- function(
   # Additional parameter validation, if needed
   if (!is.null(p_ell)) {
     if (!is.numeric(p_ell) || p_ell < 0 || p_ell > 1) {
-      cli::cli_abort("Parameter '{.var}' must be a numeric value between 0 and 1.")
+      cli::cli_abort("Parameter 'p_ell' must be a numeric value between 0 and 1.")
     }
   }
   # prepare mu for ellipse
