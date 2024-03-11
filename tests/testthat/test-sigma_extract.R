@@ -27,7 +27,7 @@ test_that("error if data isn't a list", {
   expect_error(
     sigma_extract(
       data = dat
-    )
+    ), regexp = "Input 'data' must be a list."
   )
 
 })
