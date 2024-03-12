@@ -7,8 +7,8 @@
 overlap_extract(data, name_a = NULL, name_b = NULL)
 }
 \arguments{
-\item{data}{a list object created by \code{overlap()} from
-\href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}}
+\item{data}{a list object created by the fucntion \code{overlap()} in the package
+\href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.}
 
 \item{name_a}{character string to supply for the first
 \code{sample_name} used in \code{overlap()}. Defaults to \code{"sample_name_a"}.}
@@ -22,11 +22,11 @@ A \code{tibble} containing five rows, \code{sample_name_a}, \code{id},
 }
 \description{
 Extract Bayesian estimates of similarities among groups produced by the
-following function \code{overlap()} in
-\href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}
+following function \code{overlap()} in the package
+\href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.
 }
 \examples{
-overlap_extract()
+# overlap_extract()
 
 
 }

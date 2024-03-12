@@ -1,11 +1,11 @@
 #' Overlap extract
 #'
 #' Extract Bayesian estimates of similarities among groups produced by the
-#' following function `overlap()` in
-#' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html)
+#' following function `overlap()` in the package
+#' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
 #'
-#' @param data a list object created by `overlap()` from
-#' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html)
+#' @param data a list object created by the fucntion `overlap()` in the package
+#' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
 #' @param name_a character string to supply for the first
 #' `sample_name` used in `overlap()`. Defaults to `"sample_name_a"`.
 #' @param name_b character string to supply for the second
@@ -16,7 +16,7 @@
 #'
 #' @seealso [nicheROVER::overlap()]
 #' @examples
-#' overlap_extract()
+#' # overlap_extract()
 #'
 #'
 #' @export
