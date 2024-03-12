@@ -14,13 +14,13 @@ niche_ellipse(
 )
 }
 \arguments{
-\item{dat_mu}{a data frame containing mu Bayesian estimates. This data frame
-needs to be in long format with each mu estimate for each isotope stacked
-on top of each each other.}
+\item{dat_mu}{a \code{data.frame} containing $\mu Bayesian estimates.
+This \code{data.frame} needs to be in long format with each $\mu
+estimate for each isotope stacked on top of each other.}
 
-\item{dat_sigma}{a data frame containing sigma Bayesian estimates.
-This data frame needs be in wide format that is sigma/covariance matrices stacked
-onto of each other.}
+\item{dat_sigma}{a \code{data.frame} containing \Sigma$ Bayesian estimates.
+This \code{data.frame} needs be in wide format, that is sigma/covariance matrices stacked
+onto of each other. See example of how to convert to wide format.}
 
 \item{isotope_a}{character string that is the column name of the first
 isotope used in \code{dat_sigma}. Defaults to \code{"d15n"}.}
@@ -29,7 +29,8 @@ isotope used in \code{dat_sigma}. Defaults to \code{"d15n"}.}
 isotope used in \code{dat_sigma}. Defaults to \code{"d13c"}.}
 
 \item{p_ell}{is the confidence interval of each ellipse estimate.
-Default is 0.95 (i.e., 95\% confidence interval).}
+Default is 0.95 (i.e., 95\% confidence interval).
+This value is bound by 0 and 1 and has to be a numeric.}
 
 \item{message}{Control whether the time processing is displayed after the
 end of the function. Default is \code{TRUE}.}
@@ -39,8 +40,8 @@ A \code{tibble} containing, \code{sample_name}, \code{sample_number}, and the is
 that were used in the estimation of ellipse (i.e., \code{d15n}, and \code{d13c}).
 }
 \description{
-This function allows the user to supply Bayesian estimates of mu and sigma to
-create estimated Bayesian ellipse for niche region.
+This function allows the user to supply Bayesian estimates of $\mu and
+\Sigma$ to create estimated Bayesian ellipse for niche region.
 }
 \examples{
 
@@ -50,4 +51,7 @@ create estimated Bayesian ellipse for niche region.
 # dat_sigma = sigma_est_wide)
 
 
+}
+\seealso{
+\code{\link[nicheROVER:niw.post]{nicheROVER::niw.post()}} \code{\link[=mu_extract]{mu_extract()}} and \code{\link[=sigma_extract]{sigma_extract()}}
 }
