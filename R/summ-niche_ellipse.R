@@ -1,16 +1,17 @@
 #' Create ellipses based on Bayesian estimates
 #'
-#' This function allows the user to supply Bayesian estimates of mu and sigma to
-#' create estimated Bayesian ellipse for niche region.
+#' This function allows the user to supply Bayesian estimates of $\mu and
+#' \Sigma$ to create estimated Bayesian ellipse for niche region.
 #'
-#' @param dat_mu a data frame containing mu Bayesian estimates. This data frame
-#' needs to be in long format with each mu estimate for each isotope stacked
-#' on top of each each other.
-#' @param dat_sigma a data frame containing sigma Bayesian estimates.
-#' This data frame needs be in wide format that is sigma/covariance matrices stacked
-#' onto of each other.
+#' @param dat_mu a `data.frame` containing $\mu Bayesian estimates.
+#' This `data.frame` needs to be in long format with each $\mu
+#' estimate for each isotope stacked on top of each other.
+#' @param dat_sigma a `data.frame` containing \Sigma$ Bayesian estimates.
+#' This `data.frame` needs be in wide format, that is sigma/covariance matrices stacked
+#' onto of each other. See example of how to convert to wide format.
 #' @param p_ell is the confidence interval of each ellipse estimate.
 #' Default is 0.95 (i.e., 95% confidence interval).
+#' This value is bound by 0 and 1 and has to be a numeric.
 #' @param isotope_a character string that is the column name of the first
 #' isotope used in `dat_sigma`. Defaults to `"d15n"`.
 #' @param isotope_b character string that is the column name of the second
@@ -21,6 +22,7 @@
 #' @return A `tibble` containing, `sample_name`, `sample_number`, and the isotopes
 #' that were used in the estimation of ellipse (i.e., `d15n`, and `d13c`).
 #'
+#' @seealso [nicheROVER::niw.post()] [mu_extract()] and [sigma_extract()]
 #' @examples
 #'
 #' # ---- uncomment to run; commented only to save on build time ----
@@ -28,6 +30,7 @@
 #' # df_ellipse <- sigma_ellipse(dat_mu = mu_est_long,
 #' # dat_sigma = sigma_est_wide)
 #'
+
 #'
 #' @import dplyr
 #' @import ellipse

@@ -2,12 +2,12 @@
 % Please edit documentation in R/util-sigma_extract.R
 \name{sigma_extract}
 \alias{sigma_extract}
-\title{Sigma extract}
+\title{\Sigma$ extract}
 \usage{
 sigma_extract(data, isotope_a = NULL, isotope_b = NULL)
 }
 \arguments{
-\item{data}{a list object created by \code{niw.post()} from
+\item{data}{a list object created by the function \code{niw.post()} in the package
 \href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}}
 
 \item{isotope_a}{character string to supply for the first
@@ -17,15 +17,16 @@ isotope used in \code{niw.post()}. Defaults to \code{"d15n"}.}
 isotope used in \code{niw.post()}. Defaults to \code{"d13c"}.}
 }
 \value{
-Returns a \code{tibble} of extracted estimates of sigma that are created by
-\code{niw.post()} from
+Returns a \code{tibble} of extracted estimates of \Sigma$ created by the
+function \code{niw.post()} in the pckage
 \href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.
 The tibble will contain five columns in the following order, \code{metric}, \code{id},
-\code{sample_name}, \code{isotope}, \code{sample_number}, and the posterior sample for sigma.
-(i.e., \code{post_sample})
+\code{sample_name}, \code{isotope}, \code{sample_number}, and the posterior sample for \Sigma$
+(i.e., \code{post_sample}).
 }
 \description{
-Extract Bayesian estimates of sigma from the function \code{niw.post()} from
+Extract Bayesian estimates of \Sigma$ from the function \code{niw.post()} in the
+package
 \href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.
 }
 \examples{
@@ -34,8 +35,8 @@ data = niw_fish_post
 )
 # --- to use with `niche_ellipse()` we need to make into wide format ----
 # we can do this by using tidyr's `pivot_wide()`. Uncomment below to run.
-# df_sigma_wide <- df_sigma \%>\%
-# pivot_wider(names_from = id,
+# df_sigma_wide <- df_sigma |>
+# tiydr::pivot_wider(names_from = id,
 #             values_from = post_sample)
 
 
@@ -49,7 +50,7 @@ data = niw_fish_post
 # library(purrr)
 # }
 #
-# gab fish dataframe, and remove sulfer for the example
+# gab fish data frame, and remove sulfur for the example
 # df <- fish \%>\%
 #   janitor::clean_names()
 #
@@ -82,8 +83,9 @@ data = niw_fish_post
 # df_sigmaa <- sigma_extract(
 # data = niw_fish_post
 # )
-#
-# To prep this for use with
 
-
+\@import dplyr
+}
+\seealso{
+\code{\link[nicheROVER:niw.post]{nicheROVER::niw.post()}}
 }
