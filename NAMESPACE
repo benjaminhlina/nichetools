@@ -2,6 +2,7 @@
 
 export(mu_extract)
 export(niche_ellipse)
+export(overlap_extract)
 export(sigma_extract)
 import(dplyr)
 import(ellipse)
