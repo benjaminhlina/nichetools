@@ -1,20 +1,23 @@
-#' Sigma extract
+#' \Sigma$ extract
 #'
-#' Extract Bayesian estimates of sigma from the function `niw.post()` from
+#' Extract Bayesian estimates of \Sigma$ from the function `niw.post()` in the
+#' package
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
 #'
-#' @param data a list object created by `niw.post()` from
+#' @param data a list object created by the function `niw.post()` in the package
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html)
 #' @param isotope_a character string to supply for the first
 #' isotope used in `niw.post()`. Defaults to `"d15n"`.
 #' @param isotope_b character string to supply for the second
 #' isotope used in `niw.post()`. Defaults to `"d13c"`.
-#' @return Returns a `tibble` of extracted estimates of sigma that are created by
-#' `niw.post()` from
+#' @return Returns a `tibble` of extracted estimates of \Sigma$ created by the
+#' function `niw.post()` in the pckage
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
 #' The tibble will contain five columns in the following order, `metric`, `id`,
-#' `sample_name`, `isotope`, `sample_number`, and the posterior sample for sigma.
-#' (i.e., `post_sample`)
+#' `sample_name`, `isotope`, `sample_number`, and the posterior sample for \Sigma$
+#' (i.e., `post_sample`).
+#'
+#' @seealso [nicheROVER::niw.post()]
 #'
 #' @examples
 #' df_sigma <- sigma_extract(
@@ -22,8 +25,8 @@
 #' )
 #' # --- to use with `niche_ellipse()` we need to make into wide format ----
 #' # we can do this by using tidyr's `pivot_wide()`. Uncomment below to run.
-#' # df_sigma_wide <- df_sigma %>%
-#' # pivot_wider(names_from = id,
+#' # df_sigma_wide <- df_sigma |>
+#' # tiydr::pivot_wider(names_from = id,
 #' #             values_from = post_sample)
 #'
 #'
@@ -37,7 +40,7 @@
 #' # library(purrr)
 #' # }
 #' #
-#' # gab fish dataframe, and remove sulfer for the example
+#' # gab fish data frame, and remove sulfur for the example
 #' # df <- fish %>%
 #' #   janitor::clean_names()
 #' #
@@ -70,10 +73,11 @@
 #' # df_sigmaa <- sigma_extract(
 #' # data = niw_fish_post
 #' # )
-#' #
-#' # To prep this for use with
 #'
-#'
+#'\@import dplyr
+#' @import purrr
+#' @import tibble
+#' @import tidyr
 #' @export
 
 sigma_extract <-  function(data,
@@ -84,7 +88,7 @@ sigma_extract <-  function(data,
     cli::cli_abort("Input 'data' must be a list.")
   }
 
-  # defaults of isotpoep a and b
+  # defaults of isotpoe a and b
   if (is.null(isotope_a)) {
     isotope_a <- "d15n"
   }
@@ -102,9 +106,9 @@ sigma_extract <-  function(data,
     cli::cli_abort("The supplied argument for 'isotope_b' must be a character.")
   }
 
-
+  # create name vector that will be used to id isotopes.
   id_isotope <- c(isotope_a, isotope_b)
-  # extract sigm
+  # extract sigma
   df_sigma <- purrr::map(data, purrr::pluck, 2) |>
     purrr::imap(~ tibble::as_tibble(.x) |>
                   dplyr::mutate(
