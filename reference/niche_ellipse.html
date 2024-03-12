@@ -84,7 +84,7 @@ isotope used in <code>dat_sigma</code>. Defaults to <code>"d13c"</code>.</p></dd
 <dt>p_ell</dt>
 <dd><p>is the confidence interval of each ellipse estimate.
 Default is 0.95 (i.e., 95% confidence interval).
-This value is bound by 0 and 1 and has to be a numeric.</p></dd>
+This value is bound by 0 and 1 and has to be a <code>numeric</code>.</p></dd>
 
 
 <dt>message</dt>
@@ -106,9 +106,8 @@ that were used in the estimation of ellipse (i.e., <code>d15n</code>, and <code>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># interactive()</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">sigma_ellipse</span><span class="op">(</span>dat_mu <span class="op">=</span> <span class="va">mu_est_long</span>,</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="fu">niche_ellipse</span><span class="op">(</span>dat_mu <span class="op">=</span> <span class="va">mu_est_long</span>,</span></span>
 <span class="r-in"><span>              dat_sigma <span class="op">=</span> <span class="va">sigma_est_wide</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
