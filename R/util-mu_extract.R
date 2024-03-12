@@ -1,12 +1,12 @@
-#' $\mu extract
+#' μ extract
 #'
-#' Extract Bayesian estimates of $\mu from the function `niw.post()` in the package
+#' Extract Bayesian estimates of μ from the function `niw.post()` in the package
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
 #'
 #' @param data a list object created by the function `niw.post()` in the package
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
 #'
-#' @return Returns a `tibble` of extracted estimates of $\mu that are created by
+#' @return Returns a `tibble` of extracted estimates of μ that are created by
 #' the function `niw.post()` in the package
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
 #' The `tibble will` contain five columns in the following order, `metric`,
@@ -70,7 +70,6 @@
 #' @import purrr
 #' @import tibble
 #' @import tidyr
-#'
 #' @export
 
 
