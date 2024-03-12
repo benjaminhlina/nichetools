@@ -76,7 +76,7 @@ isotope used in <code>dat_sigma</code>. Defaults to <code>"d15n"</code>.</p></dd
 
 <dt>isotope_b</dt>
 <dd><p>character string that is the column name of the second
-isotope used in <code>dat_sigma</code>. Defaults to <code>"  d13c"</code>.</p></dd>
+isotope used in <code>dat_sigma</code>. Defaults to <code>"d13c"</code>.</p></dd>
 
 
 <dt>p_ell</dt>
@@ -89,10 +89,22 @@ Default is 0.95 (i.e., 95% confidence interval).</p></dd>
 end of the function. Default is <code>TRUE</code>.</p></dd>
 
 </dl></div>
+    <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+    
+
+<p>A <code>tibble</code> containing, <code>sample_name</code>, <code>sample_number</code>, and the isotopes
+that were used in the estimation of ellipse (i.e., <code>d15n</code>, and <code>d13c</code>).</p>
+    </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># ellipse &lt;- sigma_ellipse()</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># ---- uncomment to run; commented only to save on build time ----</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># df_ellipse &lt;- sigma_ellipse(dat_mu = mu_est_long,</span></span></span>
+<span class="r-in"><span><span class="co"># dat_sigma = sigma_est_wide)</span></span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"></span>
 </code></pre></div>
