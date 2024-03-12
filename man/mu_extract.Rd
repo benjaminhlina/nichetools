@@ -7,7 +7,7 @@
 mu_extract(data)
 }
 \arguments{
-\item{data}{a list object created by the function \code{niw.post()} in the package
+\item{data}{a \code{list} created by the function \code{niw.post()} in the package
 \href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.}
 }
 \value{
@@ -23,56 +23,54 @@ Extract Bayesian estimates of μ from the function \code{niw.post()} in the pack
 \href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.
 }
 \examples{
-
-df_mu <- mu_extract(
+mu_extract(
 data = niw_fish_post
 )
 
-# ---- To understand how niw_fish_post is being created ----
-# ---- Uncomment the code below to create object from nicheROVER ----
-# {
-# library(dplyr)
-# library(janitor)
-# library(nicheROVER)
-# library(nichetools)
-# library(purrr)
-# }
-#
-# gab fish data frame, and remove sulfur for the example
-# df <- fish \%>\%
-#   janitor::clean_names()
-#
+# ---- below will be turned into vignette when finished ----
+\dontrun{
+# load packages
+{
+  library(dplyr)
+  library(janitor)
+  library(nicheROVER)
+  library(nichetools)
+  library(purrr)
+ }
+
+# get fish data frame, and remove sulfur for the example
+df <- fish \%>\%
+    janitor::clean_names()
+
 # create number of samples used in nicheROVER
-# nsample <- 1000
-#
-# split the data frame by group (i.e., species in this case) and
-# select isotopes of interest
-# df_split <- df \%>\%
-# split(.$species) \%>\%
-# map(~ select(., d15n, d13c))
-#
+nsample <- 1000
+
+# split the data frame by species and select isotopes of interest
+df_split <- df \%>\%
+  split(.$species) \%>\%
+  map(~ select(., d15n, d13c))
+
 # extract the names of each list to name each object in list
-# df_names <- df \%>\%
-# group_by(species) \%>\%
-# group_keys() \%>\%
-# ungroup() \%>\%
-# mutate(
-# id = 1:nrow(.)
-# )
-#
+df_names <- df \%>\%
+   group_by(species) \%>\%
+   group_keys() \%>\%
+   ungroup() \%>\%
+   mutate(
+     id = 1:nrow(.)
+     )
+
 # name each object in list
-# names(df_split) <- df_names$species
-#
+names(df_split) <- df_names$species
+
 # create niw posterior samples
-# niw_fish_post <- df_split \%>\%
-# map(~niw.post(nsample = nsample, X = .))
-#
-#
-# we can then use sigma_extract() to extract mu from niw_fish_post
-# we can then use mu_extract() to extract mu from niw_fish_post
-# df_mu <- mu_extract(
-# data = niw_fish_post
-# )
+niw_fish_post <- df_split \%>\%
+  map(~niw.post(nsample = nsample, X = .))
+
+# ---- extract mu estimates ----
+mu_extract(
+data = niw_fish_post
+)
+}
 
 }
 \seealso{
