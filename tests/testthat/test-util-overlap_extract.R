@@ -98,7 +98,7 @@ test_that("that isotope a and b will throw erros if charcter not supplied", {
   )
   expect_error(df <- overlap_extract(
     data = over_stat,
-    name_a = 10,
+    name_b = 10,
 
   ), regexp = "The supplied argument for 'name_b' must be a character"
   )
