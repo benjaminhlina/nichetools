@@ -5,7 +5,7 @@
 \alias{mu_est_long}
 \title{Estimates of μ from Normal-Inverse-Wishart (NIW) prior}
 \format{
-data frame containing 8,000 rows and 7 variables
+\code{data.frame} containing 8,000 rows and 7 variables
 \describe{
 \item{metric}{name of the metric extracted from \code{niw.post()}}
 \item{species}{species abbreviation}

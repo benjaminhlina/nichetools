@@ -5,14 +5,14 @@
 \alias{niw_fish_post}
 \title{Estimates of μ and Σ from Normal-Inverse-Wishart (NIW) prior as \code{list}}
 \format{
-A list with elements μ and Σ of sizes c(nsamples, length(lambda))
+A \code{list} with elements μ and Σ of sizes c(nsamples, length(lambda))
 and c(dim(Psi).
 }
 \usage{
 niw_fish_post
 }
 \description{
-Estimates of μand Σ from Normal-Inverse-Wishart (NIW) priors for example data.
+Estimates of μ and Σ from Normal-Inverse-Wishart (NIW) priors for example data.
 This \code{list} is produced using using the function \code{niw.post()} from
 \href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.
 }

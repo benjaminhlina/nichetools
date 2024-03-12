@@ -4,7 +4,7 @@
 #' frame from
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
 #'
-#' @format data frame containing 8,000 rows and 7 variables
+#' @format `data.frame` containing 8,000 rows and 7 variables
 #'  \describe{
 #'    \item{metric}{name of the metric extracted from `niw.post()`}
 #'    \item{species}{species abbreviation}
@@ -24,7 +24,7 @@
 #' frame from
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
 #'
-#' @format data frame containing 8,000 rows and 6 variables
+#' @format `data.frame` containing 8,000 rows and 6 variables
 #'  \describe{
 #'    \item{metric}{name of the metric extracted from `niw.post()`}
 #'    \item{species}{species abbreviation}
@@ -38,12 +38,23 @@
 
 #' Estimates of μ and Σ from Normal-Inverse-Wishart (NIW) prior as `list`
 #'
-#' Estimates of μand Σ from Normal-Inverse-Wishart (NIW) priors for example data.
+#' Estimates of μ and Σ from Normal-Inverse-Wishart (NIW) priors for example data.
 #' This `list` is produced using using the function `niw.post()` from
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
 #'
 #'
-#' @format A list with elements μ and Σ of sizes c(nsamples, length(lambda))
+#' @format A `list` with elements μ and Σ of sizes c(nsamples, length(lambda))
 #'  and c(dim(Psi).
 #'
 "niw_fish_post"
+
+#' Estimates of percentage of overlap among groups produced by `niw.post()`
+#'
+#' Estimates of the percentage of overlap among example species used in
+#' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
+#'
+#' @format A `array`containing `matrices` of the percent overlap for each group
+#' used in Bayesian estimates of μ and Σ from
+#' Normal-Inverse-Wishart (NIW) prior calculated in `niw.post()`.
+#'
+"over_stat"

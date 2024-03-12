@@ -5,7 +5,7 @@
 \alias{sigma_est_wide}
 \title{Estimates of Σ from Normal-Inverse-Wishart (NIW) prior}
 \format{
-data frame containing 8,000 rows and 6 variables
+\code{data.frame} containing 8,000 rows and 6 variables
 \describe{
 \item{metric}{name of the metric extracted from \code{niw.post()}}
 \item{species}{species abbreviation}
