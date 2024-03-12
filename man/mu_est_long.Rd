@@ -3,9 +3,9 @@
 \docType{data}
 \name{mu_est_long}
 \alias{mu_est_long}
-\title{Estimates of mu from Normal-Inverse-Wishart (NIW) prior}
+\title{Estimates of μ from Normal-Inverse-Wishart (NIW) prior}
 \format{
-data frame containing 8,0000 rows and 7 variables
+data frame containing 8,000 rows and 7 variables
 \describe{
 \item{metric}{name of the metric extracted from \code{niw.post()}}
 \item{species}{species abbreviation}
@@ -13,16 +13,15 @@ data frame containing 8,0000 rows and 7 variables
 \item{isotope}{column with isotope name}
 \item{mu_est}{estimate of mu produced from \code{niw.post()}}
 \item{element}{isotopic element used in labelling}
-\item{meutron}{neutron number used in labelling}
+\item{neutron}{neutron number used in labelling}
 }
 }
 \usage{
 mu_est_long
 }
 \description{
-Estimates of mu from Normal-Inverse-Wishart (NIW) priors for example data
+Estimates of μ from Normal-Inverse-Wishart (NIW) priors for example data
 frame from
-\href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}
-example
+\href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.
 }
 \keyword{datasets}

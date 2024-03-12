@@ -3,17 +3,17 @@
 \docType{data}
 \name{niw_fish_post}
 \alias{niw_fish_post}
-\title{Estimates of mu and sigma from Normal-Inverse-Wishart (NIW) prior}
+\title{Estimates of μ and Σ from Normal-Inverse-Wishart (NIW) prior as \code{list}}
 \format{
-A list with elements mu and Sigma of sizes c(nsamples, length(lambda))
+A list with elements μ and Σ of sizes c(nsamples, length(lambda))
 and c(dim(Psi).
 }
 \usage{
 niw_fish_post
 }
 \description{
-Estimates of sigma from Normal-Inverse-Wishart (NIW) priors for example data
-frame produced using \code{niw.post()} from
-\href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}
+Estimates of μand Σ from Normal-Inverse-Wishart (NIW) priors for example data.
+This \code{list} is produced using using the function \code{niw.post()} from
+\href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.
 }
 \keyword{datasets}

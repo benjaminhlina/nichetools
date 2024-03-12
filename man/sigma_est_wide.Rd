@@ -3,9 +3,9 @@
 \docType{data}
 \name{sigma_est_wide}
 \alias{sigma_est_wide}
-\title{Estimates of sigma from Normal-Inverse-Wishart (NIW) prior}
+\title{Estimates of Σ from Normal-Inverse-Wishart (NIW) prior}
 \format{
-data frame containing 8,0000 rows and 7 variables
+data frame containing 8,000 rows and 6 variables
 \describe{
 \item{metric}{name of the metric extracted from \code{niw.post()}}
 \item{species}{species abbreviation}
@@ -19,9 +19,8 @@ data frame containing 8,0000 rows and 7 variables
 sigma_est_wide
 }
 \description{
-Estimates of sigma from Normal-Inverse-Wishart (NIW) priors for example data
+Estimates of Σ from Normal-Inverse-Wishart (NIW) priors for example data
 frame from
-\href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}
-example
+\href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.
 }
 \keyword{datasets}

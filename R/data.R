@@ -1,12 +1,10 @@
-#' Estimates of mu from Normal-Inverse-Wishart (NIW) prior
+#' Estimates of μ from Normal-Inverse-Wishart (NIW) prior
 #'
-#' Estimates of mu from Normal-Inverse-Wishart (NIW) priors for example data
+#' Estimates of μ from Normal-Inverse-Wishart (NIW) priors for example data
 #' frame from
-#' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html)
-#' example
+#' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
 #'
-#'
-#' @format data frame containing 8,0000 rows and 7 variables
+#' @format data frame containing 8,000 rows and 7 variables
 #'  \describe{
 #'    \item{metric}{name of the metric extracted from `niw.post()`}
 #'    \item{species}{species abbreviation}
@@ -14,21 +12,19 @@
 #'    \item{isotope}{column with isotope name}
 #'    \item{mu_est}{estimate of mu produced from `niw.post()`}
 #'    \item{element}{isotopic element used in labelling}
-#'    \item{meutron}{neutron number used in labelling}
+#'    \item{neutron}{neutron number used in labelling}
 #' }
 #'
 "mu_est_long"
 
 
-#' Estimates of sigma from Normal-Inverse-Wishart (NIW) prior
+#' Estimates of Σ from Normal-Inverse-Wishart (NIW) prior
 #'
-#' Estimates of sigma from Normal-Inverse-Wishart (NIW) priors for example data
+#' Estimates of Σ from Normal-Inverse-Wishart (NIW) priors for example data
 #' frame from
-#' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html)
-#' example
+#' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
 #'
-#'
-#' @format data frame containing 8,0000 rows and 7 variables
+#' @format data frame containing 8,000 rows and 6 variables
 #'  \describe{
 #'    \item{metric}{name of the metric extracted from `niw.post()`}
 #'    \item{species}{species abbreviation}
@@ -40,14 +36,14 @@
 #'
 "sigma_est_wide"
 
-#' Estimates of mu and sigma from Normal-Inverse-Wishart (NIW) prior
+#' Estimates of μ and Σ from Normal-Inverse-Wishart (NIW) prior as `list`
 #'
-#' Estimates of sigma from Normal-Inverse-Wishart (NIW) priors for example data
-#' frame produced using `niw.post()` from
-#' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html)
+#' Estimates of μand Σ from Normal-Inverse-Wishart (NIW) priors for example data.
+#' This `list` is produced using using the function `niw.post()` from
+#' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
 #'
 #'
-#' @format A list with elements mu and Sigma of sizes c(nsamples, length(lambda))
+#' @format A list with elements μ and Σ of sizes c(nsamples, length(lambda))
 #'  and c(dim(Psi).
 #'
 "niw_fish_post"
