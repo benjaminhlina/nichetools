@@ -70,7 +70,7 @@
 #'
 #' # --- to use with `niche_ellipse()` we need to make into wide format ----
 #' df_sigma_wide <- df_sigma |>
-#' tiydr::pivot_wider(names_from = id,
+#' tidyr::pivot_wider(names_from = id,
 #'             values_from = post_sample)
 #' }
 #' @import dplyr
