@@ -2,20 +2,24 @@
 % Please edit documentation in R/util-mu_extract.R
 \name{mu_extract}
 \alias{mu_extract}
-\title{Mu extract}
+\title{$\mu extract}
 \usage{
 mu_extract(data)
 }
 \arguments{
-\item{data}{a list object created by \code{niw.post()} from
+\item{data}{a list object created by the function \code{niw.post()} in the package
 \href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.}
 }
 \value{
-Returns a \code{tibble} of extracted estimates of mu that are created by
-niw.post()\verb{from [\{nicheROVER\}](https://cran.r-project.org/web/packages/nicheROVER/index.html). The tibble will contain five columns in the following order,}metric\verb{, }sample_name\verb{, }sample_number\verb{, and the names of the isotope columns (e.g., }d15n\code{and}d13c`).
+Returns a \code{tibble} of extracted estimates of $\mu that are created by
+the function \code{niw.post()} in the package
+\href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.
+The \verb{tibble will} contain five columns in the following order, \code{metric},
+\code{sample_name}, \code{sample_number}, and the names of the isotope
+columns supplied to \code{niw.post()} (e.g., \code{d15n} and \code{d13c}).
 }
 \description{
-Extract Bayesian estimates of mu from the function \code{niw.post()} from
+Extract Bayesian estimates of $\mu from the function \code{niw.post()} in the package
 \href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.
 }
 \examples{
@@ -34,14 +38,15 @@ data = niw_fish_post
 # library(purrr)
 # }
 #
-# gab fish dataframe, and remove sulfer for the example
+# gab fish data frame, and remove sulfur for the example
 # df <- fish \%>\%
 #   janitor::clean_names()
 #
 # create number of samples used in nicheROVER
 # nsample <- 1000
 #
-# split the data frame by species and select isotopes of interest
+# split the data frame by group (i.e., species in this case) and
+# select isotopes of interest
 # df_split <- df \%>\%
 # split(.$species) \%>\%
 # map(~ select(., d15n, d13c))
@@ -69,4 +74,7 @@ data = niw_fish_post
 # data = niw_fish_post
 # )
 
+}
+\seealso{
+\code{\link[nicheROVER:niw.post]{nicheROVER::niw.post()}}
 }

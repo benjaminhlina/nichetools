@@ -1,18 +1,19 @@
-#' Mu extract
+#' $\mu extract
 #'
-#' Extract Bayesian estimates of mu from the function `niw.post()` from
+#' Extract Bayesian estimates of $\mu from the function `niw.post()` in the package
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
 #'
-#' @param data a list object created by `niw.post()` from
+#' @param data a list object created by the function `niw.post()` in the package
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
 #'
-#' @return Returns a `tibble` of extracted estimates of mu that are created by
-#' niw.post()` from
+#' @return Returns a `tibble` of extracted estimates of $\mu that are created by
+#' the function `niw.post()` in the package
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
-#' The tibble will contain five columns in the following order, `metric`,
+#' The `tibble will` contain five columns in the following order, `metric`,
 #' `sample_name`, `sample_number`, and the names of the isotope
-#' columns (e.g., `d15n` and `d13c`).
+#' columns supplied to `niw.post()` (e.g., `d15n` and `d13c`).
 #'
+#' @seealso [nicheROVER::niw.post()]
 #' @examples
 #'
 #' df_mu <- mu_extract(
@@ -29,14 +30,15 @@
 #' # library(purrr)
 #' # }
 #' #
-#' # gab fish dataframe, and remove sulfer for the example
+#' # gab fish data frame, and remove sulfur for the example
 #' # df <- fish %>%
 #' #   janitor::clean_names()
 #' #
 #' # create number of samples used in nicheROVER
 #' # nsample <- 1000
 #' #
-#' # split the data frame by species and select isotopes of interest
+#' # split the data frame by group (i.e., species in this case) and
+#' # select isotopes of interest
 #' # df_split <- df %>%
 #' # split(.$species) %>%
 #' # map(~ select(., d15n, d13c))
@@ -64,7 +66,14 @@
 #' # data = niw_fish_post
 #' # )
 #'
+#' @import dplyr
+#' @import purrr
+#' @import tibble
+#' @import tidyr
+#'
 #' @export
+
+
 mu_extract <- function(data) {
 
   # Check if data is a list
@@ -92,7 +101,7 @@ mu_extract <- function(data) {
     ) |>
     dplyr::ungroup()
 
-
+  # reorder columns
   df_mu <- df_mu |>
     dplyr::select(metric:sample_number, all_of(col_names))
 
