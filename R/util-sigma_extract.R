@@ -1,24 +1,23 @@
-#' \Sigma$ extract
+#' Σ extract
 #'
-#' Extract Bayesian estimates of \Sigma$ from the function `niw.post()` in the
+#' Extract Bayesian estimates of Σ from the function `niw.post()` in the
 #' package
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
 #'
 #' @param data a list object created by the function `niw.post()` in the package
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html)
-#' @param isotope_a character string to supply for the first
+#' @param isotope_a `character` string to supply for the first
 #' isotope used in `niw.post()`. Defaults to `"d15n"`.
-#' @param isotope_b character string to supply for the second
+#' @param isotope_b `character`string to supply for the second
 #' isotope used in `niw.post()`. Defaults to `"d13c"`.
-#' @return Returns a `tibble` of extracted estimates of \Sigma$ created by the
-#' function `niw.post()` in the pckage
+#' @return Returns a `tibble` of extracted estimates of Σ created by the
+#' function `niw.post()` in the package
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
 #' The tibble will contain five columns in the following order, `metric`, `id`,
-#' `sample_name`, `isotope`, `sample_number`, and the posterior sample for \Sigma$
+#' `sample_name`, `isotope`, `sample_number`, and the posterior sample for Σ
 #' (i.e., `post_sample`).
 #'
 #' @seealso [nicheROVER::niw.post()]
-#'
 #' @examples
 #' df_sigma <- sigma_extract(
 #' data = niw_fish_post
@@ -74,7 +73,7 @@
 #' # data = niw_fish_post
 #' # )
 #'
-#'\@import dplyr
+#' @import dplyr
 #' @import purrr
 #' @import tibble
 #' @import tidyr

@@ -2,7 +2,7 @@
 % Please edit documentation in R/util-sigma_extract.R
 \name{sigma_extract}
 \alias{sigma_extract}
-\title{\Sigma$ extract}
+\title{Σ extract}
 \usage{
 sigma_extract(data, isotope_a = NULL, isotope_b = NULL)
 }
@@ -10,22 +10,22 @@ sigma_extract(data, isotope_a = NULL, isotope_b = NULL)
 \item{data}{a list object created by the function \code{niw.post()} in the package
 \href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}}
 
-\item{isotope_a}{character string to supply for the first
+\item{isotope_a}{\code{character} string to supply for the first
 isotope used in \code{niw.post()}. Defaults to \code{"d15n"}.}
 
-\item{isotope_b}{character string to supply for the second
+\item{isotope_b}{\code{character}string to supply for the second
 isotope used in \code{niw.post()}. Defaults to \code{"d13c"}.}
 }
 \value{
-Returns a \code{tibble} of extracted estimates of \Sigma$ created by the
-function \code{niw.post()} in the pckage
+Returns a \code{tibble} of extracted estimates of Σ created by the
+function \code{niw.post()} in the package
 \href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.
 The tibble will contain five columns in the following order, \code{metric}, \code{id},
-\code{sample_name}, \code{isotope}, \code{sample_number}, and the posterior sample for \Sigma$
+\code{sample_name}, \code{isotope}, \code{sample_number}, and the posterior sample for Σ
 (i.e., \code{post_sample}).
 }
 \description{
-Extract Bayesian estimates of \Sigma$ from the function \code{niw.post()} in the
+Extract Bayesian estimates of Σ from the function \code{niw.post()} in the
 package
 \href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.
 }
@@ -84,7 +84,6 @@ data = niw_fish_post
 # data = niw_fish_post
 # )
 
-\@import dplyr
 }
 \seealso{
 \code{\link[nicheROVER:niw.post]{nicheROVER::niw.post()}}
