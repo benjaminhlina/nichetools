@@ -4,7 +4,8 @@
 #' following function `overlap()` in the package
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
 #'
-#' @param data a list object created by the fucntion `overlap()` in the package
+#' @param data a `array` object containing `matrices` created by the function
+#' `overlap()` in the package
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
 #' @param name_a character string to supply for the first
 #' `sample_name` used in `overlap()`. Defaults to `"sample_name_a"`.
@@ -26,14 +27,32 @@ overlap_extract <- function(data,
                             name_a = NULL,
                             name_b = NULL) {
 
+  # Check if data is a array
+  if (!inherits(data, "array")) {
+    cli::cli_abort("Input 'data' must be a array.")
+  }
+
+  # set name_a null
   if (is.null(name_a)){
     name_a <- "sample_name_a"
   }
-
+  # set name_b null
   if (is.null(name_b)){
     name_b <- "sample_name_b"
   }
 
+  # Check if name_a is character
+  if (!is.character(name_a)) {
+    cli::cli_abort("The supplied argument for 'name_a' must be a character.")
+  }
+
+  # Check if isotope_b is character
+  if (!is.character(name_b)) {
+    cli::cli_abort("The supplied argument for 'name_b' must be a character.")
+  }
+
+
+  # overlap extract
   overlap_df <- data %>%
     tibble::as_tibble(rownames = "species_a") %>%
     dplyr::mutate(

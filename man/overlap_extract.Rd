@@ -7,7 +7,8 @@
 overlap_extract(data, name_a = NULL, name_b = NULL)
 }
 \arguments{
-\item{data}{a list object created by the fucntion \code{overlap()} in the package
+\item{data}{a \code{array} object containing \code{matrices} created by the function
+\code{overlap()} in the package
 \href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.}
 
 \item{name_a}{character string to supply for the first
