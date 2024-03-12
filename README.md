@@ -18,16 +18,18 @@ devtools::install_github("benjaminhlina/nichetools")
 ```
 
 
-### This packages is currently in development, use at your own risk: 
-
-#### Progress
+## Progress
 -   [X] create `mu_extract()`
     -   [X] build tests for `mu_extract()`
+    
 -   [X] create `sigma_extract()`
     -   [X] build tests for `sigma_extract()`
+    
 -   [X] create `niche_ellipse()`
     -   [X] build tests for `niche_ellipse()`
+    
 -   [x] create `overlap_extract()`
     -   [X] build tests for `overlap_extract()`
+    
 -   [ ] create `niche_size_extract()` 
     -   [ ] build tests for `niche_size_extract()` 
