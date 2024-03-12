@@ -13,7 +13,7 @@
 #' can be produced using `sigma_extract()`.
 #' @param p_ell is the confidence interval of each ellipse estimate.
 #' Default is 0.95 (i.e., 95% confidence interval).
-#' This value is bound by 0 and 1 and has to be a numeric.
+#' This value is bound by 0 and 1 and has to be a `numeric`.
 #' @param isotope_a character string that is the column name of the first
 #' isotope used in `dat_sigma`. Defaults to `"d15n"`.
 #' @param isotope_b character string that is the column name of the second
@@ -25,11 +25,11 @@
 #' that were used in the estimation of ellipse (i.e., `d15n`, and `d13c`).
 #'
 #' @seealso [nicheROVER::niw.post()] [mu_extract()] and [sigma_extract()]
-#' @examplesIf interactive()
-#'
-#' sigma_ellipse(dat_mu = mu_est_long,
+#' @examples
+#' \dontrun{
+#' niche_ellipse(dat_mu = mu_est_long,
 #'               dat_sigma = sigma_est_wide)
-#'
+#' }
 #' @import dplyr
 #' @import ellipse
 #' @import purrr

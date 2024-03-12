@@ -32,7 +32,7 @@ isotope used in \code{dat_sigma}. Defaults to \code{"d13c"}.}
 
 \item{p_ell}{is the confidence interval of each ellipse estimate.
 Default is 0.95 (i.e., 95\% confidence interval).
-This value is bound by 0 and 1 and has to be a numeric.}
+This value is bound by 0 and 1 and has to be a \code{numeric}.}
 
 \item{message}{Control whether the time processing is displayed after the
 end of the function. Default is \code{TRUE}.}
@@ -46,11 +46,10 @@ This function allows the user to supply Bayesian estimates of μ and
 Σ  to create estimated Bayesian ellipse for niche region.
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-
-sigma_ellipse(dat_mu = mu_est_long,
+\dontrun{
+niche_ellipse(dat_mu = mu_est_long,
               dat_sigma = sigma_est_wide)
-\dontshow{\}) # examplesIf}
+}
 }
 \seealso{
 \code{\link[nicheROVER:niw.post]{nicheROVER::niw.post()}} \code{\link[=mu_extract]{mu_extract()}} and \code{\link[=sigma_extract]{sigma_extract()}}
