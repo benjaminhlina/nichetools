@@ -46,12 +46,11 @@ This function allows the user to supply Bayesian estimates of μ and
 Σ  to create estimated Bayesian ellipse for niche region.
 }
 \examples{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 
-# ---- uncomment to run; commented only to save on build time ----
-
-# df_ellipse <- sigma_ellipse(dat_mu = mu_est_long,
-# dat_sigma = sigma_est_wide)
-
+sigma_ellipse(dat_mu = mu_est_long,
+              dat_sigma = sigma_est_wide)
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{\link[nicheROVER:niw.post]{nicheROVER::niw.post()}} \code{\link[=mu_extract]{mu_extract()}} and \code{\link[=sigma_extract]{sigma_extract()}}

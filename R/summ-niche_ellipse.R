@@ -25,12 +25,10 @@
 #' that were used in the estimation of ellipse (i.e., `d15n`, and `d13c`).
 #'
 #' @seealso [nicheROVER::niw.post()] [mu_extract()] and [sigma_extract()]
-#' @examples
+#' @examplesIf interactive()
 #'
-#' # ---- uncomment to run; commented only to save on build time ----
-#'
-#' # df_ellipse <- sigma_ellipse(dat_mu = mu_est_long,
-#' # dat_sigma = sigma_est_wide)
+#' sigma_ellipse(dat_mu = mu_est_long,
+#'               dat_sigma = sigma_est_wide)
 #'
 #' @import dplyr
 #' @import ellipse
