@@ -26,7 +26,7 @@ onto of each other.}
 isotope used in \code{dat_sigma}. Defaults to \code{"d15n"}.}
 
 \item{isotope_b}{character string that is the column name of the second
-isotope used in \code{dat_sigma}. Defaults to \code{"  d13c"}.}
+isotope used in \code{dat_sigma}. Defaults to \code{"d13c"}.}
 
 \item{p_ell}{is the confidence interval of each ellipse estimate.
 Default is 0.95 (i.e., 95\% confidence interval).}
@@ -34,11 +34,20 @@ Default is 0.95 (i.e., 95\% confidence interval).}
 \item{message}{Control whether the time processing is displayed after the
 end of the function. Default is \code{TRUE}.}
 }
+\value{
+A \code{tibble} containing, \code{sample_name}, \code{sample_number}, and the isotopes
+that were used in the estimation of ellipse (i.e., \code{d15n}, and \code{d13c}).
+}
 \description{
 This function allows the user to supply Bayesian estimates of mu and sigma to
 create estimated Bayesian ellipse for niche region.
 }
 \examples{
-# ellipse <- sigma_ellipse()
+
+# ---- uncomment to run; commented only to save on build time ----
+
+# df_ellipse <- sigma_ellipse(dat_mu = mu_est_long,
+# dat_sigma = sigma_est_wide)
+
 
 }
