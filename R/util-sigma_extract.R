@@ -7,13 +7,25 @@
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html)
 #' @param isotope_a character string to supply for the first
 #' isotope used in `niw.post()`. Defaults to `"d15n"`.
-#' @param isotope_b character string to supply for the first
+#' @param isotope_b character string to supply for the second
 #' isotope used in `niw.post()`. Defaults to `"d13c"`.
+#' @return Returns a `tibble` of extracted estimates of sigma that are created by
+#' `niw.post()` from
+#' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
+#' The tibble will contain five columns in the following order, `metric`, `id`,
+#' `sample_name`, `isotope`, `sample_number`, and the posterior sample for sigma.
+#' (i.e., `post_sample`)
 #'
 #' @examples
-#'df_sigma <- sigma_extract(
-#'data = niw_fish_post
-#')
+#' df_sigma <- sigma_extract(
+#' data = niw_fish_post
+#' )
+#' # --- to use with `niche_ellipse()` we need to make into wide format ----
+#' # we can do this by using tidyr's `pivot_wide()`. Uncomment below to run.
+#' # df_sigma_wide <- df_sigma %>%
+#' # pivot_wider(names_from = id,
+#' #             values_from = post_sample)
+#'
 #'
 #' # ---- To understand how niw_fish_post is being created ----
 #' # ---- Uncomment the code below to create object from nicheROVER ----
@@ -24,19 +36,19 @@
 #' # library(nichetools)
 #' # library(purrr)
 #' # }
-#'
+#' #
 #' # gab fish dataframe, and remove sulfer for the example
 #' # df <- fish %>%
 #' #   janitor::clean_names()
-#'
+#' #
 #' # create number of samples used in nicheROVER
 #' # nsample <- 1000
-#'
+#' #
 #' # split the data frame by species and select isotopes of interest
 #' # df_split <- df %>%
 #' # split(.$species) %>%
 #' # map(~ select(., d15n, d13c))
-#'
+#' #
 #' # extract the names of each list to name each object in list
 #' # df_names <- df %>%
 #' # group_by(species) %>%
@@ -45,19 +57,21 @@
 #' # mutate(
 #' # id = 1:nrow(.)
 #' # )
-#'
+#' #
 #' # name each object in list
 #' # names(df_split) <- df_names$species
-#'
+#' #
 #' # create niw posterior samples
 #' # niw_fish_post <- df_split %>%
 #' # map(~niw.post(nsample = nsample, X = .))
-#'
-#'
+#' #
+#' #
 #' # we can then use sigma_extract() to extract mu from niw_fish_post
 #' # df_sigmaa <- sigma_extract(
 #' # data = niw_fish_post
 #' # )
+#' #
+#' # To prep this for use with
 #'
 #'
 #' @export
@@ -93,16 +107,16 @@ sigma_extract <-  function(data,
   # extract sigm
   df_sigma <- purrr::map(data, purrr::pluck, 2) |>
     purrr::imap(~ tibble::as_tibble(.x) |>
-           dplyr::mutate(
-             metric = "sigma",
-             id = id_isotope,
-             sample_name = .y
-           )
+                  dplyr::mutate(
+                    metric = "sigma",
+                    id = id_isotope,
+                    sample_name = .y
+                  )
     ) |>
-   dplyr::bind_rows() |>
+    dplyr::bind_rows() |>
     tidyr::pivot_longer(cols = -c("id", "sample_name", "metric"),
-                 names_to = "isotope",
-                 values_to = "post_sample"
+                        names_to = "isotope",
+                        values_to = "post_sample"
     ) |>
     tidyr::separate(isotope, into = c("isotope", "sample_number"), sep = "\\.")
 
