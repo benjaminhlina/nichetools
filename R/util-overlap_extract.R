@@ -30,7 +30,7 @@ overlap_extract <- function(data,
 
   # Check if data is a array
   if (!inherits(data, "array")) {
-    cli::cli_abort("Input 'data' must be a array.")
+    cli::cli_abort("Input 'data' must be an array.")
   }
 
   # set name_a null
