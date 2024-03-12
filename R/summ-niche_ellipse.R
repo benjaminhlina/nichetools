@@ -14,13 +14,20 @@
 #' @param isotope_a character string that is the column name of the first
 #' isotope used in `dat_sigma`. Defaults to `"d15n"`.
 #' @param isotope_b character string that is the column name of the second
-#' isotope used in `dat_sigma`. Defaults to `"  d13c"`.
+#' isotope used in `dat_sigma`. Defaults to `"d13c"`.
 #' @param message Control whether the time processing is displayed after the
 #' end of the function. Default is `TRUE`.
 #'
+#' @return A `tibble` containing, `sample_name`, `sample_number`, and the isotopes
+#' that were used in the estimation of ellipse (i.e., `d15n`, and `d13c`).
 #'
 #' @examples
-#' # ellipse <- sigma_ellipse()
+#'
+#' # ---- uncomment to run; commented only to save on build time ----
+#'
+#' # df_ellipse <- sigma_ellipse(dat_mu = mu_est_long,
+#' # dat_sigma = sigma_est_wide)
+#'
 #'
 #' @import dplyr
 #' @import ellipse
@@ -85,7 +92,7 @@ niche_ellipse <- function(
     dplyr::select(sample_name, sample_number, mu_est) |>
     dplyr::group_split(sample_name, sample_number) |>
     purrr::map(~ .x$mu_est,
-        .progress = "Prepare mu for ellipse")
+               .progress = "Prepare mu for ellipse")
 
   # preppare sigama for epplipse
   #
@@ -138,7 +145,7 @@ niche_ellipse <- function(
   time_spent <- round((end_time - start_time), digits = 2)
   if (message) {
     cli::cli_alert(paste("Total time processing was", time_spent, units(time_spent),
-                       sep = " "))
+                         sep = " "))
   }
 
   return(all_ellipses)
