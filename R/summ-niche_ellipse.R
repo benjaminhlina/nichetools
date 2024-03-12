@@ -1,14 +1,16 @@
-#' Create ellipses based on Bayesian estimates
+#' Create ellipses based on Bayesian estimates of μ and Σ
 #'
-#' This function allows the user to supply Bayesian estimates of $\mu and
-#' \Sigma$ to create estimated Bayesian ellipse for niche region.
+#' This function allows the user to supply Bayesian estimates of μ and
+#' Σ  to create estimated Bayesian ellipse for niche region.
 #'
-#' @param dat_mu a `data.frame` containing $\mu Bayesian estimates.
-#' This `data.frame` needs to be in long format with each $\mu
-#' estimate for each isotope stacked on top of each other.
-#' @param dat_sigma a `data.frame` containing \Sigma$ Bayesian estimates.
+#' @param dat_mu a `data.frame` containing μ Bayesian estimates.
+#' This `data.frame` needs to be in long format with each μ
+#' estimate for each isotope stacked on top of each other. This can be produced
+#' using `mu_extract()`.
+#' @param dat_sigma a `data.frame` containing Σ Bayesian estimates.
 #' This `data.frame` needs be in wide format, that is sigma/covariance matrices stacked
-#' onto of each other. See example of how to convert to wide format.
+#' onto of each other. See example of how to convert to wide format. This
+#' can be produced using `sigma_extract()`.
 #' @param p_ell is the confidence interval of each ellipse estimate.
 #' Default is 0.95 (i.e., 95% confidence interval).
 #' This value is bound by 0 and 1 and has to be a numeric.
@@ -29,8 +31,6 @@
 #'
 #' # df_ellipse <- sigma_ellipse(dat_mu = mu_est_long,
 #' # dat_sigma = sigma_est_wide)
-#'
-
 #'
 #' @import dplyr
 #' @import ellipse
