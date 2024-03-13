@@ -3,8 +3,7 @@
 \docType{data}
 \name{sigma_est_wide}
 \alias{sigma_est_wide}
-\title{A \code{data.frame} containing posterior estimates of Σ sing the \code{fish} data set in
-\href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.}
+\title{A \code{data.frame} containing posterior estimates of Σ}
 \format{
 \code{data.frame} containing 8,000 rows and 6 variables
 \describe{

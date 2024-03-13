@@ -3,8 +3,7 @@
 \docType{data}
 \name{niw_fish_post}
 \alias{niw_fish_post}
-\title{A \code{list} of the posterior estimates of μ and Σ using the \code{fish} data set from
-\href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.}
+\title{A \code{list} of the posterior estimates of μ and Σ}
 \format{
 A \code{list} with elements μ and Σ of sizes c(nsamples, length(lambda))
 and c(dim(Psi).

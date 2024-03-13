@@ -3,8 +3,7 @@
 \docType{data}
 \name{mu_est_long}
 \alias{mu_est_long}
-\title{A \code{data.frame} containing posterior estimates of μ using the \code{fish} data set in
-\href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.}
+\title{A \code{data.frame} containing posterior estimates of μ}
 \format{
 \code{data.frame} containing 8,000 rows and 7 variables
 \describe{

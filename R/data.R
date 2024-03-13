@@ -1,5 +1,4 @@
-#' A `data.frame` containing posterior estimates of μ using the `fish` data set in
-#'[{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
+#' A `data.frame` containing posterior estimates of μ
 #'
 #' Posterior estimates of μ using `fish` data set from
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html),
@@ -19,8 +18,7 @@
 "mu_est_long"
 
 
-#' A `data.frame` containing posterior estimates of Σ sing the `fish` data set in
-#'[{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
+#' A `data.frame` containing posterior estimates of Σ
 #'
 #' Posterior estimates of Σ using `fish` data set from
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html),
@@ -39,8 +37,7 @@
 #'
 "sigma_est_wide"
 
-#' A `list` of the posterior estimates of μ and Σ using the `fish` data set from
-#' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
+#' A `list` of the posterior estimates of μ and Σ
 #'
 #' Posterior estimates of μ and Σ using the `fish` data set from
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html),
@@ -54,9 +51,7 @@
 #'
 "niw_fish_post"
 
-#' A `data.frame` of estimates of percentage of overlap among groups in the
-#' `fish` data set  produced by `niw.post()` from
-#' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
+#' A `data.frame` containing the estimates of percentage of overlap among groups
 #'
 #' Estimates of the percentage of overlap among example species used in
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
