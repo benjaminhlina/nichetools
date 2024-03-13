@@ -16,7 +16,7 @@
 #'
 #' @seealso [nicheROVER::niche.size()] [nicheROVER::niw.post()]
 #' @examples
-#' niche_size <- niche_size_extrac(data = niw_fish_post)
+#' niche_size <- niche_size_extract(data = niw_fish_post)
 #'
 #'
 #' @import dplyr

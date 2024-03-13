@@ -26,7 +26,7 @@ sigma created by function \code{niw.post()} in the package
 This function is a wrapper around \code{nicheROVER::niche.size}.
 }
 \examples{
-niche_size <- niche_size_extrac(data = niw_fish_post)
+niche_size <- niche_size_extract(data = niw_fish_post)
 
 
 }
