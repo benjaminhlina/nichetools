@@ -9,7 +9,7 @@
 #' @return Returns a `tibble` of extracted estimates of μ that are created by
 #' the function `niw.post()` in the package
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
-#' The `tibble will` contain five columns in the following order, `metric`,
+#' The `tibble` will contain five columns in the following order, `metric`,
 #' `sample_name`, `sample_number`, and the names of the isotope
 #' columns supplied to `niw.post()` (e.g., `d15n` and `d13c`).
 #'

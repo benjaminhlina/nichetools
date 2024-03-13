@@ -14,7 +14,7 @@ mu_extract(data)
 Returns a \code{tibble} of extracted estimates of μ that are created by
 the function \code{niw.post()} in the package
 \href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.
-The \verb{tibble will} contain five columns in the following order, \code{metric},
+The \code{tibble} will contain five columns in the following order, \code{metric},
 \code{sample_name}, \code{sample_number}, and the names of the isotope
 columns supplied to \code{niw.post()} (e.g., \code{d15n} and \code{d13c}).
 }
