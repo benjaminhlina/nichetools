@@ -2,6 +2,7 @@
 
 export(mu_extract)
 export(niche_ellipse)
+export(niche_size_extract)
 export(overlap_extract)
 export(sigma_extract)
 import(dplyr)
@@ -10,4 +11,5 @@ import(purrr)
 import(tibble)
 import(tidyr)
 importFrom(lifecycle,deprecated)
+importFrom(nicheROVER,niche.size)
 importFrom(rlang,":=")
