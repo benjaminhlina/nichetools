@@ -2,7 +2,7 @@ Package: nichetools
 Type: Package
 Title: Complementary package to {nicheROVER}
 Version: 0.1.0
-Author: Benjamin L. HLina
+Author: Benjamin L. Hlina
 Maintainer: Benjamin L. Hlina <benjamin.hlina@gmail.com>
 Description: This package is complementary to {nicheROVER} as it allows 
         the user to extract Bayesian estimates from data objects created by  
