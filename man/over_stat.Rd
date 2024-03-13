@@ -3,12 +3,13 @@
 \docType{data}
 \name{over_stat}
 \alias{over_stat}
-\title{A \code{data.frame} of estimates of percentage of overlap among groups produced by
-\code{niw.post()}}
+\title{A \code{data.frame} of estimates of percentage of overlap among groups in the
+\code{fish} data set  produced by \code{niw.post()} from
+\href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.}
 \format{
 A \code{array}containing \code{matrices} of the percent overlap for each group
-used in Bayesian estimates of μ and Σ from
-Normal-Inverse-Wishart (NIW) prior calculated in \code{niw.post()}.
+used in Bayesian estimates of μ and Σ using
+Normal-Inverse-Wishart (NIW) priors calculated in \code{niw.post()}.
 }
 \usage{
 over_stat

@@ -1,9 +1,10 @@
-#' A `data.frame` of estimates of μ from Normal-Inverse-Wishart (NIW)
+#' A `data.frame` containing posterior estimates of μ using the `fish` data set in
+#'[{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
 #'
-#' Estimates of μ from Normal-Inverse-Wishart (NIW) priors for example data
-#' frame from
-#' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
-#'
+#' Posterior estimates of μ using `fish` data set from
+#' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html),
+#' using  Normal-Inverse-Wishart (NIW) priors.
+
 #' @format `data.frame` containing 8,000 rows and 7 variables
 #'  \describe{
 #'    \item{metric}{name of the metric extracted from `niw.post()`}
@@ -18,11 +19,13 @@
 "mu_est_long"
 
 
-#' A `data.frame` of estimates of Σ from Normal-Inverse-Wishart (NIW) prior
+#' A `data.frame` containing posterior estimates of Σ sing the `fish` data set in
+#'[{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
 #'
-#' Estimates of Σ from Normal-Inverse-Wishart (NIW) priors for example data
-#' frame from
-#' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
+#' Posterior estimates of Σ using `fish` data set from
+#' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html),
+#' using Normal-Inverse-Wishart (NIW) priors
+#'
 #'
 #' @format `data.frame` containing 8,000 rows and 6 variables
 #'  \describe{
@@ -36,10 +39,13 @@
 #'
 "sigma_est_wide"
 
-#' A `list` of the estimates of μ and Σ from Normal-Inverse-Wishart (NIW) prior
+#' A `list` of the posterior estimates of μ and Σ using the `fish` data set from
+#' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
 #'
-#' Estimates of μ and Σ from Normal-Inverse-Wishart (NIW) priors for example data.
-#' This `list` is produced using using the function `niw.post()` from
+#' Posterior estimates of μ and Σ using the `fish` data set from
+#' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html),
+#' using Normal-Inverse-Wishart (NIW) priors.
+#' This `list` is produced  using the function `niw.post()` from
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
 #'
 #'
@@ -48,14 +54,15 @@
 #'
 "niw_fish_post"
 
-#' A `data.frame` of estimates of percentage of overlap among groups produced by
-#' `niw.post()`
+#' A `data.frame` of estimates of percentage of overlap among groups in the
+#' `fish` data set  produced by `niw.post()` from
+#' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
 #'
 #' Estimates of the percentage of overlap among example species used in
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
 #'
 #' @format A `array`containing `matrices` of the percent overlap for each group
-#' used in Bayesian estimates of μ and Σ from
-#' Normal-Inverse-Wishart (NIW) prior calculated in `niw.post()`.
+#' used in Bayesian estimates of μ and Σ using
+#' Normal-Inverse-Wishart (NIW) priors calculated in `niw.post()`.
 #'
 "over_stat"

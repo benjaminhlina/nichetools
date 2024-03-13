@@ -3,7 +3,8 @@
 \docType{data}
 \name{mu_est_long}
 \alias{mu_est_long}
-\title{A \code{data.frame} of estimates of μ from Normal-Inverse-Wishart (NIW)}
+\title{A \code{data.frame} containing posterior estimates of μ using the \code{fish} data set in
+\href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.}
 \format{
 \code{data.frame} containing 8,000 rows and 7 variables
 \describe{
@@ -20,8 +21,8 @@
 mu_est_long
 }
 \description{
-Estimates of μ from Normal-Inverse-Wishart (NIW) priors for example data
-frame from
-\href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.
+Posterior estimates of μ using \code{fish} data set from
+\href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}},
+using  Normal-Inverse-Wishart (NIW) priors.
 }
 \keyword{datasets}
