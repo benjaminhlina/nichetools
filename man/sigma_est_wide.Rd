@@ -3,7 +3,7 @@
 \docType{data}
 \name{sigma_est_wide}
 \alias{sigma_est_wide}
-\title{Estimates of Σ from Normal-Inverse-Wishart (NIW) prior}
+\title{A \code{data.frame} of estimates of Σ from Normal-Inverse-Wishart (NIW) prior}
 \format{
 \code{data.frame} containing 8,000 rows and 6 variables
 \describe{

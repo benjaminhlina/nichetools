@@ -3,7 +3,7 @@
 \docType{data}
 \name{mu_est_long}
 \alias{mu_est_long}
-\title{Estimates of μ from Normal-Inverse-Wishart (NIW) prior}
+\title{A \code{data.frame} of estimates of μ from Normal-Inverse-Wishart (NIW)}
 \format{
 \code{data.frame} containing 8,000 rows and 7 variables
 \describe{

@@ -1,4 +1,4 @@
-#' Estimates of μ from Normal-Inverse-Wishart (NIW) prior
+#' A `data.frame` of estimates of μ from Normal-Inverse-Wishart (NIW)
 #'
 #' Estimates of μ from Normal-Inverse-Wishart (NIW) priors for example data
 #' frame from
@@ -18,7 +18,7 @@
 "mu_est_long"
 
 
-#' Estimates of Σ from Normal-Inverse-Wishart (NIW) prior
+#' A `data.frame` of estimates of Σ from Normal-Inverse-Wishart (NIW) prior
 #'
 #' Estimates of Σ from Normal-Inverse-Wishart (NIW) priors for example data
 #' frame from
@@ -36,7 +36,7 @@
 #'
 "sigma_est_wide"
 
-#' Estimates of μ and Σ from Normal-Inverse-Wishart (NIW) prior as `list`
+#' A `list`of the estimates of μ and Σ from Normal-Inverse-Wishart (NIW) prior
 #'
 #' Estimates of μ and Σ from Normal-Inverse-Wishart (NIW) priors for example data.
 #' This `list` is produced using using the function `niw.post()` from
@@ -48,7 +48,8 @@
 #'
 "niw_fish_post"
 
-#' Estimates of percentage of overlap among groups produced by `niw.post()`
+#' A `data.frame` of estimates of percentage of overlap among groups produced by
+#' `niw.post()`
 #'
 #' Estimates of the percentage of overlap among example species used in
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
