@@ -32,4 +32,6 @@ devtools::install_github("benjaminhlina/nichetools")
     -   [X] build tests for `overlap_extract()`
     
 -   [X] create `niche_size_extract()` 
-    -   [ ] build tests for `niche_size_extract()` 
+    -   [X] build tests for `niche_size_extract()` 
+    
+-   [ ] Create vignette/modify blog post vignette
