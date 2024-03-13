@@ -31,5 +31,5 @@ devtools::install_github("benjaminhlina/nichetools")
 -   [x] create `overlap_extract()`
     -   [X] build tests for `overlap_extract()`
     
--   [ ] create `niche_size_extract()` 
+-   [X] create `niche_size_extract()` 
     -   [ ] build tests for `niche_size_extract()` 
