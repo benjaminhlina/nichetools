@@ -36,7 +36,7 @@
 #'
 "sigma_est_wide"
 
-#' A `list`of the estimates of μ and Σ from Normal-Inverse-Wishart (NIW) prior
+#' A `list` of the estimates of μ and Σ from Normal-Inverse-Wishart (NIW) prior
 #'
 #' Estimates of μ and Σ from Normal-Inverse-Wishart (NIW) priors for example data.
 #' This `list` is produced using using the function `niw.post()` from

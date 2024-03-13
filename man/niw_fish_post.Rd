@@ -3,7 +3,7 @@
 \docType{data}
 \name{niw_fish_post}
 \alias{niw_fish_post}
-\title{A \code{list}of the estimates of μ and Σ from Normal-Inverse-Wishart (NIW) prior}
+\title{A \code{list} of the estimates of μ and Σ from Normal-Inverse-Wishart (NIW) prior}
 \format{
 A \code{list} with elements μ and Σ of sizes c(nsamples, length(lambda))
 and c(dim(Psi).
