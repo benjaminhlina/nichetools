@@ -1,7 +1,7 @@
 
 test_that("test if list", {
   expect_no_error(
-    test_1 <- niche_size_extract(
+    test_1 <- extract_niche_size(
       data = niw_fish_post
     )
 
@@ -16,7 +16,7 @@ test_that("error if data isn't a list", {
   )
 
   expect_error(
-    niche_size_extract(
+    extract_niche_size(
       data = dat
     ), regexp = "Input 'data' must be a list."
   )
@@ -28,7 +28,7 @@ test_that("error if data isn't a list", {
 test_that("Parameter 'prob' is can take other values than 0.95", {
   # Test case 1: p_ell is 0.75,
   expect_no_error(
-    niche_size_test <- niche_size_extract(
+    niche_size_test <- extract_niche_size(
       data = niw_fish_post,
       prob = 0.75
     )
@@ -38,7 +38,7 @@ test_that("Parameter 'prob' is can take other values than 0.95", {
 test_that("Parameter 'prob' is set and validated correctly", {
   # Test case 1: p_ell is NULL, it should be set to 0.95
   expect_no_error(
-    niche_size_test <- niche_size_extract(
+    niche_size_test <- extract_niche_size(
       data = niw_fish_post
     )
   )
@@ -50,7 +50,7 @@ test_that("Check if column names extracted are correct", {
 
   expected_names <- c("sample_name", "id", "niche_size")
 
-  test_2 <- niche_size_extract(
+  test_2 <- extract_niche_size(
     data = niw_fish_post
   )
 
@@ -61,12 +61,12 @@ test_that("Check if column names extracted are correct", {
 test_that("prob errors when given a charcter  or value outside of range", {
 
   # Test case 3: prob is not numeric, it should raise an error
-  expect_error(niche_size_extract(
+  expect_error(extract_niche_size(
     data = niw_fish_post, prob = "invalid"),
     "Parameter 'prob' must be a numeric value between 0 and 1.")
 
   # Test case 4: prob is numeric but outside the valid range,
-  expect_error(niche_size_extract(
+  expect_error(extract_niche_size(
     data = niw_fish_post, prob = 1.5),
     "Parameter 'prob' must be a numeric value between 0 and 1.")
 }
@@ -74,7 +74,7 @@ test_that("prob errors when given a charcter  or value outside of range", {
 
 
 test_that("if name errors if given number", {
-  expect_error(niche_size_extract(
+  expect_error(extract_niche_size(
     data = niw_fish_post,
     name = 1
   ), "Argument 'name' must be a character.")
@@ -84,7 +84,7 @@ test_that("if name errors if given number", {
 
 test_that("output data is the correct size and class", {
 
-  test_3 <- niche_size_extract(
+  test_3 <- extract_niche_size(
     data = niw_fish_post
   )
 
