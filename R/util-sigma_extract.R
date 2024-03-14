@@ -84,7 +84,8 @@
 
 sigma_extract <-  function(data,
                            isotope_a = NULL,
-                           isotope_b = NULL) {
+                           isotope_b = NULL,
+                           format = "wide") {
   # Check if data is a list
   if (!inherits(data, "list")) {
     cli::cli_abort("Input 'data' must be a list.")
@@ -126,5 +127,15 @@ sigma_extract <-  function(data,
     ) |>
     tidyr::separate(isotope, into = c("isotope", "sample_number"), sep = "\\.")
 
-  return(df_sigma)
+  if (format %in% "wide") {
+
+    df_sigma <- df_sigma |>
+      tidyr::pivot_wider(names_from = id,
+                         values_from = post_sample)
+    return(df_sigma)
+  }
+  if (format %in% long) {
+    return(df_sigma)
+
+  }
 }
