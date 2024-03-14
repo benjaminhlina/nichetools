@@ -74,7 +74,8 @@
 #' @export
 
 
-mu_extract <- function(data) {
+mu_extract <- function(data,
+                       format = "long") {
 
   # Check if data is a list
   if (!inherits(data, "list")) {
@@ -89,10 +90,10 @@ mu_extract <- function(data) {
   # extract mu
   df_mu <- purrr::map(data, purrr::pluck, 1) |>
     purrr::imap(~ tibble::as_tibble(.x) |>
-           dplyr::mutate(
-             metric = "mu",
-             sample_name = .y
-           )
+                  dplyr::mutate(
+                    metric = "mu",
+                    sample_name = .y
+                  )
     ) |>
     dplyr::bind_rows() |>
     dplyr::group_by(sample_name) |>
@@ -105,5 +106,18 @@ mu_extract <- function(data) {
   df_mu <- df_mu |>
     dplyr::select(metric:sample_number, all_of(col_names))
 
-  return(df_mu)
+
+  if (format %in% "long") {
+    df_mu <- df |>
+      tidyr::pivot_longer(cols = -c(metric, sample_name, sample_number),
+                          names_to = "isotope",
+                          values_to = "mu_est"
+      )
+
+    return(df_mu)
+  }
+
+  if (format %in% "wide") {
+    return(df_mu)
+  }
 }
