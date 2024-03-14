@@ -1,4 +1,4 @@
-#' Niche size extract
+#' extract niche size
 #'
 #' Extract niche size based on elliptical niche region of Bayesian estimates of
 #' sigma created by function `niw.post()` in the package

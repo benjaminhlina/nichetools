@@ -1,4 +1,4 @@
-#' Overlap extract
+#' extract overlap
 #'
 #' Extract Bayesian estimates of similarities among groups produced by the
 #' following function `overlap()` in the package
