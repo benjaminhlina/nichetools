@@ -2,9 +2,9 @@
 
 export(extract_mu)
 export(extract_niche_size)
+export(extract_overlap)
 export(extract_sigma)
 export(niche_ellipse)
-export(overlap_extract)
 import(dplyr)
 import(ellipse)
 import(purrr)
