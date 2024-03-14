@@ -19,20 +19,20 @@ devtools::install_github("benjaminhlina/nichetools")
 
 
 ## Progress
--   [X] create `mu_extract()`
-    -   [X] build tests for `mu_extract()`
+-   [X] create `extract_mu()`
+    -   [X] build tests for `extract_mu()`
     
--   [X] create `sigma_extract()`
-    -   [X] build tests for `sigma_extract()`
+-   [X] create `extract_sigma()`
+    -   [X] build tests for `extract_sigma()`
     
 -   [X] create `niche_ellipse()`
     -   [X] build tests for `niche_ellipse()`
     
--   [x] create `overlap_extract()`
-    -   [X] build tests for `overlap_extract()`
+-   [x] create `extract_overlap()`
+    -   [X] build tests for `extract_overlap()`
     
--   [X] create `niche_size_extract()` 
-    -   [X] build tests for `niche_size_extract()` 
+-   [X] create `extract_niche_size()` 
+    -   [X] build tests for `extract_niche_size()` 
     
 -   [ ] Create vignette/modify blog post vignette
 
