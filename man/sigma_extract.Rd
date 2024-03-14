@@ -4,7 +4,7 @@
 \alias{sigma_extract}
 \title{Σ extract}
 \usage{
-sigma_extract(data, isotope_a = NULL, isotope_b = NULL)
+sigma_extract(data, isotope_a = NULL, isotope_b = NULL, format = "wide")
 }
 \arguments{
 \item{data}{a \code{list} created by the function \code{niw.post()} in the package
@@ -15,6 +15,10 @@ isotope used in \code{niw.post()}. Defaults to \code{"d15n"}.}
 
 \item{isotope_b}{\code{character}string to supply for the second
 isotope used in \code{niw.post()}. Defaults to \code{"d13c"}.}
+
+\item{format}{format a \code{character} that decided whether the returned object is
+in long or wide format. Default is \code{"wide"}, with the alternative supplied
+being \code{"long"}.}
 }
 \value{
 Returns a \code{tibble} of extracted estimates of Σ created by the

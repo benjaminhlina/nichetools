@@ -10,6 +10,9 @@
 #' isotope used in `niw.post()`. Defaults to `"d15n"`.
 #' @param isotope_b `character`string to supply for the second
 #' isotope used in `niw.post()`. Defaults to `"d13c"`.
+#' @param format format a `character` that decided whether the returned object is
+#' in long or wide format. Default is `"wide"`, with the alternative supplied
+#' being `"long"`.
 #' @return Returns a `tibble` of extracted estimates of Σ created by the
 #' function `niw.post()` in the package
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
