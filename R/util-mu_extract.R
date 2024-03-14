@@ -108,7 +108,7 @@ mu_extract <- function(data,
 
 
   if (format %in% "long") {
-    df_mu <- df |>
+    df_mu <- df_mu |>
       tidyr::pivot_longer(cols = -c(metric, sample_name, sample_number),
                           names_to = "isotope",
                           values_to = "mu_est"
