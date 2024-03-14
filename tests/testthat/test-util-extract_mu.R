@@ -1,6 +1,6 @@
 
 test_that("Test if data object is list ", {
-  df_mu <- mu_extract(
+  df_mu <- extract_mu(
     data = niw_fish_post
   )
 
@@ -16,7 +16,7 @@ test_that("error if data isn't a list", {
   )
 
   expect_error(
-    mu_extract(
+    extract_mu(
       data = dat
     ), regexp = "Input 'data' must be a list."
   )
@@ -25,7 +25,7 @@ test_that("error if data isn't a list", {
 
 
 test_that("test that the object type and length are correct ", {
-  df_mu_test <- mu_extract(
+  df_mu_test <- extract_mu(
     data = niw_fish_post
   )
   # check the type returned data frame should be data frame
@@ -43,7 +43,7 @@ test_that("test that the object type and length are correct ", {
 })
 
 test_that("test that the object type and length are correct ", {
-  df_mu_test <- mu_extract(
+  df_mu_test <- extract_mu(
     data = niw_fish_post, format = "wide"
   )
   # check the type returned data frame should be data frame
@@ -65,7 +65,7 @@ test_that("Check if column names extracted are correct", {
 
   expected_names <- c("metric", "sample_name", "sample_number", "d15n", "d13c")
 
-  df_mu_test <- mu_extract(
+  df_mu_test <- extract_mu(
     data = niw_fish_post,
     format = "wide"
   )
@@ -79,7 +79,7 @@ test_that("Check if column order", {
   expected_names <- c("metric", "sample_name", "sample_number",
                       "isotope", "mu_est")
 
-  df_mu_test_1 <- mu_extract(
+  df_mu_test_1 <- extract_mu(
     data = niw_fish_post
   )
   expect_equal(names(df_mu_test_1), expected_names)
