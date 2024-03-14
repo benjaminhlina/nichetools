@@ -1,4 +1,4 @@
-#' μ extract
+#' extract μ
 #'
 #' Extract Bayesian estimates of μ from the function `niw.post()` in the package
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
@@ -18,7 +18,7 @@
 #'
 #' @seealso [nicheROVER::niw.post()]
 #' @examples
-#' mu_extract(
+#' extract_mu(
 #' data = niw_fish_post
 #' )
 #'
@@ -62,7 +62,7 @@
 #'   map(~niw.post(nsample = nsample, X = .))
 #'
 #'# ---- extract mu estimates ----
-#' mu_extract(
+#' extract_mu(
 #' data = niw_fish_post
 #' )
 #' }
@@ -74,7 +74,7 @@
 #' @export
 
 
-mu_extract <- function(data,
+extract_mu <- function(data,
                        format = "long") {
 
   # Check if data is a list
