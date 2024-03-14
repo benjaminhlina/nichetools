@@ -22,7 +22,7 @@
 #'
 #' @seealso [nicheROVER::niw.post()]
 #' @examples
-#' sigma_extract(
+#' extract_sigma(
 #' data = niw_fish_post
 #' )
 #' # ---- below will be turned into vignette when finished ----
@@ -66,8 +66,8 @@
 #' niw_fish_post <- df_split %>%
 #'   map(~niw.post(nsample = nsample, X = .))
 #'
-#' # we can then use sigma_extract() to extract sigma from niw_fish_post
-#' df_sigma <- sigma_extract(
+#' # we can then use extract_sigma() to extract sigma from niw_fish_post
+#' df_sigma <- extract_sigma(
 #'   data = niw_fish_post
 #'   )
 #'
@@ -82,7 +82,7 @@
 #' @import tidyr
 #' @export
 
-sigma_extract <-  function(data,
+extract_sigma <-  function(data,
                            isotope_a = NULL,
                            isotope_b = NULL,
                            format = "wide") {
