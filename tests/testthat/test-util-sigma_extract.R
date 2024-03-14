@@ -35,7 +35,7 @@ test_that("error if data isn't a list", {
 
 test_that("test that the object type and length are correct ", {
   df_sigma_test <- sigma_extract(
-    data = niw_fish_post
+    data = niw_fish_post, format = "long"
   )
   # check the type returned data frame should be data frame
   expect_s3_class(object = df_sigma_test, class =  "data.frame")
@@ -52,12 +52,32 @@ test_that("test that the object type and length are correct ", {
 })
 
 
+test_that("test that the object type and length are correct ", {
+  df_sigma_test <- sigma_extract(
+    data = niw_fish_post,
+  )
+  # check the type returned data frame should be data frame
+  expect_s3_class(object = df_sigma_test, class =  "data.frame")
+  # excreted dimensions
+  expected_rows <- 8000
+  expected_cols <- 6
+
+
+  # Check the dimensions using expect_equal
+  expect_equal(nrow(df_sigma_test), expected_rows,
+               info = "Number of rows is not as expected.")
+  expect_equal(ncol(df_sigma_test), expected_cols,
+               info = "Number of columns is not as expected.")
+})
+
+
 
 
 test_that("Check if supplying isotope_a names works", {
   expect_no_error(df <- sigma_extract(
     data = niw_fish_post,
-    isotope_a = "cal_d15n"
+    isotope_a = "cal_d15n",
+    format = "long"
   )
   )
 
@@ -72,6 +92,7 @@ test_that("Check if supplying isotope_b names works", {
   df <- sigma_extract(
     data = niw_fish_post,
     isotope_b = "cal_d13c",
+    format = "long"
 
   )
  expect_type(object = df$id, type = "character")
@@ -83,7 +104,8 @@ test_that("that supplying both isotope names works ", {
   df <- sigma_extract(
     data = niw_fish_post,
     isotope_a = "cal_d15n",
-    isotope_b = "cal_d13c"
+    isotope_b = "cal_d13c",
+    format = "long"
 
   )
  expect_type(object = df$id, type = "character")
