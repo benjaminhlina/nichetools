@@ -82,7 +82,20 @@ columns supplied to <code><a href="https://rdrr.io/pkg/nicheROVER/man/niw.post.h
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">mu_extract</span><span class="op">(</span></span></span>
 <span class="r-in"><span>data <span class="op">=</span> <span class="va">niw_fish_post</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in UseMethod("pivot_longer"):</span> no applicable method for 'pivot_longer' applied to an object of class "function"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 8,000 × 5</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    metric sample_name sample_number isotope mu_est</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> mu     ARCS                    1 d15n      12.6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> mu     ARCS                    1 d13c     -<span style="color: #BB0000;">24.0</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> mu     ARCS                    2 d15n      12.7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> mu     ARCS                    2 d13c     -<span style="color: #BB0000;">23.9</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> mu     ARCS                    3 d15n      12.6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> mu     ARCS                    3 d13c     -<span style="color: #BB0000;">23.8</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> mu     ARCS                    4 d15n      12.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> mu     ARCS                    4 d13c     -<span style="color: #BB0000;">23.9</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> mu     ARCS                    5 d15n      12.4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> mu     ARCS                    5 d13c     -<span style="color: #BB0000;">24.0</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 7,990 more rows</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># ---- below will be turned into vignette when finished ----</span></span></span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
