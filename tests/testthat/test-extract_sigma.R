@@ -1,8 +1,8 @@
 
-# unit test for sigma_extract
+# unit test for extract_sigma
 test_that("test if it doesn't error with basic niw object ", {
   expect_no_error(
-    df_sigma_test <- sigma_extract(
+    df_sigma_test <- extract_sigma(
       data = niw_fish_post
     )
 
@@ -10,7 +10,7 @@ test_that("test if it doesn't error with basic niw object ", {
 })
 test_that("test if list", {
   expect_no_error(
-    df_sigma_test <- sigma_extract(
+    df_sigma_test <- extract_sigma(
       data = niw_fish_post
     )
 
@@ -25,7 +25,7 @@ test_that("error if data isn't a list", {
   )
 
   expect_error(
-    sigma_extract(
+    extract_sigma(
       data = dat
     ), regexp = "Input 'data' must be a list."
   )
@@ -34,7 +34,7 @@ test_that("error if data isn't a list", {
 
 
 test_that("test that the object type and length are correct ", {
-  df_sigma_test <- sigma_extract(
+  df_sigma_test <- extract_sigma(
     data = niw_fish_post, format = "long"
   )
   # check the type returned data frame should be data frame
@@ -53,7 +53,7 @@ test_that("test that the object type and length are correct ", {
 
 
 test_that("test that the object type and length are correct ", {
-  df_sigma_test <- sigma_extract(
+  df_sigma_test <- extract_sigma(
     data = niw_fish_post,
   )
   # check the type returned data frame should be data frame
@@ -74,7 +74,7 @@ test_that("test that the object type and length are correct ", {
 
 
 test_that("Check if supplying isotope_a names works", {
-  expect_no_error(df <- sigma_extract(
+  expect_no_error(df <- extract_sigma(
     data = niw_fish_post,
     isotope_a = "cal_d15n",
     format = "long"
@@ -89,7 +89,7 @@ test_that("Check if supplying isotope_a names works", {
 )
 
 test_that("Check if supplying isotope_b names works", {
-  df <- sigma_extract(
+  df <- extract_sigma(
     data = niw_fish_post,
     isotope_b = "cal_d13c",
     format = "long"
@@ -101,7 +101,7 @@ test_that("Check if supplying isotope_b names works", {
 }
 )
 test_that("that supplying both isotope names works ", {
-  df <- sigma_extract(
+  df <- extract_sigma(
     data = niw_fish_post,
     isotope_a = "cal_d15n",
     isotope_b = "cal_d13c",
@@ -116,13 +116,13 @@ test_that("that supplying both isotope names works ", {
 }
 )
 test_that("that isotope a and b will throw erros if charcter not supplied", {
-  expect_error(df <- sigma_extract(
+  expect_error(df <- extract_sigma(
     data = niw_fish_post,
     isotope_a = 10,
 
   ), regexp = "The supplied argument for 'isotope_a' must be a character."
   )
-  expect_error(df <- sigma_extract(
+  expect_error(df <- extract_sigma(
     data = niw_fish_post,
     isotope_b = 10,
 
