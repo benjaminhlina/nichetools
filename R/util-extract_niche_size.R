@@ -28,8 +28,8 @@ extract_niche_size <- function(data,
                                name = NULL,
                                prob = NULL) {
   # Check if data is a list
-  if (!inherits(data, "list")) {
-    cli::cli_abort("Input 'data' must be a list.")
+  if (!inherits(data, "data.frame")) {
+    cli::cli_abort("Input 'data' must be a data.frame")
   }
 
   # default name
@@ -52,13 +52,40 @@ extract_niche_size <- function(data,
     }
   }
 
-  # extract niche size
-  niche_size <- purrr::map(data, purrr::pluck, 2) |>
-    purrr::map(~purrr::map(., nicheROVER::niche.size, alpha = prob)) |>
-    map(~ tibble::as_tibble_col(.x, column_name = "niche_size") |>
-          tibble::rownames_to_column("id") |>
-          tidyr::unnest(cols = "niche_size")) |>
-    dplyr::bind_rows(.id = name)
 
-  return(niche_size)
+
+  niche_split <- data |>
+    dplyr::group_split(sample_name, sample_number)
+
+  niche_names <- data |>
+    dplyr::group_by(sample_name, sample_number) |>
+    dplyr::group_keys() |>
+    dplyr::mutate(
+      samples = paste(sample_name, sample_number, sep = ":")
+    )
+
+  names(niche_split) <- niche_names$samples
+  # extract niche size
+  # niche_size <- purrr::map(data, purrr::pluck, 2) |>
+  #   purrr::map(~purrr::map(., nicheROVER::niche.size, alpha = prob)) |>
+  #   map(~ tibble::as_tibble_col(.x, column_name = "niche_size") |>
+  #         tibble::rownames_to_column("id") |>
+  #         tidyr::unnest(cols = "niche_size")) |>
+  #   dplyr::bind_rows(.id = name)
+  #
+
+  niche_est <- niche_split |>
+    map(~ dplyr::select(.x, d15n, d13c) |>
+          as.matrix()) |>
+    map(~ niche.size(.x)) |>
+    map(~ tibble::as_tibble_col(.x, column_name = "niche_size") |>
+          tidyr::unnest(cols = "niche_size")) |>
+    dplyr::bind_rows(.id = "name_id") |>
+    tidyr::separate_wider_delim(name_id, names = c("sample_name", "sample_number"),
+                                delim = ":") |>
+    mutate(
+      sample_number= as.numeric(sample_number)
+    ) |>
+    arrange(sample_name, sample_number)
+  return(niche_est)
 }
