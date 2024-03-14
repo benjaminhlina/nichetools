@@ -134,7 +134,7 @@ sigma_extract <-  function(data,
                          values_from = post_sample)
     return(df_sigma)
   }
-  if (format %in% long) {
+  if (format %in% "long") {
     return(df_sigma)
 
   }
