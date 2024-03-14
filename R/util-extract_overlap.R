@@ -18,13 +18,13 @@
 #' @seealso [nicheROVER::overlap()]
 #' @examples
 #' \dontrun{
-#' overlap_extract(data = over_stat)
+#' extract_overlap(data = over_stat)
 #'}
 #'
 #' @export
 
 
-overlap_extract <- function(data,
+extract_overlap <- function(data,
                             name_a = NULL,
                             name_b = NULL) {
 
