@@ -16,7 +16,7 @@
 #'
 #' @seealso [nicheROVER::niche.size()] [nicheROVER::niw.post()]
 #' @examples
-#' niche_size <- niche_size_extract(data = niw_fish_post)
+#' niche_size <- extract_niche_size(data = niw_fish_post)
 #'
 #'
 #' @import dplyr
@@ -24,7 +24,7 @@
 #' @import tibble
 #' @import tidyr
 #' @export
-niche_size_extract <- function(data,
+extract_niche_size <- function(data,
                                name = NULL,
                                prob = NULL) {
   # Check if data is a list
