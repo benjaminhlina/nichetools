@@ -4,11 +4,15 @@
 \alias{mu_extract}
 \title{μ extract}
 \usage{
-mu_extract(data)
+mu_extract(data, format = "long")
 }
 \arguments{
 \item{data}{a \code{list} created by the function \code{niw.post()} in the package
 \href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.}
+
+\item{format}{a \code{character} that decided whether the returned object is
+in long or wide format. Default is \code{"long"}, with the alternative supplied
+being \code{"wide"}.}
 }
 \value{
 Returns a \code{tibble} of extracted estimates of μ that are created by
