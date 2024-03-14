@@ -5,6 +5,9 @@
 #'
 #' @param data a `list` created by the function `niw.post()` in the package
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
+#' @param format a `character` that decided whether the returned object is
+#' in long or wide format. Default is `"long"`, with the alternative supplied
+#' being `"wide"`.
 #'
 #' @return Returns a `tibble` of extracted estimates of μ that are created by
 #' the function `niw.post()` in the package
