@@ -31,6 +31,7 @@ I will add that many of the `{dplyr}` and `{tidyr}` functions and processes can 
   library(dplyr)
   library(ggplot2)
   library(ggtext)
+  library(ggh4x)
   library(nicheROVER) 
   library(nichetools)
   library(patchwork)
@@ -393,7 +394,7 @@ ggplot(data = over_stat_df, aes(x = niche_overlap_perc)) +
   scale_fill_viridis_d(begin = 0.25, end = 0.75,
                        option = "D", name = "Species", 
                        alpha = 0.35) + 
-  ggh4x::facet_grid2(sample_name_a ~ sample_name_b, 
+  facet_grid2(sample_name_a ~ sample_name_b, 
                      independent = "y",
                      scales = "free_y") + 
   theme_bw() + 
