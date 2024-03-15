@@ -34,7 +34,7 @@ devtools::install_github("benjaminhlina/nichetools")
 -   [X] create `extract_niche_size()` 
     -   [X] build tests for `extract_niche_size()` 
     
--   [ ] Create vignette/modify blog post vignette
+-   [X] Create vignette/modify blog post vignette
 
 ## Citation 
 
