@@ -119,7 +119,6 @@ For labeling we are also going to use `element_markdown()` from [{ggtext}](https
 
 ```{r}
 #| out-width: 100%
-#| fig-format: svg
 posterior_plots <- df_mu %>%
   split(.$isotope) %>%
   imap(
@@ -144,8 +143,9 @@ posterior_plots <- df_mu %>%
   )
 
 posterior_plots$d15n +
-  theme(legend.position = c(0.18, 0.84)) + 
+  theme(legend.position.inside = c(0.18, 0.84)) + 
   posterior_plots$d13c
+
 ```
 
 
@@ -176,7 +176,6 @@ df_sigma_cn <- df_sigma_cn %>%
 Next we will plot the posteriors for $\Sigma$.
 ```{r, message = FALSE}
 #| out-width: 100%
-#| fig-format: svg
 sigma_plots <- df_sigma_cn %>%
   group_split(id, isotope) %>%
   imap(
@@ -207,7 +206,8 @@ sigma_plots <- df_sigma_cn %>%
   )
 
 sigma_plots[[1]] + 
-  theme(legend.position = c(0.1, 0.82))
+  theme(legend.position.inside = c(0.1, 0.82))
+
 ```
 ### Estimate niche ellipse 
 
@@ -290,8 +290,7 @@ iso_density <- iso_long %>%
       theme_bw(base_size = 10) +
       theme(axis.text = element_text(colour = "black"),
             panel.grid = element_blank(), 
-            legend.position = c(0.15, 0.65), 
-            legend.title.align = 0.5,
+            legend.position.inside = c(0.15, 0.65), 
             legend.background = element_blank(), 
             axis.title.x = element_markdown(family = "sans")) + 
       labs(x =  paste("\U03B4",
@@ -339,7 +338,6 @@ We can also use the function `plot_annotation()` to add lettering to the figure 
 
 ```{r}
 #| out-width: 100%
-#| fig-format: svg
 d13c_density + ellipse_plots + iso_biplot + d15n_density +
   plot_annotation(tag_levels = "a", 
                   tag_suffix = ")")
@@ -384,7 +382,6 @@ We are now going to use `ggplot()`, `geom_density()`, and `fact_grid2()` from [{
 
 ```{r, warning = FALSE}
 #| out-width: 100%
-#| fig-format: svg
 ggplot(data = over_stat_df, aes(x = niche_overlap_perc)) + 
   geom_density(aes(fill = sample_name_a)) + 
   geom_vline(data = over_sum, aes(xintercept = mean_niche_overlap), 
