@@ -42,7 +42,7 @@ extract_niche_size <- function(data,
   }
 
   # prob
-  if(is.null(prob)) {
+  if (is.null(prob)) {
     prob <- 0.95
   }
   #  parameter validation
@@ -53,8 +53,9 @@ extract_niche_size <- function(data,
   }
 
   # extract niche size
-  niche_size <- purrr::map(data, purrr::pluck, 2) |>
-    purrr::map(~purrr::map(., nicheROVER::niche.size, alpha = prob)) |>
+  niche_size <- purrr::map(data, ~ {
+    purrr::map(apply(.x$Sigma, 3, function(x) niche.size(x, alpha = prob)), ~.)
+    }) |>
     map(~ tibble::as_tibble_col(.x, column_name = "niche_size") |>
           tibble::rownames_to_column("id") |>
           tidyr::unnest(cols = "niche_size")) |>
