@@ -18,9 +18,10 @@ bibentry(
 )
 
 bibentry(
-  bibtype  = "Package",
+  bibtype  = "Manual",
   title    = "nichetools: Complementary package to nicheROVER",
-  author   = personList(as.person("Benjamin L. HLina""
+  author   = personList(as.person("Benjamin L. HLina"
+                                   )
                                    ),
   year     = "2024",
   note   = "R package version 0.1.0",
