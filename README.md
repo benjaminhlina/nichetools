@@ -18,6 +18,14 @@ devtools::install_github("benjaminhlina/nichetools")
 ```
 
 
+You can install the r-universe version of {nichetools} using the following:
+``` r
+install.packages("nichetools", 
+repos = c("https://benjaminhlina.r-universe.dev", 
+"https://cran.r-project.org"))
+```
+
+
 ## Progress
 -   [X] create `extract_mu()`
     -   [X] build tests for `extract_mu()`
