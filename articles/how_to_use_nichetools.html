@@ -62,7 +62,10 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>How to use {nichetools}</h1>
+                        <h4 data-toc-skip class="author">Benjamin L.
+Hlina</h4>
             
+            <h4 data-toc-skip class="date">Update: 2024-03-15</h4>
       
       
       <div class="d-none name"><code>how_to_use_nichetools.Rmd</code></div>
@@ -237,7 +240,7 @@ If you are working other data please replace.</p>
 <span>  <span class="op">)</span></span>
 <span></span>
 <span><span class="va">posterior_plots</span><span class="op">$</span><span class="va">d15n</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.position.inside <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.18</span>, <span class="fl">0.84</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.18</span>, <span class="fl">0.84</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="va">posterior_plots</span><span class="op">$</span><span class="va">d13c</span></span></code></pre></div>
 <p><img src="how_to_use_nichetools_files/figure-html/unnamed-chunk-10-1.png" width="100%"></p>
 <p>For labeling purposes we need to add columns that are the element
@@ -295,7 +298,7 @@ abbreviation and neutron number. I do this by using
 <span>  <span class="op">)</span></span>
 <span></span>
 <span><span class="va">sigma_plots</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">+</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.position.inside <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.82</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.82</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="how_to_use_nichetools_files/figure-html/unnamed-chunk-12-1.png" width="100%"></p>
 </div>
 <div class="section level3">
@@ -316,7 +319,7 @@ process as with large sets of isotope data it is nice to know the time
 it takes for the function to work.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ellipse_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/niche_ellipse.html">niche_ellipse</a></span><span class="op">(</span>dat_mu <span class="op">=</span> <span class="va">df_mu</span>, dat_sigma <span class="op">=</span> <span class="va">df_sigma</span><span class="op">)</span></span>
-<span><span class="co">#&gt; → Total time processing was 4.52 secs</span></span></code></pre></div>
+<span><span class="co">#&gt; → Total time processing was 4.85 secs</span></span></code></pre></div>
 <p>We will randomly sample 10 ellipses out of 1,000. You can change this
 but this seems pretty standard.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
@@ -392,7 +395,7 @@ labeling.</p>
 <span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="op">+</span></span>
 <span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>axis.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span>,</span>
 <span>            panel.grid <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span>, </span>
-<span>            legend.position.inside <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.15</span>, <span class="fl">0.65</span><span class="op">)</span>, </span>
+<span>            legend.position <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.15</span>, <span class="fl">0.65</span><span class="op">)</span>, </span>
 <span>            legend.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span>, </span>
 <span>            axis.title.x <span class="op">=</span> <span class="fu"><a href="https://wilkelab.org/ggtext/reference/element_markdown.html" class="external-link">element_markdown</a></span><span class="op">(</span>family <span class="op">=</span> <span class="st">"sans"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"\U03B4"</span>,</span>
