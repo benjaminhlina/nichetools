@@ -1,4 +1,4 @@
-#' Σ extract
+#' extract Σ
 #'
 #' Extract Bayesian estimates of Σ from the function `niw.post()` in the
 #' package

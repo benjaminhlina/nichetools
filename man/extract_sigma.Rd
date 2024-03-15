@@ -2,7 +2,7 @@
 % Please edit documentation in R/util-extract_sigma.R
 \name{extract_sigma}
 \alias{extract_sigma}
-\title{Σ extract}
+\title{extract Σ}
 \usage{
 extract_sigma(data, isotope_a = NULL, isotope_b = NULL, format = "wide")
 }
