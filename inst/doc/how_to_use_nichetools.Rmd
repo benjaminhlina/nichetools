@@ -69,7 +69,7 @@ fish_par <- df %>%
   map(~ niw.post(nsample = nsample, X = .))
 ```
 
-### Extract $\mu$ values  
+### Extract μ values  
 
 We will use `extract_mu()`to extract posteriors for $\mu$ estimates. The default output of `extract_mu()` is long format
 which works for plotting with {ggplot2} and other functions in {nichetools}. If we want wide format we can specify the argument `format` with `"wide"`, however, it is unlikely you will need this data in wide format. 
@@ -94,7 +94,7 @@ df_mu <- df_mu %>%
   )
 ```
 
-### Extract $\Sigma$ values 
+### Extract Σ values 
 We will use `extract_sigma()` to extract posterior estimates for $\Sigma$. The default output of `extract_sigma()` is wide format which doesn't work for plotting with {ggplot2} but does work other functions in {nichetools}. If we want long for plotting we can specify the argument `format` with `"long"`. 
 ```{r, message = FALSE} 
 df_sigma <- extract_sigma(fish_par)
@@ -109,7 +109,7 @@ df_sigma_cn <- extract_sigma(fish_par,
 ```
 
 
-### Plot posterior distrubtion of $\mu$ and $\Sigma$
+### Plot posterior distrubtion of μ and Σ
 
 For most plotting within this vignette, I will `split()` the data frame by isotope, creating a list that I will then use `imap()` to iterate over the list to create plots. We will use `geom_density()` to represent densities for both $\mu$ and $\Sigma$. Plot objects will then be stored in a list. 
 
