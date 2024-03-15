@@ -28,6 +28,7 @@ Suggests:
     ggplot2,
     ggtext,
     ggh4x,
+    janitor,
     knitr,
     patchwork,
     rmarkdown,
