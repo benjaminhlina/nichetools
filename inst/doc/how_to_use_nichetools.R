@@ -25,6 +25,28 @@ df <- fish %>%
 ## ----message = FALSE-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 nsample <- 1000
 
+## -----------------------------------------------------------------------------
+over_stat_df <- extract_overlap(data = over_stat) %>% 
+    mutate(
+      niche_overlap_perc = niche_overlap * 100
+  )
+
+## ----message = FALSE----------------------------------------------------------
+over_sum <- over_stat_df %>% 
+  group_by(sample_name_a, sample_name_b) %>% 
+  summarise(
+    mean_niche_overlap = round(mean(niche_overlap_perc), digits = 2),
+    qual_2.5 = round(quantile(niche_overlap_perc, probs = 0.025, na.rm = TRUE), digits = 2), 
+    qual_97.5 = round(quantile(niche_overlap_perc, probs = 0.975, na.rm = TRUE), digits = 2)
+  ) %>% 
+  ungroup() %>% 
+  pivot_longer(cols = -c(sample_name_a, sample_name_b, mean_niche_overlap), 
+               names_to = "percentage", 
+               values_to = "niche_overlap_qual") %>% 
+  mutate(
+    percentage = as.numeric(str_remove(percentage, "qual_"))
+  ) 
+
 ## ----message = FALSE-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 fish_par <- df %>% 
   split(.$species) %>% 
@@ -55,7 +77,59 @@ df_sigma_cn <- extract_sigma(fish_par,
                              format = "long") %>%
   filter(id != isotope)
 
-## ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## ----warning = FALSE----------------------------------------------------------
+ggplot(data = over_stat_df, aes(x = niche_overlap_perc)) + 
+  geom_density(aes(fill = sample_name_a)) + 
+  geom_vline(data = over_sum, aes(xintercept = mean_niche_overlap), 
+             colour = "black", linewidth = 1) +
+  geom_vline(data = over_sum, aes(xintercept = niche_overlap_qual), 
+             colour = "black", linewidth = 1, linetype = 6) +
+  scale_fill_viridis_d(begin = 0.25, end = 0.75,
+                       option = "D", name = "Species", 
+                       alpha = 0.35) + 
+  facet_grid2(sample_name_a ~ sample_name_b, 
+                     independent = "y",
+                     scales = "free_y") + 
+  theme_bw() + 
+  theme(
+    panel.grid = element_blank(), 
+    axis.text = element_text(colour = "black"), 
+    legend.background = element_blank(),
+    strip.background = element_blank()
+  ) +
+  labs(x = paste("Overlap Probability (%)", "\u2013", 
+                 "Niche Region Size: 95%"), 
+       y = "p(Percent Overlap | X)")
+
+## -----------------------------------------------------------------------------
+niche_size <- extract_niche_size(fish_par)
+
+## -----------------------------------------------------------------------------
+niche_size_mean <- niche_size %>% 
+  group_by(sample_name) %>% 
+  summarise(
+    mean_niche = round(mean(niche_size), digits = 2), 
+    sd_niche = round(sd(niche_size), digits = 2), 
+    sem_niche = round(sd(niche_size) / sqrt(n()), digits = 2)
+  )
+
+## -----------------------------------------------------------------------------
+ggplot(data = niche_size) + 
+  geom_violin(
+    aes(x = sample_name, y = niche_size),
+    width = 0.2) + 
+  geom_point(data = niche_size_mean, aes(x = sample_name, y = mean_niche)) +
+  geom_errorbar(data = niche_size_mean, aes(x = sample_name, 
+                                            ymin = mean_niche  - sem_niche, 
+                                            ymax = mean_niche  + sem_niche), 
+                width = 0.05) +
+  theme_bw(base_size = 15) + 
+  theme(panel.grid = element_blank(), 
+        axis.text = element_text(colour = "black")) + 
+  labs(x = "Species", 
+       y = "Niche Size") 
+
+## ----warning = FALSE-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 posterior_plots <- df_mu %>%
   split(.$isotope) %>%
   imap(
@@ -80,7 +154,7 @@ posterior_plots <- df_mu %>%
   )
 
 posterior_plots$d15n +
-  theme(legend.position.inside = c(0.18, 0.84)) + 
+  theme(legend.position = c(0.18, 0.84)) + 
   posterior_plots$d13c
 
 
@@ -136,7 +210,7 @@ sigma_plots <- df_sigma_cn %>%
   )
 
 sigma_plots[[1]] + 
-  theme(legend.position.inside = c(0.1, 0.82))
+  theme(legend.position = c(0.1, 0.82))
 
 
 ## ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -192,7 +266,7 @@ iso_long <- df %>%
     )
   )
 
-## ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## ----warning=FALSE-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 iso_density <- iso_long %>% 
   group_split(isotope) %>% 
   imap(
@@ -206,7 +280,7 @@ iso_density <- iso_long %>%
       theme_bw(base_size = 10) +
       theme(axis.text = element_text(colour = "black"),
             panel.grid = element_blank(), 
-            legend.position.inside = c(0.15, 0.65), 
+            legend.position = c(0.15, 0.65), 
             legend.background = element_blank(), 
             axis.title.x = element_markdown(family = "sans")) + 
       labs(x =  paste("\U03B4",

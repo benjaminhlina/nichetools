@@ -1,6 +1,9 @@
 ---
 title: "How to use {nichetools}"
+author: Benjamin L. Hlina
+date: "Update: `r Sys.Date()`"
 output: rmarkdown::html_vignette
+
 vignette: >
   %\VignetteIndexEntry{How to use {nichetools}}
   %\VignetteEngine{knitr::rmarkdown}
@@ -117,7 +120,7 @@ First we will plot $\mu$ for each isotope. We will use [{patchwork}](https://pat
 
 For labeling we are also going to use `element_markdown()` from [{ggtext}](https://wilkelab.org/ggtext/) to work with the labels that are needed to correctly display the isotopic signature. If you are working other data please replace. 
 
-```{r}
+```{r, warning = FALSE}
 #| out-width: 100%
 posterior_plots <- df_mu %>%
   split(.$isotope) %>%
@@ -143,7 +146,7 @@ posterior_plots <- df_mu %>%
   )
 
 posterior_plots$d15n +
-  theme(legend.position.inside = c(0.18, 0.84)) + 
+  theme(legend.position = c(0.18, 0.84)) + 
   posterior_plots$d13c
 
 ```
@@ -206,7 +209,7 @@ sigma_plots <- df_sigma_cn %>%
   )
 
 sigma_plots[[1]] + 
-  theme(legend.position.inside = c(0.1, 0.82))
+  theme(legend.position = c(0.1, 0.82))
 
 ```
 
@@ -278,7 +281,7 @@ iso_long <- df %>%
 ```
 
 We will then make density plots for each isotope using `geom_density()`
-```{r}
+```{r, warning=FALSE}
 iso_density <- iso_long %>% 
   group_split(isotope) %>% 
   imap(
@@ -292,7 +295,7 @@ iso_density <- iso_long %>%
       theme_bw(base_size = 10) +
       theme(axis.text = element_text(colour = "black"),
             panel.grid = element_blank(), 
-            legend.position.inside = c(0.15, 0.65), 
+            legend.position = c(0.15, 0.65), 
             legend.background = element_blank(), 
             axis.title.x = element_markdown(family = "sans")) + 
       labs(x =  paste("\U03B4",
