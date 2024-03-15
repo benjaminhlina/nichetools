@@ -4,7 +4,7 @@ bibentry(
   author   = personList(as.person("Heidi K. Swanson"),
                                    as.person("Martin Lysy"),
                                    as.person("Michael Power"),
-                                   as.person("Ashley Stasko"),
+                                   as.person("Ashley D. Stasko"),
                                    as.person("Jim D. Johnson"),
                                    as.person("James D. Reist")
                                    ),
