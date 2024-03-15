@@ -10,15 +10,15 @@ test_that("test if list", {
 })
 
 test_that("error if data isn't a data.frame", {
-  dat <- list(data.frame(
+  dat <- data.frame(
     x = seq(0, 100, length.out = 10),
     y = seq(0, 0.1, length.out = 10)
-  ))
+  )
 
   expect_error(
     extract_niche_size(
       data = dat
-    ), regexp = "Input 'data' must be a data.frame."
+    ), regexp = "Input 'data' must be a list."
   )
 })
 
