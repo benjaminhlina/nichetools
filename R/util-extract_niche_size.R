@@ -29,7 +29,7 @@ extract_niche_size <- function(data,
                                prob = NULL) {
   # Check if data is a list
   if (!inherits(data, "list")) {
-    cli::cli_abort("Input 'data' must be a list")
+    cli::cli_abort("Input 'data' must be a list.")
   }
 
   # default name
