@@ -151,7 +151,7 @@ distribution using Normal-Inverse-Wishart (NIW) priors.</p>
 <span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map</a></span><span class="op">(</span><span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/nicheROVER/man/niw.post.html" class="external-link">niw.post</a></span><span class="op">(</span>nsample <span class="op">=</span> <span class="va">nsample</span>, X <span class="op">=</span> <span class="va">.</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="extract-mu-values">Extract <span class="math inline">\(\mu\)</span> values<a class="anchor" aria-label="anchor" href="#extract-mu-values"></a>
+<h3 id="extract-μ-values">Extract μ values<a class="anchor" aria-label="anchor" href="#extract-%CE%BC-values"></a>
 </h3>
 <p>We will use <code><a href="../reference/extract_mu.html">extract_mu()</a></code>to extract posteriors for <span class="math inline">\(\mu\)</span> estimates. The default output of
 <code><a href="../reference/extract_mu.html">extract_mu()</a></code> is long format which works for plotting with
@@ -177,7 +177,7 @@ number to be used in axis labeling.</p>
 <span>  <span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="extract-sigma-values">Extract <span class="math inline">\(\Sigma\)</span> values<a class="anchor" aria-label="anchor" href="#extract-sigma-values"></a>
+<h3 id="extract-σ-values">Extract Σ values<a class="anchor" aria-label="anchor" href="#extract-%CF%83-values"></a>
 </h3>
 <p>We will use <code><a href="../reference/extract_sigma.html">extract_sigma()</a></code> to extract posterior
 estimates for <span class="math inline">\(\Sigma\)</span>. The default
@@ -196,7 +196,7 @@ for when the both isotope columns are the same isotope.</p>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">id</span> <span class="op">!=</span> <span class="va">isotope</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="plot-posterior-distrubtion-of-mu-and-sigma">Plot posterior distrubtion of <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\Sigma\)</span><a class="anchor" aria-label="anchor" href="#plot-posterior-distrubtion-of-mu-and-sigma"></a>
+<h3 id="plot-posterior-distrubtion-of-μ-and-σ">Plot posterior distrubtion of μ and Σ<a class="anchor" aria-label="anchor" href="#plot-posterior-distrubtion-of-%CE%BC-and-%CF%83"></a>
 </h3>
 <p>For most plotting within this vignette, I will <code><a href="https://rdrr.io/r/base/split.html" class="external-link">split()</a></code>
 the data frame by isotope, creating a list that I will then use
@@ -313,7 +313,7 @@ process as with large sets of isotope data it is nice to know the time
 it takes for the function to work.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ellipse_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/niche_ellipse.html">niche_ellipse</a></span><span class="op">(</span>dat_mu <span class="op">=</span> <span class="va">df_mu</span>, dat_sigma <span class="op">=</span> <span class="va">df_sigma</span><span class="op">)</span></span>
-<span><span class="co">#&gt; → Total time processing was 4.62 secs</span></span></code></pre></div>
+<span><span class="co">#&gt; → Total time processing was 4.73 secs</span></span></code></pre></div>
 <p>We will randomly sample 10 ellipses out of 1,000. You can change this
 but this seems pretty standard.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
