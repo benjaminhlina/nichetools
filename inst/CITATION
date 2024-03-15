@@ -1,0 +1,28 @@
+bibentry(
+  bibtype  = "Article",
+  title    = "A new probabilistic method for quantifying n-dimensional ecological niches and niche overlap.",
+  author   = personList(as.person("Heidi K. Swanson"),
+                                   as.person("Martin Lysy"),
+                                   as.person("Michael Power"),
+                                   as.person("Ashley Stasko"),
+                                   as.person("Jim D. Johnson"),
+                                   as.person("James D. Reist")
+                                   ),
+  journal  = "Ecology",
+  year     = "2015",
+  volume   = "96",
+  number   = "2",
+  pages    = "318-324",
+  doi      = "10.1890/14-0235.1",
+  url      = "https://esajournals.onlinelibrary.wiley.com/doi/full/10.1890/14-0235.1"
+)
+
+bibentry(
+  bibtype  = "Package",
+  title    = "nichetools: Complementary package to nicheROVER",
+  author   = personList(as.person("Benjamin L. HLina""
+                                   ),
+  year     = "2024",
+  note   = "R package version 0.1.0",
+  url   = "https://benjaminhlina.github.io/nichetools/"
+)
