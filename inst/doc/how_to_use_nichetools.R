@@ -241,7 +241,6 @@ iso_biplot <- ggplot() +
   theme(axis.text = element_text(colour = "black"),
         panel.grid = element_blank(), 
         legend.position = "none", 
-        legend.title.align = 0.5,
         legend.background = element_blank()) + 
   labs(x = expression(paste(delta ^ 13, "C")), 
        y = expression(paste(delta ^ 15, "N")))

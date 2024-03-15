@@ -209,6 +209,8 @@ sigma_plots[[1]] +
   theme(legend.position.inside = c(0.1, 0.82))
 
 ```
+
+
 ### Estimate niche ellipse 
 
 We then will use `niche_ellipse()` to easily extract ellipse for each $\Sigma$ estimate (i.e., 1000). If you are to have additional isotopes or metrics, you will need to create mu and sigma objects for each pairing, as currently this function only handles two isotopes. In the future, there likely will be the ability to specify the number of isotopes you have with the default being two. The reason for the lack of functionality is `ellipse::ellipse()` can only work within two-dimensions, not three, so you will have to create multiple `ellipse()` calls for each combination of isotopes or metrics and I haven't had the time to implement this. The function will also tell you how long it took to process as with large sets of isotope data it is nice to know the time it takes for the function to work. 
@@ -326,7 +328,6 @@ iso_biplot <- ggplot() +
   theme(axis.text = element_text(colour = "black"),
         panel.grid = element_blank(), 
         legend.position = "none", 
-        legend.title.align = 0.5,
         legend.background = element_blank()) + 
   labs(x = expression(paste(delta ^ 13, "C")), 
        y = expression(paste(delta ^ 15, "N")))
@@ -446,4 +447,5 @@ ggplot(data = niche_size) +
   labs(x = "Species", 
        y = "Niche Size") 
 ```
+
 Now that we have our niche sizes and similarities determined we can make inferences about the species, trophic similarities, and the ecosystem. 
