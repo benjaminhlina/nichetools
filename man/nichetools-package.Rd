@@ -11,7 +11,7 @@ This package is complementary to {nicheROVER} as it allows the user to extract B
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://benjaminhlina.github.io/nichetool/}
+  \item \url{https://benjaminhlina.github.io/nichetools/}
 }
 
 }
