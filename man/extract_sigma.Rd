@@ -37,57 +37,7 @@ package
 extract_sigma(
 data = niw_fish_post
 )
-# ---- below will be turned into vignette when finished ----
-\dontrun{
-# load packages
-{
-  library(dplyr)
-  library(janitor)
-  library(nicheROVER)
-  library(nichetools)
-  library(purrr)
-  }
 
-# ---- To understand how niw_fish_post is being created ----
-
-# get fish data frame, and remove sulfur for the example
-df <- fish \%>\%
-    janitor::clean_names()
-
-# create number of samples used in nicheROVER
-nsample <- 1000
-
-# split the data frame by species and select isotopes of interest
-df_split <- df \%>\%
-  split(.$species) \%>\%
-  map(~ select(., d15n, d13c))
-
-# extract the names of each list to name each object in list
-df_names <- df \%>\%
-   group_by(species) \%>\%
-   group_keys() \%>\%
-   ungroup() \%>\%
-   mutate(
-     id = 1:nrow(.)
-     )
-
-# name each object in list
-names(df_split) <- df_names$species
-
-# create niw posterior samples
-niw_fish_post <- df_split \%>\%
-  map(~niw.post(nsample = nsample, X = .))
-
-# we can then use extract_sigma() to extract sigma from niw_fish_post
-df_sigma <- extract_sigma(
-  data = niw_fish_post
-  )
-
-# --- to use with `niche_ellipse()` we need to make into wide format ----
-df_sigma_wide <- df_sigma |>
-tidyr::pivot_wider(names_from = id,
-            values_from = post_sample)
-}
 }
 \seealso{
 \code{\link[nicheROVER:niw.post]{nicheROVER::niw.post()}}

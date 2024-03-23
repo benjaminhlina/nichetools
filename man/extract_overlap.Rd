@@ -27,9 +27,7 @@ following function \code{overlap()} in the package
 \href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.
 }
 \examples{
-\dontrun{
 extract_overlap(data = over_stat)
-}
 
 }
 \seealso{
