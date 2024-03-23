@@ -40,6 +40,11 @@
 
 
 # ---- function ----
+
+.pkgglobalenv <- new.env(parent = emptyenv())
+
+
+
 niche_ellipse <- function(
     dat_mu,
     dat_sigma,
@@ -88,6 +93,8 @@ niche_ellipse <- function(
       cli::cli_abort("Parameter 'p_ell' must be a numeric value between 0 and 1.")
     }
   }
+
+
   # prepare mu for ellipse
   mu <- dat_mu |>
     dplyr::select(sample_name, sample_number, mu_est) |>
@@ -95,6 +102,7 @@ niche_ellipse <- function(
     purrr::map(~ .x$mu_est,
                .progress = "Prepare mu for ellipse")
 
+  assign("sample_name", mu, envir = .pkgglobalenv)
   # preppare sigama for epplipse
   #
   # Erroring at isotope names fix
