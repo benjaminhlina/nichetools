@@ -51,7 +51,7 @@ nicheROVER."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs
 
     <div class="ref-description section level2">
     <p>Extract Bayesian estimates of similarities among groups produced by the
-following function <code><a href="https://rdrr.io/pkg/nicheROVER/man/overlap.html" class="external-link">overlap()</a></code> in the package
+following function <code>overlap()</code> in the package
 <a href="https://cran.r-project.org/web/packages/nicheROVER/index.html" class="external-link">nicheROVER</a>.</p>
     </div>
 
@@ -64,18 +64,18 @@ following function <code><a href="https://rdrr.io/pkg/nicheROVER/man/overlap.htm
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>data</dt>
 <dd><p>a <code>array</code> object containing <code>matrices</code> created by the function
-<code><a href="https://rdrr.io/pkg/nicheROVER/man/overlap.html" class="external-link">overlap()</a></code> in the package
+<code>overlap()</code> in the package
 <a href="https://cran.r-project.org/web/packages/nicheROVER/index.html" class="external-link">nicheROVER</a>.</p></dd>
 
 
 <dt>name_a</dt>
 <dd><p>character string to supply for the first
-<code>sample_name</code> used in <code><a href="https://rdrr.io/pkg/nicheROVER/man/overlap.html" class="external-link">overlap()</a></code>. Defaults to <code>"sample_name_a"</code>.</p></dd>
+<code>sample_name</code> used in <code>overlap()</code>. Defaults to <code>"sample_name_a"</code>.</p></dd>
 
 
 <dt>name_b</dt>
 <dd><p>character string to supply for the second
-<code>sample_name</code> used in <code><a href="https://rdrr.io/pkg/nicheROVER/man/overlap.html" class="external-link">overlap()</a></code>. Defaults to <code>"sample_name_b"</code>.</p></dd>
+<code>sample_name</code> used in <code>overlap()</code>. Defaults to <code>"sample_name_b"</code>.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -92,9 +92,21 @@ following function <code><a href="https://rdrr.io/pkg/nicheROVER/man/overlap.htm
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span><span class="fu">extract_overlap</span><span class="op">(</span>data <span class="op">=</span> <span class="va">over_stat</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">extract_overlap</span><span class="op">(</span>data <span class="op">=</span> <span class="va">over_stat</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 16,000 × 5</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    sample_name_a    id sample_name_b sample_number niche_overlap</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> ARCS              1 ARCS          1                    <span style="color: #BB0000;">NA</span>    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> ARCS              1 BDWF          1                     0.183</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> ARCS              1 LKWF          1                     0.722</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> ARCS              1 LSCS          1                     0.814</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> ARCS              1 ARCS          2                    <span style="color: #BB0000;">NA</span>    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> ARCS              1 BDWF          2                     0.183</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> ARCS              1 LKWF          2                     0.755</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> ARCS              1 LSCS          2                     0.816</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> ARCS              1 ARCS          3                    <span style="color: #BB0000;">NA</span>    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> ARCS              1 BDWF          3                     0.076</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 15,990 more rows</span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

@@ -53,7 +53,7 @@ This function is a wrapper around nicheROVER::niche.size."><!-- mathjax --><scri
 
     <div class="ref-description section level2">
     <p>Extract niche size based on elliptical niche region of Bayesian estimates of
-sigma created by function <code><a href="https://rdrr.io/pkg/nicheROVER/man/niw.post.html" class="external-link">niw.post()</a></code> in the package
+sigma created by function <code>niw.post()</code> in the package
 <a href="https://cran.r-project.org/web/packages/nicheROVER/index.html" class="external-link">nicheROVER</a>.
 This function is a wrapper around <code><a href="https://rdrr.io/pkg/nicheROVER/man/niche.size.html" class="external-link">nicheROVER::niche.size</a></code>.</p>
     </div>
@@ -66,7 +66,7 @@ This function is a wrapper around <code><a href="https://rdrr.io/pkg/nicheROVER/
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>data</dt>
-<dd><p>a <code>list</code> created by the function <code><a href="https://rdrr.io/pkg/nicheROVER/man/niw.post.html" class="external-link">niw.post()</a></code> in the package
+<dd><p>a <code>list</code> created by the function <code>niw.post()</code> in the package
 <a href="https://cran.r-project.org/web/packages/nicheROVER/index.html" class="external-link">nicheROVER</a>.</p></dd>
 
 
@@ -93,7 +93,21 @@ probabilistic niche size. Default is 0.95.</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">niche_size</span> <span class="op">&lt;-</span> <span class="fu">extract_niche_size</span><span class="op">(</span>data <span class="op">=</span> <span class="va">niw_fish_post</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">extract_niche_size</span><span class="op">(</span>data <span class="op">=</span> <span class="va">niw_fish_post</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 4,000 × 3</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    sample_name id    niche_size</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> ARCS        1           13.2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> ARCS        2           12.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> ARCS        3           17.6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> ARCS        4           17.3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> ARCS        5           14.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> ARCS        6           18.6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> ARCS        7           12.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> ARCS        8           16.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> ARCS        9           13.8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> ARCS        10          13.6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 3,990 more rows</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>

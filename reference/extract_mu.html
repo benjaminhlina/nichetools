@@ -60,7 +60,7 @@ nicheROVER."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>data</dt>
-<dd><p>a <code>list</code> created by the function <code><a href="https://rdrr.io/pkg/nicheROVER/man/niw.post.html" class="external-link">niw.post()</a></code> in the package
+<dd><p>a <code>list</code> created by the function <code>niw.post()</code> in the package
 <a href="https://cran.r-project.org/web/packages/nicheROVER/index.html" class="external-link">nicheROVER</a>.</p></dd>
 
 
@@ -75,11 +75,11 @@ being <code>"wide"</code>.</p></dd>
     
 
 <p>Returns a <code>tibble</code> of extracted estimates of μ that are created by
-the function <code><a href="https://rdrr.io/pkg/nicheROVER/man/niw.post.html" class="external-link">niw.post()</a></code> in the package
+the function <code>niw.post()</code> in the package
 <a href="https://cran.r-project.org/web/packages/nicheROVER/index.html" class="external-link">nicheROVER</a>.
 The <code>tibble</code> will contain five columns in the following order, <code>metric</code>,
 <code>sample_name</code>, <code>sample_number</code>, and the names of the isotope
-columns supplied to <code><a href="https://rdrr.io/pkg/nicheROVER/man/niw.post.html" class="external-link">niw.post()</a></code> (e.g., <code>d15n</code> and <code>d13c</code>).</p>
+columns supplied to <code>niw.post()</code> (e.g., <code>d15n</code> and <code>d13c</code>).</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
@@ -105,51 +105,6 @@ columns supplied to <code><a href="https://rdrr.io/pkg/nicheROVER/man/niw.post.h
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> mu     ARCS                    5 d15n      12.4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> mu     ARCS                    5 d13c     -<span style="color: #BB0000;">24.0</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 7,990 more rows</span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># ---- below will be turned into vignette when finished ----</span></span></span>
-<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span><span class="co"># load packages</span></span></span>
-<span class="r-in"><span><span class="op">{</span></span></span>
-<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/sfirke/janitor" class="external-link">janitor</a></span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mlysy/nicheROVER" class="external-link">nicheROVER</a></span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://benjaminhlina.github.io/nichetools/">nichetools</a></span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://purrr.tidyverse.org/" class="external-link">purrr</a></span><span class="op">)</span></span></span>
-<span class="r-in"><span> <span class="op">}</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># get fish data frame, and remove sulfur for the example</span></span></span>
-<span class="r-in"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="va">fish</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
-<span class="r-in"><span>    <span class="fu">janitor</span><span class="fu">::</span><span class="fu"><a href="https://sfirke.github.io/janitor/reference/clean_names.html" class="external-link">clean_names</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># create number of samples used in nicheROVER</span></span></span>
-<span class="r-in"><span><span class="va">nsample</span> <span class="op">&lt;-</span> <span class="fl">1000</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># split the data frame by species and select isotopes of interest</span></span></span>
-<span class="r-in"><span><span class="va">df_split</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/split.html" class="external-link">split</a></span><span class="op">(</span><span class="va">.</span><span class="op">$</span><span class="va">species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map</a></span><span class="op">(</span><span class="op">~</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">.</span>, <span class="va">d15n</span>, <span class="va">d13c</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># extract the names of each list to name each object in list</span></span></span>
-<span class="r-in"><span><span class="va">df_names</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
-<span class="r-in"><span>   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
-<span class="r-in"><span>   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_data.html" class="external-link">group_keys</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
-<span class="r-in"><span>   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
-<span class="r-in"><span>   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>     id <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span></span></span>
-<span class="r-in"><span>     <span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># name each object in list</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">df_split</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">df_names</span><span class="op">$</span><span class="va">species</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># create niw posterior samples</span></span></span>
-<span class="r-in"><span><span class="va">niw_fish_post</span> <span class="op">&lt;-</span> <span class="va">df_split</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map</a></span><span class="op">(</span><span class="op">~</span><span class="fu"><a href="https://rdrr.io/pkg/nicheROVER/man/niw.post.html" class="external-link">niw.post</a></span><span class="op">(</span>nsample <span class="op">=</span> <span class="va">nsample</span>, X <span class="op">=</span> <span class="va">.</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># ---- extract mu estimates ----</span></span></span>
-<span class="r-in"><span><span class="fu">extract_mu</span><span class="op">(</span></span></span>
-<span class="r-in"><span>data <span class="op">=</span> <span class="va">niw_fish_post</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
