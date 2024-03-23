@@ -17,9 +17,7 @@
 #'
 #' @seealso [nicheROVER::overlap()]
 #' @examples
-#' \dontrun{
 #' extract_overlap(data = over_stat)
-#'}
 #'
 #' @export
 
