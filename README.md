@@ -51,3 +51,6 @@ To cite this package please cite the following publications
 -   Swanson, H.K., Lysy, M., Power, M., Stasko, A.D., Johnson, J.D., and Reist, J.D. 2015. A new probabilistic method for quantifying n-dimensional ecological niches and niche overlap. Ecology 96(2): 318–324. [doi:10.1890/14-0235.1](https://esajournals.onlinelibrary.wiley.com/doi/full/10.1890/14-0235.1)
 
 -   Hlina BL (2024). nichetools: Complementary package to nicheROVER. R package version 0.1.0. https://benjaminhlina.github.io/nichetools/
+
+
+Help follow this link 
