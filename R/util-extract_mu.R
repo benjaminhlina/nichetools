@@ -23,6 +23,7 @@
 #' )
 #'
 #' @import dplyr
+#' @import glatos
 #' @import purrr
 #' @import tibble
 #' @import tidyr
