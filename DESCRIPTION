@@ -12,7 +12,7 @@ Imports:
     cli,
     dplyr,
     ellipse,
-    glatos,
+    glatos (>= 0.8.0.9004),
     lifecycle,
     nicheROVER,
     purrr,
@@ -37,5 +37,5 @@ Suggests:
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 VignetteBuilder: knitr
-Remotes:  
+Remotes: 
     glatos
