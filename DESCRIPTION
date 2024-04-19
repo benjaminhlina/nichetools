@@ -12,7 +12,7 @@ Imports:
     cli,
     dplyr,
     ellipse,
-    glatos (>= 0.8.0.9004),
+    glatos (>= 0.7.1),
     lifecycle,
     nicheROVER,
     purrr,
