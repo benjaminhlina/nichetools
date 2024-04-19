@@ -11,14 +11,13 @@ Depends: R (>= 2.10)
 Imports: 
     cli,
     dplyr,
-    ellipse,
-    glatos (>= 0.8.0.9004),
     lifecycle,
     nicheROVER,
     purrr,
     rlang,
     tibble,
     tidyr
+Additional_repositories: 
 License: CC0
 Encoding: UTF-8
 LazyData: true
@@ -37,5 +36,3 @@ Suggests:
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 VignetteBuilder: knitr
-Remotes: 
-    glatos
