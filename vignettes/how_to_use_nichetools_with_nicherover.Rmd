@@ -1,11 +1,11 @@
 ---
-title: "How to use {nichetools} with {nicheROVER}"
+title: "How to use {nichetools} with nicheROVER"
 author: Benjamin L. Hlina
 date: "Update: `r Sys.Date()`"
 output: rmarkdown::html_vignette
 
 vignette: >
-  %\VignetteIndexEntry{How to use {nichetools} with {nicheROVER}}
+  %\VignetteIndexEntry{How to use {nichetools} with nicheROVER}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
