@@ -1,23 +1,34 @@
 #' extract Σ
 #'
-#' Extract Bayesian estimates of Σ from the function `niw.post()` in the
-#' package
+#' Extract Bayesian estimates of Σ from data objects created by either
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
+#' or [{SIBER}]().
 #'
-#' @param data a `list` created by the function `niw.post()` in the package
+#' @param data a `list` created by the function `niw.post()` or `siberMVN()`
+#' in the package
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html)
-#' @param isotope_a `character` string to supply for the first
-#' isotope used in `niw.post()`. Defaults to `"d15n"`.
+#' or [{SIBER}], respectfully.
+#'  @param pkg character string of the package that the user is using. Defaults to
+#' `"nicheROVER"` and will use methods to extract sigma values from `{nicherover}`
+#' objects. Alternatively the user can supply the argument with `"SIBER"` to
+#' extract sigma values from objectes created by `{SIBER}.`@param isotope_a `character` string to supply for the first
+#' isotope used in `niw.post()`. Defaults to `"d15n"`. To be used if
 #' @param isotope_b `character`string to supply for the second
 #' isotope used in `niw.post()`. Defaults to `"d13c"`.
-#' @param format format a `character` that decided whether the returned object is
+#'
+#' @param data_format format a `character` that decided whether the returned object is
 #' in long or wide format. Default is `"wide"`, with the alternative supplied
 #' being `"long"`.
-#' @return Returns a `tibble` of extracted estimates of Σ created by the
-#' function `niw.post()` in the package
+#' @param data_class controls the output returned when `pkg` is set to `"SIBER"`.
+#' default is `"matrix"` but alternatively `"tibble"` can be supplied.
+#'
+#' @return Returns a `tibble` or ` of extracted estimates of Σ created by the
+#' function `niw.post()` or `siberMVN()` in the packages
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
-#' The tibble will contain five columns in the following order, `metric`, `id`,
-#' `sample_name`, `isotope`, `sample_number`, and the posterior sample for Σ
+#' and [{SIBER}]().
+#'
+#' If the returned object is a `tibble`, it will contain five columns in the
+#' following order, `metric`, `id`, `sample_name`, `isotope`, `sample_number`, and the posterior sample for Σ
 #' (i.e., `post_sample`).
 #'
 #' @seealso [nicheROVER::niw.post()]
