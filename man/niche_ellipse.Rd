@@ -52,6 +52,5 @@ niche_ellipse(dat_mu = mu_est_long,
 }
 }
 \seealso{
-\code{\link[nicheROVER:niw.post]{nicheROVER::niw.post()}} \code{\link[=extract_mu]{extract_mu()}} \code{\link[SIBER:siberMVN]{SIBER::siberMVN()}}
-and \code{\link[=extract_sigma]{extract_sigma()}}
+\code{\link[nicheROVER:niw.post]{nicheROVER::niw.post()}} \code{\link[=extract_mu]{extract_mu()}} \code{\link[SIBER:siberMVN]{SIBER::siberMVN()}} and \code{\link[=extract_sigma]{extract_sigma()}}
 }

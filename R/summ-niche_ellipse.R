@@ -24,8 +24,7 @@
 #' @return A `tibble` containing, `sample_name`, `sample_number`, and the isotopes
 #' that were used in the estimation of ellipse (i.e., `d15n`, and `d13c`).
 #'
-#' @seealso [nicheROVER::niw.post()] [extract_mu()] [SIBER::siberMVN()]
-#' and [extract_sigma()]
+#' @seealso [nicheROVER::niw.post()] [extract_mu()] [SIBER::siberMVN()] and [extract_sigma()]
 #' @examples
 #' \dontrun{
 #' niche_ellipse(dat_mu = mu_est_long,
