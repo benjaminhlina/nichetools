@@ -127,7 +127,7 @@ extract_sigma <-  function(data,
   }
   if (pkg %in% "SIBER") {
     if (data_class %in% "matrix") {
-      df_sigma <- ellipses.posterior|>
+      df_sigma <- data |>
         purrr::map(~ as.data.frame(.x) |>
                      dplyr::select("Sigma2[1,1]":"Sigma2[2,2]") |>
                      mutate(
