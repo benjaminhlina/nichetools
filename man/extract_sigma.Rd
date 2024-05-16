@@ -6,11 +6,11 @@
 \usage{
 extract_sigma(
   data,
-  pkg = NULL,
+  pkg = "nicheROVER",
   isotope_a = NULL,
   isotope_b = NULL,
-  data_format = NULL,
-  data_class = NULL
+  data_format = "Wide",
+  data_class = "matrix"
 )
 }
 \arguments{
@@ -19,23 +19,25 @@ in the package
 \href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}
 or \href{https://cran.r-project.org/web/packages/SIBER/index.html}{{SIBER}}, respectfully.
 @param pkg character string of the package that the user is using. Defaults to
-\code{"nicheROVER"} and will use methods to extract sigma values from \code{{nicherover}}
+\code{"nicheROVER"} and will use methods to extract \eqn{\Sigma} values from \code{{nicherover}}
 objects. Alternatively the user can supply the argument with \code{"SIBER"} to
-extract sigma values from objectes created by \verb{\{SIBER\}.}@param isotope_a \code{character} string to supply for the first
-isotope used in \code{niw.post()}. Defaults to \code{"d15n"}. To be used if}
+extract \eqn{\Sigma} values from objects created by \verb{\{SIBER\}.}}
 
-\item{isotope_b}{\code{character}string to supply for the second
-isotope used in \code{niw.post()}. Defaults to \code{"d13c"}.}
+\item{isotope_a}{\code{character} to be used when \code{pkg} is set to \code{"nicheROVER"}.
+String to supply for the first isotope used in \code{niw.post()}. Defaults to \code{"d15n"}. To be used if}
+
+\item{isotope_b}{\code{character}to be used when \code{pkg} is set to \code{"nicheROVER"}.
+String to supply for the second isotope used in \code{niw.post()}. Defaults to \code{"d13c"}.}
 
 \item{data_format}{format a \code{character} that decided whether the returned object is
-in long or wide format. Default is \code{"wide"}, with the alternative supplied
-being \code{"long"}.}
+in long or wide format. For use when \code{pkg} is set to \code{"nicheROVER"}.
+Default is \code{"wide"}, with the alternative supplied being \code{"long"}.}
 
 \item{data_class}{controls the output returned when \code{pkg} is set to \code{"SIBER"}.
 default is \code{"matrix"} but alternatively \code{"tibble"} can be supplied.}
 }
 \value{
-Returns a \code{tibble} or \verb{of extracted estimates of \eqn{\Sigma} created by the function}niw.post()\code{or}siberMVN()` in the packages
+Returns a \code{tibble} or ``matrix\verb{of extracted estimates of \eqn{\Sigma} created by the function}niw.post()` or `siberMVN()` in the packages
 \href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.
 and \href{https://cran.r-project.org/web/packages/SIBER/index.html}{{SIBER}}.
 

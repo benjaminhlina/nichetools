@@ -9,20 +9,21 @@
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html)
 #' or [{SIBER}](https://cran.r-project.org/web/packages/SIBER/index.html), respectfully.
 #'  @param pkg character string of the package that the user is using. Defaults to
-#' `"nicheROVER"` and will use methods to extract sigma values from `{nicherover}`
+#' `"nicheROVER"` and will use methods to extract \eqn{\Sigma} values from `{nicherover}`
 #' objects. Alternatively the user can supply the argument with `"SIBER"` to
-#' extract sigma values from objectes created by `{SIBER}.`@param isotope_a `character` string to supply for the first
-#' isotope used in `niw.post()`. Defaults to `"d15n"`. To be used if
-#' @param isotope_b `character`string to supply for the second
-#' isotope used in `niw.post()`. Defaults to `"d13c"`.
+#' extract \eqn{\Sigma} values from objects created by `{SIBER}.`
+#' @param isotope_a `character` to be used when `pkg` is set to `"nicheROVER"`.
+#' String to supply for the first isotope used in `niw.post()`. Defaults to `"d15n"`. To be used if
+#' @param isotope_b  `character`to be used when `pkg` is set to `"nicheROVER"`.
+#' String to supply for the second isotope used in `niw.post()`. Defaults to `"d13c"`.
 #' @param data_format format a `character` that decided whether the returned object is
-#' in long or wide format. Default is `"wide"`, with the alternative supplied
-#' being `"long"`.
+#' in long or wide format. For use when `pkg` is set to `"nicheROVER"`.
+#' Default is `"wide"`, with the alternative supplied being `"long"`.
 #' @param data_class controls the output returned when `pkg` is set to `"SIBER"`.
 #' default is `"matrix"` but alternatively `"tibble"` can be supplied.
 #'
-#' @return Returns a `tibble` or ` of extracted estimates of \eqn{\Sigma} created by the
-#' function `niw.post()` or `siberMVN()` in the packages
+#' @return Returns a `tibble` or ``matrix` of extracted estimates of \eqn{\Sigma}
+#' created by the function `niw.post()` or `siberMVN()` in the packages
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
 #' and [{SIBER}](https://cran.r-project.org/web/packages/SIBER/index.html).
 #'
