@@ -8,7 +8,7 @@
 #' in the package
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html)
 #' or [{SIBER}](https://cran.r-project.org/web/packages/SIBER/index.html), respectfully.
-#'  @param pkg character string of the package that the user is using. Defaults to
+#' @param pkg character string of the package that the user is using. Defaults to
 #' `"nicheROVER"` and will use methods to extract \eqn{\Sigma} values from `{nicherover}`
 #' objects. Alternatively the user can supply the argument with `"SIBER"` to
 #' extract \eqn{\Sigma} values from objects created by `{SIBER}.`

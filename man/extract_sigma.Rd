@@ -17,8 +17,9 @@ extract_sigma(
 \item{data}{a \code{list} created by the function \code{niw.post()} or \code{siberMVN()}
 in the package
 \href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}
-or \href{https://cran.r-project.org/web/packages/SIBER/index.html}{{SIBER}}, respectfully.
-@param pkg character string of the package that the user is using. Defaults to
+or \href{https://cran.r-project.org/web/packages/SIBER/index.html}{{SIBER}}, respectfully.}
+
+\item{pkg}{character string of the package that the user is using. Defaults to
 \code{"nicheROVER"} and will use methods to extract \eqn{\Sigma} values from \code{{nicherover}}
 objects. Alternatively the user can supply the argument with \code{"SIBER"} to
 extract \eqn{\Sigma} values from objects created by \verb{\{SIBER\}.}}
