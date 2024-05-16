@@ -107,7 +107,7 @@ For plotting we will need the extracted $\Sigma$ values to be in long format. We
 
 ```{r, message = FALSE} 
 df_sigma_cn <- extract_sigma(fish_par, 
-                             format = "long") %>%
+                             data_format = "long") %>%
   filter(id != isotope)
 ```
 
