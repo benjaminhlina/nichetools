@@ -9,7 +9,7 @@ extract_sigma(
   pkg = "nicheROVER",
   isotope_a = NULL,
   isotope_b = NULL,
-  data_format = "Wide",
+  data_format = "wide",
   data_class = "matrix"
 )
 }
