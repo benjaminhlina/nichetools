@@ -2,7 +2,7 @@
 % Please edit documentation in R/util-extract_sigma.R
 \name{extract_sigma}
 \alias{extract_sigma}
-\title{extract Σ}
+\title{extract \eqn{\Sigma}}
 \usage{
 extract_sigma(
   data,
@@ -17,7 +17,7 @@ extract_sigma(
 \item{data}{a \code{list} created by the function \code{niw.post()} or \code{siberMVN()}
 in the package
 \href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}
-or \link{{SIBER}}, respectfully.
+or \href{https://cran.r-project.org/web/packages/SIBER/index.html}{{SIBER}}, respectfully.
 @param pkg character string of the package that the user is using. Defaults to
 \code{"nicheROVER"} and will use methods to extract sigma values from \code{{nicherover}}
 objects. Alternatively the user can supply the argument with \code{"SIBER"} to
@@ -35,18 +35,18 @@ being \code{"long"}.}
 default is \code{"matrix"} but alternatively \code{"tibble"} can be supplied.}
 }
 \value{
-Returns a \code{tibble} or \verb{of extracted estimates of Σ created by the function}niw.post()\code{or}siberMVN()` in the packages
+Returns a \code{tibble} or \verb{of extracted estimates of \eqn{\Sigma} created by the function}niw.post()\code{or}siberMVN()` in the packages
 \href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.
-and \url{{SIBER}}.
+and \href{https://cran.r-project.org/web/packages/SIBER/index.html}{{SIBER}}.
 
 If the returned object is a \code{tibble}, it will contain five columns in the
-following order, \code{metric}, \code{id}, \code{sample_name}, \code{isotope}, \code{sample_number}, and the posterior sample for Σ
+following order, \code{metric}, \code{id}, \code{sample_name}, \code{isotope}, \code{sample_number}, and the posterior sample for \eqn{\Sigma}
 (i.e., \code{post_sample}).
 }
 \description{
-Extract Bayesian estimates of Σ from data objects created by either
+Extract Bayesian estimates of \eqn{\Sigma} from data objects created by either
 \href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.
-or \url{{SIBER}}.
+or \href{https://cran.r-project.org/web/packages/SIBER/index.html}{{SIBER}}.
 }
 \examples{
 extract_sigma(
@@ -55,5 +55,5 @@ data = niw_fish_post
 
 }
 \seealso{
-\code{\link[nicheROVER:niw.post]{nicheROVER::niw.post()}}
+\code{\link[nicheROVER:niw.post]{nicheROVER::niw.post()}} and \code{\link[SIBER:siberMVN]{SIBER::siberMVN()}}
 }

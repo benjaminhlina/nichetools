@@ -1,13 +1,13 @@
-#' extract Σ
+#' extract \eqn{\Sigma}
 #'
-#' Extract Bayesian estimates of Σ from data objects created by either
+#' Extract Bayesian estimates of \eqn{\Sigma} from data objects created by either
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
-#' or [{SIBER}]().
+#' or [{SIBER}](https://cran.r-project.org/web/packages/SIBER/index.html).
 #'
 #' @param data a `list` created by the function `niw.post()` or `siberMVN()`
 #' in the package
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html)
-#' or [{SIBER}], respectfully.
+#' or [{SIBER}](https://cran.r-project.org/web/packages/SIBER/index.html), respectfully.
 #'  @param pkg character string of the package that the user is using. Defaults to
 #' `"nicheROVER"` and will use methods to extract sigma values from `{nicherover}`
 #' objects. Alternatively the user can supply the argument with `"SIBER"` to
@@ -15,23 +15,22 @@
 #' isotope used in `niw.post()`. Defaults to `"d15n"`. To be used if
 #' @param isotope_b `character`string to supply for the second
 #' isotope used in `niw.post()`. Defaults to `"d13c"`.
-#'
 #' @param data_format format a `character` that decided whether the returned object is
 #' in long or wide format. Default is `"wide"`, with the alternative supplied
 #' being `"long"`.
 #' @param data_class controls the output returned when `pkg` is set to `"SIBER"`.
 #' default is `"matrix"` but alternatively `"tibble"` can be supplied.
 #'
-#' @return Returns a `tibble` or ` of extracted estimates of Σ created by the
+#' @return Returns a `tibble` or ` of extracted estimates of \eqn{\Sigma} created by the
 #' function `niw.post()` or `siberMVN()` in the packages
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
-#' and [{SIBER}]().
+#' and [{SIBER}](https://cran.r-project.org/web/packages/SIBER/index.html).
 #'
 #' If the returned object is a `tibble`, it will contain five columns in the
-#' following order, `metric`, `id`, `sample_name`, `isotope`, `sample_number`, and the posterior sample for Σ
+#' following order, `metric`, `id`, `sample_name`, `isotope`, `sample_number`, and the posterior sample for \eqn{\Sigma}
 #' (i.e., `post_sample`).
 #'
-#' @seealso [nicheROVER::niw.post()]
+#' @seealso [nicheROVER::niw.post()] and [SIBER::siberMVN()]
 #' @examples
 #' extract_sigma(
 #' data = niw_fish_post
@@ -93,14 +92,14 @@ extract_sigma <-  function(data,
       ) |>
       tidyr::separate(isotope, into = c("isotope", "sample_number"), sep = "\\.")
 
-    if (format %in% "wide") {
+    if (data_format %in% "wide") {
 
       df_sigma <- df_sigma |>
         tidyr::pivot_wider(names_from = id,
                            values_from = post_sample)
       return(df_sigma)
     }
-    if (format %in% "long") {
+    if (data_format %in% "long") {
       return(df_sigma)
 
     }
