@@ -1,11 +1,11 @@
 ---
-title: "How to use {nichetools}"
+title: "How to use {nichetools} with nicheROVER"
 author: Benjamin L. Hlina
 date: "Update: `r Sys.Date()`"
 output: rmarkdown::html_vignette
 
 vignette: >
-  %\VignetteIndexEntry{How to use {nichetools}}
+  %\VignetteIndexEntry{How to use {nichetools} with nicheROVER}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -107,7 +107,7 @@ For plotting we will need the extracted $\Sigma$ values to be in long format. We
 
 ```{r, message = FALSE} 
 df_sigma_cn <- extract_sigma(fish_par, 
-                             format = "long") %>%
+                             data_format = "long") %>%
   filter(id != isotope)
 ```
 

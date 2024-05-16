@@ -1,13 +1,13 @@
-#' Create ellipses based on Bayesian estimates of μ and Σ
+#' Create ellipses based on Bayesian estimates of \eqn{\mu} and \eqn{\Sigma}
 #'
-#' This function allows the user to supply Bayesian estimates of μ and
-#' Σ  to create estimated Bayesian ellipse for niche region.
+#' This function allows the user to supply Bayesian estimates of \eqn{\mu} and
+#' \eqn{\Sigma} to create estimated Bayesian ellipse for niche region.
 #'
-#' @param dat_mu a `data.frame` containing μ Bayesian estimates.
-#' This `data.frame` needs to be in long format with each μ
+#' @param dat_mu a `data.frame` containing \eqn{\mu} Bayesian estimates.
+#' This `data.frame` needs to be in long format with each \eqn{\mu}
 #' estimate for each isotope stacked on top of each other. This can be produced
 #' using `mu_extract()`.
-#' @param dat_sigma a `data.frame` containing Σ Bayesian estimates.
+#' @param dat_sigma a `data.frame` containing \eqn{\Sigma} Bayesian estimates.
 #' This `data.frame` needs be in wide format, that is sigma/covariance matrices stacked
 #' onto of each other. See example of how to convert to wide format. This
 #' can be produced using `sigma_extract()`.
@@ -24,7 +24,7 @@
 #' @return A `tibble` containing, `sample_name`, `sample_number`, and the isotopes
 #' that were used in the estimation of ellipse (i.e., `d15n`, and `d13c`).
 #'
-#' @seealso [nicheROVER::niw.post()] [extract_mu()] and [extract_sigma()]
+#' @seealso [nicheROVER::niw.post()] [extract_mu()] [SIBER::siberMVN()] and [extract_sigma()]
 #' @examples
 #' \dontrun{
 #' niche_ellipse(dat_mu = mu_est_long,

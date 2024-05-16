@@ -2,7 +2,7 @@
 % Please edit documentation in R/summ-niche_ellipse.R
 \name{niche_ellipse}
 \alias{niche_ellipse}
-\title{Create ellipses based on Bayesian estimates of μ and Σ}
+\title{Create ellipses based on Bayesian estimates of \eqn{\mu} and \eqn{\Sigma}}
 \usage{
 niche_ellipse(
   dat_mu,
@@ -14,12 +14,12 @@ niche_ellipse(
 )
 }
 \arguments{
-\item{dat_mu}{a \code{data.frame} containing μ Bayesian estimates.
-This \code{data.frame} needs to be in long format with each μ
+\item{dat_mu}{a \code{data.frame} containing \eqn{\mu} Bayesian estimates.
+This \code{data.frame} needs to be in long format with each \eqn{\mu}
 estimate for each isotope stacked on top of each other. This can be produced
 using \code{mu_extract()}.}
 
-\item{dat_sigma}{a \code{data.frame} containing Σ Bayesian estimates.
+\item{dat_sigma}{a \code{data.frame} containing \eqn{\Sigma} Bayesian estimates.
 This \code{data.frame} needs be in wide format, that is sigma/covariance matrices stacked
 onto of each other. See example of how to convert to wide format. This
 can be produced using \code{sigma_extract()}.}
@@ -42,8 +42,8 @@ A \code{tibble} containing, \code{sample_name}, \code{sample_number}, and the is
 that were used in the estimation of ellipse (i.e., \code{d15n}, and \code{d13c}).
 }
 \description{
-This function allows the user to supply Bayesian estimates of μ and
-Σ  to create estimated Bayesian ellipse for niche region.
+This function allows the user to supply Bayesian estimates of \eqn{\mu} and
+\eqn{\Sigma} to create estimated Bayesian ellipse for niche region.
 }
 \examples{
 \dontrun{
@@ -52,5 +52,5 @@ niche_ellipse(dat_mu = mu_est_long,
 }
 }
 \seealso{
-\code{\link[nicheROVER:niw.post]{nicheROVER::niw.post()}} \code{\link[=extract_mu]{extract_mu()}} and \code{\link[=extract_sigma]{extract_sigma()}}
+\code{\link[nicheROVER:niw.post]{nicheROVER::niw.post()}} \code{\link[=extract_mu]{extract_mu()}} \code{\link[SIBER:siberMVN]{SIBER::siberMVN()}} and \code{\link[=extract_sigma]{extract_sigma()}}
 }

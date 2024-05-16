@@ -2,7 +2,7 @@
 % Please edit documentation in R/util-extract_mu.R
 \name{extract_mu}
 \alias{extract_mu}
-\title{extract μ}
+\title{extract \eqn{\mu}}
 \usage{
 extract_mu(data, format = "long")
 }
@@ -15,7 +15,7 @@ in long or wide format. Default is \code{"long"}, with the alternative supplied
 being \code{"wide"}.}
 }
 \value{
-Returns a \code{tibble} of extracted estimates of μ that are created by
+Returns a \code{tibble} of extracted estimates of \eqn{\mu} that are created by
 the function \code{niw.post()} in the package
 \href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.
 The \code{tibble} will contain five columns in the following order, \code{metric},
@@ -23,7 +23,7 @@ The \code{tibble} will contain five columns in the following order, \code{metric
 columns supplied to \code{niw.post()} (e.g., \code{d15n} and \code{d13c}).
 }
 \description{
-Extract Bayesian estimates of μ from the function \code{niw.post()} in the package
+Extract Bayesian estimates of \eqn{\mu} from the function \code{niw.post()} in the package
 \href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.
 }
 \examples{
