@@ -1,6 +1,6 @@
-#' extract μ
+#' extract \eqn{\mu}
 #'
-#' Extract Bayesian estimates of μ from the function `niw.post()` in the package
+#' Extract Bayesian estimates of \eqn{\mu} from the function `niw.post()` in the package
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
 #'
 #' @param data a `list` created by the function `niw.post()` in the package
@@ -9,7 +9,7 @@
 #' in long or wide format. Default is `"long"`, with the alternative supplied
 #' being `"wide"`.
 #'
-#' @return Returns a `tibble` of extracted estimates of μ that are created by
+#' @return Returns a `tibble` of extracted estimates of \eqn{\mu} that are created by
 #' the function `niw.post()` in the package
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
 #' The `tibble` will contain five columns in the following order, `metric`,
