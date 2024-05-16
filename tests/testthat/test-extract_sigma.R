@@ -11,7 +11,8 @@ test_that("test if it doesn't error with basic niw object ", {
 test_that("test if list", {
   expect_no_error(
     df_sigma_test <- extract_sigma(
-      data = niw_fish_post
+      data = niw_fish_post,
+      data_format = "wide"
     )
 
   )
@@ -35,7 +36,8 @@ test_that("error if data isn't a list", {
 
 test_that("test that the object type and length are correct ", {
   df_sigma_test <- extract_sigma(
-    data = niw_fish_post, format = "long"
+    data = niw_fish_post,
+    data_format = "long"
   )
   # check the type returned data frame should be data frame
   expect_s3_class(object = df_sigma_test, class =  "data.frame")
@@ -54,7 +56,7 @@ test_that("test that the object type and length are correct ", {
 
 test_that("test that the object type and length are correct ", {
   df_sigma_test <- extract_sigma(
-    data = niw_fish_post,
+    data = niw_fish_post
   )
   # check the type returned data frame should be data frame
   expect_s3_class(object = df_sigma_test, class =  "data.frame")
@@ -77,7 +79,7 @@ test_that("Check if supplying isotope_a names works", {
   expect_no_error(df <- extract_sigma(
     data = niw_fish_post,
     isotope_a = "cal_d15n",
-    format = "long"
+    data_format = "long"
   )
   )
 
@@ -92,7 +94,7 @@ test_that("Check if supplying isotope_b names works", {
   df <- extract_sigma(
     data = niw_fish_post,
     isotope_b = "cal_d13c",
-    format = "long"
+    data_format = "long"
 
   )
  expect_type(object = df$id, type = "character")
@@ -105,7 +107,7 @@ test_that("that supplying both isotope names works ", {
     data = niw_fish_post,
     isotope_a = "cal_d15n",
     isotope_b = "cal_d13c",
-    format = "long"
+    data_format = "long"
 
   )
  expect_type(object = df$id, type = "character")
