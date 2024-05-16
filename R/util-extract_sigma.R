@@ -44,14 +44,34 @@
 #' @export
 
 extract_sigma <-  function(data,
-                           pkg = NULL,
+                           pkg = "nicheROVER",
                            isotope_a = NULL,
                            isotope_b = NULL,
-                           data_format = NULL,
-                           data_class = NULL) {
+                           data_format = "wide",
+                           data_class = "matrix") {
 
 
-  if(pkg == "nicheROVER") {
+  if (!is.null(pkg) && pkg != "nicheROVER") {
+    pkg <- "SIBER"
+  }
+
+  # if(is.null(data_format)) {
+  #   data_format <- "wide"
+  # }
+  #
+  if(!is.null(data_format) && data_format != "wide") {
+    data_format <- "long"
+  }
+  #
+  # if (is.null(data_class)) {
+  #   data_class <- "matrix"
+  # }
+  #
+  if (!is.null(data_class) && data_class != "matrix") {
+    data_class <- "tibble"
+  }
+
+  if (pkg %in% "nicheROVER") {
     # Check if data is a list
     if (!inherits(data, "list")) {
       cli::cli_abort("Input 'data' must be a list.")
@@ -105,25 +125,25 @@ extract_sigma <-  function(data,
 
     }
   }
-  if (pkg == "SIBER") {
-    if (format == "matrix") {
-    df_sigma <- ellipses.posterior|>
-      purrr::map(~ as.data.frame(.x) |>
-                   dplyr::select("Sigma2[1,1]":"Sigma2[2,2]") |>
-                   mutate(
-                     sample_number = 1:nrow(.),
-                   )) |>
-      bind_rows(.id = "sample_name") |>
-      dplyr::group_split(sample_name, sample_number) |>
-      purrr::map(~ .x |>
-                   dplyr::select("Sigma2[1,1]":"Sigma2[2,2]") |>
-                   matrix(2, 2),
-                 .progress = "Prepare sigma for ellipse"
-      )
-    return(df_sigma)
+  if (pkg %in% "SIBER") {
+    if (data_class %in% "matrix") {
+      df_sigma <- ellipses.posterior|>
+        purrr::map(~ as.data.frame(.x) |>
+                     dplyr::select("Sigma2[1,1]":"Sigma2[2,2]") |>
+                     mutate(
+                       sample_number = 1:nrow(.),
+                     )) |>
+        bind_rows(.id = "sample_name") |>
+        dplyr::group_split(sample_name, sample_number) |>
+        purrr::map(~ .x |>
+                     dplyr::select("Sigma2[1,1]":"Sigma2[2,2]") |>
+                     matrix(2, 2),
+                   .progress = "Prepare sigma for ellipse"
+        )
+      return(df_sigma)
     }
-  if (format == "data.frame") {
-
-  }
+    # if (format %in% "data.frame") {
+    #
+    # }
   }
 }
