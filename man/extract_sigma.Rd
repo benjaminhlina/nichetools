@@ -38,13 +38,14 @@ Default is \code{"wide"}, with the alternative supplied being \code{"long"}.}
 default is \code{"matrix"} but alternatively \code{"tibble"} can be supplied.}
 }
 \value{
-Returns a \code{tibble} or ``matrix\verb{of extracted estimates of \eqn{\Sigma} created by the function}niw.post()` or `siberMVN()` in the packages
+Returns a \code{tibble} or \code{matrix} of extracted estimates of \eqn{\Sigma}
+created by the function \code{niw.post()} or \code{siberMVN()} in the packages
 \href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.
 and \href{https://cran.r-project.org/web/packages/SIBER/index.html}{{SIBER}}.
 
 If the returned object is a \code{tibble}, it will contain five columns in the
-following order, \code{metric}, \code{id}, \code{sample_name}, \code{isotope}, \code{sample_number}, and the posterior sample for \eqn{\Sigma}
-(i.e., \code{post_sample}).
+following order, \code{metric}, \code{id}, \code{sample_name}, \code{isotope}, \code{sample_number},
+and the posterior sample for \eqn{\Sigma} (i.e., \code{post_sample}).
 }
 \description{
 Extract Bayesian estimates of \eqn{\Sigma} from data objects created by either
