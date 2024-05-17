@@ -3,7 +3,7 @@
 \docType{data}
 \name{sigma_est_wide}
 \alias{sigma_est_wide}
-\title{A \code{data.frame} containing posterior estimates of Σ}
+\title{A \code{data.frame} containing posterior estimates of \eqn{\Sigma}}
 \format{
 \code{data.frame} containing 8,000 rows and 6 variables
 \describe{
@@ -11,15 +11,15 @@
 \item{species}{species abbreviation}
 \item{isotope}{column with isotope name}
 \item{sample_number}{sample number from 1-1000}
-\item{d15n}{estimate of sigma for d15n produced from \code{niw.post()}}
-\item{d13c}{estimate of sigma for d13c produced from \code{niw.post()}}
+\item{d15n}{estimate of \eqn{\Sigma} for d15n produced from \code{niw.post()}}
+\item{d13c}{estimate of \eqn{\Sigma} for d13c produced from \code{niw.post()}}
 }
 }
 \usage{
 sigma_est_wide
 }
 \description{
-Posterior estimates of Σ using \code{fish} data set from
+Posterior estimates of \eqn{\Sigma} using \code{fish} data set from
 \href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}},
 using Normal-Inverse-Wishart (NIW) priors
 }

@@ -6,7 +6,7 @@
 \title{A \code{data.frame} containing the estimates of percentage of overlap among groups}
 \format{
 A \code{array}containing \code{matrices} of the percent overlap for each group
-used in Bayesian estimates of μ and Σ using
+used in Bayesian estimates of \eqn{\mu} and \eqn{\Sigma} using
 Normal-Inverse-Wishart (NIW) priors calculated in \code{niw.post()}.
 }
 \usage{
