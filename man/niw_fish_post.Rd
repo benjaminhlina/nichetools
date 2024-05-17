@@ -3,16 +3,16 @@
 \docType{data}
 \name{niw_fish_post}
 \alias{niw_fish_post}
-\title{A \code{list} of the posterior estimates of μ and Σ}
+\title{A \code{list} of the posterior estimates of \eqn{\mu} and \eqn{\Sigma}}
 \format{
-A \code{list} with elements μ and Σ of sizes c(nsamples, length(lambda))
+A \code{list} with elements \eqn{\mu} and \eqn{\Sigma} of sizes c(nsamples, length(lambda))
 and c(dim(Psi).
 }
 \usage{
 niw_fish_post
 }
 \description{
-Posterior estimates of μ and Σ using the \code{fish} data set from
+Posterior estimates of \eqn{\mu} and \eqn{\Sigma} using the \code{fish} data set from
 \href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}},
 using Normal-Inverse-Wishart (NIW) priors.
 This \code{list} is produced  using the function \code{niw.post()} from

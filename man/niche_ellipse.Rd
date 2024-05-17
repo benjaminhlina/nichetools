@@ -20,9 +20,9 @@ estimate for each isotope stacked on top of each other. This can be produced
 using \code{mu_extract()}.}
 
 \item{dat_sigma}{a \code{data.frame} containing \eqn{\Sigma} Bayesian estimates.
-This \code{data.frame} needs be in wide format, that is sigma/covariance matrices stacked
-onto of each other. See example of how to convert to wide format. This
-can be produced using \code{sigma_extract()}.}
+This \code{data.frame} needs be in wide format, that is \eqn{\sigma} (covariance)
+matrices stacked onto of each other. See example of how to convert to
+wide format. This can be produced using \code{sigma_extract()}.}
 
 \item{isotope_a}{character string that is the column name of the first
 isotope used in \code{dat_sigma}. Defaults to \code{"d15n"}.}
@@ -38,8 +38,9 @@ This value is bound by 0 and 1 and has to be a \code{numeric}.}
 end of the function. Default is \code{TRUE}.}
 }
 \value{
-A \code{tibble} containing, \code{sample_name}, \code{sample_number}, and the isotopes
-that were used in the estimation of ellipse (i.e., \code{d15n}, and \code{d13c}).
+A \code{tibble} containing, \code{sample_name}, \code{sample_number}, and the
+isotopes that were used in the estimation of ellipse
+(i.e., \code{d15n}, and \code{d13c}).
 }
 \description{
 This function allows the user to supply Bayesian estimates of \eqn{\mu} and
@@ -52,5 +53,6 @@ niche_ellipse(dat_mu = mu_est_long,
 }
 }
 \seealso{
-\code{\link[nicheROVER:niw.post]{nicheROVER::niw.post()}} \code{\link[=extract_mu]{extract_mu()}} \code{\link[SIBER:siberMVN]{SIBER::siberMVN()}} and \code{\link[=extract_sigma]{extract_sigma()}}
+\code{\link[nicheROVER:niw.post]{nicheROVER::niw.post()}} \code{\link[=extract_mu]{extract_mu()}} \code{\link[SIBER:siberMVN]{SIBER::siberMVN()}}
+and \code{\link[=extract_sigma]{extract_sigma()}}
 }

@@ -50,7 +50,7 @@ To cite this package please cite the following publications
 
 -   Swanson, H.K., Lysy, M., Power, M., Stasko, A.D., Johnson, J.D., and Reist, J.D. 2015. A new probabilistic method for quantifying n-dimensional ecological niches and niche overlap. Ecology 96(2): 318–324. [doi:10.1890/14-0235.1](https://esajournals.onlinelibrary.wiley.com/doi/full/10.1890/14-0235.1)
 
--   Hlina BL (2024). nichetools: Complementary package to nicheROVER. R package version 0.1.0. https://benjaminhlina.github.io/nichetools/
+-   Jackson, A.L., Inger, R., Parnell, A.C., and Bearhop, S. 2011. Comparing isotopic niche widths among and within communities: SIBER – Stable Isotope Bayesian Ellipses in R. Journal of Animal Ecology 80(3): 595–602. doi:10.1111/j.1365-2656.2011.01806.x.
 
 
-Help follow this link 
+-   Hlina B.L. (2024). nichetools: Complementary package to nicheROVER and SIBER. R package version 0.2.0. https://benjaminhlina.github.io/nichetools/

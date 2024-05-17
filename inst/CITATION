@@ -13,16 +13,32 @@ bibentry(
   volume   = "96",
   number   = "2",
   pages    = "318-324",
-  doi      = "10.1890/14-0235.1"
+  doi      = "10.1890/14-0235.1",
+  url      = "https://esajournals.onlinelibrary.wiley.com/doi/full/10.1890/14-0235.1"
+)
+
+bibentry(
+  bibtype  = "Article",
+  title    = "Comparing isotopic niche widths among and within communities: SIBER – Stable Isotope Bayesian Ellipses in R",
+  author   = personList(as.person("Andrew L. Jackson"),
+                                   as.person("Richard Inger"),
+                                   as.person("Andrew C. Parnell"),
+                                   as.person("Stuart Bearhop")
+                                   ),
+  journal  = "Journal of Animal Ecology",
+  year     = "2011",
+  volume   = 80,
+  number   = 3,
+  pages    = 595-602,
+  doi      = "10.1111/j.1365-2656.2011.01806.x",
+  url      = "https://besjournals.onlinelibrary.wiley.com/doi/10.1111/j.1365-2656.2011.01806.x"
 )
 
 bibentry(
   bibtype  = "Manual",
   title    = "nichetools: Complementary package to nicheROVER",
-  author   = personList(as.person("Benjamin L. HLina"
-                                   )
-                                   ),
+  author   = personList(as.person("Benjamin L. HLina")),
   year     = "2024",
-  note   = "R package version 0.1.0",
-  url   = "https://benjaminhlina.github.io/nichetools/"
+  note     = "R package version 0.2.0",
+  url      = "https://benjaminhlina.github.io/nichetools/"
 )

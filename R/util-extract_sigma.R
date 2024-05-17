@@ -22,14 +22,14 @@
 #' @param data_class controls the output returned when `pkg` is set to `"SIBER"`.
 #' default is `"matrix"` but alternatively `"tibble"` can be supplied.
 #'
-#' @return Returns a `tibble` or ``matrix` of extracted estimates of \eqn{\Sigma}
+#' @return Returns a `tibble` or `matrix` of extracted estimates of \eqn{\Sigma}
 #' created by the function `niw.post()` or `siberMVN()` in the packages
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
 #' and [{SIBER}](https://cran.r-project.org/web/packages/SIBER/index.html).
 #'
 #' If the returned object is a `tibble`, it will contain five columns in the
-#' following order, `metric`, `id`, `sample_name`, `isotope`, `sample_number`, and the posterior sample for \eqn{\Sigma}
-#' (i.e., `post_sample`).
+#' following order, `metric`, `id`, `sample_name`, `isotope`, `sample_number`,
+#' and the posterior sample for \eqn{\Sigma} (i.e., `post_sample`).
 #'
 #' @seealso [nicheROVER::niw.post()] and [SIBER::siberMVN()]
 #' @examples

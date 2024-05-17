@@ -1,6 +1,6 @@
-#' A `data.frame` containing posterior estimates of μ
+#' A `data.frame` containing posterior estimates of \eqn{\mu}
 #'
-#' Posterior estimates of μ using `fish` data set from
+#' Posterior estimates of \eqn{\mu} using `fish` data set from
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html),
 #' using  Normal-Inverse-Wishart (NIW) priors.
 
@@ -18,9 +18,9 @@
 "mu_est_long"
 
 
-#' A `data.frame` containing posterior estimates of Σ
+#' A `data.frame` containing posterior estimates of \eqn{\Sigma}
 #'
-#' Posterior estimates of Σ using `fish` data set from
+#' Posterior estimates of \eqn{\Sigma} using `fish` data set from
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html),
 #' using Normal-Inverse-Wishart (NIW) priors
 #'
@@ -31,22 +31,22 @@
 #'    \item{species}{species abbreviation}
 #'    \item{isotope}{column with isotope name}
 #'    \item{sample_number}{sample number from 1-1000}
-#'    \item{d15n}{estimate of sigma for d15n produced from `niw.post()`}
-#'    \item{d13c}{estimate of sigma for d13c produced from `niw.post()`}
+#'    \item{d15n}{estimate of \eqn{\Sigma} for d15n produced from `niw.post()`}
+#'    \item{d13c}{estimate of \eqn{\Sigma} for d13c produced from `niw.post()`}
 #' }
 #'
 "sigma_est_wide"
 
-#' A `list` of the posterior estimates of μ and Σ
+#' A `list` of the posterior estimates of \eqn{\mu} and \eqn{\Sigma}
 #'
-#' Posterior estimates of μ and Σ using the `fish` data set from
+#' Posterior estimates of \eqn{\mu} and \eqn{\Sigma} using the `fish` data set from
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html),
 #' using Normal-Inverse-Wishart (NIW) priors.
 #' This `list` is produced  using the function `niw.post()` from
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
 #'
 #'
-#' @format A `list` with elements μ and Σ of sizes c(nsamples, length(lambda))
+#' @format A `list` with elements \eqn{\mu} and \eqn{\Sigma} of sizes c(nsamples, length(lambda))
 #'  and c(dim(Psi).
 #'
 "niw_fish_post"
@@ -57,7 +57,7 @@
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
 #'
 #' @format A `array`containing `matrices` of the percent overlap for each group
-#' used in Bayesian estimates of μ and Σ using
+#' used in Bayesian estimates of \eqn{\mu} and \eqn{\Sigma} using
 #' Normal-Inverse-Wishart (NIW) priors calculated in `niw.post()`.
 #'
 "over_stat"
