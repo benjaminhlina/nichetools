@@ -1,35 +1,10 @@
----
-title: "Using {nichetools} with {nicheROVER} to estimate trophic niches"
-author: Benjamin L. Hlina
-date: "Update: `r Sys.Date()`"
-output: rmarkdown::html_vignette
-
-vignette: >
-  %\VignetteIndexEntry{Using {nichetools} with {nicheROVER} to estimate trophic niches}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
----
-
-```{r, include = FALSE}
+## ----include = FALSE------------------------------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-```
 
-### Our Objectives
-
-The purpose of this vignette is to use [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html) and [{nichetools}](https://benjaminhlina.github.io/nichetools/) to extract and then visualize estimates of trophic niche size and similarities for multiple freshwater fish using [{ggplot2}](https://ggplot2.tidyverse.org/). 
-
-This vignette can be used for additional purposes including estimating niche size and similarities among different groups of aquatic and/or terrestrial species. Furthermore, niche size and similarities for different behaviours exhibited within a population can be made using behavioural data generated from acoustic telemetry (e.g., differences in habitat occupancy).
-
-
-### Bring in trophic niche data
-First we will load the necessary packages to preform the analysis and visualization. We will use [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html) and [{nichetools}](https://benjaminhlina.github.io/nichetools/) to preform the analysis. We will use [{dplyr}](https://dplyr.tidyverse.org/), [{tidyr}](https://tidyr.tidyverse.org/), and [{purrr}]() to manipulate data and iterate processes. Lastly, we will use [{ggplot2}](https://ggplot2.tidyverse.org/), [{ggtext}](https://wilkelab.org/ggtext/), and [{patchwork}](https://patchwork.data-imaginist.com/) to plot, add labels, and arrange plots.
-
-I will add that many of the `{dplyr}` and `{tidyr}` functions and processes can be replaced using [{data.table}](https://cran.r-project.org/web/packages/data.table/index.html) which is great when working with large data sets.
-
-```{r, message = FALSE}
+## ----message = FALSE------------------------------------------------------------------------
 {
   library(dplyr)
   library(ggplot2)
@@ -42,48 +17,24 @@ I will add that many of the `{dplyr}` and `{tidyr}` functions and processes can 
   library(stringr)
   library(tidyr)
 }
-```
 
-For the purpose of the vignette we will be using the `fish` data frame that is available within `{nicheROVER}`. We will remove $\delta$<sup>34</sup>S for simplicity of the vignette. If more than two isotopes or metrics are being used to compare niche sizes and similarities, please use the functions for each pairing. Right now some functions (i.e., `niche_ellipse()`) in `{nichetools}` doesn't have the ability to work with more than two isotopes. This will become a feature at some point but for now. Please be patient and use the functions for each pairing you have.
-
-We will first use the function `janitor::clean_names()` to clean up column names. For your purposes you will need to replace fish with your data frame either by loading a csv, rds, or qs, with your data. You can do this multiple ways, I prefer using `readr::read_csv()` but base R's `read.csv()` works perfectly fine.   
-
-```{r, message = FALSE}
+## ----message = FALSE------------------------------------------------------------------------
 df <- fish %>% 
   janitor::clean_names()
-```
 
-If there are any isotopic values that did not run and are `NA`, they will need to be removed because `{nicheROVER}`'s functions will not accommodate values of `NA`.
-
-### Estimate posterior distribution with Normal-Inverse-Wishart (NIW) priors.
-
-We will take 1,000 posterior samples for each group. You can change this but suggest nothing less than 1,000. 
-
-```{r, message = FALSE}
+## ----message = FALSE------------------------------------------------------------------------
 nsample <- 1000
-```
 
-We will then split the data frame into a list with each species as a data frame object within the list, We will then iterate over the list, using `map()` from [{purrr}](https://purrr.tidyverse.org/), to estimate posterior distribution using Normal-Inverse-Wishart (NIW) priors.
-
-```{r, message = FALSE}
+## ----message = FALSE------------------------------------------------------------------------
 fish_par <- df %>% 
   split(.$species) %>% 
   map(~ select(., d15n, d13c)) %>% 
   map(~ niw.post(nsample = nsample, X = .))
-```
 
-### Extract μ values  
-
-We will use `extract_mu()`to extract posteriors for $\mu$ estimates. The default output of `extract_mu()` is long format
-which works for plotting with {ggplot2} and other functions in {nichetools}. If we want wide format we can specify the argument `format` with `"wide"`, however, it is unlikely you will need this data in wide format. 
-
-```{r, message = FALSE}
+## ----message = FALSE------------------------------------------------------------------------
 df_mu <- extract_mu(fish_par)
-```
 
-The default output will be lacking some info for plotting. We will need to add in a column that is the element abbreviation and neutron number to be used in axis labeling. 
-
-```{r}
+## -------------------------------------------------------------------------------------------
 df_mu <- df_mu %>%
   mutate(
     element = case_when(
@@ -95,33 +46,16 @@ df_mu <- df_mu %>%
       isotope == "d13c" ~ 13,
     ) 
   )
-```
 
-### Extract Σ values 
-We will use `extract_sigma()` to extract posterior estimates for $\Sigma$. The default output of `extract_sigma()` is wide format which doesn't work for plotting with {ggplot2} but does work other functions in {nichetools}. If we want long for plotting we can specify the argument `format` with `"long"`. 
-```{r, message = FALSE} 
+## ----message = FALSE------------------------------------------------------------------------
 df_sigma <- extract_sigma(fish_par)
-```
 
-For plotting we will need the extracted $\Sigma$ values to be in long format. We also  need to remove $\Sigma$ values for when the both isotope columns are the same isotope. 
-
-```{r, message = FALSE} 
+## ----message = FALSE------------------------------------------------------------------------
 df_sigma_cn <- extract_sigma(fish_par, 
                              data_format = "long") %>%
   filter(id != isotope)
-```
 
-
-### Plot posterior distrubtion of μ and Σ
-
-For most plotting within this vignette, I will `split()` the data frame by isotope, creating a list that I will then use `imap()` to iterate over the list to create plots. We will use `geom_density()` to represent densities for both $\mu$ and $\Sigma$. Plot objects will then be stored in a list. 
-
-First we will plot $\mu$ for each isotope. We will use [{patchwork}](https://patchwork.data-imaginist.com/) to configure plots for multi-panel figures. This package is phenomenal and uses math operators to configure and manipulate the plots to create multi-panel figures.
-
-For labeling we are also going to use `element_markdown()` from [{ggtext}](https://wilkelab.org/ggtext/) to work with the labels that are needed to correctly display the isotopic signature. If you are working other data please replace. 
-
-```{r, warning = FALSE}
-#| out-width: 100%
+## ----warning = FALSE------------------------------------------------------------------------
 posterior_plots <- df_mu %>%
   split(.$isotope) %>%
   imap(
@@ -150,12 +84,8 @@ posterior_plots$d15n +
   theme(legend.position = c(0.18, 0.82)) + 
   posterior_plots$d13c
 
-```
 
-
-For labeling purposes we need to add columns that are the element abbreviation and neutron number. I do this by using `case_when()` which are vectorized if else statements. 
-
-```{r, message = FALSE}
+## ----message = FALSE------------------------------------------------------------------------
 df_sigma_cn <- df_sigma_cn %>%
   mutate(
     element_id = case_when(
@@ -175,11 +105,8 @@ df_sigma_cn <- df_sigma_cn %>%
       isotope == "d13c" ~ 13,
     )
   )
-```
 
-Next we will plot the posteriors for $\Sigma$.
-```{r, message = FALSE}
-#| out-width: 100%
+## ----message = FALSE------------------------------------------------------------------------
 sigma_plots <- df_sigma_cn %>%
   group_split(id, isotope) %>%
   imap(
@@ -212,20 +139,11 @@ sigma_plots <- df_sigma_cn %>%
 sigma_plots[[1]] + 
   theme(legend.position = c(0.1, 0.82))
 
-```
 
-
-### Estimate niche ellipse 
-
-We then will use `niche_ellipse()` to easily extract ellipse for each $\Sigma$ estimate (i.e., 1000). If you are to have additional isotopes or metrics, you will need to create mu and sigma objects for each pairing, as currently this function only handles two isotopes. In the future, there likely will be the ability to specify the number of isotopes you have with the default being two. The reason for the lack of functionality is `ellipse::ellipse()` can only work within two-dimensions, not three, so you will have to create multiple `ellipse()` calls for each combination of isotopes or metrics and I haven't had the time to implement this. The function will also tell you how long it took to process as with large sets of isotope data it is nice to know the time it takes for the function to work. 
-
-```{r}
+## -------------------------------------------------------------------------------------------
 ellipse_df <- niche_ellipse(dat_mu = df_mu, dat_sigma = df_sigma)
-```
 
-We will randomly sample 10 ellipses out of 1,000. You can change this but this seems pretty standard. 
-
-```{r}
+## -------------------------------------------------------------------------------------------
 set.seed(14)
 
 random_ellipse <- ellipse_df %>% 
@@ -235,11 +153,8 @@ random_ellipse <- ellipse_df %>%
   slice_sample(n = 10, replace = TRUE) %>% 
   ungroup() %>% 
   unnest(cols = c(data))  
-```
-### Plot ellipses, densities of each istope, and isotope biplot 
 
-We will first plot the ellipse for each sample_name 
-```{r}
+## -------------------------------------------------------------------------------------------
 ellipse_plots <- ggplot() + 
   geom_polygon(data = random_ellipse,
                mapping = aes(x = d13c, y = d15n,
@@ -261,10 +176,8 @@ ellipse_plots <- ggplot() +
         legend.background = element_blank()) + 
   labs(x = expression(paste(delta ^ 13, "C")), 
        y = expression(paste(delta ^ 15, "N")))
-```
-We need to turn `df` into long format to iterate over using `imap()` to easily create density plots. You will notice that I again use `case_when()` to make columns of element abbreviations and neutron numbers that will be used in plot labeling. 
 
-```{r}
+## -------------------------------------------------------------------------------------------
 iso_long <- df %>%
   pivot_longer(cols = -species,
                names_to = "isotope", 
@@ -279,10 +192,8 @@ iso_long <- df %>%
       isotope == "d13c" ~ 13,
     )
   )
-```
 
-We will then make density plots for each isotope using `geom_density()`
-```{r, warning=FALSE}
+## ----warning=FALSE--------------------------------------------------------------------------
 iso_density <- iso_long %>% 
   group_split(isotope) %>% 
   imap(
@@ -315,9 +226,8 @@ d15n_density <- iso_density[[2]] +
   theme(
     legend.position = "none"
   )
-```
-Lastly we will use `geom_point()` to make isotopic biplot. 
-```{r}
+
+## -------------------------------------------------------------------------------------------
 iso_biplot <- ggplot() + 
   geom_point(data = df, aes(x = d13c, y = d15n,
                             fill = species),
@@ -335,38 +245,23 @@ iso_biplot <- ggplot() +
         legend.background = element_blank()) + 
   labs(x = expression(paste(delta ^ 13, "C")), 
        y = expression(paste(delta ^ 15, "N")))
-```
 
-### Use {patchwork} to make ellipse, density, and biplots into a paneled figure. 
-
-We can also use the function `plot_annotation()` to add lettering to the figure that can be used in the figure description. To maneuver where `plot_annotation()` places the lettering, we need to add `plot.tag.position = c(x, y)` to the `theme()` call in every plot. 
-
-```{r}
-#| out-width: 100%
+## -------------------------------------------------------------------------------------------
 d13c_density + ellipse_plots + iso_biplot + d15n_density +
   plot_annotation(tag_levels = "a", 
                   tag_suffix = ")")
-```
 
-### Determine the 95% niche similarties for each species 
-
-We will use the `overlap()` function from [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html) to estimate the percentage of similarity among species. We will set overlap to assess based on 95% similarities. 
-
-```{r}
+## -------------------------------------------------------------------------------------------
 over_stat <- overlap(fish_par, nreps = nsample, nprob = 1000, 
                      alpha = 0.95)
-```
 
-We then are going transform this output to a data frame using `extract_overlap()` plotting so we can assess overall similarities among species. 
-```{r}
+## -------------------------------------------------------------------------------------------
 over_stat_df <- extract_overlap(data = over_stat) %>% 
     mutate(
       niche_overlap_perc = niche_overlap * 100
   )
-```
 
-We then are going to take our newly made data frame and extract out the mean percentage of similarities and the 2.5% and 97.5% quarantines. We plot these as lines and dotted lines on our percent similarity density figure. 
-```{r, message = FALSE}
+## ----message = FALSE------------------------------------------------------------------------
 over_sum <- over_stat_df %>% 
   group_by(sample_name_a, sample_name_b) %>% 
   summarise(
@@ -381,12 +276,8 @@ over_sum <- over_stat_df %>%
   mutate(
     percentage = as.numeric(str_remove(percentage, "qual_"))
   ) 
-```
 
-We are now going to use `ggplot()`, `geom_density()`, and `fact_grid2()` from [{ggh4x}](https://teunbrand.github.io/ggh4x/). 
-
-```{r, warning = FALSE}
-#| out-width: 100%
+## ----warning = FALSE------------------------------------------------------------------------
 ggplot(data = over_stat_df, aes(x = niche_overlap_perc)) + 
   geom_density(aes(fill = sample_name_a)) + 
   geom_vline(data = over_sum, aes(xintercept = mean_niche_overlap), 
@@ -409,19 +300,11 @@ ggplot(data = over_stat_df, aes(x = niche_overlap_perc)) +
   labs(x = paste("Overlap Probability (%)", "\u2013", 
                  "Niche Region Size: 95%"), 
        y = "p(Percent Overlap | X)")
-```
 
-### Estimate overall niche size 
-
-We are now going to estimate the overall size of the niche for each posterior sample by using the function `extract_niche_size()` which is a wrapper around `niche.size()` and some data manipulation functions. 
-
-```{r}
+## -------------------------------------------------------------------------------------------
 niche_size <- extract_niche_size(fish_par)
-```
 
-We can calculate the mean niche size, standard deviation, and standard error. 
-
-```{r}
+## -------------------------------------------------------------------------------------------
 niche_size_mean <- niche_size %>% 
   group_by(sample_name) %>% 
   summarise(
@@ -429,13 +312,8 @@ niche_size_mean <- niche_size %>%
     sd_niche = round(sd(niche_size), digits = 2), 
     sem_niche = round(sd(niche_size) / sqrt(n()), digits = 2)
   )
-```
 
-### Plot niche size 
-
-We will now use `geom_violin()`, `geom_point()`, and `geom_errorbar()` to plot the distribution for niche size for each species.  
-
-```{r}
+## -------------------------------------------------------------------------------------------
 ggplot(data = niche_size) + 
   geom_violin(
     aes(x = sample_name, y = niche_size),
@@ -450,6 +328,4 @@ ggplot(data = niche_size) +
         axis.text = element_text(colour = "black")) + 
   labs(x = "Species", 
        y = "Niche Size") 
-```
 
-Now that we have our niche sizes and similarities determined we can make inferences about the species, trophic similarities, and the ecosystem. 
