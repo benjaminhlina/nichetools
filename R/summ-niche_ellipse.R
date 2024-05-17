@@ -8,9 +8,9 @@
 #' estimate for each isotope stacked on top of each other. This can be produced
 #' using `mu_extract()`.
 #' @param dat_sigma a `data.frame` containing \eqn{\Sigma} Bayesian estimates.
-#' This `data.frame` needs be in wide format, that is sigma/covariance matrices stacked
-#' onto of each other. See example of how to convert to wide format. This
-#' can be produced using `sigma_extract()`.
+#' This `data.frame` needs be in wide format, that is \eqn{\sigma} (covariance)
+#' matrices stacked onto of each other. See example of how to convert to
+#'  wide format. This can be produced using `sigma_extract()`.
 #' @param p_ell is the confidence interval of each ellipse estimate.
 #' Default is 0.95 (i.e., 95% confidence interval).
 #' This value is bound by 0 and 1 and has to be a `numeric`.
@@ -21,10 +21,12 @@
 #' @param message Control whether the time processing is displayed after the
 #' end of the function. Default is `TRUE`.
 #'
-#' @return A `tibble` containing, `sample_name`, `sample_number`, and the isotopes
-#' that were used in the estimation of ellipse (i.e., `d15n`, and `d13c`).
+#' @return A `tibble` containing, `sample_name`, `sample_number`, and the
+#' isotopes that were used in the estimation of ellipse
+#' (i.e., `d15n`, and `d13c`).
 #'
-#' @seealso [nicheROVER::niw.post()] [extract_mu()] [SIBER::siberMVN()] and [extract_sigma()]
+#' @seealso [nicheROVER::niw.post()] [extract_mu()] [SIBER::siberMVN()]
+#' and [extract_sigma()]
 #' @examples
 #' \dontrun{
 #' niche_ellipse(dat_mu = mu_est_long,
