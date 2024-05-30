@@ -116,25 +116,79 @@ extract_sigma <-  function(data,
 
     }
   }
+
   if (pkg %in% "SIBER") {
-    if (data_class %in% "matrix") {
-      df_sigma <- data |>
-        purrr::map(~ as.data.frame(.x) |>
-                     dplyr::select("Sigma2[1,1]":"Sigma2[2,2]") |>
-                     mutate(
-                       sample_number = 1:nrow(.),
-                     )) |>
-        bind_rows(.id = "sample_name") |>
-        dplyr::group_split(sample_name, sample_number) |>
-        purrr::map(~ .x |>
-                     dplyr::select("Sigma2[1,1]":"Sigma2[2,2]") |>
-                     matrix(2, 2),
-                   .progress = "Prepare sigma for ellipse"
-        )
+    # defaults of isotpoe a and b
+    if (is.null(isotope_a)) {
+      isotope_a <- "d15n"
+    }
+
+    if (is.null(isotope_b)) {
+      isotope_b <- "d13c"
+    }
+    # Check if isotope_a is character
+    if (!is.character(isotope_a)) {
+      cli::cli_abort("The supplied argument for 'isotope_a' must be a character.")
+    }
+
+    # Check if isotope_b is character
+    if (!is.character(isotope_b)) {
+      cli::cli_abort("The supplied argument for 'isotope_b' must be a character.")
+    }
+
+    # create name vector that will be used to id isotopes.
+    id_isotope <- c(isotope_a, isotope_b)
+    df_sigma <- data |>
+      purrr::map(~ {
+        df <- .x[, 1:4] |>
+          t() |>
+          as.numeric() |>
+          matrix(ncol = 2, byrow = T) |>
+          as.data.frame() |>
+          tibble::as_tibble()
+
+        df <- df |>
+          dplyr::mutate(
+            sample_number = rep(1:ceiling(nrow(df) / 2),
+                                each = 2,
+                                length.out = nrow(df)),
+            isotope = rep(id_isotope, times = nrow(df) / 2)
+          )
+      }
+      ) |>
+      dplyr::bind_rows(.id = "sample_name") |>
+      dplyr::mutate(
+        metric = "sigma",
+      ) |>
+      dplyr::rename(
+        {{isotope_a}} := V1,
+        {{isotope_b}} := V2
+      ) |>
+      dplyr::select(metric, sample_name, isotope, sample_number, d15n, d13c)
+
+    if (data_format %in% "wide") {
+
       return(df_sigma)
     }
-    # if (format %in% "data.frame") {
-    #
-    # }
+
+    if (data_format %in% "long") {
+      df_sigma <- df_sigma |>
+        mutate(
+          id = isotope
+        ) |>
+        dplyr::select(-isotope) |>
+        tidyr::pivot_longer(cols = -c("metric", "sample_name", "id",
+                                      "sample_number"),
+                            names_to = "isotope",
+                            values_to = "post_sample"
+
+        ) |>
+        dplyr::select(
+          metric, id, sample_name, isotope, sample_number, post_sample
+        ) |>
+        arrange(id)
+
+
+    }
   }
 }
