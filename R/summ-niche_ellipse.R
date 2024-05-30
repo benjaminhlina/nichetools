@@ -126,7 +126,8 @@ niche_ellipse <- function(
   list_names <- dat_sigma |>
     dplyr::group_by(sample_name, sample_number) |>
     dplyr::group_keys() |>
-    dplyr::mutate(sample_name_num = paste(sample_name, sample_number, sep = ":"))
+    dplyr::mutate(sample_name_num = paste(sample_name, sample_number,
+                                          sep = ":"))
 
   names(ellipse_dat) <- list_names$sample_name_num
 
