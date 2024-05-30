@@ -19,8 +19,6 @@
 #' @param data_format format a `character` that decided whether the returned object is
 #' in long or wide format. For use when `pkg` is set to `"nicheROVER"`.
 #' Default is `"wide"`, with the alternative supplied being `"long"`.
-#' @param data_class controls the output returned when `pkg` is set to `"SIBER"`.
-#' default is `"matrix"` but alternatively `"tibble"` can be supplied.
 #'
 #' @return Returns a `tibble` or `matrix` of extracted estimates of \eqn{\Sigma}
 #' created by the function `niw.post()` or `siberMVN()` in the packages
@@ -47,29 +45,21 @@ extract_sigma <-  function(data,
                            pkg = "nicheROVER",
                            isotope_a = NULL,
                            isotope_b = NULL,
-                           data_format = "wide",
-                           data_class = "matrix") {
+                           data_format = "wide") {
 
-
-  if (!is.null(pkg) && pkg != "nicheROVER") {
-    pkg <- "SIBER"
-  }
-
-  # if(is.null(data_format)) {
-  #   data_format <- "wide"
-  # }
-  #
-  if(!is.null(data_format) && data_format != "wide") {
-    data_format <- "long"
-  }
-  #
-  # if (is.null(data_class)) {
-  #   data_class <- "matrix"
-  # }
-  #
-  if (!is.null(data_class) && data_class != "matrix") {
-    data_class <- "tibble"
-  }
+#
+#   if (!is.null(pkg) && pkg != "nicheROVER") {
+#     pkg <- "SIBER"
+#   }
+#
+#   # if(is.null(data_format)) {
+#   #   data_format <- "wide"
+#   # }
+#   #
+#   if(!is.null(data_format) && data_format != "wide") {
+#     data_format <- "long"
+#   }
+#
 
   if (pkg %in% "nicheROVER") {
     # Check if data is a list
