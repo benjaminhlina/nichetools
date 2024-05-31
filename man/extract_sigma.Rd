@@ -23,10 +23,10 @@ you're using. Defaults to \code{"nicheROVER"}.
 Alternatively the user can supply the argument with \code{"SIBER"}.}
 
 \item{isotope_a}{a \code{character} string to change the column name
-of the first isotope used in the analysis. Defaults to \code{"d15n"}.}
+of the first isotope used in the analysis. Defaults to \code{"d13c"}.}
 
 \item{isotope_b}{a \code{character} string to change the name of second isotope
-used in the analysis. Defaults to \code{"d13c"}.}
+used in the analysis. Defaults to \code{"d15n"}.}
 
 \item{data_format}{a \code{character} string that decides whether the returned object is
 in long or wide format. Default is \code{"wide"}, with the alternative supplied being \code{"long"}.}
