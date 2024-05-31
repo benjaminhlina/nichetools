@@ -33,6 +33,10 @@
 #' extract_mu(
 #' data = niw_fish_post
 #' )
+#' extract_mu(
+#' data = post_sam_siber,
+#' pkg = "SIBER"
+#' )
 #'
 #' @import dplyr
 #' @import purrr
