@@ -85,6 +85,11 @@ extract_sigma <-  function(data,
       cli::cli_abort("The supplied argument for 'isotope_b' must be a character.")
     }
 
+  if (pkg %in% "nicheROVER") {
+    # Check if data is a list
+    if (!inherits(data, "list")) {
+      cli::cli_abort("Input 'data' must be a list.")
+    }
     # create name vector that will be used to id isotopes.
     id_isotope <- c(isotope_a, isotope_b)
     # extract sigma
