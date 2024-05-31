@@ -28,7 +28,7 @@ or SIBER."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/m
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/how_to_use_nichetools_with_nicherover.html">How to use {nichetools} with nicheROVER</a>
+    <a class="dropdown-item" href="../articles/using-nichetools-with-the-package-nicheROVER.html">Using {nichetools} with package nicheROVER</a>
   </div>
 </li>
 <li class="nav-item">
@@ -62,8 +62,7 @@ or <a href="https://cran.r-project.org/web/packages/SIBER/index.html" class="ext
 <span>  pkg <span class="op">=</span> <span class="st">"nicheROVER"</span>,</span>
 <span>  isotope_a <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  isotope_b <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  data_format <span class="op">=</span> <span class="st">"wide"</span>,</span>
-<span>  data_class <span class="op">=</span> <span class="st">"matrix"</span></span>
+<span>  data_format <span class="op">=</span> <span class="st">"wide"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -97,11 +96,6 @@ String to supply for the second isotope used in <code>niw.post()</code>. Default
 <dd><p>format a <code>character</code> that decided whether the returned object is
 in long or wide format. For use when <code>pkg</code> is set to <code>"nicheROVER"</code>.
 Default is <code>"wide"</code>, with the alternative supplied being <code>"long"</code>.</p></dd>
-
-
-<dt>data_class</dt>
-<dd><p>controls the output returned when <code>pkg</code> is set to <code>"SIBER"</code>.
-default is <code>"matrix"</code> but alternatively <code>"tibble"</code> can be supplied.</p></dd>
 
 </dl></div>
     <div class="section level2">

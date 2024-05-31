@@ -2,8 +2,8 @@ pandoc: 3.1.11
 pkgdown: 2.0.9
 pkgdown_sha: ~
 articles:
-  how_to_use_nichetools_with_nicherover: how_to_use_nichetools_with_nicherover.html
-last_built: 2024-05-17T14:08Z
+  using-nichetools-with-the-package-nicheROVER: using-nichetools-with-the-package-nicheROVER.html
+last_built: 2024-05-31T03:12Z
 urls:
   reference: https://benjaminhlina.github.io/nichetools/reference
   article: https://benjaminhlina.github.io/nichetools/articles
