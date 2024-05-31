@@ -123,26 +123,14 @@ extract_sigma <-  function(data,
   }
 
   if (pkg %in% "SIBER") {
-    # defaults of isotpoe a and b
-    if (is.null(isotope_a)) {
-      isotope_a <- "d15n"
-    }
-
-    if (is.null(isotope_b)) {
-      isotope_b <- "d13c"
-    }
-    # Check if isotope_a is character
-    if (!is.character(isotope_a)) {
-      cli::cli_abort("The supplied argument for 'isotope_a' must be a character.")
-    }
-
-    # Check if isotope_b is character
-    if (!is.character(isotope_b)) {
-      cli::cli_abort("The supplied argument for 'isotope_b' must be a character.")
+    if (!inherits(data, "list")) {
+      cli::cli_abort("Input 'data' must be a list.")
     }
 
     # create name vector that will be used to id isotopes.
     id_isotope <- c(isotope_a, isotope_b)
+
+
     df_sigma <- data |>
       purrr::map(~ {
         df <- .x[, 1:4] |>
