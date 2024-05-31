@@ -7,7 +7,9 @@
 [![Codecov test coverage](https://codecov.io/gh/benjaminhlina/nichetools/graph/badge.svg?token=mk3RjaD0hb)](https://codecov.io/gh/benjaminhlina/nichetools)
 <!-- badges: end -->
 
-{nichetools} is a complementary package to [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html) that allows the user to extract Bayesian estimates from data objects created by [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html) (e.g., niche size and similarities).
+{nichetools} is a complementary package to [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html) and 
+[{SIBER}](https://cran.r-project.org/web/packages/SIBER/index.html) that allows the user to extract Bayesian estimates from data objects created by [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html) or 
+[{SIBER}](https://cran.r-project.org/web/packages/SIBER/index.html).(e.g., niche size and similarities).
 
 ## Installation
 
@@ -50,7 +52,7 @@ To cite this package please cite the following publications
 
 -   Swanson, H.K., Lysy, M., Power, M., Stasko, A.D., Johnson, J.D., and Reist, J.D. 2015. A new probabilistic method for quantifying n-dimensional ecological niches and niche overlap. Ecology 96(2): 318–324. [doi:10.1890/14-0235.1](https://esajournals.onlinelibrary.wiley.com/doi/full/10.1890/14-0235.1)
 
--   Jackson, A.L., Inger, R., Parnell, A.C., and Bearhop, S. 2011. Comparing isotopic niche widths among and within communities: SIBER – Stable Isotope Bayesian Ellipses in R. Journal of Animal Ecology 80(3): 595–602. doi:10.1111/j.1365-2656.2011.01806.x.
+-   Jackson, A.L., Inger, R., Parnell, A.C., and Bearhop, S. 2011. Comparing isotopic niche widths among and within communities: SIBER – Stable Isotope Bayesian Ellipses in R. Journal of Animal Ecology 80(3): 595–602. [doi:10.1111/j.1365-2656.2011.01806.x.](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/j.1365-2656.2011.01806.x)
 
 
 -   Hlina B.L. (2024). nichetools: Complementary package to nicheROVER and SIBER. R package version 0.2.0. https://benjaminhlina.github.io/nichetools/
