@@ -157,7 +157,8 @@ extract_sigma <-  function(data,
         {{isotope_a}} := V1,
         {{isotope_b}} := V2
       ) |>
-      dplyr::select(metric, sample_name, isotope, sample_number, d15n, d13c)
+      dplyr::select(metric, sample_name, isotope, sample_number, {{isotope_a}},
+                    {{isotope_b}})
 
     if (data_format %in% "wide") {
 
