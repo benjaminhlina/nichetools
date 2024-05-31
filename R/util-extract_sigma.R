@@ -1,7 +1,7 @@
 #' extract \eqn{\Sigma}
 #'
 #' Extract Bayesian estimates of \eqn{\Sigma} from data objects created by
-#' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
+#' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html)
 #' or [{SIBER}](https://cran.r-project.org/web/packages/SIBER/index.html).
 #'
 #' @param data a `list` created by the function `niw.post()` or `siberMVN()`
@@ -18,15 +18,15 @@
 #' @param data_format a `character` string that decides whether the returned object is
 #' in long or wide format. Default is `"wide"`, with the alternative supplied being `"long"`.
 #'
-#' @return Returns a `tibble` of extracted estimates of \eqn{\Sigma}
-#' created by the function `niw.post()` or `siberMVN()` in the packages
+#' @return Returns a `tibble` of extracted estimates of \eqn{\Sigma} created by
+#' the function `niw.post()` or `siberMVN()` in the packages
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
 #' and [{SIBER}](https://cran.r-project.org/web/packages/SIBER/index.html).
 #'
 #' The returned object it will contain five columns in the
 #' following order when `data_format` is set to `"wide"`,
 #' `metric`, `id`, `sample_name`, `isotope`, `sample_number`,
-#' and the posterior sample for \eqn{\Sigma} (i.e., `post_sample`).
+#' and the posterior sample for \eqn{\Sigma} (e.g., `d13c` and `d15n`).
 #'
 #' @seealso [nicheROVER::niw.post()] and [SIBER::siberMVN()]
 #' @examples
@@ -64,7 +64,7 @@ extract_sigma <-  function(data,
 
   # sett data formatt
   if(is.null(data_format)) {
-      data_format <- "wide"
+    data_format <- "wide"
   }
 
   if (!(data_format %in% c("wide", "long"))) {
@@ -73,22 +73,22 @@ extract_sigma <-  function(data,
   }
 
   # defaults of isotpoe a and b
-    if (is.null(isotope_a)) {
-      isotope_a <- "d13c"
-    }
+  if (is.null(isotope_a)) {
+    isotope_a <- "d13c"
+  }
 
-    if (is.null(isotope_b)) {
-      isotope_b <- "d15n"
-    }
-    # Check if isotope_a is character
-    if (!is.character(isotope_a)) {
-      cli::cli_abort("The supplied argument for 'isotope_a' must be a character.")
-    }
+  if (is.null(isotope_b)) {
+    isotope_b <- "d15n"
+  }
+  # Check if isotope_a is character
+  if (!is.character(isotope_a)) {
+    cli::cli_abort("The supplied argument for 'isotope_a' must be a character.")
+  }
 
-    # Check if isotope_b is character
-    if (!is.character(isotope_b)) {
-      cli::cli_abort("The supplied argument for 'isotope_b' must be a character.")
-    }
+  # Check if isotope_b is character
+  if (!is.character(isotope_b)) {
+    cli::cli_abort("The supplied argument for 'isotope_b' must be a character.")
+  }
 
   if (pkg %in% "nicheROVER") {
     # Check if data is a list

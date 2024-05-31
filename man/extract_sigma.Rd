@@ -32,19 +32,19 @@ used in the analysis. Defaults to \code{"d15n"}.}
 in long or wide format. Default is \code{"wide"}, with the alternative supplied being \code{"long"}.}
 }
 \value{
-Returns a \code{tibble} of extracted estimates of \eqn{\Sigma}
-created by the function \code{niw.post()} or \code{siberMVN()} in the packages
+Returns a \code{tibble} of extracted estimates of \eqn{\Sigma} created by
+the function \code{niw.post()} or \code{siberMVN()} in the packages
 \href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.
 and \href{https://cran.r-project.org/web/packages/SIBER/index.html}{{SIBER}}.
 
 The returned object it will contain five columns in the
 following order when \code{data_format} is set to \code{"wide"},
 \code{metric}, \code{id}, \code{sample_name}, \code{isotope}, \code{sample_number},
-and the posterior sample for \eqn{\Sigma} (i.e., \code{post_sample}).
+and the posterior sample for \eqn{\Sigma} (e.g., \code{d13c} and \code{d15n}).
 }
 \description{
 Extract Bayesian estimates of \eqn{\Sigma} from data objects created by
-\href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.
+\href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}
 or \href{https://cran.r-project.org/web/packages/SIBER/index.html}{{SIBER}}.
 }
 \examples{

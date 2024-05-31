@@ -3,7 +3,7 @@
 \docType{data}
 \name{niw_fish_post}
 \alias{niw_fish_post}
-\title{A \code{list} of the posterior estimates of \eqn{\mu} and \eqn{\Sigma}}
+\title{A \code{list} of the posterior estimates of \eqn{\mu} and \eqn{\Sigma} from {nicheROVER}}
 \format{
 A \code{list} with elements \eqn{\mu} and \eqn{\Sigma} of sizes c(nsamples, length(lambda))
 and c(dim(Psi)).

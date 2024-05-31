@@ -37,7 +37,7 @@
 #'
 "sigma_est_wide"
 
-#' A `list` of the posterior estimates of \eqn{\mu} and \eqn{\Sigma}
+#' A `list` of the posterior estimates of \eqn{\mu} and \eqn{\Sigma} from {nicheROVER}
 #'
 #' Posterior estimates of \eqn{\mu} and \eqn{\Sigma} using the `fish` data set from
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html),
@@ -63,7 +63,7 @@
 "over_stat"
 
 
-#' A `list` of the posterior estimates of \eqn{\mu} and \eqn{\Sigma}
+#' A `list` of the posterior estimates of \eqn{\mu} and \eqn{\Sigma} from {SIBER}
 #'
 #' Posterior estimates of \eqn{\mu} and \eqn{\Sigma} using the `demo.siber.data`
 #' data set from [{SIBER}](https://cran.r-project.org/web/packages/SIBER/index.html).
