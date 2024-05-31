@@ -1,6 +1,6 @@
 #' extract \eqn{\Sigma}
 #'
-#' Extract Bayesian estimates of \eqn{\Sigma} from data objects created by either
+#' Extract Bayesian estimates of \eqn{\Sigma} from data objects created by
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
 #' or [{SIBER}](https://cran.r-project.org/web/packages/SIBER/index.html).
 #'
@@ -8,31 +8,35 @@
 #' in the package
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html)
 #' or [{SIBER}](https://cran.r-project.org/web/packages/SIBER/index.html), respectfully.
-#' @param pkg character string of the package that the user is using. Defaults to
-#' `"nicheROVER"` and will use methods to extract \eqn{\Sigma} values from `{nicherover}`
-#' objects. Alternatively the user can supply the argument with `"SIBER"` to
-#' extract \eqn{\Sigma} values from objects created by `{SIBER}.`
-#' @param isotope_a `character` to be used when `pkg` is set to `"nicheROVER"`.
-#' String to supply for the first isotope used in `niw.post()`. Defaults to `"d15n"`. To be used if
-#' @param isotope_b  `character`to be used when `pkg` is set to `"nicheROVER"`.
-#' String to supply for the second isotope used in `niw.post()`. Defaults to `"d13c"`.
-#' @param data_format format a `character` that decided whether the returned object is
-#' in long or wide format. For use when `pkg` is set to `"nicheROVER"`.
-#' Default is `"wide"`, with the alternative supplied being `"long"`.
+#' @param pkg a `character` string that is the name of the package that
+#' you're using. Defaults to `"nicheROVER"`.
+#' Alternatively the user can supply the argument with `"SIBER"`.
+#' @param isotope_a a `character` string to change the column name
+#' of the first isotope used in the analysis. Defaults to `"d15n"`.
+#' @param isotope_b a `character` string to change the name of second isotope
+#' used in the analysis. Defaults to `"d13c"`.
+#' @param data_format a `character` string that decides whether the returned object is
+#' in long or wide format. Default is `"wide"`, with the alternative supplied being `"long"`.
 #'
-#' @return Returns a `tibble` or `matrix` of extracted estimates of \eqn{\Sigma}
+#' @return Returns a `tibble` of extracted estimates of \eqn{\Sigma}
 #' created by the function `niw.post()` or `siberMVN()` in the packages
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
 #' and [{SIBER}](https://cran.r-project.org/web/packages/SIBER/index.html).
 #'
-#' If the returned object is a `tibble`, it will contain five columns in the
-#' following order, `metric`, `id`, `sample_name`, `isotope`, `sample_number`,
+#' The returned object it will contain five columns in the
+#' following order when `data_format` is set to `"wide"`,
+#' `metric`, `id`, `sample_name`, `isotope`, `sample_number`,
 #' and the posterior sample for \eqn{\Sigma} (i.e., `post_sample`).
 #'
 #' @seealso [nicheROVER::niw.post()] and [SIBER::siberMVN()]
 #' @examples
 #' extract_sigma(
 #' data = niw_fish_post
+#' )
+#'
+#' extract_sigma(
+#' data = post_sam_siber,
+#' pkg = "SIBER"
 #' )
 #'
 #' @import dplyr
@@ -42,32 +46,33 @@
 #' @export
 
 extract_sigma <-  function(data,
-                           pkg = "nicheROVER",
+                           pkg = NULL,
                            isotope_a = NULL,
                            isotope_b = NULL,
-                           data_format = "wide") {
+                           data_format = NULL) {
 
-#
-#   if (!is.null(pkg) && pkg != "nicheROVER") {
-#     pkg <- "SIBER"
-#   }
-#
-#   # if(is.null(data_format)) {
-#   #   data_format <- "wide"
-#   # }
-#   #
-#   if(!is.null(data_format) && data_format != "wide") {
-#     data_format <- "long"
-#   }
-#
+  # Set pkg to "nicheROVER" if it is NULL
+  if (is.null(pkg)) {
+    pkg <- "nicheROVER"
+  }
 
-  if (pkg %in% "nicheROVER") {
-    # Check if data is a list
-    if (!inherits(data, "list")) {
-      cli::cli_abort("Input 'data' must be a list.")
-    }
+  # Check if pkg is one of the allowed values
+  if (!(pkg %in% c("nicheROVER", "SIBER"))) {
+    cli::cli_abort("Invalid characters for 'pkg'. Allowed character strings are
+                   'nicheROVER' or 'SIBER'.")
+  }
 
-    # defaults of isotpoe a and b
+  # sett data formatt
+  if(is.null(data_format)) {
+      data_format <- "wide"
+  }
+
+  if (!(data_format %in% c("wide", "long"))) {
+    cli::cli_abort("Invalid characters for 'data_format'. Allowed character
+    strings are 'wide' or 'long'.")
+  }
+
+  # defaults of isotpoe a and b
     if (is.null(isotope_a)) {
       isotope_a <- "d15n"
     }
@@ -85,6 +90,11 @@ extract_sigma <-  function(data,
       cli::cli_abort("The supplied argument for 'isotope_b' must be a character.")
     }
 
+  if (pkg %in% "nicheROVER") {
+    # Check if data is a list
+    if (!inherits(data, "list")) {
+      cli::cli_abort("Input 'data' must be a list.")
+    }
     # create name vector that will be used to id isotopes.
     id_isotope <- c(isotope_a, isotope_b)
     # extract sigma
@@ -118,26 +128,14 @@ extract_sigma <-  function(data,
   }
 
   if (pkg %in% "SIBER") {
-    # defaults of isotpoe a and b
-    if (is.null(isotope_a)) {
-      isotope_a <- "d15n"
-    }
-
-    if (is.null(isotope_b)) {
-      isotope_b <- "d13c"
-    }
-    # Check if isotope_a is character
-    if (!is.character(isotope_a)) {
-      cli::cli_abort("The supplied argument for 'isotope_a' must be a character.")
-    }
-
-    # Check if isotope_b is character
-    if (!is.character(isotope_b)) {
-      cli::cli_abort("The supplied argument for 'isotope_b' must be a character.")
+    if (!inherits(data, "list")) {
+      cli::cli_abort("Input 'data' must be a list.")
     }
 
     # create name vector that will be used to id isotopes.
     id_isotope <- c(isotope_a, isotope_b)
+
+
     df_sigma <- data |>
       purrr::map(~ {
         df <- .x[, 1:4] |>
@@ -164,7 +162,8 @@ extract_sigma <-  function(data,
         {{isotope_a}} := V1,
         {{isotope_b}} := V2
       ) |>
-      dplyr::select(metric, sample_name, isotope, sample_number, d15n, d13c)
+      dplyr::select(metric, sample_name, isotope, sample_number, {{isotope_a}},
+                    {{isotope_b}})
 
     if (data_format %in% "wide") {
 

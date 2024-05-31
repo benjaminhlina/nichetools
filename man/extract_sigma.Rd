@@ -6,10 +6,10 @@
 \usage{
 extract_sigma(
   data,
-  pkg = "nicheROVER",
+  pkg = NULL,
   isotope_a = NULL,
   isotope_b = NULL,
-  data_format = "wide"
+  data_format = NULL
 )
 }
 \arguments{
@@ -18,39 +18,43 @@ in the package
 \href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}
 or \href{https://cran.r-project.org/web/packages/SIBER/index.html}{{SIBER}}, respectfully.}
 
-\item{pkg}{character string of the package that the user is using. Defaults to
-\code{"nicheROVER"} and will use methods to extract \eqn{\Sigma} values from \code{{nicherover}}
-objects. Alternatively the user can supply the argument with \code{"SIBER"} to
-extract \eqn{\Sigma} values from objects created by \verb{\{SIBER\}.}}
+\item{pkg}{a \code{character} string that is the name of the package that
+you're using. Defaults to \code{"nicheROVER"}.
+Alternatively the user can supply the argument with \code{"SIBER"}.}
 
-\item{isotope_a}{\code{character} to be used when \code{pkg} is set to \code{"nicheROVER"}.
-String to supply for the first isotope used in \code{niw.post()}. Defaults to \code{"d15n"}. To be used if}
+\item{isotope_a}{a \code{character} string to change the column name
+of the first isotope used in the analysis. Defaults to \code{"d15n"}.}
 
-\item{isotope_b}{\code{character}to be used when \code{pkg} is set to \code{"nicheROVER"}.
-String to supply for the second isotope used in \code{niw.post()}. Defaults to \code{"d13c"}.}
+\item{isotope_b}{a \code{character} string to change the name of second isotope
+used in the analysis. Defaults to \code{"d13c"}.}
 
-\item{data_format}{format a \code{character} that decided whether the returned object is
-in long or wide format. For use when \code{pkg} is set to \code{"nicheROVER"}.
-Default is \code{"wide"}, with the alternative supplied being \code{"long"}.}
+\item{data_format}{a \code{character} string that decides whether the returned object is
+in long or wide format. Default is \code{"wide"}, with the alternative supplied being \code{"long"}.}
 }
 \value{
-Returns a \code{tibble} or \code{matrix} of extracted estimates of \eqn{\Sigma}
+Returns a \code{tibble} of extracted estimates of \eqn{\Sigma}
 created by the function \code{niw.post()} or \code{siberMVN()} in the packages
 \href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.
 and \href{https://cran.r-project.org/web/packages/SIBER/index.html}{{SIBER}}.
 
-If the returned object is a \code{tibble}, it will contain five columns in the
-following order, \code{metric}, \code{id}, \code{sample_name}, \code{isotope}, \code{sample_number},
+The returned object it will contain five columns in the
+following order when \code{data_format} is set to \code{"wide"},
+\code{metric}, \code{id}, \code{sample_name}, \code{isotope}, \code{sample_number},
 and the posterior sample for \eqn{\Sigma} (i.e., \code{post_sample}).
 }
 \description{
-Extract Bayesian estimates of \eqn{\Sigma} from data objects created by either
+Extract Bayesian estimates of \eqn{\Sigma} from data objects created by
 \href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.
 or \href{https://cran.r-project.org/web/packages/SIBER/index.html}{{SIBER}}.
 }
 \examples{
 extract_sigma(
 data = niw_fish_post
+)
+
+extract_sigma(
+data = post_sam_siber,
+pkg = "SIBER"
 )
 
 }

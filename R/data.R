@@ -47,7 +47,7 @@
 #'
 #'
 #' @format A `list` with elements \eqn{\mu} and \eqn{\Sigma} of sizes c(nsamples, length(lambda))
-#'  and c(dim(Psi).
+#'  and c(dim(Psi)).
 #'
 "niw_fish_post"
 
@@ -61,3 +61,14 @@
 #' Normal-Inverse-Wishart (NIW) priors calculated in `niw.post()`.
 #'
 "over_stat"
+
+
+#' A `list` of the posterior estimates of \eqn{\mu} and \eqn{\Sigma}
+#'
+#' Posterior estimates of \eqn{\mu} and \eqn{\Sigma} using the `demo.siber.data`
+#' data set from [{SIBER}](https://cran.r-project.org/web/packages/SIBER/index.html).
+#' This `list` is produced  using the function `siberMVN()` from
+#' [{SIBER}](https://cran.r-project.org/web/packages/SIBER/index.html).
+#' @format A `list` with estimates of \eqn{\mu} and \eqn{\Sigma} for each species
+#' and group.
+"post_sam_siber"
