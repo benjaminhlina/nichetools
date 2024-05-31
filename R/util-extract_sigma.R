@@ -44,33 +44,30 @@ extract_sigma <-  function(data,
                            pkg = NULL,
                            isotope_a = NULL,
                            isotope_b = NULL,
-                           data_format = "wide") {
+                           data_format = NULL) {
 
-  #
-  #   if (!is.null(pkg) && pkg != "nicheROVER") {
-  #     pkg <- "SIBER"
-  #   }
-  #
-  #   # if(is.null(data_format)) {
-  #   #   data_format <- "wide"
-  #   # }
-  #   #
-  #   if(!is.null(data_format) && data_format != "wide") {
-  #     data_format <- "long"
-  #   }
-  #
-
+  # Set pkg to "nicheROVER" if it is NULL
   if (is.null(pkg)) {
-    # pkg <- "nicheROVER"
-    # if (pkg != nicheROVER) {
-    #   cli::cli_abort("The supplied argument for 'isotope_a' must be a character.")
-    # }
-    # Check if data is a list
-    if (!inherits(data, "list")) {
-      cli::cli_abort("Input 'data' must be a list.")
-    }
+    pkg <- "nicheROVER"
+  }
 
-    # defaults of isotpoe a and b
+  # Check if pkg is one of the allowed values
+  if (!(pkg %in% c("nicheROVER", "SIBER"))) {
+    cli::cli_abort("Invalid characters for 'pkg'. Allowed character strings are
+                   'nicheROVER' or 'SIBER'.")
+  }
+
+  # sett data formatt
+  if(is.null(data_format)) {
+      data_format <- "wide"
+  }
+
+  if (!(data_format %in% c("wide", "long"))) {
+    cli::cli_abort("Invalid characters for 'data_format'. Allowed character
+    strings are 'wide' or 'long'.")
+  }
+
+  # defaults of isotpoe a and b
     if (is.null(isotope_a)) {
       isotope_a <- "d15n"
     }
