@@ -1,6 +1,6 @@
 #' extract \eqn{\Sigma}
 #'
-#' Extract Bayesian estimates of \eqn{\Sigma} from data objects created by either
+#' Extract Bayesian estimates of \eqn{\Sigma} from data objects created by
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
 #' or [{SIBER}](https://cran.r-project.org/web/packages/SIBER/index.html).
 #'
@@ -8,25 +8,24 @@
 #' in the package
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html)
 #' or [{SIBER}](https://cran.r-project.org/web/packages/SIBER/index.html), respectfully.
-#' @param pkg character string of the package that the user is using. Defaults to
-#' `"nicheROVER"` and will use methods to extract \eqn{\Sigma} values from `{nicherover}`
-#' objects. Alternatively the user can supply the argument with `"SIBER"` to
-#' extract \eqn{\Sigma} values from objects created by `{SIBER}.`
-#' @param isotope_a `character` to be used when `pkg` is set to `"nicheROVER"`.
-#' String to supply for the first isotope used in `niw.post()`. Defaults to `"d15n"`. To be used if
-#' @param isotope_b  `character`to be used when `pkg` is set to `"nicheROVER"`.
-#' String to supply for the second isotope used in `niw.post()`. Defaults to `"d13c"`.
-#' @param data_format format a `character` that decided whether the returned object is
-#' in long or wide format. For use when `pkg` is set to `"nicheROVER"`.
-#' Default is `"wide"`, with the alternative supplied being `"long"`.
+#' @param pkg a `character` string that is the name of the package that
+#' you're using. Defaults to `"nicheROVER"`.
+#' Alternatively the user can supply the argument with `"SIBER"`.
+#' @param isotope_a a `character` string to change the column name
+#' of the first isotope used in the analysis. Defaults to `"d15n"`.
+#' @param isotope_b a `character` string to change the name of second isotope
+#' used in the analysis. Defaults to `"d13c"`.
+#' @param data_format a `character` string that decides whether the returned object is
+#' in long or wide format. Default is `"wide"`, with the alternative supplied being `"long"`.
 #'
-#' @return Returns a `tibble` or `matrix` of extracted estimates of \eqn{\Sigma}
+#' @return Returns a `tibble` of extracted estimates of \eqn{\Sigma}
 #' created by the function `niw.post()` or `siberMVN()` in the packages
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
 #' and [{SIBER}](https://cran.r-project.org/web/packages/SIBER/index.html).
 #'
-#' If the returned object is a `tibble`, it will contain five columns in the
-#' following order, `metric`, `id`, `sample_name`, `isotope`, `sample_number`,
+#' The returned object it will contain five columns in the
+#' following order when `data_format` is set to `"wide"`,
+#' `metric`, `id`, `sample_name`, `isotope`, `sample_number`,
 #' and the posterior sample for \eqn{\Sigma} (i.e., `post_sample`).
 #'
 #' @seealso [nicheROVER::niw.post()] and [SIBER::siberMVN()]
