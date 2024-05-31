@@ -44,7 +44,7 @@ test_that("test that the object type and length are correct ", {
 
 test_that("test that the object type and length are correct ", {
   df_mu_test <- extract_mu(
-    data = niw_fish_post, format = "wide"
+    data = niw_fish_post, data_format = "wide"
   )
   # check the type returned data frame should be data frame
   expect_s3_class(object = df_mu_test, class =  "data.frame")
@@ -67,7 +67,7 @@ test_that("Check if column names extracted are correct", {
 
   df_mu_test <- extract_mu(
     data = niw_fish_post,
-    format = "wide"
+    data_format = "wide"
   )
 
   expect_equal(names(df_mu_test), expected_names)
