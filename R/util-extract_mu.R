@@ -1,22 +1,34 @@
 #' extract \eqn{\mu}
 #'
-#' Extract Bayesian estimates of \eqn{\mu} from the function `niw.post()` in the package
-#' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
+#' Extract Bayesian estimates of \eqn{\mu} from data objects created by
+#' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html) or
+#' [{SIBER}](https://cran.r-project.org/web/packages/SIBER/index.html)..
 #'
-#' @param data a `list` created by the function `niw.post()` in the package
-#' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
-#' @param format a `character` that decided whether the returned object is
+#' @param data a `list` created by the function `niw.post()` or `siberMVN()`
+#' in the package
+#' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html)
+#' or [{SIBER}](https://cran.r-project.org/web/packages/SIBER/index.html), respectfully.
+#' @param pkg a `character` string that is the name of the package that
+#' you're using. Defaults to `"nicheROVER"`.
+#' Alternatively the user can supply the argument with `"SIBER"`.
+#' @param isotope_a a `character` string to change the column name
+#' of the first isotope used in the analysis. Defaults to `"d13c"`.
+#' @param isotope_b a `character` string to change the name of second isotope
+#' used in the analysis. Defaults to `"d15n"`.
+#' @param data_format a `character` string that decided whether the returned object is
 #' in long or wide format. Default is `"long"`, with the alternative supplied
 #' being `"wide"`.
 #'
-#' @return Returns a `tibble` of extracted estimates of \eqn{\mu} that are created by
-#' the function `niw.post()` in the package
+#' @return Returns a `tibble` of extracted estimates of \eqn{\mu} created by the
+#' function `niw.post()` or `siberMVN()` in the packages
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
+#' and [{SIBER}](https://cran.r-project.org/web/packages/SIBER/index.html).
+#'
 #' The `tibble` will contain five columns in the following order, `metric`,
 #' `sample_name`, `sample_number`, and the names of the isotope
 #' columns supplied to `niw.post()` (e.g., `d15n` and `d13c`).
 #'
-#' @seealso [nicheROVER::niw.post()]
+#' @seealso [nicheROVER::niw.post()] and [SIBER::siberMVN()]
 #' @examples
 #' extract_mu(
 #' data = niw_fish_post
