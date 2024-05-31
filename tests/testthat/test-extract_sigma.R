@@ -76,8 +76,8 @@ test_that("test that the object type and length are correct ", {
 test_that("that supplying both isotope names works ", {
   df <- extract_sigma(
     data = niw_fish_post,
-    isotope_a = "cal_d15n",
-    isotope_b = "cal_d13c",
+    isotope_a = "cal_d13c",
+    isotope_b = "cal_d15n",
     data_format = "long"
 
   )
