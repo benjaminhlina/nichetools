@@ -9,7 +9,7 @@ extract_sigma(
   pkg = NULL,
   isotope_a = NULL,
   isotope_b = NULL,
-  data_format = "wide"
+  data_format = NULL
 )
 }
 \arguments{
