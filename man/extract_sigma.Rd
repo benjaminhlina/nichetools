@@ -9,8 +9,7 @@ extract_sigma(
   pkg = "nicheROVER",
   isotope_a = NULL,
   isotope_b = NULL,
-  data_format = "wide",
-  data_class = "matrix"
+  data_format = "wide"
 )
 }
 \arguments{
@@ -33,9 +32,6 @@ String to supply for the second isotope used in \code{niw.post()}. Defaults to \
 \item{data_format}{format a \code{character} that decided whether the returned object is
 in long or wide format. For use when \code{pkg} is set to \code{"nicheROVER"}.
 Default is \code{"wide"}, with the alternative supplied being \code{"long"}.}
-
-\item{data_class}{controls the output returned when \code{pkg} is set to \code{"SIBER"}.
-default is \code{"matrix"} but alternatively \code{"tibble"} can be supplied.}
 }
 \value{
 Returns a \code{tibble} or \code{matrix} of extracted estimates of \eqn{\Sigma}
