@@ -6,7 +6,7 @@
 \usage{
 extract_sigma(
   data,
-  pkg = "nicheROVER",
+  pkg = NULL,
   isotope_a = NULL,
   isotope_b = NULL,
   data_format = "wide"
