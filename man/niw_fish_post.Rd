@@ -6,7 +6,7 @@
 \title{A \code{list} of the posterior estimates of \eqn{\mu} and \eqn{\Sigma}}
 \format{
 A \code{list} with elements \eqn{\mu} and \eqn{\Sigma} of sizes c(nsamples, length(lambda))
-and c(dim(Psi).
+and c(dim(Psi)).
 }
 \usage{
 niw_fish_post

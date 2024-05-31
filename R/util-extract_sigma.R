@@ -41,26 +41,30 @@
 #' @export
 
 extract_sigma <-  function(data,
-                           pkg = "nicheROVER",
+                           pkg = NULL,
                            isotope_a = NULL,
                            isotope_b = NULL,
                            data_format = "wide") {
 
-#
-#   if (!is.null(pkg) && pkg != "nicheROVER") {
-#     pkg <- "SIBER"
-#   }
-#
-#   # if(is.null(data_format)) {
-#   #   data_format <- "wide"
-#   # }
-#   #
-#   if(!is.null(data_format) && data_format != "wide") {
-#     data_format <- "long"
-#   }
-#
+  #
+  #   if (!is.null(pkg) && pkg != "nicheROVER") {
+  #     pkg <- "SIBER"
+  #   }
+  #
+  #   # if(is.null(data_format)) {
+  #   #   data_format <- "wide"
+  #   # }
+  #   #
+  #   if(!is.null(data_format) && data_format != "wide") {
+  #     data_format <- "long"
+  #   }
+  #
 
-  if (pkg %in% "nicheROVER") {
+  if (is.null(pkg)) {
+    # pkg <- "nicheROVER"
+    # if (pkg != nicheROVER) {
+    #   cli::cli_abort("The supplied argument for 'isotope_a' must be a character.")
+    # }
     # Check if data is a list
     if (!inherits(data, "list")) {
       cli::cli_abort("Input 'data' must be a list.")
