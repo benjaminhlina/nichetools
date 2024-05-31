@@ -15,9 +15,9 @@
 #' Default is 0.95 (i.e., 95% confidence interval).
 #' This value is bound by 0 and 1 and has to be a `numeric`.
 #' @param isotope_a character string that is the column name of the first
-#' isotope used in `dat_sigma`. Defaults to `"d15n"`.
-#' @param isotope_b character string that is the column name of the second
 #' isotope used in `dat_sigma`. Defaults to `"d13c"`.
+#' @param isotope_b character string that is the column name of the second
+#' isotope used in `dat_sigma`. Defaults to `"d15n"`.
 #' @param message Control whether the time processing is displayed after the
 #' end of the function. Default is `TRUE`.
 #'
@@ -65,10 +65,10 @@ niche_ellipse <- function(
 
 
   if (is.null(isotope_a)) {
-    isotope_a <- "d15n"
+    isotope_a <- "d13c"
   }
   if (is.null(isotope_b)) {
-    isotope_b <- "d13c"
+    isotope_b <- "d15n"
   }
   # Validate if isotope_a is a character
   if (!is.character(isotope_a)) {
@@ -99,11 +99,11 @@ niche_ellipse <- function(
 
   # preppare sigama for epplipse
   #
-  # Erroring at isotope names fix
+  # Erroring at isotope names fix will need make flexible qith {{{}}}
   sigma <- dat_sigma |>
-    dplyr::select(sample_name, sample_number, d15n, d13c) |>
+    dplyr::select(sample_name, sample_number, d13c, d15n) |>
     dplyr::group_split(sample_name, sample_number) |>
-    purrr::map(~ cbind(.x$d15n, .x$d13c) |>
+    purrr::map(~ cbind(.x$d13c, .x$d15n) |>
                  as.matrix(2, 2), .progress = "Prepare sigma for ellipse"
     )
 

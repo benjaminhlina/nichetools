@@ -12,9 +12,9 @@
 #' you're using. Defaults to `"nicheROVER"`.
 #' Alternatively the user can supply the argument with `"SIBER"`.
 #' @param isotope_a a `character` string to change the column name
-#' of the first isotope used in the analysis. Defaults to `"d15n"`.
+#' of the first isotope used in the analysis. Defaults to `"d13c"`.
 #' @param isotope_b a `character` string to change the name of second isotope
-#' used in the analysis. Defaults to `"d13c"`.
+#' used in the analysis. Defaults to `"d15n"`.
 #' @param data_format a `character` string that decides whether the returned object is
 #' in long or wide format. Default is `"wide"`, with the alternative supplied being `"long"`.
 #'
@@ -74,11 +74,11 @@ extract_sigma <-  function(data,
 
   # defaults of isotpoe a and b
     if (is.null(isotope_a)) {
-      isotope_a <- "d15n"
+      isotope_a <- "d13c"
     }
 
     if (is.null(isotope_b)) {
-      isotope_b <- "d13c"
+      isotope_b <- "d15n"
     }
     # Check if isotope_a is character
     if (!is.character(isotope_a)) {

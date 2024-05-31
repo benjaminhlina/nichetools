@@ -4,27 +4,48 @@
 \alias{extract_mu}
 \title{extract \eqn{\mu}}
 \usage{
-extract_mu(data, format = "long")
+extract_mu(
+  data,
+  pkg = NULL,
+  isotope_a = NULL,
+  isotope_b = NULL,
+  data_format = NULL
+)
 }
 \arguments{
-\item{data}{a \code{list} created by the function \code{niw.post()} in the package
-\href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.}
+\item{data}{a \code{list} created by the function \code{niw.post()} or \code{siberMVN()}
+in the package
+\href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}
+or \href{https://cran.r-project.org/web/packages/SIBER/index.html}{{SIBER}}, respectfully.}
 
-\item{format}{a \code{character} that decided whether the returned object is
+\item{pkg}{a \code{character} string that is the name of the package that
+you're using. Defaults to \code{"nicheROVER"}.
+Alternatively the user can supply the argument with \code{"SIBER"}.}
+
+\item{isotope_a}{a \code{character} string to change the column name
+of the first isotope used in the analysis. Defaults to \code{"d13c"}.}
+
+\item{isotope_b}{a \code{character} string to change the name of second isotope
+used in the analysis. Defaults to \code{"d15n"}.}
+
+\item{data_format}{a \code{character} string that decided whether the returned object is
 in long or wide format. Default is \code{"long"}, with the alternative supplied
 being \code{"wide"}.}
 }
 \value{
-Returns a \code{tibble} of extracted estimates of \eqn{\mu} that are created by
-the function \code{niw.post()} in the package
+Returns a \code{tibble} of extracted estimates of \eqn{\mu} created by the
+function \code{niw.post()} or \code{siberMVN()} in the packages
 \href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.
+and \href{https://cran.r-project.org/web/packages/SIBER/index.html}{{SIBER}}.
+
 The \code{tibble} will contain five columns in the following order, \code{metric},
 \code{sample_name}, \code{sample_number}, and the names of the isotope
 columns supplied to \code{niw.post()} (e.g., \code{d15n} and \code{d13c}).
 }
 \description{
-Extract Bayesian estimates of \eqn{\mu} from the function \code{niw.post()} in the package
-\href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.
+Extract Bayesian estimates of \eqn{\mu} from data objects created by
+\href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}} or
+\href{https://cran.r-project.org/web/packages/SIBER/index.html}{{SIBER}}..
 }
 \examples{
 extract_mu(
@@ -33,5 +54,5 @@ data = niw_fish_post
 
 }
 \seealso{
-\code{\link[nicheROVER:niw.post]{nicheROVER::niw.post()}}
+\code{\link[nicheROVER:niw.post]{nicheROVER::niw.post()}} and \code{\link[SIBER:siberMVN]{SIBER::siberMVN()}}
 }
