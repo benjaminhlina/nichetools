@@ -101,7 +101,7 @@ niche_ellipse <- function(
   #
   # Erroring at isotope names fix will need make flexible qith {{{}}}
   sigma <- dat_sigma |>
-    dplyr::select(sample_name, sample_number, d15n, d15n) |>
+    dplyr::select(sample_name, sample_number, d13c, d15n) |>
     dplyr::group_split(sample_name, sample_number) |>
     purrr::map(~ cbind(.x$d13c, .x$d15n) |>
                  as.matrix(2, 2), .progress = "Prepare sigma for ellipse"
