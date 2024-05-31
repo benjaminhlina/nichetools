@@ -25,10 +25,10 @@ matrices stacked onto of each other. See example of how to convert to
 wide format. This can be produced using \code{sigma_extract()}.}
 
 \item{isotope_a}{character string that is the column name of the first
-isotope used in \code{dat_sigma}. Defaults to \code{"d15n"}.}
+isotope used in \code{dat_sigma}. Defaults to \code{"d13c"}.}
 
 \item{isotope_b}{character string that is the column name of the second
-isotope used in \code{dat_sigma}. Defaults to \code{"d13c"}.}
+isotope used in \code{dat_sigma}. Defaults to \code{"d15n"}.}
 
 \item{p_ell}{is the confidence interval of each ellipse estimate.
 Default is 0.95 (i.e., 95\% confidence interval).
