@@ -34,6 +34,11 @@
 #' data = niw_fish_post
 #' )
 #'
+#' extract_sigma(
+#' data = post_sam_siber,
+#' pkg = "SIBER"
+#' )
+#'
 #' @import dplyr
 #' @import purrr
 #' @import tibble

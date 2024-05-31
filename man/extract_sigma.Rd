@@ -52,6 +52,11 @@ extract_sigma(
 data = niw_fish_post
 )
 
+extract_sigma(
+data = post_sam_siber,
+pkg = "SIBER"
+)
+
 }
 \seealso{
 \code{\link[nicheROVER:niw.post]{nicheROVER::niw.post()}} and \code{\link[SIBER:siberMVN]{SIBER::siberMVN()}}
