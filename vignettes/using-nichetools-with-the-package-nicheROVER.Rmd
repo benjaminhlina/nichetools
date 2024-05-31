@@ -68,7 +68,7 @@ We will then split the data frame into a list with each species as a data frame 
 ```{r, message = FALSE}
 fish_par <- df %>% 
   split(.$species) %>% 
-  map(~ select(., d15n, d13c)) %>% 
+  map(~ select(., d13c, d15n)) %>% 
   map(~ niw.post(nsample = nsample, X = .))
 ```
 
