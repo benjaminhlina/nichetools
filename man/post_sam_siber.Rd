@@ -3,7 +3,7 @@
 \docType{data}
 \name{post_sam_siber}
 \alias{post_sam_siber}
-\title{A \code{list} of the posterior estimates of \eqn{\mu} and \eqn{\Sigma} from {SIBER}.}
+\title{A \code{list} of the posterior estimates of \eqn{\mu} and \eqn{\Sigma} from \code{{SIBER}}}
 \format{
 A \code{list} with estimates of \eqn{\mu} and \eqn{\Sigma} for each species
 and group.
