@@ -142,8 +142,8 @@ extract_mu <- function(data,
 
 
     id_isotope <- c(isotope_a, isotope_b)
-    # ---- MIKE OBRIEN ------ Correct
-    df_mu <- data |>
+
+    df_mu <- ellipses.posterior |>
       purrr::map(~ {
         df <- .x[, 5:6] |>
           t() |>
