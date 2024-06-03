@@ -35,8 +35,8 @@ being \code{"wide"}.}
 \value{
 Returns a \code{tibble} of extracted estimates of \eqn{\mu} created by the
 function \code{niw.post()} or \code{siberMVN()} in the packages
-\href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.
-and \href{https://cran.r-project.org/web/packages/SIBER/index.html}{{SIBER}}.
+\href{https://cran.r-project.org/package=nicheROVER}{{nicheROVER}}.
+and \href{https://cran.r-project.org/package=SIBER}{{SIBER}}.
 
 The \code{tibble} will contain five columns in the following order, \code{metric},
 \code{sample_name}, \code{sample_number}, and the names of the isotope
@@ -44,8 +44,8 @@ columns supplied to \code{niw.post()} or  \code{siberMVN()} (e.g., \code{d13c} a
 }
 \description{
 Extract Bayesian estimates of \eqn{\mu} from data objects created by
-\href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}} or
-\href{https://cran.r-project.org/web/packages/SIBER/index.html}{{SIBER}}.
+\href{https://cran.r-project.org/package=nicheROVER}{{nicheROVER}} or
+\href{https://cran.r-project.org/package=SIBER}{{SIBER}}.
 }
 \examples{
 extract_mu(

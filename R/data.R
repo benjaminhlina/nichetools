@@ -1,7 +1,7 @@
 #' A `data.frame` containing posterior estimates of \eqn{\mu}
 #'
 #' Posterior estimates of \eqn{\mu} using `fish` data set from
-#' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html),
+#' [{nicheROVER}](https://cran.r-project.org/package=nicheROVER),
 #' using  Normal-Inverse-Wishart (NIW) priors.
 
 #' @format `data.frame` containing 8,000 rows and 7 variables
@@ -21,7 +21,7 @@
 #' A `data.frame` containing posterior estimates of \eqn{\Sigma}
 #'
 #' Posterior estimates of \eqn{\Sigma} using `fish` data set from
-#' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html),
+#' [{nicheROVER}](https://cran.r-project.org/package=nicheROVER),
 #' using Normal-Inverse-Wishart (NIW) priors
 #'
 #'
@@ -40,10 +40,10 @@
 #' A `list` of the posterior estimates of \eqn{\mu} and \eqn{\Sigma} from `{nicheROVER}`
 #'
 #' Posterior estimates of \eqn{\mu} and \eqn{\Sigma} using the `fish` data set from
-#' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html),
+#' [{nicheROVER}](https://cran.r-project.org/package=nicheROVER),
 #' using Normal-Inverse-Wishart (NIW) priors.
 #' This `list` is produced  using the function `niw.post()` from
-#' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
+#' [{nicheROVER}](https://cran.r-project.org/package=nicheROVER).
 #'
 #'
 #' @format A `list` with elements \eqn{\mu} and \eqn{\Sigma} of sizes c(nsamples, length(lambda))
@@ -54,7 +54,7 @@
 #' A `data.frame` containing the estimates of percentage of overlap among groups
 #'
 #' Estimates of the percentage of overlap among example species used in
-#' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
+#' [{nicheROVER}](https://cran.r-project.org/package=nicheROVER).
 #'
 #' @format A `array`containing `matrices` of the percent overlap for each group
 #' used in Bayesian estimates of \eqn{\mu} and \eqn{\Sigma} using
@@ -66,9 +66,9 @@
 #' A `list` of the posterior estimates of \eqn{\mu} and \eqn{\Sigma} from `{SIBER}`
 #'
 #' Posterior estimates of \eqn{\mu} and \eqn{\Sigma} using the `demo.siber.data`
-#' data set from [{SIBER}](https://cran.r-project.org/web/packages/SIBER/index.html).
+#' data set from [{SIBER}](https://cran.r-project.org/package=SIBER).
 #' This `list` is produced  using the function `siberMVN()` from
-#' [{SIBER}](https://cran.r-project.org/web/packages/SIBER/index.html).
+#' [{SIBER}](https://cran.r-project.org/package=SIBER).
 #' @format A `list` with estimates of \eqn{\mu} and \eqn{\Sigma} for each species
 #' and group.
 "post_sam_siber"

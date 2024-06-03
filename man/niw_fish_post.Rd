@@ -13,9 +13,9 @@ niw_fish_post
 }
 \description{
 Posterior estimates of \eqn{\mu} and \eqn{\Sigma} using the \code{fish} data set from
-\href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}},
+\href{https://cran.r-project.org/package=nicheROVER}{{nicheROVER}},
 using Normal-Inverse-Wishart (NIW) priors.
 This \code{list} is produced  using the function \code{niw.post()} from
-\href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.
+\href{https://cran.r-project.org/package=nicheROVER}{{nicheROVER}}.
 }
 \keyword{datasets}

@@ -8,7 +8,7 @@ extract_niche_size(data, name = NULL, prob = NULL)
 }
 \arguments{
 \item{data}{a \code{list} created by the function \code{niw.post()} in the package
-\href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.}
+\href{https://cran.r-project.org/package=nicheROVER}{{nicheROVER}}.}
 
 \item{name}{a \code{character} string that will be assinged as the column name for
 groups. Default is \code{sample_name}.}
@@ -22,7 +22,7 @@ a \code{tibble} containing three rows, \code{sample_name}, \code{id}, and \code{
 \description{
 Extract niche size based on elliptical niche region of Bayesian estimates of
 sigma created by function \code{niw.post()} in the package
-\href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.
+\link{{nicheROVER}}(https://cran.r-project.org/package=nicheROVER.
 This function is a wrapper around \code{nicheROVER::niche.size}.
 }
 \examples{
@@ -31,5 +31,5 @@ extract_niche_size(data = niw_fish_post)
 
 }
 \seealso{
-\code{\link[nicheROVER:niche.size]{nicheROVER::niche.size()}} \code{\link[nicheROVER:niw.post]{nicheROVER::niw.post()}}
+\code{\link[nicheROVER:niche.size]{nicheROVER::niche.size()}} and \code{\link[nicheROVER:niw.post]{nicheROVER::niw.post()}}
 }

@@ -15,8 +15,8 @@ extract_sigma(
 \arguments{
 \item{data}{a \code{list} created by the function \code{niw.post()} or \code{siberMVN()}
 in the package
-\href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}
-or \href{https://cran.r-project.org/web/packages/SIBER/index.html}{{SIBER}}, respectfully.}
+\href{https://cran.r-project.org/package=nicheROVER}{{nicheROVER}}
+or \href{https://cran.r-project.org/package=SIBER}{{SIBER}}, respectfully.}
 
 \item{pkg}{a \code{character} string that is the name of the package that
 you're using. Defaults to \code{"nicheROVER"}.
@@ -34,8 +34,8 @@ in long or wide format. Default is \code{"wide"}, with the alternative supplied 
 \value{
 Returns a \code{tibble} of extracted estimates of \eqn{\Sigma} created by
 the function \code{niw.post()} or \code{siberMVN()} in the packages
-\href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.
-and \href{https://cran.r-project.org/web/packages/SIBER/index.html}{{SIBER}}.
+\href{https://cran.r-project.org/package=nicheROVER}{{nicheROVER}}.
+and \href{https://cran.r-project.org/package=SIBER}{{SIBER}}.
 
 The returned object will contain five columns in the
 following order when \code{data_format} is set to \code{"wide"},
@@ -44,8 +44,8 @@ and the posterior sample for \eqn{\Sigma} (e.g., \code{d13c} and \code{d15n}).
 }
 \description{
 Extract Bayesian estimates of \eqn{\Sigma} from data objects created by
-\href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}
-or \href{https://cran.r-project.org/web/packages/SIBER/index.html}{{SIBER}}.
+\href{https://cran.r-project.org/package=nicheROVER}{{nicheROVER}}
+or \link{{SIBER}}(https://cran.r-project.org/package=SIBER.
 }
 \examples{
 extract_sigma(

@@ -4,12 +4,12 @@
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![nichetools status badge](https://benjaminhlina.r-universe.dev/badges/nichetools)](https://benjaminhlina.r-universe.dev/nichetools)
 [![R-CMD-check](https://github.com/benjaminhlina/nichetool/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/benjaminhlina/nichetool/actions/workflows/R-CMD-check.yaml)
-[![Codecov test coverage](https://codecov.io/gh/benjaminhlina/nichetools/graph/badge.svg?token=mk3RjaD0hb)](https://codecov.io/gh/benjaminhlina/nichetools)
+[![Codecov test coverage](https://codecov.io/gh/benjaminhlina/nichetools/graph/badge.svg?token=mk3RjaD0hb)](https://app.codecov.io/gh/benjaminhlina/nichetools)
 <!-- badges: end -->
 
-{nichetools} is a complementary package to [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html) and 
-[{SIBER}](https://cran.r-project.org/web/packages/SIBER/index.html) that allows the user to extract Bayesian estimates from data objects created by [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html) or 
-[{SIBER}](https://cran.r-project.org/web/packages/SIBER/index.html).(e.g., niche size and similarities).
+{nichetools} is a complementary package to [{nicheROVER}](https://cran.r-project.org/package=nicheROVER) and 
+[{SIBER}](https://cran.r-project.org/package=SIBER) that allows the user to extract Bayesian estimates from data objects created by [{nicheROVER}](https://cran.r-project.org/package=nicheROVER) or 
+[{SIBER}](https://cran.r-project.org/package=SIBER).(e.g., niche size and similarities).
 
 ## Installation
 

@@ -9,7 +9,7 @@ extract_overlap(data, name_a = NULL, name_b = NULL)
 \arguments{
 \item{data}{a \code{array} object containing \code{matrices} created by the function
 \code{overlap()} in the package
-\href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.}
+\href{https://cran.r-project.org/package=nicheROVER}{{nicheROVER}}.}
 
 \item{name_a}{character string to supply for the first
 \code{sample_name} used in \code{overlap()}. Defaults to \code{"sample_name_a"}.}
@@ -24,7 +24,7 @@ A \code{tibble} containing five rows, \code{sample_name_a}, \code{id},
 \description{
 Extract Bayesian estimates of similarities among groups produced by the
 following function \code{overlap()} in the package
-\href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.
+\href{https://cran.r-project.org/package=nicheROVER}{{nicheROVER}}.
 }
 \examples{
 extract_overlap(data = over_stat)

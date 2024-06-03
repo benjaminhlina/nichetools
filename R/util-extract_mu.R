@@ -1,8 +1,8 @@
 #' extract \eqn{\mu}
 #'
 #' Extract Bayesian estimates of \eqn{\mu} from data objects created by
-#' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html) or
-#' [{SIBER}](https://cran.r-project.org/web/packages/SIBER/index.html).
+#' [{nicheROVER}](https://cran.r-project.org/package=nicheROVER) or
+#' [{SIBER}](https://cran.r-project.org/package=SIBER).
 #'
 #' @param data a `list` created by the function `niw.post()` or `siberMVN()`
 #' in the package
@@ -21,8 +21,8 @@
 #'
 #' @return Returns a `tibble` of extracted estimates of \eqn{\mu} created by the
 #' function `niw.post()` or `siberMVN()` in the packages
-#' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
-#' and [{SIBER}](https://cran.r-project.org/web/packages/SIBER/index.html).
+#' [{nicheROVER}](https://cran.r-project.org/package=nicheROVER).
+#' and [{SIBER}](https://cran.r-project.org/package=SIBER).
 #'
 #' The `tibble` will contain five columns in the following order, `metric`,
 #' `sample_name`, `sample_number`, and the names of the isotope

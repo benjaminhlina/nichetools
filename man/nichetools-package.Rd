@@ -4,7 +4,7 @@
 \name{nichetools-package}
 \alias{nichetools}
 \alias{nichetools-package}
-\title{nichetools: Complementary Package To NicheROVER and SIBER}
+\title{nichetools: Complementary Package to NicheROVER and SIBER}
 \description{
 Provides functions complementary to packages nicheROVER and SIBER allowing the user to extract Bayesian estimates from data objects created by packages nicheROVER and SIBER.
 }

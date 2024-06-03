@@ -21,7 +21,7 @@ mu_est_long
 }
 \description{
 Posterior estimates of \eqn{\mu} using \code{fish} data set from
-\href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}},
+\href{https://cran.r-project.org/package=nicheROVER}{{nicheROVER}},
 using  Normal-Inverse-Wishart (NIW) priors.
 }
 \keyword{datasets}

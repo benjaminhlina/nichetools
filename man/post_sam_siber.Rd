@@ -13,8 +13,8 @@ post_sam_siber
 }
 \description{
 Posterior estimates of \eqn{\mu} and \eqn{\Sigma} using the \code{demo.siber.data}
-data set from \href{https://cran.r-project.org/web/packages/SIBER/index.html}{{SIBER}}.
+data set from \href{https://cran.r-project.org/package=SIBER}{{SIBER}}.
 This \code{list} is produced  using the function \code{siberMVN()} from
-\href{https://cran.r-project.org/web/packages/SIBER/index.html}{{SIBER}}.
+\href{https://cran.r-project.org/package=SIBER}{{SIBER}}.
 }
 \keyword{datasets}

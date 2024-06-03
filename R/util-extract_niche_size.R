@@ -2,11 +2,11 @@
 #'
 #' Extract niche size based on elliptical niche region of Bayesian estimates of
 #' sigma created by function `niw.post()` in the package
-#' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
+#' [{nicheROVER}](https://cran.r-project.org/package=nicheROVER.
 #' This function is a wrapper around `nicheROVER::niche.size`.
 #'
 #' @param data a `list` created by the function `niw.post()` in the package
-#' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
+#' [{nicheROVER}](https://cran.r-project.org/package=nicheROVER).
 #' @param name a `character` string that will be assinged as the column name for
 #' groups. Default is `sample_name`.
 #' @param prob a `numeric` bound by 0 and 1 indicating the
@@ -14,7 +14,7 @@
 #'
 #' @return a `tibble` containing three rows, `sample_name`, `id`, and `niche_size`.
 #'
-#' @seealso [nicheROVER::niche.size()] [nicheROVER::niw.post()]
+#' @seealso [nicheROVER::niche.size()] and [nicheROVER::niw.post()]
 #' @examples
 #' extract_niche_size(data = niw_fish_post)
 #'

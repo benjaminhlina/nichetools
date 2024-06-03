@@ -1,6 +1,6 @@
 Package: nichetools
 Type: Package
-Title: Complementary Package To NicheROVER and SIBER
+Title: Complementary Package to NicheROVER and SIBER
 Version: 0.2.0
 Author: Benjamin L. Hlina
 Maintainer: Benjamin L. Hlina <benjamin.hlina@gmail.com>

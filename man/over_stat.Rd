@@ -14,6 +14,6 @@ over_stat
 }
 \description{
 Estimates of the percentage of overlap among example species used in
-\href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.
+\href{https://cran.r-project.org/package=nicheROVER}{{nicheROVER}}.
 }
 \keyword{datasets}
