@@ -6,11 +6,11 @@
 #' @param dat_mu a `data.frame` containing \eqn{\mu} Bayesian estimates.
 #' This `data.frame` needs to be in long format with each \eqn{\mu}
 #' estimate for each isotope stacked on top of each other. This can be produced
-#' using `mu_extract()`.
+#' using `extract_mu()`.
 #' @param dat_sigma a `data.frame` containing \eqn{\Sigma} Bayesian estimates.
-#' This `data.frame` needs be in wide format, that is \eqn{\sigma} (covariance)
+#' This `data.frame` needs be in wide format, that is \eqn{\Sigma} (covariance)
 #' matrices stacked onto of each other. See example of how to convert to
-#'  wide format. This can be produced using `sigma_extract()`.
+#'  wide format. This can be produced using `extract_sigma()`.
 #' @param p_ell is the confidence interval of each ellipse estimate.
 #' Default is 0.95 (i.e., 95% confidence interval).
 #' This value is bound by 0 and 1 and has to be a `numeric`.
@@ -18,14 +18,20 @@
 #' isotope used in `dat_sigma`. Defaults to `"d13c"`.
 #' @param isotope_b character string that is the column name of the second
 #' isotope used in `dat_sigma`. Defaults to `"d15n"`.
+#' @param random logical value indicating whether or not to randomly sample
+#' posterior distributions for \eqn{\mu} and \eqn{\Sigma} to create a sub-sample
+#' of ellipse. Default is `TRUE`.
+#' @param set_seed numerical value to set seed for ranodmly sampling. Default is `4`.
+#' @param n numerical value that controls the number of random samples.
+#' Default is `10`.
 #' @param message Control whether the time processing is displayed after the
 #' end of the function. Default is `TRUE`.
 #'
 #' @return A `tibble` containing, `sample_name`, `sample_number`, and the
 #' isotopes that were used in the estimation of ellipse
-#' (i.e., `d15n`, and `d13c`).
+#' (i.e.,  and `d13c` and `d15n`).
 #'
-#' @seealso [nicheROVER::niw.post()] [extract_mu()] [SIBER::siberMVN()]
+#' @seealso [nicheROVER::niw.post()] [SIBER::siberMVN()] [extract_mu()]
 #' and [extract_sigma()]
 #' @examples
 #' \dontrun{
@@ -48,6 +54,9 @@ niche_ellipse <- function(
     isotope_a = NULL,
     isotope_b = NULL,
     p_ell = NULL,
+    random = NULL,
+    set_seed = NULL,
+    n = NULL,
     message = TRUE
 ) {
   # options(error = recover)
