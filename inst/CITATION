@@ -1,13 +1,8 @@
 bibentry(
   bibtype  = "Article",
   title    = "A new probabilistic method for quantifying n-dimensional ecological niches and niche overlap.",
-  author   = personList(as.person("Heidi K. Swanson"),
-                                   as.person("Martin Lysy"),
-                                   as.person("Michael Power"),
-                                   as.person("Ashley D. Stasko"),
-                                   as.person("Jim D. Johnson"),
-                                   as.person("James D. Reist")
-                                   ),
+  author   = c("Heidi K. Swanson", "Martin Lysy", Michael Power",
+               "Ashley D. Stasko", "Jim D. Johnson", "James D. Reist"),
   journal  = "Ecology",
   year     = "2015",
   volume   = "96",
@@ -20,11 +15,8 @@ bibentry(
 bibentry(
   bibtype  = "Article",
   title    = "Comparing isotopic niche widths among and within communities: SIBER – Stable Isotope Bayesian Ellipses in R",
-  author   = personList(as.person("Andrew L. Jackson"),
-                                   as.person("Richard Inger"),
-                                   as.person("Andrew C. Parnell"),
-                                   as.person("Stuart Bearhop")
-                                   ),
+  author   = c("Andrew L. Jackson", "Richard Inger",
+               "Andrew C. Parnell", "Stuart Bearhop"),
   journal  = "Journal of Animal Ecology",
   year     = "2011",
   volume   = 80,
@@ -37,7 +29,7 @@ bibentry(
 bibentry(
   bibtype  = "Manual",
   title    = "nichetools: Complementary package to nicheROVER",
-  author   = personList(as.person("Benjamin L. HLina")),
+  author   =  c("Benjamin L. HLina"),
   year     = "2024",
   note     = "R package version 0.2.0",
   url      = "https://benjaminhlina.github.io/nichetools/"
