@@ -9,7 +9,7 @@
 #' using `extract_mu()`.
 #' @param dat_sigma a `data.frame` containing \eqn{\Sigma} Bayesian estimates.
 #' This `data.frame` needs be in wide format, that is \eqn{\Sigma} (covariance)
-#' matrices stacked onto of each other. See example of how to convert to
+#' matrices stacked on top of each other. See example of how to convert to
 #'  wide format. This can be produced using `extract_sigma()`.
 #' @param p_ell is the confidence interval of each ellipse estimate.
 #' Default is 0.95 (i.e., 95% confidence interval).
@@ -21,10 +21,10 @@
 #' @param random logical value indicating whether or not to randomly sample
 #' posterior distributions for \eqn{\mu} and \eqn{\Sigma} to create a sub-sample
 #' of ellipse. Default is `TRUE`.
-#' @param set_seed numerical value to set seed for ranodmly sampling. Default is `4`.
+#' @param set_seed numerical value to set seed for random sampling. Default is `4`.
 #' @param n numerical value that controls the number of random samples.
 #' Default is `10`.
-#' @param message Control whether the time processing is displayed after the
+#' @param message control whether the time processing is displayed after the
 #' end of the function. Default is `TRUE`.
 #'
 #' @return A `tibble` containing, `sample_name`, `sample_number`, and the
@@ -34,10 +34,8 @@
 #' @seealso [nicheROVER::niw.post()], [SIBER::siberMVN()], [extract_mu()],
 #' and [extract_sigma()]
 #' @examples
-#' \dontrun{
 #' niche_ellipse(dat_mu = mu_est_long,
 #'               dat_sigma = sigma_est_wide)
-#' }
 #' @import dplyr
 #' @import ellipse
 #' @import purrr

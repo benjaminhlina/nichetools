@@ -24,7 +24,7 @@ using \code{extract_mu()}.}
 
 \item{dat_sigma}{a \code{data.frame} containing \eqn{\Sigma} Bayesian estimates.
 This \code{data.frame} needs be in wide format, that is \eqn{\Sigma} (covariance)
-matrices stacked onto of each other. See example of how to convert to
+matrices stacked on top of each other. See example of how to convert to
 wide format. This can be produced using \code{extract_sigma()}.}
 
 \item{isotope_a}{character string that is the column name of the first
@@ -41,12 +41,12 @@ This value is bound by 0 and 1 and has to be a \code{numeric}.}
 posterior distributions for \eqn{\mu} and \eqn{\Sigma} to create a sub-sample
 of ellipse. Default is \code{TRUE}.}
 
-\item{set_seed}{numerical value to set seed for ranodmly sampling. Default is \code{4}.}
+\item{set_seed}{numerical value to set seed for random sampling. Default is \code{4}.}
 
 \item{n}{numerical value that controls the number of random samples.
 Default is \code{10}.}
 
-\item{message}{Control whether the time processing is displayed after the
+\item{message}{control whether the time processing is displayed after the
 end of the function. Default is \code{TRUE}.}
 }
 \value{
@@ -59,10 +59,8 @@ This function allows the user to supply Bayesian estimates of \eqn{\mu} and
 \eqn{\Sigma} to create estimated Bayesian ellipse for niche region.
 }
 \examples{
-\dontrun{
 niche_ellipse(dat_mu = mu_est_long,
               dat_sigma = sigma_est_wide)
-}
 }
 \seealso{
 \code{\link[nicheROVER:niw.post]{nicheROVER::niw.post()}}, \code{\link[SIBER:siberMVN]{SIBER::siberMVN()}}, \code{\link[=extract_mu]{extract_mu()}},

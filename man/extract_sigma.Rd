@@ -37,7 +37,7 @@ the function \code{niw.post()} or \code{siberMVN()} in the packages
 \href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}.
 and \href{https://cran.r-project.org/web/packages/SIBER/index.html}{{SIBER}}.
 
-The returned object it will contain five columns in the
+The returned object will contain five columns in the
 following order when \code{data_format} is set to \code{"wide"},
 \code{metric}, \code{id}, \code{sample_name}, \code{isotope}, \code{sample_number},
 and the posterior sample for \eqn{\Sigma} (e.g., \code{d13c} and \code{d15n}).

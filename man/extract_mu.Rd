@@ -28,7 +28,7 @@ of the first isotope used in the analysis. Defaults to \code{"d13c"}.}
 \item{isotope_b}{a \code{character} string to change the name of second isotope
 used in the analysis. Defaults to \code{"d15n"}.}
 
-\item{data_format}{a \code{character} string that decided whether the returned object is
+\item{data_format}{a \code{character} string that decides whether the returned object is
 in long or wide format. Default is \code{"long"}, with the alternative supplied
 being \code{"wide"}.}
 }
@@ -45,7 +45,7 @@ columns supplied to \code{niw.post()} or  \code{siberMVN()} (e.g., \code{d13c} a
 \description{
 Extract Bayesian estimates of \eqn{\mu} from data objects created by
 \href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}} or
-\href{https://cran.r-project.org/web/packages/SIBER/index.html}{{SIBER}}..
+\href{https://cran.r-project.org/web/packages/SIBER/index.html}{{SIBER}}.
 }
 \examples{
 extract_mu(

@@ -2,7 +2,7 @@
 #'
 #' Extract Bayesian estimates of \eqn{\mu} from data objects created by
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html) or
-#' [{SIBER}](https://cran.r-project.org/web/packages/SIBER/index.html)..
+#' [{SIBER}](https://cran.r-project.org/web/packages/SIBER/index.html).
 #'
 #' @param data a `list` created by the function `niw.post()` or `siberMVN()`
 #' in the package
@@ -15,7 +15,7 @@
 #' of the first isotope used in the analysis. Defaults to `"d13c"`.
 #' @param isotope_b a `character` string to change the name of second isotope
 #' used in the analysis. Defaults to `"d15n"`.
-#' @param data_format a `character` string that decided whether the returned object is
+#' @param data_format a `character` string that decides whether the returned object is
 #' in long or wide format. Default is `"long"`, with the alternative supplied
 #' being `"wide"`.
 #'
@@ -143,7 +143,7 @@ extract_mu <- function(data,
 
     id_isotope <- c(isotope_a, isotope_b)
 
-    
+
     df_mu <- data |>
       purrr::map(~ {
         df <- .x[, 5:6] |>

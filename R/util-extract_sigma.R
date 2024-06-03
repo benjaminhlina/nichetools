@@ -23,7 +23,7 @@
 #' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html).
 #' and [{SIBER}](https://cran.r-project.org/web/packages/SIBER/index.html).
 #'
-#' The returned object it will contain five columns in the
+#' The returned object will contain five columns in the
 #' following order when `data_format` is set to `"wide"`,
 #' `metric`, `id`, `sample_name`, `isotope`, `sample_number`,
 #' and the posterior sample for \eqn{\Sigma} (e.g., `d13c` and `d15n`).
