@@ -2,7 +2,7 @@
 #'
 #' Extract Bayesian estimates of \eqn{\Sigma} from data objects created by
 #' [{nicheROVER}](https://cran.r-project.org/package=nicheROVER)
-#' or [{SIBER}](https://cran.r-project.org/package=SIBER.
+#' or [{SIBER}](https://cran.r-project.org/package=SIBER).
 #'
 #' @param data a `list` created by the function `niw.post()` or `siberMVN()`
 #' in the package

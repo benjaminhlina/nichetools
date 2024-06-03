@@ -45,7 +45,7 @@ and the posterior sample for \eqn{\Sigma} (e.g., \code{d13c} and \code{d15n}).
 \description{
 Extract Bayesian estimates of \eqn{\Sigma} from data objects created by
 \href{https://cran.r-project.org/package=nicheROVER}{{nicheROVER}}
-or \link{{SIBER}}(https://cran.r-project.org/package=SIBER.
+or \href{https://cran.r-project.org/package=SIBER}{{SIBER}}.
 }
 \examples{
 extract_sigma(

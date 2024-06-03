@@ -22,7 +22,7 @@ a \code{tibble} containing three rows, \code{sample_name}, \code{id}, and \code{
 \description{
 Extract niche size based on elliptical niche region of Bayesian estimates of
 sigma created by function \code{niw.post()} in the package
-\link{{nicheROVER}}(https://cran.r-project.org/package=nicheROVER.
+\href{https://cran.r-project.org/package=nicheROVER}{{nicheROVER}}.
 This function is a wrapper around \code{nicheROVER::niche.size}.
 }
 \examples{
