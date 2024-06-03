@@ -109,7 +109,7 @@ and <a href="https://cran.r-project.org/web/packages/SIBER/index.html" class="ex
 
 <p>The <code>tibble</code> will contain five columns in the following order, <code>metric</code>,
 <code>sample_name</code>, <code>sample_number</code>, and the names of the isotope
-columns supplied to <code>niw.post()</code> (e.g., <code>d15n</code> and <code>d13c</code>).</p>
+columns supplied to <code>niw.post()</code> or  <code>siberMVN()</code> (e.g., <code>d13c</code> and  <code>d15n</code> ).</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
@@ -135,6 +135,24 @@ columns supplied to <code>niw.post()</code> (e.g., <code>d15n</code> and <code>d
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> mu     ARCS                    5 d13c     -<span style="color: #BB0000;">23.9</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> mu     ARCS                    5 d15n      12.6</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 7,990 more rows</span></span>
+<span class="r-in"><span><span class="fu">extract_mu</span><span class="op">(</span></span></span>
+<span class="r-in"><span>data <span class="op">=</span> <span class="va">post_sam_siber</span>,</span></span>
+<span class="r-in"><span>pkg <span class="op">=</span> <span class="st">"SIBER"</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 48,000 × 5</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    metric sample_name sample_number isotope  mu_est</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> mu     1.1                     1 d13c    -<span style="color: #BB0000;">9.05</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> mu     1.1                     1 d15n     0.062<span style="text-decoration: underline;">2</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> mu     1.1                     2 d13c    -<span style="color: #BB0000;">8.91</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> mu     1.1                     2 d15n     0.429 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> mu     1.1                     3 d13c    -<span style="color: #BB0000;">9.11</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> mu     1.1                     3 d15n     0.444 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> mu     1.1                     4 d13c    -<span style="color: #BB0000;">9.00</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> mu     1.1                     4 d15n     0.088<span style="text-decoration: underline;">1</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> mu     1.1                     5 d13c    -<span style="color: #BB0000;">9.01</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> mu     1.1                     5 d15n    -<span style="color: #BB0000;">0.073</span><span style="color: #BB0000; text-decoration: underline;">4</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 47,990 more rows</span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

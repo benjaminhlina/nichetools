@@ -3,7 +3,7 @@ pkgdown: 2.0.9
 pkgdown_sha: ~
 articles:
   using-nichetools-with-the-package-nicheROVER: using-nichetools-with-the-package-nicheROVER.html
-last_built: 2024-05-31T20:42Z
+last_built: 2024-06-03T15:11Z
 urls:
   reference: https://benjaminhlina.github.io/nichetools/reference
   article: https://benjaminhlina.github.io/nichetools/articles
