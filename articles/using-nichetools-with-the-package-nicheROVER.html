@@ -79,7 +79,7 @@ Hlina</h4>
 <div class="section level3">
 <h3 id="our-objectives">Our Objectives<a class="anchor" aria-label="anchor" href="#our-objectives"></a>
 </h3>
-<p>The purpose of this vignette is to use <a href="https://cran.r-project.org/web/packages/nicheROVER/index.html" class="external-link">{nicheROVER}</a>
+<p>The purpose of this vignette is to use <a href="https://cran.r-project.org/package=nicheROVER" class="external-link">{nicheROVER}</a>
 and <a href="https://benjaminhlina.github.io/nichetools/">{nichetools}</a> to
 extract and then visualize estimates of trophic niche size and
 similarities for multiple freshwater fish using <a href="https://ggplot2.tidyverse.org/" class="external-link">{ggplot2}</a>.</p>
@@ -94,13 +94,13 @@ habitat occupancy).</p>
 <h3 id="bring-in-trophic-niche-data">Bring in trophic niche data<a class="anchor" aria-label="anchor" href="#bring-in-trophic-niche-data"></a>
 </h3>
 <p>First we will load the necessary packages to preform the analysis and
-visualization. We will use <a href="https://cran.r-project.org/web/packages/nicheROVER/index.html" class="external-link">{nicheROVER}</a>
+visualization. We will use <a href="https://cran.r-project.org/package=nicheROVER" class="external-link">{nicheROVER}</a>
 and <a href="https://benjaminhlina.github.io/nichetools/">{nichetools}</a> to
-preform the analysis. We will use <a href="https://dplyr.tidyverse.org/" class="external-link">{dplyr}</a>, <a href="https://tidyr.tidyverse.org/" class="external-link">{tidyr}</a>, and <a href="">{purrr}</a> to manipulate data and iterate processes. Lastly, we
-will use <a href="https://ggplot2.tidyverse.org/" class="external-link">{ggplot2}</a>, <a href="https://wilkelab.org/ggtext/" class="external-link">{ggtext}</a>, and <a href="https://patchwork.data-imaginist.com/" class="external-link">{patchwork}</a> to plot,
+preform the analysis. We will use <a href="https://dplyr.tidyverse.org/" class="external-link">{dplyr}</a>, <a href="https://tidyr.tidyverse.org/" class="external-link">{tidyr}</a>, and <a href="https://purrr.tidyverse.org/" class="external-link">{purrr}</a> to manipulate data and
+iterate processes. Lastly, we will use <a href="https://ggplot2.tidyverse.org/" class="external-link">{ggplot2}</a>, <a href="https://wilkelab.org/ggtext/" class="external-link">{ggtext}</a>, and <a href="https://patchwork.data-imaginist.com/" class="external-link">{patchwork}</a> to plot,
 add labels, and arrange plots.</p>
 <p>I will add that many of the <a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a> and
-<a href="https://tidyr.tidyverse.org" class="external-link">tidyr</a> functions and processes can be replaced using <a href="https://cran.r-project.org/web/packages/data.table/index.html" class="external-link">{data.table}</a>
+<a href="https://tidyr.tidyverse.org" class="external-link">tidyr</a> functions and processes can be replaced using <a href="https://CRAN.R-project.org/package=data.table" class="external-link">{data.table}</a>
 which is great when working with large data sets.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">{</span></span>
