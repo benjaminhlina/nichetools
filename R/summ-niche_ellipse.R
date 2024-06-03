@@ -31,7 +31,7 @@
 #' isotopes that were used in the estimation of ellipse
 #' (i.e.,  and `d13c` and `d15n`).
 #'
-#' @seealso [nicheROVER::niw.post()] [SIBER::siberMVN()] [extract_mu()]
+#' @seealso [nicheROVER::niw.post()], [SIBER::siberMVN()], [extract_mu()],
 #' and [extract_sigma()]
 #' @examples
 #' \dontrun{
