@@ -42,6 +42,8 @@
 #' @import ellipse
 #' @import purrr
 #' @importFrom rlang :=
+#' @importFrom rlang sym
+#' @importFrom rlang as_name
 #' @import tibble
 #' @import tidyr
 #' @export
@@ -136,13 +138,18 @@ niche_ellipse <- function(
                  .progress = "Prepare mu for ellipse")
 
     # preppare sigama for epplipse
+    isotope_a_sym <- rlang::sym(isotope_a)
+    isotope_b_sym <- rlang::sym(isotope_b)
+    #
     #
     # Erroring at isotope names fix will need make flexible qith {{{}}}
     sigma <- dat_sigma |>
       filter(sample_number %in% sample_numbers) |>
-      dplyr::select(sample_name, sample_number, {{isotope_a}}, {{isotope_b}}) |>
+      dplyr::select(sample_name, sample_number, !!isotope_a_sym,
+                    !!isotope_b_sym) |>
       dplyr::group_split(sample_name, sample_number) |>
-      purrr::map(~ cbind(.x$d13c, .x$d15n) |>
+      purrr::map(~ cbind(.x[[rlang::as_name(isotope_a_sym)]],
+                         .x[[rlang::as_name(isotope_b_sym)]]) |>
                    as.matrix(2, 2), .progress = "Prepare sigma for ellipse"
       )
 
