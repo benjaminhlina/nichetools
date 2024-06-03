@@ -40,7 +40,7 @@ and \href{https://cran.r-project.org/web/packages/SIBER/index.html}{{SIBER}}.
 
 The \code{tibble} will contain five columns in the following order, \code{metric},
 \code{sample_name}, \code{sample_number}, and the names of the isotope
-columns supplied to \code{niw.post()} (e.g., \code{d15n} and \code{d13c}).
+columns supplied to \code{niw.post()} or  \code{siberMVN()} (e.g., \code{d13c} and  \code{d15n} ).
 }
 \description{
 Extract Bayesian estimates of \eqn{\mu} from data objects created by
@@ -50,6 +50,10 @@ Extract Bayesian estimates of \eqn{\mu} from data objects created by
 \examples{
 extract_mu(
 data = niw_fish_post
+)
+extract_mu(
+data = post_sam_siber,
+pkg = "SIBER"
 )
 
 }

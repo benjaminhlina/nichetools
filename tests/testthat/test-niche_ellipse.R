@@ -19,6 +19,20 @@ test_that("Test if object class returned is data.frame ", {
                                                      "data.frame")
   )
   # excreted dimensions
+  expected_rows <- 4000
+  expected_cols <- 4
+})
+test_that("Test if object class returned is data.frame ", {
+  n_ellipse_test <- niche_ellipse(
+    dat_mu = mu_est_long,
+    dat_sigma = sigma_est_wide,
+    random = FALSE,
+    message = FALSE
+  )
+  expect_s3_class(object = n_ellipse_test, class = c("tbl_df", "tbl",
+                                                     "data.frame")
+  )
+  # excreted dimensions
   expected_rows <- 400000
   expected_cols <- 4
 
@@ -29,6 +43,7 @@ test_that("Test if object class returned is data.frame ", {
   expect_equal(ncol(n_ellipse_test), expected_cols,
                info = "Number of columns is not as expected.")
 })
+
 
 
 test_that("Test if objects supplied are data.frame ", {
@@ -52,21 +67,28 @@ test_that("Test if objects supplied are data.frame ", {
 
 
 test_that("Check if naming works", {
+
+  sigma_est_wide <- sigma_est_wide |>
+    dplyr::rename(
+      cal_d13c = d13c,
+      cal_d15n = d15n
+    )
+
   expect_no_error(
     n_ellipse_test <- niche_ellipse(
       dat_mu = mu_est_long,
       dat_sigma = sigma_est_wide,
       message = FALSE,
-      isotope_a = "cal_d15n",
-      isotope_b = "cal_d13c",
+      isotope_a = "cal_d13c",
+      isotope_b = "cal_d15n",
     )
 
   )
   expect_true("cal_d15n" %in% names(n_ellipse_test))
   expect_true("cal_d13c" %in% names(n_ellipse_test))
 
-  expected_names <- c("sample_name", "sample_number", "cal_d15n",
-                      "cal_d13c")
+  expected_names <- c("sample_name", "sample_number",
+                      "cal_d13c", "cal_d15n")
 
 
   expect_equal(names(n_ellipse_test), expected_names)

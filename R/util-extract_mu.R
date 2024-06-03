@@ -26,12 +26,16 @@
 #'
 #' The `tibble` will contain five columns in the following order, `metric`,
 #' `sample_name`, `sample_number`, and the names of the isotope
-#' columns supplied to `niw.post()` (e.g., `d15n` and `d13c`).
+#' columns supplied to `niw.post()` or  `siberMVN()` (e.g., `d13c` and  `d15n` ).
 #'
 #' @seealso [nicheROVER::niw.post()] and [SIBER::siberMVN()]
 #' @examples
 #' extract_mu(
 #' data = niw_fish_post
+#' )
+#' extract_mu(
+#' data = post_sam_siber,
+#' pkg = "SIBER"
 #' )
 #'
 #' @import dplyr
@@ -138,6 +142,7 @@ extract_mu <- function(data,
 
 
     id_isotope <- c(isotope_a, isotope_b)
+
     
     df_mu <- data |>
       purrr::map(~ {
