@@ -1,11 +1,11 @@
 ---
-title: "Using {nichetools} with package nicheROVER"
+title: "Using {nichetools} with the package nicheROVER"
 author: Benjamin L. Hlina
 date: "Updated: `r Sys.Date()`"
 output: rmarkdown::html_vignette
 
 vignette: >
-  %\VignetteIndexEntry{Using {nichetools} with package nicheROVER}
+  %\VignetteIndexEntry{Using {nichetools} with the package nicheROVER}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -350,7 +350,7 @@ d13c_density + ellipse_plots + iso_biplot + d15n_density +
 
 ### Determine the 95% niche similarties for each species 
 
-We will use the `overlap()` function from [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html) to estimate the percentage of similarity among species. We will set overlap to assess based on 95% similarities. 
+We will use the `overlap()` function from [{nicheROVER}](https://cran.r-project.org/package=nicheROVER)) to estimate the percentage of similarity among species. We will set overlap to assess based on 95% similarities. 
 
 ```{r}
 over_stat <- overlap(fish_par, nreps = nsample, nprob = 1000, 
