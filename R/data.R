@@ -3,7 +3,7 @@
 #' Posterior estimates of \eqn{\mu} using `fish` data set from
 #' [{nicheROVER}](https://cran.r-project.org/package=nicheROVER),
 #' using  Normal-Inverse-Wishart (NIW) priors.
-
+#'
 #' @format `data.frame` containing 8,000 rows and 7 variables
 #'  \describe{
 #'    \item{metric}{name of the metric extracted from `niw.post()`}
@@ -16,7 +16,6 @@
 #' }
 #'
 "mu_est_long"
-
 
 #' A `data.frame` containing posterior estimates of \eqn{\Sigma}
 #'
@@ -45,7 +44,6 @@
 #' This `list` is produced  using the function `niw.post()` from
 #' [{nicheROVER}](https://cran.r-project.org/package=nicheROVER).
 #'
-#'
 #' @format A `list` with elements \eqn{\mu} and \eqn{\Sigma} of sizes c(nsamples, length(lambda))
 #'  and c(dim(Psi)).
 #'
@@ -61,7 +59,6 @@
 #' Normal-Inverse-Wishart (NIW) priors calculated in `niw.post()`.
 #'
 "over_stat"
-
 
 #' A `list` of the posterior estimates of \eqn{\mu} and \eqn{\Sigma} from `{SIBER}`
 #'
