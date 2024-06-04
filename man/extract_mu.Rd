@@ -15,8 +15,8 @@ extract_mu(
 \arguments{
 \item{data}{a \code{list} created by the function \code{niw.post()} or \code{siberMVN()}
 in the package
-\href{https://cran.r-project.org/web/packages/nicheROVER/index.html}{{nicheROVER}}
-or \href{https://cran.r-project.org/web/packages/SIBER/index.html}{{SIBER}}, respectfully.}
+\href{https://cran.r-project.org/package=nicheROVER}{{nicheROVER}}
+or \href{https://cran.r-project.org/package=SIBER}{{SIBER}}, respectfully.}
 
 \item{pkg}{a \code{character} string that is the name of the package that
 you're using. Defaults to \code{"nicheROVER"}.

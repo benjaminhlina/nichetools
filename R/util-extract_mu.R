@@ -6,8 +6,8 @@
 #'
 #' @param data a `list` created by the function `niw.post()` or `siberMVN()`
 #' in the package
-#' [{nicheROVER}](https://cran.r-project.org/web/packages/nicheROVER/index.html)
-#' or [{SIBER}](https://cran.r-project.org/web/packages/SIBER/index.html), respectfully.
+#' [{nicheROVER}](https://cran.r-project.org/package=nicheROVER)
+#' or [{SIBER}](https://cran.r-project.org/package=SIBER), respectfully.
 #' @param pkg a `character` string that is the name of the package that
 #' you're using. Defaults to `"nicheROVER"`.
 #' Alternatively the user can supply the argument with `"SIBER"`.
