@@ -23,7 +23,6 @@
 #' [{nicheROVER}](https://cran.r-project.org/package=nicheROVER),
 #' using Normal-Inverse-Wishart (NIW) priors
 #'
-#'
 #' @format `data.frame` containing 8,000 rows and 6 variables
 #'  \describe{
 #'    \item{metric}{name of the metric extracted from `niw.post()`}
