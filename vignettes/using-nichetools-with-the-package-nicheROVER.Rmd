@@ -217,25 +217,12 @@ sigma_plots[[1]] +
 
 ### Estimate niche ellipse 
 
-We then will use `niche_ellipse()` to easily extract ellipse for each $\Sigma$ estimate (i.e., 1000). If you are to have additional isotopes or metrics, you will need to create mu and sigma objects for each pairing, as currently this function only handles two isotopes. In the future, there likely will be the ability to specify the number of isotopes you have with the default being two. The reason for the lack of functionality is `ellipse::ellipse()` can only work within two-dimensions, not three, so you will have to create multiple `ellipse()` calls for each combination of isotopes or metrics and I haven't had the time to implement this. The function will also tell you how long it took to process as with large sets of isotope data it is nice to know the time it takes for the function to work. 
+We then will use `niche_ellipse()` to easily extract ellipse for each $\Sigma$ estimate (i.e., 1000). If you are to have additional isotopes or metrics, you will need to create mu and sigma objects for each pairing, as currently this function only handles two isotopes. In the future, there likely will be the ability to specify the number of isotopes you have with the default being two. The reason for the lack of functionality is `ellipse::ellipse()` can only work within two-dimensions, not three, so you will have to create multiple `ellipse()` calls for each combination of isotopes or metrics and I haven't had the time to implement this. The function will also tell you how long it took to process as with large sets of isotope data it is nice to know the time it takes for the function to work. The function also has the argument `random` which by default is set to `TRUE`. This argument randomly subsamples and returns 10 ellipse estimates out of the total number of samples taken in this case it is 1,000. You can change the `set.seed` value by giving a numerical value to `set_seed` argument and you can change the number of subsamples but 10 seems pretty standard. If you'd like all 1,000 ellipses you can set `random` to `FALSE`. 
 
 ```{r}
 ellipse_df <- niche_ellipse(dat_mu = df_mu, dat_sigma = df_sigma)
 ```
 
-We will randomly sample 10 ellipses out of 1,000. You can change this but this seems pretty standard. 
-
-```{r}
-set.seed(14)
-
-random_ellipse <- ellipse_df %>% 
-  group_by(sample_name, sample_number) %>% 
-  nest() %>%
-  group_by(sample_name) %>% 
-  slice_sample(n = 10, replace = TRUE) %>% 
-  ungroup() %>% 
-  unnest(cols = c(data))  
-```
 ### Plot ellipses, densities of each istope, and isotope biplot 
 
 We will first plot the ellipse for each sample_name 
