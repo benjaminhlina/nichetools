@@ -68,7 +68,7 @@
                         <h4 data-toc-skip class="author">Benjamin L.
 Hlina</h4>
             
-            <h4 data-toc-skip class="date">Updated: 2024-06-04</h4>
+            <h4 data-toc-skip class="date">Updated: 2024-06-06</h4>
       
       
       <div class="d-none name"><code>using-nichetools-with-the-package-nicheROVER.Rmd</code></div>
@@ -320,30 +320,25 @@ three, so you will have to create multiple <code><a href="https://rdrr.io/pkg/ni
 for each combination of isotopes or metrics and I haven’t had the time
 to implement this. The function will also tell you how long it took to
 process as with large sets of isotope data it is nice to know the time
-it takes for the function to work.</p>
+it takes for the function to work. The function also has the argument
+<code>random</code> which by default is set to <code>TRUE</code>. This
+argument randomly subsamples and returns 10 ellipse estimates out of the
+total number of samples taken in this case it is 1,000. You can change
+the <code>set.seed</code> value by giving a numerical value to
+<code>set_seed</code> argument and you can change the number of
+subsamples but 10 seems pretty standard. If you’d like all 1,000
+ellipses you can set <code>random</code> to <code>FALSE</code>.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ellipse_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/niche_ellipse.html">niche_ellipse</a></span><span class="op">(</span>dat_mu <span class="op">=</span> <span class="va">df_mu</span>, dat_sigma <span class="op">=</span> <span class="va">df_sigma</span><span class="op">)</span></span>
 <span><span class="co">#&gt; → Total time processing was 0.06 secs</span></span></code></pre></div>
-<p>We will randomly sample 10 ellipses out of 1,000. You can change this
-but this seems pretty standard.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">14</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">random_ellipse</span> <span class="op">&lt;-</span> <span class="va">ellipse_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">sample_name</span>, <span class="va">sample_number</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest.html" class="external-link">nest</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">sample_name</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice_sample</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unnest.html" class="external-link">unnest</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span><span class="op">)</span>  </span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="plot-ellipses-densities-of-each-istope-and-isotope-biplot">Plot ellipses, densities of each istope, and isotope biplot<a class="anchor" aria-label="anchor" href="#plot-ellipses-densities-of-each-istope-and-isotope-biplot"></a>
 </h3>
 <p>We will first plot the ellipse for each sample_name</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ellipse_plots</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_polygon.html" class="external-link">geom_polygon</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">random_ellipse</span>,</span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_polygon.html" class="external-link">geom_polygon</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">ellipse_df</span>,</span>
 <span>               mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">d13c</span>, y <span class="op">=</span> <span class="va">d15n</span>,</span>
 <span>                             group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/interaction.html" class="external-link">interaction</a></span><span class="op">(</span><span class="va">sample_number</span>, <span class="va">sample_name</span><span class="op">)</span>,</span>
 <span>                             color <span class="op">=</span> <span class="va">sample_name</span><span class="op">)</span>,</span>
@@ -368,7 +363,7 @@ using <code><a href="https://purrr.tidyverse.org/reference/imap.html" class="ext
 notice that I again use <code><a href="https://dplyr.tidyverse.org/reference/case_when.html" class="external-link">case_when()</a></code> to make columns of
 element abbreviations and neutron numbers that will be used in plot
 labeling.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">iso_long</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html" class="external-link">pivot_longer</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="op">-</span><span class="va">species</span>,</span>
 <span>               names_to <span class="op">=</span> <span class="st">"isotope"</span>, </span>
@@ -385,7 +380,7 @@ labeling.</p>
 <span>  <span class="op">)</span></span></code></pre></div>
 <p>We will then make density plots for each isotope using
 <code><a href="https://ggplot2.tidyverse.org/reference/geom_density.html" class="external-link">geom_density()</a></code></p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">iso_density</span> <span class="op">&lt;-</span> <span class="va">iso_long</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_split.html" class="external-link">group_split</a></span><span class="op">(</span><span class="va">isotope</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/imap.html" class="external-link">imap</a></span><span class="op">(</span></span>
@@ -420,7 +415,7 @@ labeling.</p>
 <span>  <span class="op">)</span></span></code></pre></div>
 <p>Lastly we will use <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point()</a></code> to make isotopic
 biplot.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">iso_biplot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">d13c</span>, y <span class="op">=</span> <span class="va">d15n</span>,</span>
 <span>                            fill <span class="op">=</span> <span class="va">species</span><span class="op">)</span>,</span>
@@ -448,11 +443,11 @@ lettering to the figure that can be used in the figure description. To
 maneuver where <code><a href="https://patchwork.data-imaginist.com/reference/plot_annotation.html" class="external-link">plot_annotation()</a></code> places the lettering, we
 need to add <code>plot.tag.position = c(x, y)</code> to the
 <code><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme()</a></code> call in every plot.</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">d13c_density</span> <span class="op">+</span> <span class="va">ellipse_plots</span> <span class="op">+</span> <span class="va">iso_biplot</span> <span class="op">+</span> <span class="va">d15n_density</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_annotation.html" class="external-link">plot_annotation</a></span><span class="op">(</span>tag_levels <span class="op">=</span> <span class="st">"a"</span>, </span>
 <span>                  tag_suffix <span class="op">=</span> <span class="st">")"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="using-nichetools-with-the-package-nicheROVER_files/figure-html/unnamed-chunk-19-1.png" width="100%"></p>
+<p><img src="using-nichetools-with-the-package-nicheROVER_files/figure-html/unnamed-chunk-18-1.png" width="100%"></p>
 </div>
 <div class="section level3">
 <h3 id="determine-the-95-niche-similarties-for-each-species">Determine the 95% niche similarties for each species<a class="anchor" aria-label="anchor" href="#determine-the-95-niche-similarties-for-each-species"></a>
@@ -460,13 +455,13 @@ need to add <code>plot.tag.position = c(x, y)</code> to the
 <p>We will use the <code><a href="https://rdrr.io/pkg/nicheROVER/man/overlap.html" class="external-link">overlap()</a></code> function from <a href="https://cran.r-project.org/package=nicheROVER" class="external-link">{nicheROVER}</a>)
 to estimate the percentage of similarity among species. We will set
 overlap to assess based on 95% similarities.</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">over_stat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/nicheROVER/man/overlap.html" class="external-link">overlap</a></span><span class="op">(</span><span class="va">fish_par</span>, nreps <span class="op">=</span> <span class="va">nsample</span>, nprob <span class="op">=</span> <span class="fl">1000</span>, </span>
 <span>                     alpha <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></span></code></pre></div>
 <p>We then are going transform this output to a data frame using
 <code><a href="../reference/extract_overlap.html">extract_overlap()</a></code> plotting so we can assess overall
 similarities among species.</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">over_stat_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/extract_overlap.html">extract_overlap</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">over_stat</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span></span>
 <span>      niche_overlap_perc <span class="op">=</span> <span class="va">niche_overlap</span> <span class="op">*</span> <span class="fl">100</span></span>
@@ -475,7 +470,7 @@ similarities among species.</p>
 the mean percentage of similarities and the 2.5% and 97.5% quarantines.
 We plot these as lines and dotted lines on our percent similarity
 density figure.</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">over_sum</span> <span class="op">&lt;-</span> <span class="va">over_stat_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">sample_name_a</span>, <span class="va">sample_name_b</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span></span>
@@ -492,7 +487,7 @@ density figure.</p>
 <span>  <span class="op">)</span> </span></code></pre></div>
 <p>We are now going to use <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot()</a></code>,
 <code><a href="https://ggplot2.tidyverse.org/reference/geom_density.html" class="external-link">geom_density()</a></code>, and <code>fact_grid2()</code> from <a href="https://teunbrand.github.io/ggh4x/" class="external-link">{ggh4x}</a>.</p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">over_stat_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">niche_overlap_perc</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html" class="external-link">geom_density</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">sample_name_a</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">geom_vline</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">over_sum</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">mean_niche_overlap</span><span class="op">)</span>, </span>
@@ -515,7 +510,7 @@ density figure.</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Overlap Probability (%)"</span>, <span class="st">"\u2013"</span>, </span>
 <span>                 <span class="st">"Niche Region Size: 95%"</span><span class="op">)</span>, </span>
 <span>       y <span class="op">=</span> <span class="st">"p(Percent Overlap | X)"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="using-nichetools-with-the-package-nicheROVER_files/figure-html/unnamed-chunk-23-1.png" width="100%"></p>
+<p><img src="using-nichetools-with-the-package-nicheROVER_files/figure-html/unnamed-chunk-22-1.png" width="100%"></p>
 </div>
 <div class="section level3">
 <h3 id="estimate-overall-niche-size">Estimate overall niche size<a class="anchor" aria-label="anchor" href="#estimate-overall-niche-size"></a>
@@ -524,11 +519,11 @@ density figure.</p>
 posterior sample by using the function <code><a href="../reference/extract_niche_size.html">extract_niche_size()</a></code>
 which is a wrapper around <code><a href="https://rdrr.io/pkg/nicheROVER/man/niche.size.html" class="external-link">niche.size()</a></code> and some data
 manipulation functions.</p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">niche_size</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/extract_niche_size.html">extract_niche_size</a></span><span class="op">(</span><span class="va">fish_par</span><span class="op">)</span></span></code></pre></div>
 <p>We can calculate the mean niche size, standard deviation, and
 standard error.</p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">niche_size_mean</span> <span class="op">&lt;-</span> <span class="va">niche_size</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">sample_name</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span></span>
@@ -543,7 +538,7 @@ standard error.</p>
 <p>We will now use <code><a href="https://ggplot2.tidyverse.org/reference/geom_violin.html" class="external-link">geom_violin()</a></code>,
 <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point()</a></code>, and <code><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html" class="external-link">geom_errorbar()</a></code> to plot the
 distribution for niche size for each species.</p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">niche_size</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_violin.html" class="external-link">geom_violin</a></span><span class="op">(</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">sample_name</span>, y <span class="op">=</span> <span class="va">niche_size</span><span class="op">)</span>,</span>
@@ -558,7 +553,7 @@ distribution for niche size for each species.</p>
 <span>        axis.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Species"</span>, </span>
 <span>       y <span class="op">=</span> <span class="st">"Niche Size"</span><span class="op">)</span> </span></code></pre></div>
-<p><img src="using-nichetools-with-the-package-nicheROVER_files/figure-html/unnamed-chunk-26-1.png" width="700"></p>
+<p><img src="using-nichetools-with-the-package-nicheROVER_files/figure-html/unnamed-chunk-25-1.png" width="700"></p>
 <p>Now that we have our niche sizes and similarities determined we can
 make inferences about the species, trophic similarities, and the
 ecosystem.</p>
