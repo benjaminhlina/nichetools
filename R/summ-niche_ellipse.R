@@ -125,7 +125,11 @@ niche_ellipse <- function(
     if (!is.numeric(n)) {
       cli::cli_abort("Argument 'n' must be a numeric")
     }
+    # set seed to only work locally within function not globally...clever
+    on.exit({.Random.seed <<- set_seed})
+
     set.seed(set_seed)
+
     sample_numbers <- sample(dat_mu$sample_number, n)
     # prepare mu for ellipse
     mu <- dat_mu |>
