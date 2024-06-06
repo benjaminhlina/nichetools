@@ -114,8 +114,9 @@ niche_ellipse <- function(
 
   if (random %in% TRUE) {
     if (is.null(set_seed)) {
+      set_seed <- if (!exists(".Random.seed", inherits = TRUE)) NULL else .Random.seed
       # assign(".Random.seed", set_seed)
-      set_seed <- .Random.seed
+      # set_seed <- .Random.seed
       # on.exit({.Random.seed <<- set_seed})
     }
     # if (!is.numeric(set_seed)) {
