@@ -22,8 +22,8 @@
 #' posterior distributions for \eqn{\mu} and \eqn{\Sigma} to create a sub-sample
 #' of ellipse. Default is `TRUE`.
 #' @param set_seed numerical value to set seed for random sampling. Default is
-#' random value. To consistently sample the same subsample, please supply
-#' a numerical value.
+#' a random value. To consistently sample the same subsample, please supply
+#' a numerical value (e.g., `4`).
 #' @param n numerical value that controls the number of random samples.
 #' Default is `10`.
 #' @param message control whether the time processing is displayed after the

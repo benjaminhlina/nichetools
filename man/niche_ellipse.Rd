@@ -42,8 +42,8 @@ posterior distributions for \eqn{\mu} and \eqn{\Sigma} to create a sub-sample
 of ellipse. Default is \code{TRUE}.}
 
 \item{set_seed}{numerical value to set seed for random sampling. Default is
-random value. To consistently sample the same subsample, please supply
-a numerical value.}
+a random value. To consistently sample the same subsample, please supply
+a numerical value (e.g., \code{4}).}
 
 \item{n}{numerical value that controls the number of random samples.
 Default is \code{10}.}
