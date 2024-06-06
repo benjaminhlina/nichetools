@@ -55,7 +55,6 @@ niche_ellipse <- function(
     isotope_b = NULL,
     p_ell = NULL,
     random = NULL,
-    set_seed = NULL,
     n = NULL,
     message = TRUE
 ) {
@@ -113,12 +112,12 @@ niche_ellipse <- function(
   # ---- put in random sample for 10 random samples
 
   if (random %in% TRUE) {
-    if (is.null(set_seed)) {
+    # if (is.null(set_seed)) {
       set_seed <- .Random.seed
-    }
-    if (!is.numeric(set_seed)) {
-      cli::cli_abort("Argument 'set_seed' must be a numeric")
-    }
+    # }
+    # if (!is.numeric(set_seed)) {
+    #   cli::cli_abort("Argument 'set_seed' must be a numeric")
+    # }
     if (is.null(n)) {
       n <- 10
     }
