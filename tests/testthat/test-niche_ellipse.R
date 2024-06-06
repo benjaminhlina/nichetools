@@ -1,3 +1,10 @@
+# packages
+
+{
+library(nichetools)
+library(testthat)
+}
+
 
 test_that("Test if object type returned is list ", {
   n_ellipse <- niche_ellipse(
