@@ -4,15 +4,19 @@
 \name{nichetools-package}
 \alias{nichetools}
 \alias{nichetools-package}
-\title{nichetools: Complementary Package to NicheROVER and SIBER}
+\title{nichetools: Complementary Package to 'nicheROVER' and 'SIBER'}
 \description{
-Provides functions complementary to packages nicheROVER and SIBER allowing the user to extract Bayesian estimates from data objects created by packages nicheROVER and SIBER.
+Provides functions complementary to packages nicheROVER and SIBER allowing the user to extract Bayesian estimates from data objects created by the packages nicheROVER and SIBER. Please see the following publications for each package, Hansen et al. (2015) \doi{10.1890/14-0235.1} or Jackson et al. (2011) \doi{10.1111/j.1365-2656.2011.01806.x}, respectfully.
 }
 \seealso{
 Useful links:
 \itemize{
   \item \url{https://benjaminhlina.github.io/nichetools/}
 }
+
+}
+\author{
+\strong{Maintainer}: Benjamin L. Hlina \email{benjamin.hlina@gmail.com}
 
 }
 \keyword{internal}

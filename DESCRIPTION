@@ -1,12 +1,18 @@
 Package: nichetools
 Type: Package
-Title: Complementary Package to NicheROVER and SIBER
+Title: Complementary Package to 'nicheROVER' and 'SIBER'
 Version: 0.2.0
-Author: Benjamin L. Hlina
-Maintainer: Benjamin L. Hlina <benjamin.hlina@gmail.com>
+Authors@R: 
+    c(person(given = "Benjamin L.", 
+                  family = "Hlina",
+                  role = c("aut", "cre"),
+                  email = "benjamin.hlina@gmail.com")
+                  )
 Description: Provides functions complementary to packages nicheROVER and SIBER
         allowing the user to extract Bayesian estimates from data objects created 
-        by packages nicheROVER and SIBER. 
+        by the packages nicheROVER and SIBER. Please see the following publications 
+        for each package, Hansen et al. (2015) <doi:10.1890/14-0235.1> or 
+        Jackson et al. (2011) <doi:10.1111/j.1365-2656.2011.01806.x>, respectfully.
 Depends: R (>= 2.10)
 Imports: 
     cli,
