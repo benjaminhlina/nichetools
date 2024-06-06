@@ -11,5 +11,5 @@ single quotes
 * I have updated the description to include the two publications that go with 
 nicheROVER and SIBER
 * I have amended the function R/summ-niche_ellipse.R to not have set seed to 
-a specific number instead have used .Random.seed
+a specific number instead have used have used `stats::runif()` 
 
