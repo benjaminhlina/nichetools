@@ -21,7 +21,6 @@
 #'
 #' @import dplyr
 #' @importFrom nicheROVER niche.size
-#' @importFrom stats runif
 #' @import tibble
 #' @import tidyr
 #' @export

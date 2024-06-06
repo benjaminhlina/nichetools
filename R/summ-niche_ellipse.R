@@ -44,6 +44,7 @@
 #' @importFrom rlang :=
 #' @importFrom rlang sym
 #' @importFrom rlang as_name
+#' @importFrom stats runif
 #' @import tibble
 #' @import tidyr
 #' @export
