@@ -114,7 +114,7 @@ niche_ellipse <- function(
 
   if (random %in% TRUE) {
     if (is.null(set_seed)) {
-      set_seed <- 4
+      set_seed <- .Random.seed
     }
     if (!is.numeric(set_seed)) {
       cli::cli_abort("Argument 'set_seed' must be a numeric")
