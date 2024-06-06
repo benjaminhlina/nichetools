@@ -116,22 +116,20 @@ niche_ellipse <- function(
 
   if (random %in% TRUE) {
     if (is.null(set_seed)) {
-      set_seed <- if (!exists(".Random.seed", inherits = TRUE)) NULL else .Random.seed
-      # assign(".Random.seed", set_seed)
-      # set_seed <- .Random.seed
-      # on.exit({.Random.seed <<- set_seed})
+      set_seed <- round(runif(1) * .Machine$integer.max)
     }
-    # if (!is.numeric(set_seed)) {
-    #   cli::cli_abort("Argument 'set_seed' must be a numeric")
-    # }
+    if (!is.numeric(set_seed)) {
+      cli::cli_abort("Argument 'set_seed' must be a numeric")
+    }
     if (is.null(n)) {
       n <- 10
     }
     if (!is.numeric(n)) {
       cli::cli_abort("Argument 'n' must be a numeric")
     }
+
     # set seed to only work locally within function not globally...clever
-    on.exit({.Random.seed <<- set_seed})
+    # on.exit({.Random.seed <<- set_seed})
 
     set.seed(set_seed)
 
