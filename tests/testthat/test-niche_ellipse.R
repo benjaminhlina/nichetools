@@ -1,15 +1,16 @@
 # packages
 
-{
-library(nichetools)
-library(testthat)
-}
+# {
+# library(nichetools)
+# library(testthat)
+# }
 
 
 test_that("Test if object type returned is list ", {
   n_ellipse <- niche_ellipse(
     dat_mu = mu_est_long,
     dat_sigma = sigma_est_wide,
+    set_seed = 4,
     message = FALSE
   )
 
@@ -20,6 +21,7 @@ test_that("Test if object class returned is data.frame ", {
   n_ellipse_test <- niche_ellipse(
     dat_mu = mu_est_long,
     dat_sigma = sigma_est_wide,
+    set_seed = 4,
     message = FALSE
   )
   expect_s3_class(object = n_ellipse_test, class = c("tbl_df", "tbl",
@@ -85,6 +87,7 @@ test_that("Check if naming works", {
     n_ellipse_test <- niche_ellipse(
       dat_mu = mu_est_long,
       dat_sigma = sigma_est_wide,
+      set_seed = 4,
       message = FALSE,
       isotope_a = "cal_d13c",
       isotope_b = "cal_d15n",
@@ -115,6 +118,7 @@ test_that("Test if isotope_b errors if not a charcters", {
   expect_error(niche_ellipse(
     dat_mu = mu_est_long,
     dat_sigma = sigma_est_wide,
+    set_seed = 4,
     message = FALSE,
     isotope_b = 4), regexp = "Argument 'isotope_b' must be a character."
   )
@@ -127,6 +131,7 @@ test_that("Parameter 'p_ell' is can take other values than 0.95", {
     n_ellipse_test <- niche_ellipse(
       dat_mu = mu_est_long,
       dat_sigma = sigma_est_wide,
+      set_seed = 4,
       message = FALSE,
       p_ell = 0.75
     )
@@ -140,6 +145,7 @@ test_that("Parameter 'p_ell' is set and validated correctly", {
     n_ellipse_test <- niche_ellipse(
       dat_mu = mu_est_long,
       dat_sigma = sigma_est_wide,
+      set_seed = 4,
       message = FALSE,
     )
   )
@@ -153,12 +159,16 @@ test_that("p_ell errors when given a charcter  or value outside of range", {
 
   # Test case 3: p_ell is not numeric, it should raise an error
   expect_error(niche_ellipse(dat_mu = mu_est_long,
-                             dat_sigma = sigma_est_wide, p_ell = "invalid"),
+                             dat_sigma = sigma_est_wide,
+                             set_seed = 4,
+                             p_ell = "invalid"),
                "Parameter 'p_ell' must be a numeric value between 0 and 1.")
 
   # Test case 4: p_ell is numeric but outside the valid range,
   expect_error(niche_ellipse(dat_mu = mu_est_long,
-                             dat_sigma = sigma_est_wide, p_ell = 1.5),
+                             dat_sigma = sigma_est_wide,
+                             set_seed = 4,
+                             p_ell = 1.5),
                "Parameter 'p_ell' must be a numeric value between 0 and 1.")
 }
 )
@@ -167,7 +177,8 @@ test_that("p_ell errors when given a charcter  or value outside of range", {
 test_that("Test print out of message for run time", {
 
   expect_message(niche_ellipse(dat_mu = mu_est_long,
-                               dat_sigma = sigma_est_wide),
+                               dat_sigma = sigma_est_wide,
+                               set_seed = 4),
                  "Total time processing was")
 })
 
@@ -176,6 +187,7 @@ test_that("test print out doesn't show when set to false", {
 
   expect_no_message(niche_ellipse(dat_mu = mu_est_long,
                                   dat_sigma = sigma_est_wide,
+                                  set_seed = 4,
                                   message = FALSE)
   )
 })
