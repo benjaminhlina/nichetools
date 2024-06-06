@@ -106,7 +106,9 @@ of ellipse. Default is <code>TRUE</code>.</p></dd>
 
 
 <dt>set_seed</dt>
-<dd><p>numerical value to set seed for random sampling. Default is <code>4</code>.</p></dd>
+<dd><p>numerical value to set seed for random sampling. Default is
+random value. To consistently sample the same subsample, please supply
+a numerical value.</p></dd>
 
 
 <dt>n</dt>
@@ -141,16 +143,16 @@ and <code><a href="extract_sigma.html">extract_sigma()</a></code></p></div>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 4,000 × 4</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    sample_name sample_number  d13c  d15n</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> ARCS                   10 -<span style="color: #BB0000;">22.2</span>  14.3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> ARCS                   10 -<span style="color: #BB0000;">22.3</span>  14.4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> ARCS                   10 -<span style="color: #BB0000;">22.4</span>  14.5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> ARCS                   10 -<span style="color: #BB0000;">22.5</span>  14.5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> ARCS                   10 -<span style="color: #BB0000;">22.6</span>  14.6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> ARCS                   10 -<span style="color: #BB0000;">22.7</span>  14.6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> ARCS                   10 -<span style="color: #BB0000;">22.8</span>  14.7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> ARCS                   10 -<span style="color: #BB0000;">23.0</span>  14.7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> ARCS                   10 -<span style="color: #BB0000;">23.1</span>  14.7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> ARCS                   10 -<span style="color: #BB0000;">23.2</span>  14.8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> ARCS                  126 -<span style="color: #BB0000;">21.9</span>  14.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> ARCS                  126 -<span style="color: #BB0000;">22.0</span>  14.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> ARCS                  126 -<span style="color: #BB0000;">22.1</span>  14.1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> ARCS                  126 -<span style="color: #BB0000;">22.2</span>  14.1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> ARCS                  126 -<span style="color: #BB0000;">22.3</span>  14.2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> ARCS                  126 -<span style="color: #BB0000;">22.5</span>  14.2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> ARCS                  126 -<span style="color: #BB0000;">22.6</span>  14.2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> ARCS                  126 -<span style="color: #BB0000;">22.7</span>  14.2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> ARCS                  126 -<span style="color: #BB0000;">22.8</span>  14.2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> ARCS                  126 -<span style="color: #BB0000;">23.0</span>  14.2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 3,990 more rows</span></span>
 </code></pre></div>
     </div>
