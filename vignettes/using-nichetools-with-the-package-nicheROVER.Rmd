@@ -228,7 +228,7 @@ ellipse_df <- niche_ellipse(dat_mu = df_mu, dat_sigma = df_sigma)
 We will first plot the ellipse for each sample_name 
 ```{r}
 ellipse_plots <- ggplot() + 
-  geom_polygon(data = random_ellipse,
+  geom_polygon(data = ellipse_df,
                mapping = aes(x = d13c, y = d15n,
                              group = interaction(sample_number, sample_name),
                              color = sample_name),
