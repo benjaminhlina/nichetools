@@ -7,9 +7,9 @@
 [![Codecov test coverage](https://codecov.io/gh/benjaminhlina/nichetools/graph/badge.svg?token=mk3RjaD0hb)](https://app.codecov.io/gh/benjaminhlina/nichetools)
 <!-- badges: end -->
 
-{nichetools} is a complementary package to [{nicheROVER}](https://cran.r-project.org/package=nicheROVER) and 
+[{nichetools}](https://benjaminhlina.github.io/nichetools/) is a complementary package to [{nicheROVER}](https://cran.r-project.org/package=nicheROVER) and 
 [{SIBER}](https://cran.r-project.org/package=SIBER) that allows the user to extract Bayesian estimates from data objects created by [{nicheROVER}](https://cran.r-project.org/package=nicheROVER) or 
-[{SIBER}](https://cran.r-project.org/package=SIBER).(e.g., niche size and similarities).
+[{SIBER}](https://cran.r-project.org/package=SIBER)(e.g., niche size and similarities).
 
 ## Installation
 
