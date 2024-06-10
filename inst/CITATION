@@ -28,7 +28,7 @@ bibentry(
 
 bibentry(
   bibtype  = "Manual",
-  title    = "nichetools: Complementary package to nicheROVER",
+  title    = "nichetools: Complementary Package to 'nicheROVER' and 'SIBER'",
   author   =  c("Benjamin L. HLina"),
   year     = "2024",
   note     = "R package version 0.2.0",
