@@ -34,6 +34,20 @@ You can install the CRAN version of {nichetools} using the following:
 install.packages("nichetools")
 ```
 
+## Vignette 
+
+Once you have loaded {nichetools} and {nicheROVER} or {SIBER} you can access 
+the vignettes using the following code: 
+
+``` r
+vignette("using-nichetools-with-the-package-nicheROVER")
+```
+The vignettes are also available online under the [articles section](https://benjaminhlina.github.io/nichetools/articles/using-nichetools-with-the-package-nicheROVER.html) of the package
+and on my [blog](https://blog.benjaminhlina.com/posts/post-with-code/nichetools/). 
+
+I highly suggest going through the vignettes as they will walk you through 
+how to use {nichetools} in tandem with {nicheROVER} or {SIBER}.
+
 ## Citation 
 
 To cite this package please cite the following publications 
