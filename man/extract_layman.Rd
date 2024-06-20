@@ -4,28 +4,68 @@
 \alias{extract_layman}
 \title{extract Layman metrics}
 \usage{
-extract_layman(
-  data,
-  community_df = NULL,
-  community_name = NULL,
-  data_format = NULL
-)
+extract_layman(data, community_df = NULL, data_format = NULL)
 }
 \arguments{
-\item{data}{siber object}
+\item{data}{a \code{list} created by the function \code{bayesianLayman()} from the package
+\href{https://cran.r-project.org/web/packages/SIBER/index.html}{{SIBER}}.}
 
-\item{community_name}{a character string that is the name of the second column
-in community_df supplied (e.g., \code{"region"}).}
-
-\item{coummunity_df}{a two column dataframe one of the column names
-has to be a number as a character which is the same community names requried
-by \code{makeSiberObject()} function from {SIBER}. The other column is the actual
-names of the communities that the user is working with (e.g., \code{"region"})}
+\item{coummunity_df}{a two column data frame, with one of the column names
+will be numbers (e.g., \verb{"1", "2", "3"}) as a \code{character} string. This is the order
+of the community names and will be used to join the actual community names to
+the correct data. These are the same class and vlaues requried by the function,
+\code{createSiberObject()}
+\href{https://cran.r-project.org/web/packages/SIBER/index.html}{{SIBER}}.
+The second column is the actual
+names of the communities that the user is working with (e.g., \code{"region"}).
+'}
+}
+\value{
+A \code{tibble} containing four rows when \code{data_format} is set to its
+default which is \code{long}. These four rows are the following, \code{community},
+\code{user_supplied_community_names}, \code{metric} and \code{estiamtes}.
 }
 \description{
-Extract Bayesian estimates of for the following six layman metrics,
-\eqn{\delta^{13}}C from data objects created by
-\href{https://cran.r-project.org/web/packages/SIBER/index.html}{{SIBER}}. These six
-metric include the following Layman  of dX_range, dY_range, TA,
-CD, MNND and SDNND
+Extract Bayesian estimates for the following six layman metrics,
+\eqn{\delta^{13}}C range,  \eqn{\delta^{15}}N range, total area (TA),
+distance to centroid (CD), distance to the nearest neighbour (NND), and
+the standard deviation of the distance to the nearest neighbour (SDNND)
+from data objects created by
+\href{https://cran.r-project.org/web/packages/SIBER/index.html}{{SIBER}}. To learn
+more about the following metrics please review
+\href{https://esajournals.onlinelibrary.wiley.com/doi/full/10.1890/0012-9658\%282007\%2988\%5B42\%3ACSIRPF\%5D2.0.CO\%3B2}{Layman et al. (2008)}.
+}
+\examples{
+\dontrun{
+library(nichetools)
+library(SIBER)
+
+# ---- bring in SIBER demo data ----
+
+str(demo.siber.data)
+
+# ---- create the siber object ----
+siber.example <- createSiberObject(demo.siber.data)
+
+# ---- view Baysain estimates of mu and sigma produced by SIBER ---
+
+str(post_sam_siber)
+
+# ---- extract posterior estimates of mu -----
+
+mu_post <- extractPosteriorMeans(siber.example, post_sam_siber)
+
+# ---- Bayesian estimates of layman metrics using SIBER ----
+
+layman_b <- bayesianLayman(mu.post = mu_post)
+
+# ---- use nichetools to extract Baysian estimats of Layman metrics ----
+
+layman_be <- extract_layman(laymen_b, community_names = c_names)
+
+}
+
+}
+\seealso{
+\code{\link[SIBER:bayesianLayman]{SIBER::bayesianLayman()}} and \code{\link[SIBER:createSiberObject]{SIBER::createSiberObject()}}
 }
