@@ -14,7 +14,7 @@
 
 ## Installation
 
-You can install the development version of {nichetools} using the  following:
+You can install the development version of {nichetools} using the following:
 ``` r
 install.packages("devtools")
 devtools::install_github("benjaminhlina/nichetools")
