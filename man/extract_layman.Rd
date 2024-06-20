@@ -38,20 +38,31 @@ more about the following metrics please review
 \href{https://esajournals.onlinelibrary.wiley.com/doi/full/10.1890/0012-9658\%282007\%2988\%5B42\%3ACSIRPF\%5D2.0.CO\%3B2}{Layman et al. (2008)}.
 }
 \examples{
-\dontrun{
+
 library(nichetools)
 library(SIBER)
 
 # ---- bring in SIBER demo data ----
+# uncomenet to use
+# str(demo.siber.data)
 
-str(demo.siber.data)
+# ---- create coummnity names data frame ----
+uncomment to use
+# str(demo.siber.data.2)
+
+demo.siber.data.2$community_names <- as.factor(demo.siber.data.2$community)
+
+demo.siber.data.2$community <- as.numeric(demo.siber.data.2$community_names) |>
+as.character()
+c_names <- demo.siber.data.2 |>
+dplyr::distinct(community, community_names)
 
 # ---- create the siber object ----
 siber.example <- createSiberObject(demo.siber.data)
 
 # ---- view Baysain estimates of mu and sigma produced by SIBER ---
-
-str(post_sam_siber)
+# uncomment to use
+# str(post_sam_siber)
 
 # ---- extract posterior estimates of mu -----
 
@@ -63,10 +74,10 @@ layman_b <- bayesianLayman(mu.post = mu_post)
 
 # ---- use nichetools to extract Baysian estimats of Layman metrics ----
 
-layman_be <- extract_layman(layman_b, community_names = c_names)
+layman_be <- extract_layman(layman_b, community_df = c_names)
 
 layman_be
-}
+
 
 }
 \seealso{
