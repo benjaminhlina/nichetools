@@ -56,5 +56,6 @@ To cite this package please cite the following publications
 
 -   Jackson, A.L., Inger, R., Parnell, A.C., and Bearhop, S. 2011. Comparing isotopic niche widths among and within communities: SIBER – Stable Isotope Bayesian Ellipses in R. Journal of Animal Ecology 80(3): 595–602. [doi:10.1111/j.1365-2656.2011.01806.x.](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/j.1365-2656.2011.01806.x)
 
+-   Layman, C.A., Arrington, D.A., Montaña, C.G., and Post, D.M. 2007. Can stable isotope ratios provide for community-wide measures of trophic structure? Ecology 88(1): 42–48. [link]( https://doi.org/10.1890/0012-9658(2007)88[42:CSIRPF]2.0.CO;2)
 
 -   Hlina B.L. 2024. nichetools: Complementary package to nicheROVER and SIBER. R package version 0.2.0. https://benjaminhlina.github.io/nichetools/
