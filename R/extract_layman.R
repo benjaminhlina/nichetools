@@ -67,6 +67,23 @@
 extract_layman <- function(data,
                            community_df = NULL,
                            data_format = NULL) {
+  if (!is.list(data)) {
+    cli::cli_abort(c(
+      "The `data` argument must be a list.",
+      "i" = "Please provide data in list format."
+    ))
+  }
+
+  # Check if `community_df` is a two-column data.frame
+  if (!is.null(community_df)) {
+    if (!is.data.frame(community_df) || ncol(community_df) != 2) {
+      cli::cli_abort(c(
+        "The `community_df` argument must be a data.frame with exactly two columns.",
+        "i" = "Please provide a data.frame with two columns."
+      ))
+    }
+  }
+
 
   # sett data formatt
   if(is.null(data_format)) {
