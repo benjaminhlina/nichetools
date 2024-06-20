@@ -47,7 +47,7 @@ library(SIBER)
 # str(demo.siber.data)
 
 # ---- create coummnity names data frame ----
-uncomment to use
+# uncomment to use
 # str(demo.siber.data.2)
 
 demo.siber.data.2$community_names <- as.factor(demo.siber.data.2$community)
