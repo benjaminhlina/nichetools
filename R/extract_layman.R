@@ -87,9 +87,12 @@ extract_layman <- function(data,
     dplyr::left_join(community_df, by = "community")
 
   if (data_format %in% "long") {
+
+    second_column <- names(df_layman)[8]
+
     df_layman <- df_layman |>
       tidyr::pivot_longer(
-      cols = -c({{community_name}}, community),
+      cols = -c({{second_column}}, community),
       names_to = "metric",
       values_to = "post_est"
     )
