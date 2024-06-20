@@ -51,8 +51,9 @@
 #'
 #' # ---- use nichetools to extract Baysian estimats of Layman metrics ----
 #'
-#' layman_be <- extract_layman(laymen_b, community_names = c_names)
+#' layman_be <- extract_layman(layman_b, community_names = c_names)
 #'
+#' layman_be
 #' }
 #'
 #' @import dplyr
