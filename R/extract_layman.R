@@ -11,7 +11,7 @@
 #'
 #' @param data a `list` created by the function `bayesianLayman()` from the package
 #' [{SIBER}](https://cran.r-project.org/web/packages/SIBER/index.html).
-#' @param coummunity_df a two column data frame, with one of the column names
+#' @param community_df a two column data frame, with one of the column names
 #' will be numbers (e.g., `"1", "2", "3"`) as a `character` string. This is the order
 #' of the community names and will be used to join the actual community names to
 #' the correct data. These are the same class and vlaues requried by the function,
@@ -19,7 +19,9 @@
 #' [{SIBER}](https://cran.r-project.org/web/packages/SIBER/index.html).
 #' The second column is the actual
 #' names of the communities that the user is working with (e.g., `"region"`).
-#''
+#' @param data_format a `character` string that decides whether the returned object is
+#' in long or wide format. Default is `"long"`, with the alternative supplied being `"wide"`.
+#'
 #' @return A `tibble` containing four rows when `data_format` is set to its
 #' default which is `long`. These four rows are the following, `community`,
 #' `user_supplied_community_names`, `metric` and `estiamtes`.

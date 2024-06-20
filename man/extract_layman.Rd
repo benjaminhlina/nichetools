@@ -10,15 +10,17 @@ extract_layman(data, community_df = NULL, data_format = NULL)
 \item{data}{a \code{list} created by the function \code{bayesianLayman()} from the package
 \href{https://cran.r-project.org/web/packages/SIBER/index.html}{{SIBER}}.}
 
-\item{coummunity_df}{a two column data frame, with one of the column names
+\item{community_df}{a two column data frame, with one of the column names
 will be numbers (e.g., \verb{"1", "2", "3"}) as a \code{character} string. This is the order
 of the community names and will be used to join the actual community names to
 the correct data. These are the same class and vlaues requried by the function,
 \code{createSiberObject()}
 \href{https://cran.r-project.org/web/packages/SIBER/index.html}{{SIBER}}.
 The second column is the actual
-names of the communities that the user is working with (e.g., \code{"region"}).
-'}
+names of the communities that the user is working with (e.g., \code{"region"}).}
+
+\item{data_format}{a \code{character} string that decides whether the returned object is
+in long or wide format. Default is \code{"long"}, with the alternative supplied being \code{"wide"}.}
 }
 \value{
 A \code{tibble} containing four rows when \code{data_format} is set to its
