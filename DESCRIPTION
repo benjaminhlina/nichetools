@@ -23,6 +23,7 @@ Imports:
     nicheROVER,
     purrr,
     rlang,
+    SIBER,
     tibble,
     tidyr
 License: CC0
@@ -39,7 +40,6 @@ Suggests:
     knitr,
     patchwork,
     rmarkdown,
-    SIBER,
     stringr,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
