@@ -24,6 +24,19 @@ bibentry(
   pages    = "595-602",
   doi      = "10.1111/j.1365-2656.2011.01806.x",
   url      = "https://besjournals.onlinelibrary.wiley.com/doi/10.1111/j.1365-2656.2011.01806.x"
+
+bibentry(
+  bibtype  = "Article",
+  title    = "Can stable isotope ratios provide for community-wide measures of trophic structure? ",
+  author   = c("Craig A. Layman", "D. Albrey Arrington",
+               "Carman G. Montaña", "David M. Post"),
+  journal  = "Ecology",
+  year     = "2007",
+  volume   = "88",
+  number   = "1",
+  pages    = "42-48",
+  doi      = "10.1890/0012-9658(2007)88[42:CSIRPF]2.0.CO;2",
+  url      = "https://doi.org/10.1890/0012-9658(2007)88[42:CSIRPF]2.0.CO;2"
 )
 
 bibentry(
