@@ -78,7 +78,6 @@ layman_be <- extract_layman(layman_b, community_df = c_names)
 
 layman_be
 
-
 }
 \seealso{
 \code{\link[SIBER:bayesianLayman]{SIBER::bayesianLayman()}} and \code{\link[SIBER:createSiberObject]{SIBER::createSiberObject()}}

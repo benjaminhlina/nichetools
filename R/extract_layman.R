@@ -68,7 +68,6 @@
 #'
 #' layman_be
 #'
-#'
 #' @import dplyr
 #' @import purrr
 #' @import SIBER
