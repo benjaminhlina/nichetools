@@ -16,7 +16,7 @@ string(e.g., \verb{"1", "2", "3"}). This is the order of the community names
 and will be used to join the actual community names to the correct data.
 These are the same class and values required by the function, \code{createSiberObject()}
 from \href{https://CRAN.R-project.org/package=SIBER}{{SIBER}}.
-The second column is contains the actual names of the communities
+The second column contains the actual names of the communities
 that the user is working with (e.g., \code{"region"}).}
 
 \item{data_format}{a \code{character} string that decides whether the returned object is
