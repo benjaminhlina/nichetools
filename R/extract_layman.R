@@ -96,6 +96,11 @@ extract_layman <- function(data,
     }
   }
 
+  if (!"community" %in% colnames(community_df)) {
+    cli::cli_abort("The data frame does not contain a column named 'community'.")
+  }
+
+
 
   # sett data formatt
   if(is.null(data_format)) {
