@@ -65,7 +65,7 @@ Layman et al. (2008)."><!-- mathjax --><script src="https://cdnjs.cloudflare.com
 distance to centroid (CD), distance to the nearest neighbour (NND), and
 the standard deviation of the distance to the nearest neighbour (SDNND)
 from data objects created by
-<a href="https://cran.r-project.org/web/packages/SIBER/index.html" class="external-link">SIBER</a>. To learn
+<a href="https://CRAN.R-project.org/package=SIBER" class="external-link">SIBER</a>. To learn
 more about the following metrics please review
 <a href="https://esajournals.onlinelibrary.wiley.com/doi/full/10.1890/0012-9658%282007%2988%5B42%3ACSIRPF%5D2.0.CO%3B2" class="external-link">Layman et al. (2008)</a>.</p>
     </div>
@@ -79,18 +79,18 @@ more about the following metrics please review
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>data</dt>
 <dd><p>a <code>list</code> created by the function <code><a href="https://rdrr.io/pkg/SIBER/man/bayesianLayman.html" class="external-link">bayesianLayman()</a></code> from the package
-<a href="https://cran.r-project.org/web/packages/SIBER/index.html" class="external-link">SIBER</a>.</p></dd>
+<a href="https://CRAN.R-project.org/package=SIBER" class="external-link">SIBER</a>.</p></dd>
 
 
 <dt>community_df</dt>
-<dd><p>a two column data frame, with one of the column names
-will be numbers (e.g., <code>"1", "2", "3"</code>) as a <code>character</code> string. This is the order
-of the community names and will be used to join the actual community names to
-the correct data. These are the same class and vlaues requried by the function,
-<code><a href="https://rdrr.io/pkg/SIBER/man/createSiberObject.html" class="external-link">createSiberObject()</a></code>
-<a href="https://cran.r-project.org/web/packages/SIBER/index.html" class="external-link">SIBER</a>.
-The second column is the actual
-names of the communities that the user is working with (e.g., <code>"region"</code>).</p></dd>
+<dd><p>a two column data frame. One of the columns has to be named
+<code>community</code> and the data in the column will be <code>numerics</code> as a <code>character</code>
+string(e.g., <code>"1", "2", "3"</code>). This is the order of the community names
+and will be used to join the actual community names to the correct data.
+These are the same class and values required by the function, <code><a href="https://rdrr.io/pkg/SIBER/man/createSiberObject.html" class="external-link">createSiberObject()</a></code>
+from <a href="https://CRAN.R-project.org/package=SIBER" class="external-link">SIBER</a>.
+The second column is contains the actual names of the communities
+that the user is working with (e.g., <code>"region"</code>).</p></dd>
 
 
 <dt>data_format</dt>
@@ -104,7 +104,7 @@ in long or wide format. Default is <code>"long"</code>, with the alternative sup
 
 <p>A <code>tibble</code> containing four rows when <code>data_format</code> is set to its
 default which is <code>long</code>. These four rows are the following, <code>community</code>,
-<code>user_supplied_community_names</code>, <code>metric</code> and <code>estiamtes</code>.</p>
+<code>the_name_of_the_communities</code>, <code>metric</code> and <code>post_est</code>.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
