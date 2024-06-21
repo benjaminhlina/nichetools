@@ -8,16 +8,16 @@ extract_layman(data, community_df = NULL, data_format = NULL)
 }
 \arguments{
 \item{data}{a \code{list} created by the function \code{bayesianLayman()} from the package
-\href{https://cran.r-project.org/web/packages/SIBER/index.html}{{SIBER}}.}
+\href{https://CRAN.R-project.org/package=SIBER}{{SIBER}}.}
 
-\item{community_df}{a two column data frame, with one of the column names
-will be numbers (e.g., \verb{"1", "2", "3"}) as a \code{character} string. This is the order
-of the community names and will be used to join the actual community names to
-the correct data. These are the same class and vlaues requried by the function,
-\code{createSiberObject()}
-\href{https://cran.r-project.org/web/packages/SIBER/index.html}{{SIBER}}.
-The second column is the actual
-names of the communities that the user is working with (e.g., \code{"region"}).}
+\item{community_df}{a two column data frame. One of the columns has to be named
+\code{community} and the data in the column will be \code{numerics} as a \code{character}
+string(e.g., \verb{"1", "2", "3"}). This is the order of the community names
+and will be used to join the actual community names to the correct data.
+These are the same class and values required by the function, \code{createSiberObject()}
+from \href{https://CRAN.R-project.org/package=SIBER}{{SIBER}}.
+The second column is contains the actual names of the communities
+that the user is working with (e.g., \code{"region"}).}
 
 \item{data_format}{a \code{character} string that decides whether the returned object is
 in long or wide format. Default is \code{"long"}, with the alternative supplied being \code{"wide"}.}
@@ -25,7 +25,7 @@ in long or wide format. Default is \code{"long"}, with the alternative supplied 
 \value{
 A \code{tibble} containing four rows when \code{data_format} is set to its
 default which is \code{long}. These four rows are the following, \code{community},
-\code{user_supplied_community_names}, \code{metric} and \code{estiamtes}.
+\code{the_name_of_the_communities}, \code{metric} and \code{post_est}.
 }
 \description{
 Extract Bayesian estimates for the following six layman metrics,
@@ -33,7 +33,7 @@ Extract Bayesian estimates for the following six layman metrics,
 distance to centroid (CD), distance to the nearest neighbour (NND), and
 the standard deviation of the distance to the nearest neighbour (SDNND)
 from data objects created by
-\href{https://cran.r-project.org/web/packages/SIBER/index.html}{{SIBER}}. To learn
+\href{https://CRAN.R-project.org/package=SIBER}{{SIBER}}. To learn
 more about the following metrics please review
 \href{https://esajournals.onlinelibrary.wiley.com/doi/full/10.1890/0012-9658\%282007\%2988\%5B42\%3ACSIRPF\%5D2.0.CO\%3B2}{Layman et al. (2008)}.
 }

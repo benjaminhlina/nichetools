@@ -5,26 +5,26 @@
 #' distance to centroid (CD), distance to the nearest neighbour (NND), and
 #' the standard deviation of the distance to the nearest neighbour (SDNND)
 #' from data objects created by
-#' [{SIBER}](https://cran.r-project.org/web/packages/SIBER/index.html). To learn
+#' [{SIBER}](https://CRAN.R-project.org/package=SIBER). To learn
 #' more about the following metrics please review
 #' [Layman et al. (2008)](https://esajournals.onlinelibrary.wiley.com/doi/full/10.1890/0012-9658%282007%2988%5B42%3ACSIRPF%5D2.0.CO%3B2).
 #'
 #' @param data a `list` created by the function `bayesianLayman()` from the package
-#' [{SIBER}](https://cran.r-project.org/web/packages/SIBER/index.html).
-#' @param community_df a two column data frame, with one of the column names
-#' will be numbers (e.g., `"1", "2", "3"`) as a `character` string. This is the order
-#' of the community names and will be used to join the actual community names to
-#' the correct data. These are the same class and vlaues requried by the function,
-#' `createSiberObject()`
-#' [{SIBER}](https://cran.r-project.org/web/packages/SIBER/index.html).
-#' The second column is the actual
-#' names of the communities that the user is working with (e.g., `"region"`).
+#' [{SIBER}](https://CRAN.R-project.org/package=SIBER).
+#' @param community_df a two column data frame. One of the columns has to be named
+#' `community` and the data in the column will be `numerics` as a `character`
+#' string(e.g., `"1", "2", "3"`). This is the order of the community names
+#' and will be used to join the actual community names to the correct data.
+#' These are the same class and values required by the function, `createSiberObject()`
+#' from [{SIBER}](https://CRAN.R-project.org/package=SIBER).
+#' The second column is contains the actual names of the communities
+#' that the user is working with (e.g., `"region"`).
 #' @param data_format a `character` string that decides whether the returned object is
 #' in long or wide format. Default is `"long"`, with the alternative supplied being `"wide"`.
 #'
 #' @return A `tibble` containing four rows when `data_format` is set to its
 #' default which is `long`. These four rows are the following, `community`,
-#' `user_supplied_community_names`, `metric` and `estiamtes`.
+#' `the_name_of_the_communities`, `metric` and `post_est`.
 #'
 #' @seealso [SIBER::bayesianLayman()] and [SIBER::createSiberObject()]
 #' @examples
