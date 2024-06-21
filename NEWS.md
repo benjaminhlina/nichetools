@@ -1,9 +1,14 @@
+# nichetools 0.2.1
+
+### 21-June-2024
+* `extract_layman` has been implemented 
+*  Tests have been added for this function 
+
 # nichetools 0.2.0
 
 ### 03-June-2024
 * functions now fully support {SIBER}
 * functions now extract randomly sampled ellipse 
-
 
 ### 16-May-2024
 * Update to documentation for CRAN submission 
