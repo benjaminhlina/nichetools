@@ -58,4 +58,4 @@ To cite this package please cite the following publications
 
 -   Layman, C.A., Arrington, D.A., Montaña, C.G., and Post, D.M. 2007. Can stable isotope ratios provide for community-wide measures of trophic structure? Ecology 88(1): 42–48. [link]( https://doi.org/10.1890/0012-9658(2007)88[42:CSIRPF]2.0.CO;2)
 
--   Hlina B.L. 2024. nichetools: Complementary package to nicheROVER and SIBER. R package version 0.2.0. https://benjaminhlina.github.io/nichetools/
+-   Hlina B.L. 2024. nichetools: Complementary package to nicheROVER and SIBER. R package version 0.2.1. https://benjaminhlina.github.io/nichetools/
