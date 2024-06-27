@@ -4,7 +4,7 @@
 \alias{extract_layman}
 \title{extract Layman metrics}
 \usage{
-extract_layman(data, community_df = NULL, data_format = NULL, method = NULL)
+extract_layman(data, community_df = NULL, data_format = NULL)
 }
 \arguments{
 \item{data}{a \code{list} created by the function \code{bayesianLayman()} from the package
