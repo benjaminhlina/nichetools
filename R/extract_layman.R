@@ -79,6 +79,8 @@
 extract_layman <- function(data,
                            community_df = NULL,
                            data_format = NULL) {
+
+
   if (!is.list(data)) {
     cli::cli_abort(c(
       "The `data` argument must be a list.",
@@ -102,6 +104,7 @@ extract_layman <- function(data,
 
 
 
+
   # sett data formatt
   if(is.null(data_format)) {
     data_format <- "long"
@@ -110,10 +113,6 @@ extract_layman <- function(data,
   if (!(data_format %in% c("wide", "long"))) {
     cli::cli_abort("Invalid characters for 'data_format'. Allowed character
     strings are 'wide' or 'long'.")
-  }
-
-  if (is.null(data_format)) {
-    data_format <- "long"
   }
 
   df_layman <- data |>
