@@ -1,11 +1,21 @@
 ---
 title: "Using {nichetools} with SIBER"
+author: Benjamin L. Hlina
+date: "Updated: `r Sys.Date()`"
 output: rmarkdown::html_vignette
+
 vignette: >
   %\VignetteIndexEntry{Using {nichetools} with SIBER}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
 
 ### Our Objectives
 
