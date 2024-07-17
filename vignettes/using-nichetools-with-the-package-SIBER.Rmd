@@ -79,7 +79,7 @@ c_names <- demo.siber.data.2 %>%
 We will then plot our biplot to confirm we have the correct stucture. 
 
 ```{r}
-# ---- plot to confirm correct structure ----
+#| out-width: 100%
 ggplot(data = demo.siber.data.2, aes(x = iso1, y = iso2,
                              colour = group)) +
   geom_point() +
@@ -170,6 +170,7 @@ df_mu <- extract_mu(ellipses_posterior, pkg = "SIBER",
 We can confirm that the posterior estimates of $\mu$ are correct by plotting them with {ggplot2} 
 
 ```{r}
+#| out-width: 100%
 ggplot() +
   geom_point(data = df_mu, aes(x = d13c, y = d15n,
                                colour = group)) +
