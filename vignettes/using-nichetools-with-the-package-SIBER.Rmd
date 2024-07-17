@@ -14,7 +14,7 @@ The purpose of this vignette is to use [{SIBER}](https://cran.r-project.org/pack
 This vignette can be used for additional purposes including estimating niche size and similarities among different groups of aquatic and/or terrestrial species. Furthermore, niche size and similarities for different behaviours exhibited within a population can be made using behavioural data generated from acoustic telemetry (e.g., differences in habitat occupancy).
 
 ### Bring in trophic data
-First we will load the necessary packages to preform the analysis and visualization. We will use [{SIBER}](https://cran.r-project.org/package=SIBER) and [{nichetools}](https://benjaminhlina.github.io/nichetools/) to preform the analysis. We will use [{bayestestR}]() to calcuate and extract etis and medians for posterior distubtions that we want to plot. We will use [{dplyr}](https://dplyr.tidyverse.org/), [{tidyr}](https://tidyr.tidyverse.org/), and [{purrr}](https://purrr.tidyverse.org/) to manipulate data and iterate processes. Lastly, we will use [{ggplot2}](https://ggplot2.tidyverse.org/), [{ggtext}](https://wilkelab.org/ggtext/), and [{patchwork}](https://patchwork.data-imaginist.com/) to plot, add labels, and arrange plots.
+First we will load the necessary packages to preform the analysis and visualization. We will use [{SIBER}](https://cran.r-project.org/package=SIBER) and [{nichetools}](https://benjaminhlina.github.io/nichetools/) to preform the analysis. We will use [{bayestestR}](https://easystats.github.io/bayestestR/) to calcuate and extract etis and medians for posterior distubtions that we want to plot. We will use [{dplyr}](https://dplyr.tidyverse.org/), [{tidyr}](https://tidyr.tidyverse.org/), and [{purrr}](https://purrr.tidyverse.org/) to manipulate data and iterate processes. Lastly, we will use [{ggplot2}](https://ggplot2.tidyverse.org/), [{ggtext}](https://wilkelab.org/ggtext/), and [{patchwork}](https://patchwork.data-imaginist.com/) to plot, add labels, and arrange plots.
 
 I will add that many of the `{dplyr}` and `{tidyr}` functions and processes can be replaced using [{data.table}](https://CRAN.R-project.org/package=data.table) which is great when working with large data sets.
 
@@ -204,4 +204,50 @@ df_mu_long <- extract_mu(ellipses_posterior, pkg = "SIBER") %>%
                                               "group_id")) %>%
   left_join(cg_names)
 ```
+
+Next we are going to extract posterior estimates of $\Sigma$ using `extract_sigma()`. 
+
+```{r}
+df_sigma <- extract_sigma(ellipses_posterior, pkg = "SIBER")
+```
+
+Lastly, we are going to feed each $\mu$ and $\Sigma$ estimate to `niche_ellipse()` to estimate each ellipse. There are few things to know about this function and they include the following: 1) it will randomly sample 10 ellipse from the total estimates, this seems quite standard, however you can adjust the number of samples by changing the argument `n`. 2) to maake the function consistently randomly sample the same set you will need to set `set_seed` to a numerical value. If this is not set then it will randomly sample a different set of 10 ellipses every time. 3) if you would like the function to not randomly sample set the argument `random` to `FALSE`. 4) by default it will tell you how long it takes to generate the ellipse and will have progress bars at each step. If you want to turn this off set `message` to `FALSE`. 
+
+```{r, message = FALSE}
+df_el <- niche_ellipse(dat_mu = df_mu_long,
+                       dat_sigma = df_sigma, set_seed = 4, n = 20) %>%
+  separate_wider_delim(sample_name, cols_remove = FALSE,
+                       delim = ".", names = c("community_id",
+                                              "group_id")) %>%
+  left_join(cg_names)
+```
+
+Now that we have the ellipses created we can plot them
+
+```{r}
+
+ggplot(data = df_el, 
+       aes(x = d13c, y = d15n, 
+                         group = interaction(sample_number, 
+                                             sample_name), 
+                         colour = group)) + 
+  geom_polygon(linewidth = 0.5, fill = NA) + 
+   facet_wrap( ~ community) + 
+    scale_colour_viridis_d(option = "A", begin = 0.25, end = 0.85,
+                         name = "Groups", alpha = 0.75) + 
+  theme_bw(
+    base_size = 15
+  ) + 
+  theme(
+    strip.background = element_blank(),
+    panel.grid = element_blank(), 
+    legend.position = "inside",
+    legend.position.inside = c(0.65, 0.75)
+  ) + 
+  labs(
+    x = expression(paste(delta^13,"C")), 
+    y = expression(paste(delta^15,"N")) 
+  )
+```
+
 
