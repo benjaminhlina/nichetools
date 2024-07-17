@@ -212,11 +212,13 @@ Next we are going to extract posterior estimates of $\Sigma$ using `extract_sigm
 df_sigma <- extract_sigma(ellipses_posterior, pkg = "SIBER")
 ```
 
-Lastly, we are going to feed each $\mu$ and $\Sigma$ estimate to `niche_ellipse()` to estimate each ellipse. There are few things to know about this function and they include the following: 1) it will randomly sample 10 ellipse from the total estimates, this seems quite standard, however you can adjust the number of samples by changing the argument `n`. 2) to maake the function consistently randomly sample the same set you will need to set `set_seed` to a numerical value. If this is not set then it will randomly sample a different set of 10 ellipses every time. 3) if you would like the function to not randomly sample set the argument `random` to `FALSE`. 4) by default it will tell you how long it takes to generate the ellipse and will have progress bars at each step. If you want to turn this off set `message` to `FALSE`. 
+Lastly, we are going to feed each $\mu$ and $\Sigma$ estimate to `niche_ellipse()` to estimate each ellipse. There are few things to know about this function and they include the following: 1) it will randomly sample 10 ellipse from the total estimates, this seems quite standard, however you can adjust the number of samples by changing the argument `n`. 2) to maake the function consistently randomly sample the same set you will need to set `set_seed` to a numerical value. If this is not set then it will randomly sample a different set of 10 ellipses every time. 3) if you would like the function to not randomly sample set the argument `random` to `FALSE`. 4) by default it will tell you how long it takes to generate the ellipse and will have progress bars at each step. If you want to turn this off set `message` to `FALSE`. 5) if you are wanting to change the confidence level of the ellipse you can do so using the argument `p_ell`. This value is bound between 0 and 1. 
 
 ```{r, message = FALSE}
+#| out-width: 100%
 df_el <- niche_ellipse(dat_mu = df_mu_long,
-                       dat_sigma = df_sigma, set_seed = 4, n = 20) %>%
+                       dat_sigma = df_sigma, 
+                       set_seed = 4, n = 20) %>%
   separate_wider_delim(sample_name, cols_remove = FALSE,
                        delim = ".", names = c("community_id",
                                               "group_id")) %>%
