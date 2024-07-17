@@ -162,8 +162,35 @@ We will first extract posterior distribution for $\mu$ using `extract_mu()` in {
 df_mu <- extract_mu(ellipses_posterior, pkg = "SIBER", 
                     data_format = "wide") %>%
   separate_wider_delim(sample_name, cols_remove = FALSE,
-                       delim = ".", names = c("community",
-                                              "group")) %>%
+                       delim = ".", names = c("community_id",
+                                              "group_id")) %>%
   left_join(cg_names)
 ```
 
+We can confirm that the posterior estimates of $\mu$ are correct by plotting them with {ggplot2} 
+
+```{r}
+ggplot() +
+  geom_point(data = df_mu, aes(x = d13c, y = d15n,
+                               colour = group)) +
+  geom_point(data = demo.siber.data.2, aes(x = iso1, y = iso2,
+                                 colour = group)) +
+  facet_wrap( ~ community) + 
+    scale_colour_viridis_d(option = "A", begin = 0.25, end = 0.85,
+                         name = "Groups", alpha = 0.75) + 
+  theme_bw(
+    base_size = 15
+  ) + 
+  theme(
+    strip.background = element_blank(),
+    panel.grid = element_blank(), 
+    legend.position = "inside",
+    legend.position.inside = c(0.8, 0.9)
+  ) + 
+  labs(
+    x = expression(paste(delta^13,"C")), 
+    y = expression(paste(delta^15,"N")) 
+  )
+```
+
+Notice how there is a density of points in the center of the raw data with the corresponding colours. This indicates that how the model is iterating over the groups and communities we have the nameing of commnites and groups correct. 
