@@ -118,7 +118,6 @@ demo_siber_data <- demo.siber.data.2 %>%
 We will convert to a {SIBER} object, once we have the {SIBER} object we can start our analysis. 
 
 ```{r}
-# ---- create siber object ----
 siber_example <- createSiberObject(demo_siber_data)
 ```
 
