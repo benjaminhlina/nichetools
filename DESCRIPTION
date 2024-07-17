@@ -24,7 +24,7 @@ Imports:
     lifecycle,
     nicheROVER,
     purrr, 
-    rjags,
+   
     rlang,
     SIBER,
     tibble,
@@ -42,7 +42,8 @@ Suggests:
     ggh4x,
     janitor,
     knitr,
-    patchwork,
+    patchwork, 
+    rjags,
     rmarkdown,
     stringr,
     testthat (>= 3.0.0)
