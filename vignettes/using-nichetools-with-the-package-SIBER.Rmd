@@ -93,7 +93,7 @@ ggplot(data = demo.siber.data.2, aes(x = iso1, y = iso2,
     strip.background = element_blank(),
     panel.grid = element_blank(), 
     legend.position = "inside",
-    legend.position.inside = c(0.45, 0.8)
+    legend.position.inside = c(0.55, 0.8)
   ) + 
   labs(
     x = expression(paste(delta^13,"C")), 
@@ -185,7 +185,7 @@ ggplot() +
     strip.background = element_blank(),
     panel.grid = element_blank(), 
     legend.position = "inside",
-    legend.position.inside = c(0.45, 0.8)
+    legend.position.inside = c(0.55, 0.8)
   ) + 
   labs(
     x = expression(paste(delta^13,"C")), 
