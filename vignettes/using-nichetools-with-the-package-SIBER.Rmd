@@ -93,7 +93,7 @@ ggplot(data = demo.siber.data.2, aes(x = iso1, y = iso2,
     strip.background = element_blank(),
     panel.grid = element_blank(), 
     legend.position = "inside",
-    legend.position.inside = c(0.6, 0.9)
+    legend.position.inside = c(0.45, 0.8)
   ) + 
   labs(
     x = expression(paste(delta^13,"C")), 
@@ -185,7 +185,7 @@ ggplot() +
     strip.background = element_blank(),
     panel.grid = element_blank(), 
     legend.position = "inside",
-    legend.position.inside = c(0.6, 0.9)
+    legend.position.inside = c(0.45, 0.8)
   ) + 
   labs(
     x = expression(paste(delta^13,"C")), 
@@ -194,3 +194,15 @@ ggplot() +
 ```
 
 Notice how there is a density of points in the center of the raw data with the corresponding colours. This indicates that how the model is iterating over the groups and communities we have the nameing of commnites and groups correct. 
+
+We are also going to extract $\mu$ in long format for creating ellipse, as the functions that create ellipse need the data frame of $\mu$ to be in long format. 
+
+```{r}
+df_mu_long <- extract_mu(siber_example, pkg = "SIBER", 
+                         data_format = "long") %>%
+  separate_wider_delim(sample_name, cols_remove = FALSE,
+                       delim = ".", names = c("community_id",
+                                              "group_id")) %>%
+  left_join(cg_names)
+```
+
