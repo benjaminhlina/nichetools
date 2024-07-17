@@ -29,7 +29,6 @@ WE will first load the packages that were just mentioned
   library(nichetools)
   library(patchwork)
   library(purrr)
-  library(readr)
   library(SIBER)
   library(tidyr)
   # source(here::here("functions",
