@@ -1,8 +1,8 @@
 ---
-title: "Using {nichtools} with SIBER"
+title: "Using {nichetools} with SIBER"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Using {nichtools} with SIBER}
+  %\VignetteIndexEntry{Using {nichetools} with SIBER}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
