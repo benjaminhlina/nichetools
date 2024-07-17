@@ -20,7 +20,6 @@ I will add that many of the `{dplyr}` and `{tidyr}` functions and processes can 
 
 WE will first load the packages that were just mentioned 
 ```{r, message=FALSE}
-# ---- load packages -----
 {
   library(bayestestR)
   library(dplyr)
@@ -31,8 +30,6 @@ WE will first load the packages that were just mentioned
   library(purrr)
   library(SIBER)
   library(tidyr)
-  # source(here::here("functions",
-  #                   "siber_fit_transform_bays.R"))
 }
 ```
 For the purpose of the vignette we will be using the `demo.siber.data.2` data frame that is available within `{SIBER}`. We will first look at the structure of this dataframe using the `{dplyr}` function `glimpse()` For your purposes you will need to replace this with your data frame either by loading a csv, rds, or qs, with your data. You can do this multiple ways, I prefer using `readr::read_csv()` but base R's `read.csv()` works perfectly fine. Note, {`SIBER`} functions do not take `tibbles` or `data.tables` so you will have to convert either to `data.frames`
@@ -228,7 +225,6 @@ df_el <- niche_ellipse(dat_mu = df_mu_long,
 Now that we have the ellipses created we can plot them
 
 ```{r}
-
 ggplot(data = df_el, 
        aes(x = d13c, y = d15n, 
                          group = interaction(sample_number, 
