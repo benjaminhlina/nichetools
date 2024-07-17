@@ -150,7 +150,7 @@ priors$tau.mu <- 1.0E-3
 
 We will now run the model using the function `siberMVN()`. 
 
-```{r, message=FALSE}
+```{r, message=FALSE, results='hide'}
 ellipses_posterior <- siberMVN(siber_example, parms, priors)
 ```
 
