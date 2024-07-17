@@ -35,6 +35,7 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
 URL: https://benjaminhlina.github.io/nichetools/
 Suggests: 
+    bayestestR,
     ggplot2,
     ggtext,
     ggh4x,
