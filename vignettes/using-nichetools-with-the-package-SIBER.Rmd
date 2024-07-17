@@ -1,0 +1,155 @@
+---
+title: "Using nichtools with SIBER"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Using nichtools with SIBER}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+### Our Objectives
+
+The purpose of this vignette is to use [{SIBER}](https://cran.r-project.org/package=SIBER) and [{nichetools}](https://benjaminhlina.github.io/nichetools/) to extract and then visualize estimates of trophic niche size and similarities and Layman community metrics for multiple freshwater fish using [{ggplot2}](https://ggplot2.tidyverse.org/). 
+
+This vignette can be used for additional purposes including estimating niche size and similarities among different groups of aquatic and/or terrestrial species. Furthermore, niche size and similarities for different behaviours exhibited within a population can be made using behavioural data generated from acoustic telemetry (e.g., differences in habitat occupancy).
+
+### Bring in trophic data
+First we will load the necessary packages to preform the analysis and visualization. We will use [{SIBER}](https://cran.r-project.org/package=SIBER) and [{nichetools}](https://benjaminhlina.github.io/nichetools/) to preform the analysis. We will use [{bayestestR}]() to calcuate and extract etis and medians for posterior distubtions that we want to plot. We will use [{dplyr}](https://dplyr.tidyverse.org/), [{tidyr}](https://tidyr.tidyverse.org/), and [{purrr}](https://purrr.tidyverse.org/) to manipulate data and iterate processes. Lastly, we will use [{ggplot2}](https://ggplot2.tidyverse.org/), [{ggtext}](https://wilkelab.org/ggtext/), and [{patchwork}](https://patchwork.data-imaginist.com/) to plot, add labels, and arrange plots.
+
+I will add that many of the `{dplyr}` and `{tidyr}` functions and processes can be replaced using [{data.table}](https://CRAN.R-project.org/package=data.table) which is great when working with large data sets.
+
+WE will first load the packages that were just mentioned 
+```{r, message=FALSE}
+# ---- load packages -----
+{
+  library(bayestestR)
+  library(dplyr)
+  library(ggplot2)
+  library(ggtext)
+  library(nichetools)
+  library(patchwork)
+  library(purrr)
+  library(readr)
+  library(SIBER)
+  library(tidyr)
+  # source(here::here("functions",
+  #                   "siber_fit_transform_bays.R"))
+}
+```
+For the purpose of the vignette we will be using the `demo.siber.data.2` data frame that is available within `{SIBER}`. We will first look at the structure of this dataframe using the `{dplyr}` function `glimpse()` For your purposes you will need to replace this with your data frame either by loading a csv, rds, or qs, with your data. You can do this multiple ways, I prefer using `readr::read_csv()` but base R's `read.csv()` works perfectly fine. Note, {`SIBER`} functions do not take `tibbles` or `data.tables` so you will have to convert either to `data.frames`
+
+```{r}
+glimpse(demo.siber.data.2)
+```
+
+You will notice that the community and group column are characters that are the names of the communities and groups. Similarly, you will likely have names associated with the communities and groups you are working with, instead of 1, 2, 3 ect. I advise changing them into factors thus allow you to know the order for each column. The reason why this is important, is that functions in `{SIBER}` use `for` loops based on the indexing of the `SiberObject`. If this order does not match up you can have issues with the names of the communities and groups you are working with. I think it isas you will likely have names associated with the communities and groups you are working with. 
+
+So first I change these into factors, then I preserve the column and create an id column that is the numerical order that will become the community and group names fed to `createSiberObject()`. 
+
+```{r}
+demo.siber.data.2 <- demo.siber.data.2 %>%
+  mutate(
+    group = factor(group), 
+    community = factor(community), 
+    group_id = as.numeric(group) %>% 
+      as.character(),
+    community_id = as.numeric(community) %>%
+      as.character()
+  )
+
+glimpse(demo.siber.data.2)
+```
+
+After we have done this we are going to create two data frames that are the names of our communities and groups with their associated id values. We will use these data frames later on to join up the names, allowing us to know what estimates belong to which communities and groups, preserving the names that we have assigned them. Again this is done because it is unlikely you will have communities and groups named 1, 2, 3 ect. and instead will have actual names. 
+
+```{r}
+# ---- create name with group and community dataframe ----
+cg_names <- demo.siber.data.2 %>%
+  distinct(group,
+           community, 
+           group_id, 
+           community_id) %>%
+  arrange(community, group)
+
+# ---- create community names dataframe ---- 
+c_names <- demo.siber.data.2 %>% 
+  distinct(community, 
+           community_id) %>%
+  arrange(community)
+```
+We will then plot our biplot to confirm we have the correct stucture. 
+
+```{r}
+# ---- plot to confirm correct structure ----
+ggplot(data = demo.siber.data.2, aes(x = iso1, y = iso2,
+                             colour = group)) +
+  geom_point() +
+  facet_wrap(~ community)
+```
+Next we will grab the isotopes we need and the community and group ids, will will then rename them to community and group. This is important as `creatSiberObject()` will 1) only take the following order with the following names `iso1`, `iso2`, `group`, `community` and 2) we will transform this `tibble` into a `data.frame`. In this case we were using tibbles but we could also be working with `data.table` and will need to do the same thing. 
+
+```{r}
+demo_siber_data <- demo.siber.data.2 %>% 
+  dplyr::select(iso1, iso2, group_id, community_id) %>% 
+  rename(
+    community = community_id, 
+    group = group_id
+  ) %>% 
+  as.data.frame()
+```
+
+### Convert to {SIBER} object
+
+We will convert to a {SIBER} object, once we have the {SIBER} object we can start our analysis. 
+
+```{r}
+# ---- create siber object ----
+siber_example <- createSiberObject(demo_siber_data)
+```
+
+Now that we have converted this to a {SIBER} object we can start doing some analysis using a Bayesian framework and extracting the different metrics this analysis produces using functions from {nichetools}. 
+
+### Bayesian Ellipse Analysis 
+
+We first need to set the parameters to run the model 
+
+```{r}
+# options for running jags
+parms <- list()
+parms$n.iter <- 2 * 10^4   # number of iterations to run the model for
+parms$n.burnin <- 1 * 10^3 # discard the first set of values
+parms$n.thin <- 10     # thin the posterior by this many
+parms$n.chains <- 2        # run this many chains
+```
+
+Next we need to define the priors for each parameter of the model. This includes fitting the ellipses using an Inverse Wishart prior on the covariance matrix $\Sigma$ , and a vague normal prior on the means ($\mu$).
+
+```{r}
+# fit the ellipses which uses an Inverse Wishart prior on the 
+# covariance matrix Sigma, and a vague normal prior on the 
+# means.
+priors <- list()
+priors$R <- 1 * diag(2)
+priors$k <- 2
+priors$tau.mu <- 1.0E-3
+```
+
+We will now run the model using the function `siberMVN()`. 
+
+```{r, message=FALSE}
+ellipses_posterior <- siberMVN(siber_example, parms, priors)
+```
+
+### Extract posterior distributions for μ and Σ
+
+We will first extract posterior distribution for $\mu$ using `extract_mu()` in {nichetools}. We will need to set the argument `pkg` to `"SIBER"` and because of what we are going to do with the data afterwards. We are going to set `data_format` to `"wide"`. This argument takes `"long"` or `"wide"` which dictates whether the data object returned is in wide or long format. We will also use the function `seperate_wider_delim()` from {tidyr} to seperate teh community and groups names as they are joined by a `.`. We then will use `left_join()` and the `cg_names` data frame we created above to add in the correct community and group names. 
+
+```{r, message = FALSE}
+df_mu <- extract_mu(ellipses_posterior, pkg = "SIBER", 
+                    data_format = "wide") %>%
+  separate_wider_delim(sample_name, cols_remove = FALSE,
+                       delim = ".", names = c("community",
+                                              "group")) %>%
+  left_join(cg_names)
+```
+
