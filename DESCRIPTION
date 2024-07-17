@@ -23,7 +23,8 @@ Imports:
     ellipse,
     lifecycle,
     nicheROVER,
-    purrr,
+    purrr, 
+    rjags,
     rlang,
     SIBER,
     tibble,
@@ -42,7 +43,6 @@ Suggests:
     janitor,
     knitr,
     patchwork,
-    rjags,
     rmarkdown,
     stringr,
     testthat (>= 3.0.0)
