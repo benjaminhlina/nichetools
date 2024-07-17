@@ -1,10 +1,10 @@
 pandoc: 3.1.11
-pkgdown: 2.0.9
+pkgdown: 2.1.0
 pkgdown_sha: ~
 articles:
   using-nichetools-with-the-package-nicheROVER: using-nichetools-with-the-package-nicheROVER.html
-last_built: 2024-06-21T12:48Z
+  using-nichetools-with-the-package-SIBER: using-nichetools-with-the-package-SIBER.html
+last_built: 2024-07-17T14:27Z
 urls:
   reference: https://benjaminhlina.github.io/nichetools/reference
   article: https://benjaminhlina.github.io/nichetools/articles
-
