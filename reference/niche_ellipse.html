@@ -26,6 +26,7 @@
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/benjaminhlina/nichetools/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul></div>
 
 
@@ -35,7 +36,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Create ellipses based on Bayesian estimates of \(\mu\) and \(\Sigma\)</h1>
-
+      <small class="dont-index">Source: <a href="https://github.com/benjaminhlina/nichetools/blob/main/R/niche_ellipse.R" class="external-link"><code>R/niche_ellipse.R</code></a></small>
       <div class="d-none name"><code>niche_ellipse.Rd</code></div>
     </div>
 
@@ -132,7 +133,7 @@ and <code><a href="extract_sigma.html">extract_sigma()</a></code></p></div>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">niche_ellipse</span><span class="op">(</span>dat_mu <span class="op">=</span> <span class="va">mu_est_long</span>,</span></span>
 <span class="r-in"><span>              dat_sigma <span class="op">=</span> <span class="va">sigma_est_wide</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> → Total time processing was 0.08 secs</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> → Total time processing was 0.07 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 4,000 × 4</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    sample_name sample_number  d13c  d15n</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
