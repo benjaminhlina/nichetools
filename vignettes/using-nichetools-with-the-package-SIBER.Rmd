@@ -262,11 +262,13 @@ ggplot(data = df_el,
 
 ### Extract Niche Size 
 
+We can use `siberEllipses()` from {SIBER} to estimate niche size for each posterior sample for each community and group.  
+
 ```{r}
 sea_b <- siberEllipses(corrected.posteriors = ellipses_posterior)
-
 ```
 
+Next using `extract_niche_size()` from {nichetools} we can extract niche size which will also add in the correct names for the community and groups we are working with. 
 
 ```{r}
 seb_convert <- extract_niche_size(data = sea_b,
@@ -274,12 +276,28 @@ seb_convert <- extract_niche_size(data = sea_b,
                                   community_df = cg_names)
 ```
 
+Lastly, we can visualize the extracted niche sizes using {ggplot2}. 
 
 ```{r}
-ggplot(data = seb_convert, aes(x = group,
+ggplot(data = seb_convert, aes(x = community,
                                y = sea,
-                               fill = community)) +
-  geom_violin()
+                               fill = group)) +
+  geom_violin() + 
+  scale_fill_viridis_d(option = "A", begin = 0.25, end = 0.85,
+                         name = "Groups", alpha = 0.75) + 
+  theme_bw(
+    base_size = 15
+  ) + 
+  theme(
+    strip.background = element_blank(),
+    panel.grid = element_blank(), 
+    legend.position = "inside",
+    legend.background = element_blank(), 
+    legend.position.inside = c(0.85, 0.75)
+  ) + 
+  labs(
+    x = "Communities", 
+    y = "Niche Size (p(‰ | x)") 
 
 ```
 
