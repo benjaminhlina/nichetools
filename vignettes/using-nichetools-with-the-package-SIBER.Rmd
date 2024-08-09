@@ -255,8 +255,8 @@ ggplot(data = df_el,
     legend.position.inside = c(0.65, 0.75)
   ) + 
   labs(
-    x = expression(paste(delta^13,"C")), 
-    y = expression(paste(delta^15,"N")) 
+    x = expression(paste(delta^13,"C (‰)")), 
+    y = expression(paste(delta^15,"N (‰)")) 
   )
 ```
 ### Niche Similarties 
