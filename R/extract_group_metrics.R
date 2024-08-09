@@ -45,8 +45,8 @@ extract_group_metrics <- function(data = NULL,
   if (!is.null(community_df)) {
     if (!is.data.frame(community_df) || ncol(community_df) != 4) {
       cli::cli_abort(c(
-        "The `community_df` argument must be a data.frame with exactly two columns.",
-        "i" = "Please provide a data.frame with two columns."
+        "The `community_df` argument must be a data.frame with exactly four columns.",
+        "i" = "Please provide a data.frame with four columns."
       ))
     }
   }
