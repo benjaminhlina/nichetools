@@ -101,3 +101,66 @@ test_that("output data is the correct size and class", {
   expect_equal(ncol(test_3), expected_cols,
                info = "Number of columns is not as expected.")
 })
+
+
+# ----- siber ----
+library(SIBER)
+
+# create the siber object
+# str(demo.siber.data.2)
+
+demo.siber.data.2$community_names <- as.factor(demo.siber.data.2$community)
+demo.siber.data.2$community <- as.numeric(demo.siber.data.2$community_names) |>
+  as.character()
+demo.siber.data.2$group_names <- as.factor(demo.siber.data.2$group)
+demo.siber.data.2$group <- as.numeric(demo.siber.data.2$group_name) |>
+  as.character()
+
+cg_names <- demo.siber.data.2 |>
+  dplyr::distinct(group, community, group_names, community_names)
+
+demo_siber_data <- demo.siber.data.2 |>
+  dplyr::select(iso1:community)
+siber_example <- createSiberObject(demo_siber_data)
+
+# ---- create priors -----
+  # options for running jags
+parms_1 <- list()
+parms_1$n.iter <- 2 * 10^4   # number of iterations to run the model for
+parms_1$n.burnin <- 1 * 10^3 # discard the first set of values
+parms_1$n.thin <- 10     # thin the posterior by this many
+parms_1$n.chains <- 2        # run this many chains
+
+# define the priors
+priors_1 <- list()
+priors_1$R <- 1 * diag(2)
+priors_1$k <- 2
+priors_1$tau.mu <- 1.0E-3
+
+# ---- fit ellipse -----
+# fit the ellipses which uses an Inverse Wishart prior
+# on the covariance matrix Sigma, and a vague normal prior on the
+# means. Fitting is via the JAGS method.
+ellipses_posterior <- siberMVN(siber_example, parms_1, priors_1)
+
+
+sea_b <- siberEllipses(corrected.posteriors = ellipses_posterior)
+
+test_that("output data is the correct size, class, and column names are valid", {
+
+  test_3 <- extract_niche_size(
+    data = sea_b,
+    pkg = "SIBER",
+    # siber_data = demo_siber_data,
+    community_df = cg_names
+  )
+
+  # Check that column names are not NA or empty strings
+  col_names <- colnames(test_3)
+
+  expect_true(all(!is.na(col_names)), info = "There are NA values in column names.")
+  expect_true(all(col_names != ""), info = "There are empty strings in column names.")
+  # Check that the "ID" column exists
+  expect_true("id" %in% colnames(test_3), info = "The 'ID' column is missing in the output data.")
+
+})
