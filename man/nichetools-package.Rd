@@ -12,6 +12,8 @@ Provides functions complementary to packages 'nicheROVER' and 'SIBER' allowing t
 Useful links:
 \itemize{
   \item \url{https://benjaminhlina.github.io/nichetools/}
+  \item \url{https://github.com/benjaminhlina/nichetools}
+  \item Report bugs at \url{https://github.com/benjaminhlina/nichetools/issues}
 }
 
 }
