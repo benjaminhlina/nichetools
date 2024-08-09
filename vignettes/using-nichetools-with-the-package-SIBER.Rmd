@@ -259,6 +259,7 @@ ggplot(data = df_el,
     y = expression(paste(delta^15,"N (‰)")) 
   )
 ```
+
 ### Niche Similarties 
 
 ### Bayesian Estimates of Community Metrics
