@@ -9,7 +9,7 @@
 #' @param data a `matrix` produced by the function `groupMetricsML()` in the
 #' package [{SIBER}]().
 #' @param community_df a four column data frame. One of the columns has to be named
-#' `community` and the data in the column will be `numerics` as a `character`
+#' `community` and the data in the column will be `numeric` as a `character`
 #' string(e.g., `"1", "2", "3"`). This is the order of the community names
 #' and will be used to join the actual community names to the correct data.
 #' These are the same class and values required by the function, `createSiberObject()`
@@ -17,8 +17,8 @@
 #' The second column will be the names of the groups that are needed to supply
 #' required by the function, `createSiberObject()`
 #' from [{SIBER}](https://CRAN.R-project.org/package=SIBER).
-#' The third column contains the actual names of the communities
-#' that the user is working with (e.g., `"region"`).
+#' The third and fourth columns contains the actual names of the communities
+#' and groups the user is working with (e.g., `"region"`, `"common_name"`).
 #' @param data_format a `character` string that decides whether the returned object is
 #' in long or wide format. Default is `"long"`, with the alternative supplied being `"wide"`.
 #'

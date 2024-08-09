@@ -11,7 +11,7 @@ extract_group_metrics(data = NULL, community_df = NULL, data_format = NULL)
 package \url{{SIBER}}.}
 
 \item{community_df}{a four column data frame. One of the columns has to be named
-\code{community} and the data in the column will be \code{numerics} as a \code{character}
+\code{community} and the data in the column will be \code{numeric} as a \code{character}
 string(e.g., \verb{"1", "2", "3"}). This is the order of the community names
 and will be used to join the actual community names to the correct data.
 These are the same class and values required by the function, \code{createSiberObject()}
@@ -19,8 +19,8 @@ from \href{https://CRAN.R-project.org/package=SIBER}{{SIBER}}.
 The second column will be the names of the groups that are needed to supply
 required by the function, \code{createSiberObject()}
 from \href{https://CRAN.R-project.org/package=SIBER}{{SIBER}}.
-The third column contains the actual names of the communities
-that the user is working with (e.g., \code{"region"}).}
+The third and fourth columns contains the actual names of the communities
+and groups the user is working with (e.g., \code{"region"}, \code{"common_name"}).}
 
 \item{data_format}{a \code{character} string that decides whether the returned object is
 in long or wide format. Default is \code{"long"}, with the alternative supplied being \code{"wide"}.}
