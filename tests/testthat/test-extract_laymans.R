@@ -10,7 +10,9 @@ demo.siber.data.2$community <- as.numeric(demo.siber.data.2$community_names) |>
 c_names <- demo.siber.data.2 |>
   dplyr::distinct(community, community_names)
 
-siber_example <- createSiberObject(demo.siber.data)
+demo_siber_data <- demo.siber.data.2 |>
+  dplyr::select(iso1:community)
+siber_example <- createSiberObject(demo_siber_data)
 
 mu_post <- extractPosteriorMeans(siber_example, post_sam_siber)
 
