@@ -260,6 +260,30 @@ ggplot(data = df_el,
   )
 ```
 
+### Extract Niche Size 
+
+```{r}
+sea_b <- siberEllipses(corrected.posteriors = ellipses_posterior)
+
+```
+
+
+```{r}
+seb_convert <- extract_niche_size(data = sea_b,
+                                  pkg = "SIBER",
+                                  community_df = cg_names)
+```
+
+
+```{r}
+ggplot(data = seb_convert, aes(x = group,
+                               y = sea,
+                               fill = community)) +
+  geom_violin()
+
+```
+
+
 ### Niche Similarties 
 
 ### Bayesian Estimates of Community Metrics
