@@ -63,7 +63,7 @@ extract_sigma <-  function(data,
   }
 
   # sett data formatt
-  if(is.null(data_format)) {
+  if (is.null(data_format)) {
     data_format <- "wide"
   }
 
