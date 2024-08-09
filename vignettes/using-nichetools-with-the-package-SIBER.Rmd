@@ -28,7 +28,7 @@ First we will load the necessary packages to preform the analysis and visualizat
 
 I will add that many of the `{dplyr}` and `{tidyr}` functions and processes can be replaced using [{data.table}](https://CRAN.R-project.org/package=data.table) which is great when working with large data sets.
 
-WE will first load the packages that were just mentioned 
+We will first load the packages that were just mentioned 
 ```{r, message=FALSE}
 {
   library(bayestestR)
@@ -42,15 +42,15 @@ WE will first load the packages that were just mentioned
   library(tidyr)
 }
 ```
-For the purpose of the vignette we will be using the `demo.siber.data.2` data frame that is available within `{SIBER}`. We will first look at the structure of this dataframe using the `{dplyr}` function `glimpse()` For your purposes you will need to replace this with your data frame either by loading a csv, rds, or qs, with your data. You can do this multiple ways, I prefer using `readr::read_csv()` but base R's `read.csv()` works perfectly fine. Note, {`SIBER`} functions do not take `tibbles` or `data.tables` so you will have to convert either to `data.frames`
+For the purpose of the vignette we will be using the `demo.siber.data.2` data frame that is available within `{SIBER}`. We will first look at the structure of this data frame using the `{dplyr}` function `glimpse()` For your purposes you will need to replace this with your data frame either by loading a csv, rds, or qs. You can do this multiple ways, I prefer using `readr::read_csv()` but base R's `read.csv()` works perfectly fine. Note, `{SIBER}` functions do not take `tibbles` or `data.tables` so you will have to convert either to `data.frame` class prior to running funcgtions in `{SIBER}`. 
 
 ```{r}
 glimpse(demo.siber.data.2)
 ```
 
-You will notice that the community and group column are characters that are the names of the communities and groups. Similarly, you will likely have names associated with the communities and groups you are working with, instead of 1, 2, 3 ect. I advise changing them into factors thus allow you to know the order for each column. The reason why this is important, is that functions in `{SIBER}` use `for` loops based on the indexing of the `SiberObject`. If this order does not match up you can have issues with the names of the communities and groups you are working with. I think it isas you will likely have names associated with the communities and groups you are working with. 
+You will notice that the community and group column are character strings that are the actual names of the communities and groups. Similarly, you will likely have names associated with the communities and groups you are working with, instead of 1, 2, 3 ect. I advise changing them into factors thus allow you to know the order for each column. The reason why this is important, is that functions in `{SIBER}` use `for` loops based on the indexing of the `SiberObject`. If this order does not match up you can have issues with the names of the communities and groups you are working with.
 
-So first I change these into factors, then I preserve the column and create an id column that is the numerical order that will become the community and group names fed to `createSiberObject()`. 
+So first, change these into factors, then preserve the column and create an id column that is the numerical order that will become the community and group names fed to `createSiberObject()`. 
 
 ```{r}
 demo.siber.data.2 <- demo.siber.data.2 %>%
@@ -66,10 +66,10 @@ demo.siber.data.2 <- demo.siber.data.2 %>%
 glimpse(demo.siber.data.2)
 ```
 
-After we have done this we are going to create two data frames that are the names of our communities and groups with their associated id values. We will use these data frames later on to join up the names, allowing us to know what estimates belong to which communities and groups, preserving the names that we have assigned them. Again this is done because it is unlikely you will have communities and groups named 1, 2, 3 ect. and instead will have actual names. 
+After we have done this, we are going to create two data frames that are the names of our communities and groups with their associated id values. We will use these data frames later on to join up the actual names, allowing us to know what estimates belong to which communities and groups, preserving the names that we have originally assigned them. Again this is done because it is unlikely you will have communities and groups named 1, 2, 3 ect. and instead will have actual names. 
 
 ```{r}
-# ---- create name with group and community dataframe ----
+# ---- create name with group and community data frame ----
 cg_names <- demo.siber.data.2 %>%
   distinct(group,
            community, 
@@ -77,13 +77,13 @@ cg_names <- demo.siber.data.2 %>%
            community_id) %>%
   arrange(community, group)
 
-# ---- create community names dataframe ---- 
+# ---- create community names data frame ---- 
 c_names <- demo.siber.data.2 %>% 
   distinct(community, 
            community_id) %>%
   arrange(community)
 ```
-We will then plot our biplot to confirm we have the correct stucture. 
+We will then plot our biplot to confirm we have the correct structure. 
 
 ```{r}
 #| out-width: 100%
@@ -103,12 +103,12 @@ ggplot(data = demo.siber.data.2, aes(x = iso1, y = iso2,
     legend.position.inside = c(0.65, 0.75)
   ) + 
   labs(
-    x = expression(paste(delta^13,"C")), 
-    y = expression(paste(delta^15,"N")) 
+    x = expression(paste(delta^13,"C (‰)")), 
+    y = expression(paste(delta^15,"N (‰)")) 
   )
 ```
 
-Next we will grab the isotopes we need and the community and group ids, will will then rename them to community and group. This is important as `creatSiberObject()` will 1) only take the following order with the following names `iso1`, `iso2`, `group`, `community` and 2) we will transform this `tibble` into a `data.frame`. In this case we were using tibbles but we could also be working with `data.table` and will need to do the same thing. 
+Next we will grab the isotopes we need and the community and group ids, and we will  rename them to `community` and `group`. This is important as `creatSiberObject()` will 1) only take the following order with the following names `iso1`, `iso2`, `group`, and `community` and 2) we will transform this `tibble` into a `data.frame` as `{SIBER}` will only work with `data.frame`. In this case we were using tibbles but we could also be working with `data.table` and will need to do the same thing. 
 
 ```{r}
 demo_siber_data <- demo.siber.data.2 %>% 
@@ -122,13 +122,13 @@ demo_siber_data <- demo.siber.data.2 %>%
 
 ### Convert to {SIBER} object
 
-We will convert to a {SIBER} object, once we have the {SIBER} object we can start our analysis. 
+We will convert to a `{SIBER}` object, once we have the `{SIBER}` object we can start our analysis. 
 
 ```{r}
 siber_example <- createSiberObject(demo_siber_data)
 ```
 
-Now that we have converted this to a {SIBER} object we can start doing some analysis using a Bayesian framework and extracting the different metrics this analysis produces using functions from {nichetools}. 
+Now that we have converted this to a `{SIBER}` object we can start doing some analysis using a Bayesian framework. The data and metrics generated through this analysis by `{SIBER}` can be extracted using functions in  `{nichetools}`. 
 
 ### Bayesian Ellipse Analysis 
 
@@ -163,7 +163,7 @@ ellipses_posterior <- siberMVN(siber_example, parms, priors)
 
 ### Extract posterior distributions for μ and Σ
 
-We will first extract posterior distribution for $\mu$ using `extract_mu()` in {nichetools}. We will need to set the argument `pkg` to `"SIBER"` and because of what we are going to do with the data afterwards. We are going to set `data_format` to `"wide"`. This argument takes `"long"` or `"wide"` which dictates whether the data object returned is in wide or long format. We will also use the function `seperate_wider_delim()` from {tidyr} to seperate teh community and groups names as they are joined by a `.`. We then will use `left_join()` and the `cg_names` data frame we created above to add in the correct community and group names. 
+We will first extract posterior distribution for $\mu$ using `extract_mu()` in `{nichetools}`. We will need to set the argument `pkg` to `"SIBER"` and because of what we are going to do with the data afterwards. We are going to set `data_format` to `"wide"`. This argument takes `"long"` or `"wide"` which dictates whether the data object returned is in wide or long format. We will also use the function `seperate_wider_delim()` from {tidyr} to seperate the community and groups names as they are joined by a `.`. We then will use `left_join()` and the `cg_names` data frame we created above to add in the correct community and group names. 
 
 ```{r, message = FALSE}
 df_mu <- extract_mu(ellipses_posterior, pkg = "SIBER", 
@@ -196,12 +196,12 @@ ggplot() +
     legend.position.inside = c(0.65, 0.75)
   ) + 
   labs(
-    x = expression(paste(delta^13,"C")), 
-    y = expression(paste(delta^15,"N")) 
+    x = expression(paste(delta^13,"C (‰)")), 
+    y = expression(paste(delta^15,"N (‰)")) 
   )
 ```
 
-Notice how there is a density of points in the center of the raw data with the corresponding colours. This indicates that how the model is iterating over the groups and communities we have the nameing of commnites and groups correct. 
+Notice the density of points in the center of the raw data with the corresponding colours. This density of points are the posterior estimates from the model for $\mu$ and are an indication that the model is iterating over the groups and communities correctly.  
 
 We are also going to extract $\mu$ in long format for creating ellipse, as the functions that create ellipse need the data frame of $\mu$ to be in long format. 
 
@@ -219,7 +219,7 @@ Next we are going to extract posterior estimates of $\Sigma$ using `extract_sigm
 df_sigma <- extract_sigma(ellipses_posterior, pkg = "SIBER")
 ```
 
-Lastly, we are going to feed each $\mu$ and $\Sigma$ estimate to `niche_ellipse()` to estimate each ellipse. There are few things to know about this function and they include the following: 1) it will randomly sample 10 ellipse from the total estimates, this seems quite standard, however you can adjust the number of samples by changing the argument `n`. 2) to maake the function consistently randomly sample the same set you will need to set `set_seed` to a numerical value. If this is not set then it will randomly sample a different set of 10 ellipses every time. 3) if you would like the function to not randomly sample set the argument `random` to `FALSE`. 4) by default it will tell you how long it takes to generate the ellipse and will have progress bars at each step. If you want to turn this off set `message` to `FALSE`. 5) if you are wanting to change the confidence level of the ellipse you can do so using the argument `p_ell`. This value is bound between 0 and 1. 
+Lastly, we are going to feed each $\mu$ and $\Sigma$ estimate to `niche_ellipse()` to estimate each ellipse. There are few things to know about this function and they include the following: 1) it will randomly sample 10 ellipse from the total posterior disturbitons of $\mu$ and $\Sigma$, this seems quite standard, however you can adjust the number of samples by changing the argument `n`. 2) to make the function consistently randomly sample the same set you will need to set `set_seed` to a numerical value. If this is not set then it will randomly sample a different set of 10 ellipses every time. 3) if you would like the function to not randomly sample set the argument `random` to `FALSE`. 4) by default it will tell you how long it takes to generate the ellipse and will have progress bars at each step. If you want to turn this off set `message` to `FALSE`. 5) if you are wanting to change the confidence level of the ellipse you can do so using the argument `p_ell`. This value is bound between 0 and 1. 
 
 ```{r, message = FALSE}
 #| out-width: 100%
@@ -259,5 +259,7 @@ ggplot(data = df_el,
     y = expression(paste(delta^15,"N")) 
   )
 ```
+### Niche Similarties 
 
+### Bayesian Estimates of Community Metrics
 
