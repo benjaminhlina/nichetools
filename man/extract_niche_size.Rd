@@ -4,26 +4,54 @@
 \alias{extract_niche_size}
 \title{extract niche size}
 \usage{
-extract_niche_size(data, name = NULL, prob = NULL)
+extract_niche_size(
+  data,
+  pkg = NULL,
+  name = NULL,
+  prob = NULL,
+  community_df = NULL
+)
 }
 \arguments{
-\item{data}{a \code{list} created by the function \code{niw.post()} in the package
-\href{https://cran.r-project.org/package=nicheROVER}{{nicheROVER}}.}
+\item{data}{a \code{list} or \code{matrix} created by the function \code{niw.post()} or
+\code{siberEllipses()} in the package
+\href{https://cran.r-project.org/package=nicheROVER}{{nicheROVER}} or
+\href{https://cran.r-project.org/package=SIBER}{{SIBER}}, respectfully.}
 
-\item{name}{a \code{character} string that will be assinged as the column name for
-groups. Default is \code{sample_name}.}
+\item{pkg}{a \code{character} string that is the name of the package that
+you're using. Defaults to \code{"nicheROVER"}.
+Alternatively the user can supply the argument with \code{"SIBER"}.}
+
+\item{name}{a \code{character} string that will be assigned as the column name for
+groups. Default is \code{sample_name}. Only to be used when \code{pkg} is set to
+\code{"nicheROVER"}.}
 
 \item{prob}{a \code{numeric} bound by 0 and 1 indicating the
-probabilistic niche size. Default is 0.95.}
+probabilistic niche size. Default is 0.95. Only to be used when \code{pkg} is set to
+\code{"nicheROVER"}.}
+
+\item{community_df}{a four column data frame. One of the columns has to be named
+\code{community} and the data in the column will be \code{numeric} as a \code{character}
+string(e.g., \verb{"1", "2", "3"}). This is the order of the community names
+and will be used to join the actual community names to the correct data.
+These are the same class and values required by the function, \code{createSiberObject()}
+from \href{https://CRAN.R-project.org/package=SIBER}{{SIBER}}.
+The second column will be the names of the groups that are needed to supply
+required by the function, \code{createSiberObject()}
+from \href{https://CRAN.R-project.org/package=SIBER}{{SIBER}}.
+The third and fourth columns contains the actual names of the communities
+and groups the user is working with (e.g., \code{"region"}, \code{"common_name"}).}
 }
 \value{
-a \code{tibble} containing three rows, \code{sample_name}, \code{id}, and \code{niche_size}.
+if \code{pkg} is set to \code{"nicheROVER"} then a \code{tibble} containing three rows, \code{sample_name}, \code{id}, and \code{niche_size} is returned.
 }
 \description{
 Extract niche size based on elliptical niche region of Bayesian estimates of
-sigma created by function \code{niw.post()} in the package
-\href{https://cran.r-project.org/package=nicheROVER}{{nicheROVER}}.
-This function is a wrapper around \code{nicheROVER::niche.size}.
+sigma created by function \code{niw.post()} or \code{siberEllipses()} in the package
+\href{https://cran.r-project.org/package=nicheROVER}{{nicheROVER}} or
+\href{https://cran.r-project.org/package=SIBER}{{SIBER}}, respectfully.
+For \href{https://cran.r-project.org/package=nicheROVER}{{nicheROVER}}
+this function is a wrapper around \code{nicheROVER::niche.size}.
 }
 \examples{
 extract_niche_size(data = niw_fish_post)
@@ -31,5 +59,6 @@ extract_niche_size(data = niw_fish_post)
 
 }
 \seealso{
-\code{\link[nicheROVER:niche.size]{nicheROVER::niche.size()}} and \code{\link[nicheROVER:niw.post]{nicheROVER::niw.post()}}
+\code{\link[nicheROVER:niche.size]{nicheROVER::niche.size()}}, \code{\link[nicheROVER:niw.post]{nicheROVER::niw.post()}},
+\code{\link[SIBER:siberEllipses]{SIBER::siberEllipses()}}, and \code{\link[SIBER:createSiberObject]{SIBER::createSiberObject()}}
 }
