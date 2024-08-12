@@ -34,12 +34,14 @@ We will first load the packages that were just mentioned
   library(bayestestR)
   library(dplyr)
   library(ggplot2)
+  library(ggdist)
   library(ggtext)
   library(nichetools)
   library(patchwork)
   library(purrr)
   library(SIBER)
   library(tidyr)
+  library(viridis)
 }
 ```
 For the purpose of the vignette we will be using the `demo.siber.data.2` data frame that is available within `{SIBER}`. We will first look at the structure of this data frame using the `{dplyr}` function `glimpse()` For your purposes you will need to replace this with your data frame either by loading a csv, rds, or qs. You can do this multiple ways, I prefer using `readr::read_csv()` but base R's `read.csv()` works perfectly fine. Note, `{SIBER}` functions do not take `tibbles` or `data.tables` so you will have to convert either to `data.frame` class prior to running funcgtions in `{SIBER}`. 
