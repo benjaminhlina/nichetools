@@ -402,7 +402,7 @@ ggplot(data = layman_bc, aes(x = labels,
                              y = post_est, 
                              point_fill = community_name)) + 
   stat_pointinterval(
-    point_size = 2,
+    point_size = 2.5,
     interval_colour = "grey60",
     position = position_dodge(0.4),
     shape = 21
