@@ -150,17 +150,23 @@ community and group names fed to <code><a href="https://rdrr.io/pkg/SIBER/man/cr
 <span>      <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>    community_id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">community</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>      <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span></span>
+<span>    group_name <span class="op">=</span> <span class="va">group</span>,</span>
+<span>    community_name <span class="op">=</span> <span class="va">community</span>,</span>
+<span>    group <span class="op">=</span> <span class="va">group_id</span>,</span>
+<span>    community <span class="op">=</span> <span class="va">community_id</span></span>
 <span>  <span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">demo.siber.data.2</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 150</span></span>
 <span><span class="co">#&gt; Columns: 6</span></span>
-<span><span class="co">#&gt; $ iso1         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -11.048902, -8.809360, -9.256212, -8.380952, -10.401561, …</span></span>
-<span><span class="co">#&gt; $ iso2         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.02044315, 1.97597511, 3.28707260, -1.95750266, -3.11949…</span></span>
-<span><span class="co">#&gt; $ group        <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> city, city, city, city, city, city, city, city, city, cit…</span></span>
-<span><span class="co">#&gt; $ community    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> dublin, dublin, dublin, dublin, dublin, dublin, dublin, d…</span></span>
-<span><span class="co">#&gt; $ group_id     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1…</span></span>
-<span><span class="co">#&gt; $ community_id <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1…</span></span></code></pre></div>
+<span><span class="co">#&gt; $ iso1           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -11.048902, -8.809360, -9.256212, -8.380952, -10.401561…</span></span>
+<span><span class="co">#&gt; $ iso2           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.02044315, 1.97597511, 3.28707260, -1.95750266, -3.119…</span></span>
+<span><span class="co">#&gt; $ group_name     <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> city, city, city, city, city, city, city, city, city, c…</span></span>
+<span><span class="co">#&gt; $ community_name <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> dublin, dublin, dublin, dublin, dublin, dublin, dublin,…</span></span>
+<span><span class="co">#&gt; $ group          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", …</span></span>
+<span><span class="co">#&gt; $ community      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", …</span></span></code></pre></div>
 <p>After we have done this, we are going to create two data frames that
 are the names of our communities and groups with their associated id
 values. We will use these data frames later on to join up the actual
@@ -173,20 +179,21 @@ groups named 1, 2, 3 ect. and instead will have actual names.</p>
 <span><span class="va">cg_names</span> <span class="op">&lt;-</span> <span class="va">demo.siber.data.2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="va">group</span>,</span>
 <span>           <span class="va">community</span>, </span>
-<span>           <span class="va">group_id</span>, </span>
-<span>           <span class="va">community_id</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>           <span class="va">group_name</span>, </span>
+<span>           <span class="va">community_name</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">community</span>, <span class="va">group</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># ---- create community names data frame ---- </span></span>
 <span><span class="va">c_names</span> <span class="op">&lt;-</span> <span class="va">demo.siber.data.2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="va">community</span>, </span>
-<span>           <span class="va">community_id</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>           <span class="va">community_name</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">community</span><span class="op">)</span></span></code></pre></div>
 <p>We will then plot our biplot to confirm we have the correct
 structure.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">demo.siber.data.2</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">iso1</span>, y <span class="op">=</span> <span class="va">iso2</span>,</span>
-<span>                             colour <span class="op">=</span> <span class="va">group</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>                                     colour <span class="op">=</span> <span class="va">group</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="op">~</span> <span class="va">community</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">scale_colour_viridis_d</a></span><span class="op">(</span>option <span class="op">=</span> <span class="st">"A"</span>, begin <span class="op">=</span> <span class="fl">0.25</span>, end <span class="op">=</span> <span class="fl">0.85</span>,</span>
@@ -217,11 +224,7 @@ could also be working with <code>data.table</code> and will need to do
 the same thing.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">demo_siber_data</span> <span class="op">&lt;-</span> <span class="va">demo.siber.data.2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">iso1</span>, <span class="va">iso2</span>, <span class="va">group_id</span>, <span class="va">community_id</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span></span>
-<span>    community <span class="op">=</span> <span class="va">community_id</span>, </span>
-<span>    group <span class="op">=</span> <span class="va">group_id</span></span>
-<span>  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">iso1</span>, <span class="va">iso2</span>, <span class="va">group</span>, <span class="va">community</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
@@ -286,8 +289,8 @@ community and group names.</p>
 <code class="sourceCode R"><span><span class="va">df_mu</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/extract_mu.html">extract_mu</a></span><span class="op">(</span><span class="va">ellipses_posterior</span>, pkg <span class="op">=</span> <span class="st">"SIBER"</span>, </span>
 <span>                    data_format <span class="op">=</span> <span class="st">"wide"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate_wider_delim.html" class="external-link">separate_wider_delim</a></span><span class="op">(</span><span class="va">sample_name</span>, cols_remove <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>                       delim <span class="op">=</span> <span class="st">"."</span>, names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"community_id"</span>,</span>
-<span>                                              <span class="st">"group_id"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>                       delim <span class="op">=</span> <span class="st">"."</span>, names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"community"</span>,</span>
+<span>                                              <span class="st">"group"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">cg_names</span><span class="op">)</span></span></code></pre></div>
 <p>We can confirm that the posterior estimates of
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>μ</mi><annotation encoding="application/x-tex">\mu</annotation></semantics></math>
@@ -295,11 +298,11 @@ are correct by plotting them with {ggplot2}</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df_mu</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">d13c</span>, y <span class="op">=</span> <span class="va">d15n</span>,</span>
-<span>                               colour <span class="op">=</span> <span class="va">group</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>                               colour <span class="op">=</span> <span class="va">group_name</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">demo.siber.data.2</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">iso1</span>, y <span class="op">=</span> <span class="va">iso2</span>,</span>
-<span>                                 colour <span class="op">=</span> <span class="va">group</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">community</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">scale_colour_viridis_d</a></span><span class="op">(</span>option <span class="op">=</span> <span class="st">"A"</span>, begin <span class="op">=</span> <span class="fl">0.25</span>, end <span class="op">=</span> <span class="fl">0.85</span>,</span>
+<span>                                           colour <span class="op">=</span> <span class="va">group_name</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">community_name</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">scale_colour_viridis_d</a></span><span class="op">(</span>option <span class="op">=</span> <span class="st">"A"</span>, begin <span class="op">=</span> <span class="fl">0.25</span>, end <span class="op">=</span> <span class="fl">0.85</span>,</span>
 <span>                         name <span class="op">=</span> <span class="st">"Groups"</span>, alpha <span class="op">=</span> <span class="fl">0.75</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span></span>
 <span>    base_size <span class="op">=</span> <span class="fl">15</span></span>
@@ -330,8 +333,8 @@ to be in long format.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df_mu_long</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/extract_mu.html">extract_mu</a></span><span class="op">(</span><span class="va">ellipses_posterior</span>, pkg <span class="op">=</span> <span class="st">"SIBER"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate_wider_delim.html" class="external-link">separate_wider_delim</a></span><span class="op">(</span><span class="va">sample_name</span>, cols_remove <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>                       delim <span class="op">=</span> <span class="st">"."</span>, names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"community_id"</span>,</span>
-<span>                                              <span class="st">"group_id"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>                       delim <span class="op">=</span> <span class="st">"."</span>, names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"community"</span>,</span>
+<span>                                              <span class="st">"group"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">cg_names</span><span class="op">)</span></span></code></pre></div>
 <p>Next we are going to extract posterior estimates of
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Σ</mi><annotation encoding="application/x-tex">\Sigma</annotation></semantics></math>
@@ -366,19 +369,19 @@ level of the ellipse you can do so using the argument
 <span>                       dat_sigma <span class="op">=</span> <span class="va">df_sigma</span>, </span>
 <span>                       set_seed <span class="op">=</span> <span class="fl">4</span>, n <span class="op">=</span> <span class="fl">20</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate_wider_delim.html" class="external-link">separate_wider_delim</a></span><span class="op">(</span><span class="va">sample_name</span>, cols_remove <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>                       delim <span class="op">=</span> <span class="st">"."</span>, names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"community_id"</span>,</span>
-<span>                                              <span class="st">"group_id"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>                       delim <span class="op">=</span> <span class="st">"."</span>, names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"community"</span>,</span>
+<span>                                              <span class="st">"group"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">cg_names</span><span class="op">)</span></span></code></pre></div>
 <p>Now that we have the ellipses created we can plot them</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df_el</span>, </span>
 <span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">d13c</span>, y <span class="op">=</span> <span class="va">d15n</span>, </span>
-<span>                         group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/interaction.html" class="external-link">interaction</a></span><span class="op">(</span><span class="va">sample_number</span>, </span>
-<span>                                             <span class="va">sample_name</span><span class="op">)</span>, </span>
-<span>                         colour <span class="op">=</span> <span class="va">group</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>           group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/interaction.html" class="external-link">interaction</a></span><span class="op">(</span><span class="va">sample_number</span>, </span>
+<span>                               <span class="va">sample_name</span><span class="op">)</span>, </span>
+<span>           colour <span class="op">=</span> <span class="va">group_name</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_polygon.html" class="external-link">geom_polygon</a></span><span class="op">(</span>linewidth <span class="op">=</span> <span class="fl">0.5</span>, fill <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">community</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">scale_colour_viridis_d</a></span><span class="op">(</span>option <span class="op">=</span> <span class="st">"A"</span>, begin <span class="op">=</span> <span class="fl">0.25</span>, end <span class="op">=</span> <span class="fl">0.85</span>,</span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">community_name</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">scale_colour_viridis_d</a></span><span class="op">(</span>option <span class="op">=</span> <span class="st">"A"</span>, begin <span class="op">=</span> <span class="fl">0.25</span>, end <span class="op">=</span> <span class="fl">0.85</span>,</span>
 <span>                         name <span class="op">=</span> <span class="st">"Groups"</span>, alpha <span class="op">=</span> <span class="fl">0.75</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span></span>
 <span>    base_size <span class="op">=</span> <span class="fl">15</span></span>
@@ -410,15 +413,38 @@ community and groups we are working with.</p>
 <code class="sourceCode R"><span><span class="va">seb_convert</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/extract_niche_size.html">extract_niche_size</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">sea_b</span>,</span>
 <span>                                  pkg <span class="op">=</span> <span class="st">"SIBER"</span>,</span>
 <span>                                  community_df <span class="op">=</span> <span class="va">cg_names</span><span class="op">)</span></span></code></pre></div>
+<p>We will also extract the parametric estimate for niche size using
+<code><a href="https://rdrr.io/pkg/SIBER/man/groupMetricsML.html" class="external-link">groupMetricsML()</a></code> from {SIBER}.</p>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">group_ml</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SIBER/man/groupMetricsML.html" class="external-link">groupMetricsML</a></span><span class="op">(</span><span class="va">siber_example</span><span class="op">)</span></span></code></pre></div>
+<p>We can convert the output of this function into something we can work
+with using <code><a href="../reference/extract_group_metrics.html">extract_group_metrics()</a></code>.</p>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">group_convert</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/extract_group_metrics.html">extract_group_metrics</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">group_ml</span>,</span>
+<span>                                       community_df <span class="op">=</span> <span class="va">cg_names</span><span class="op">)</span></span></code></pre></div>
+<p>The object returned will have maximum-liklihod estimates for standard
+ellipse area (SEA), central standard ellipse area (SEAc), and total area
+(TA). For plotting niche size we will use the SEAc.</p>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">sea_c</span> <span class="op">&lt;-</span> <span class="va">group_convert</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">metric</span> <span class="op">==</span> <span class="st">"SEAc"</span><span class="op">)</span></span></code></pre></div>
 <p>Lastly, we can visualize the extracted niche sizes using
 {ggplot2}.</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">seb_convert</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">community</span>,</span>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_violin.html" class="external-link">geom_violin</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">seb_convert</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">community_name</span>,</span>
 <span>                               y <span class="op">=</span> <span class="va">sea</span>,</span>
-<span>                               fill <span class="op">=</span> <span class="va">group</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_violin.html" class="external-link">geom_violin</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>                               fill <span class="op">=</span> <span class="va">group_name</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">scale_fill_viridis_d</a></span><span class="op">(</span>option <span class="op">=</span> <span class="st">"A"</span>, begin <span class="op">=</span> <span class="fl">0.25</span>, end <span class="op">=</span> <span class="fl">0.85</span>,</span>
-<span>                         name <span class="op">=</span> <span class="st">"Groups"</span>, alpha <span class="op">=</span> <span class="fl">0.75</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>                       name <span class="op">=</span> <span class="st">"Groups"</span>, alpha <span class="op">=</span> <span class="fl">0.75</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">sea_c</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">community_name</span>, </span>
+<span>                               y <span class="op">=</span> <span class="va">est</span>, </span>
+<span>                               group <span class="op">=</span> <span class="va">group_name</span>,</span>
+<span>                               <span class="op">)</span>, </span>
+<span>             size <span class="op">=</span> <span class="fl">2.5</span>,</span>
+<span>             fill <span class="op">=</span> <span class="st">"white"</span>,</span>
+<span>             shape <span class="op">=</span> <span class="fl">21</span>,</span>
+<span>             position <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_dodge.html" class="external-link">position_dodge</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span></span>
 <span>    base_size <span class="op">=</span> <span class="fl">15</span></span>
 <span>  <span class="op">)</span> <span class="op">+</span> </span>
@@ -431,8 +457,8 @@ community and groups we are working with.</p>
 <span>  <span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span></span>
 <span>    x <span class="op">=</span> <span class="st">"Communities"</span>, </span>
-<span>    y <span class="op">=</span> <span class="st">"Niche Size (p(‰ | x)"</span><span class="op">)</span> </span></code></pre></div>
-<p><img src="using-nichetools-with-the-package-SIBER_files/figure-html/unnamed-chunk-20-1.png" width="700"></p>
+<span>    y <span class="op">=</span> <span class="st">"Niche Size p(‰ | x)"</span><span class="op">)</span> </span></code></pre></div>
+<p><img src="using-nichetools-with-the-package-SIBER_files/figure-html/unnamed-chunk-23-1.png" width="700"></p>
 </div>
 <div class="section level3">
 <h3 id="niche-similarties">Niche Similarties<a class="anchor" aria-label="anchor" href="#niche-similarties"></a>
