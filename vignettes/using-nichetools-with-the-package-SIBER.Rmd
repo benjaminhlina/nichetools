@@ -341,5 +341,87 @@ ggplot() +
 
 
 
-### Bayesian Estimates of Community Metrics
+### Bayesian Estimates of Layman's Community Metrics
+
+First I highly recommend reading [Post et al. 2007](https://esajournals.onlinelibrary.wiley.com/doi/abs/10.1890/0012-9658%282007%2988%5B42%3ACSIRPF%5D2.0.CO%3B2) to understand the following six community metrics, that we are going to estimate using a Bayesian framework. 
+
+To create Bayesian estiamtes of Layman's community metrics we first need to use `extractPosteriorMeans()` from 
+`{SIBER}` to extract posterior estimates of means for each community and group. 
+
+```{r}
+mu_post <- extractPosteriorMeans(siber_example, ellipses_posterior)
+```
+
+Next we need to use `bayesianLayman()` from `{SIBER}` and use our extracted posterior means to create Bayesian estiamtes for each community metric.  
+
+```{r}
+layman_b <- bayesianLayman(mu.post = mu_post)
+```
+
+Once we have created our Bayesian estimates for each community metric we can use `extract_layman()` to extract these estimates. We will also create the variable `labels` which will first assign a new name to each community metric and secondly will reorder these names based on how these metrics are often viewed. 
+
+```{r}
+layman_bc <- extract_layman(layman_b, community_df = c_names) %>% 
+   mutate(
+    labels = factor(case_when(
+      metric %in% "dX_range" ~ paste0("\U03B4","<sup>", 13, "</sup>",
+                                      "C<br>Range"),
+      metric %in% "dY_range" ~ paste0("\U03B4","<sup>", 15, "</sup>",
+                                      "N<br>Range"),
+      metric %in% "TA" ~ "Total Area",
+      metric %in% "CD" ~ "Distance to<br>Centroid",
+      metric %in% "NND" ~ "Nearest<br>Neighbor<br>Distance",
+      metric %in% "SDNND" ~ "SD Nearest<br>Neighbor<br>Distance",
+    ),
+    levels = c("\U03B4<sup>13</sup>C<br>Range",
+               "\U03B4<sup>15</sup>N<br>Range",
+               "Total Area",
+               "Distance to<br>Centroid",
+               "Nearest<br>Neighbor<br>Distance",
+               "SD Nearest<br>Neighbor<br>Distance")
+    )
+  )
+```
+
+Prior to using point interval plots we need to create a colour palette that will be used to identify each community.  
+
+```{r}
+viridis_colors <- viridis(2, begin = 0.25, end = 0.85,
+                          option = "G",
+                          alpha = 0.75
+)
+```
+
+Lastly, we can visualize the distributions of the posterior estimates using `stat_pointinterval()` from {ggdist}. 
+
+```{r}
+#| out-width: 100%
+
+ggplot(data = layman_bc, aes(x = labels, 
+                             y = post_est, 
+                             point_fill = community_name)) + 
+  stat_pointinterval(
+    point_size = 4,
+    interval_colour = "grey60",
+    position = position_dodge(0.4),
+    shape = 21
+  ) + 
+  scale_fill_manual(name = "Community", 
+                    aesthetics = "point_fill",
+                    values = viridis_colors) + 
+  theme_bw(
+    base_size = 15
+  ) + 
+  theme(
+    panel.grid = element_blank(),
+    axis.text = element_markdown(),
+    legend.position = "inside",
+    legend.position.inside = c(0.85, 0.86),
+  ) +
+  labs(
+    x = "Community Metrics",
+    y = expression(paste("p(", "‰", "|X)"))
+  )
+```
+
 
