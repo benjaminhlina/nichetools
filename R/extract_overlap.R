@@ -52,16 +52,16 @@ extract_overlap <- function(data,
 
 
   # overlap extract
-  overlap_df <- data %>%
-    tibble::as_tibble(rownames = "species_a") %>%
+  overlap_df <- data |>
+    tibble::as_tibble(rownames = "species_a") |>
     dplyr::mutate(
-      id = 1:nrow(.)
-    ) %>%
+      id = 1:nrow(data)
+    ) |>
     tidyr::pivot_longer(cols = -c(id, species_a),
                         names_to = "species_b",
-                        values_to = "niche_overlap") %>%
+                        values_to = "niche_overlap") |>
     tidyr::separate(species_b, into = c("species_b", "sample_number"),
-                    sep = "\\.") %>%
+                    sep = "\\.") |>
     dplyr::rename(
       {{name_a}} := species_a,
       {{name_b}} := species_b
