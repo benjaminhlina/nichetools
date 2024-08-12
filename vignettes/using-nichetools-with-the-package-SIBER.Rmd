@@ -61,6 +61,12 @@ demo.siber.data.2 <- demo.siber.data.2 %>%
       as.character(),
     community_id = as.numeric(community) %>%
       as.character()
+  ) %>% 
+  rename(
+    group_name = group,
+    community_name = community,
+    group = group_id,
+    community = community_id
   )
 
 glimpse(demo.siber.data.2)
@@ -73,14 +79,15 @@ After we have done this, we are going to create two data frames that are the nam
 cg_names <- demo.siber.data.2 %>%
   distinct(group,
            community, 
-           group_id, 
-           community_id) %>%
+           group_name, 
+           community_name) %>%
+  
   arrange(community, group)
 
 # ---- create community names data frame ---- 
 c_names <- demo.siber.data.2 %>% 
   distinct(community, 
-           community_id) %>%
+           community_name) %>%
   arrange(community)
 ```
 We will then plot our biplot to confirm we have the correct structure. 
@@ -88,7 +95,7 @@ We will then plot our biplot to confirm we have the correct structure.
 ```{r}
 #| out-width: 100%
 ggplot(data = demo.siber.data.2, aes(x = iso1, y = iso2,
-                             colour = group)) +
+                                     colour = group)) +
   geom_point() +
   facet_wrap(~ community) + 
   scale_colour_viridis_d(option = "A", begin = 0.25, end = 0.85,
