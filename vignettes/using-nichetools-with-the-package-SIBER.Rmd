@@ -276,15 +276,44 @@ seb_convert <- extract_niche_size(data = sea_b,
                                   community_df = cg_names)
 ```
 
+We will also extract the parametric estimate for niche size using `groupMetricsML()` from {SIBER}. 
+
+```{r}
+group_ml <- groupMetricsML(siber_example)
+```
+
+We can convert the output of this function into something we can work with using `extract_group_metrics()`. 
+
+```{r}
+group_convert <- extract_group_metrics(data = group_ml,
+                                       community_df = cg_names)
+```
+
+The object returned will have maximum-liklihod estimates for standard ellipse area (SEA), central standard ellipse area (SEAc), and total area (TA). For plotting niche size we will use the SEAc. 
+
+```{r}
+sea_c <- group_convert %>% 
+  filter(metric == "SEAc")
+```
+
+
 Lastly, we can visualize the extracted niche sizes using {ggplot2}. 
 
 ```{r}
-ggplot(data = seb_convert, aes(x = community,
+ggplot() +
+  geom_violin(data = seb_convert, aes(x = community_name,
                                y = sea,
-                               fill = group)) +
-  geom_violin() + 
+                               fill = group_name)) + 
   scale_fill_viridis_d(option = "A", begin = 0.25, end = 0.85,
-                         name = "Groups", alpha = 0.75) + 
+                       name = "Groups", alpha = 0.75) + 
+  geom_point(data = sea_c, aes(x = community_name, 
+                               y = est, 
+                               group = group_name,
+                               ), 
+             size = 2.5,
+             fill = "white",
+             shape = 21,
+             position = position_dodge(width = 0.9)) +
   theme_bw(
     base_size = 15
   ) + 
