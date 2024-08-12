@@ -124,7 +124,7 @@ demo_siber_data <- demo.siber.data.2 |>
 siber_example <- createSiberObject(demo_siber_data)
 
 # ---- create priors -----
-  # options for running jags
+# options for running jags
 parms_1 <- list()
 parms_1$n.iter <- 2 * 10^4   # number of iterations to run the model for
 parms_1$n.burnin <- 1 * 10^3 # discard the first set of values
@@ -151,7 +151,6 @@ test_that("output data is the correct size, class, and column names are valid", 
   test_3 <- extract_niche_size(
     data = sea_b,
     pkg = "SIBER",
-    # siber_data = demo_siber_data,
     community_df = cg_names
   )
 
@@ -164,3 +163,38 @@ test_that("output data is the correct size, class, and column names are valid", 
   expect_true("id" %in% colnames(test_3), info = "The 'ID' column is missing in the output data.")
 
 })
+
+
+test_that("error if data isn't A LIST", {
+  dat <- data.frame(
+    x = seq(0, 100, length.out = 10),
+    y = seq(0, 0.1, length.out = 10)
+  )
+
+  expect_error(
+    extract_niche_size(
+      data = dat,
+      pkg = "SIBER"
+    ), regexp = "Input 'data' must be a matrix."
+  )
+})
+
+
+test_that("output coilumn names", {
+
+  test_6<- extract_niche_size(
+    data = sea_b,
+    pkg = "SIBER",
+    community_df = cg_names
+  )
+
+  col_names <- colnames(test_6)
+
+  expect_true(all(col_names %in% c("id", "community", "group", "sea",
+                                   "group_names", "community_names"
+  )))
+
+
+
+}
+)
