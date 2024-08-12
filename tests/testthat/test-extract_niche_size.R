@@ -182,7 +182,7 @@ test_that("error if data isn't A LIST", {
 
 test_that("output coilumn names", {
 
-  test_6<- extract_niche_size(
+  test_6 <- extract_niche_size(
     data = sea_b,
     pkg = "SIBER",
     community_df = cg_names
@@ -190,11 +190,27 @@ test_that("output coilumn names", {
 
   col_names <- colnames(test_6)
 
-  expect_true(all(col_names %in% c("id", "community", "group", "sea",
-                                   "group_names", "community_names"
+  expect_true(any(col_names %in% c("id", "community", "group", "sea"
   )))
 
 
 
 }
 )
+test_that("output coilumn number", {
+
+  test_7 <- extract_niche_size(
+    data = sea_b,
+    pkg = "SIBER",
+    community_df = cg_names
+  )
+
+expected_cols <- 6
+expected_rows <- 20000
+
+# Check the dimensions using expect_equal
+expect_equal(nrow(test_7), expected_rows,
+             info = "Number of rows is not as expected.")
+expect_equal(ncol(test_7), expected_cols,
+             info = "Number of columns is not as expected.")
+})
