@@ -112,11 +112,7 @@ Next we will grab the isotopes we need and the community and group ids, and we w
 
 ```{r}
 demo_siber_data <- demo.siber.data.2 %>% 
-  dplyr::select(iso1, iso2, group_id, community_id) %>% 
-  rename(
-    community = community_id, 
-    group = group_id
-  ) %>% 
+  dplyr::select(iso1, iso2, group, community) %>% 
   as.data.frame()
 ```
 
@@ -169,8 +165,8 @@ We will first extract posterior distribution for $\mu$ using `extract_mu()` in `
 df_mu <- extract_mu(ellipses_posterior, pkg = "SIBER", 
                     data_format = "wide") %>%
   separate_wider_delim(sample_name, cols_remove = FALSE,
-                       delim = ".", names = c("community_id",
-                                              "group_id")) %>%
+                       delim = ".", names = c("community",
+                                              "group")) %>%
   left_join(cg_names)
 ```
 
@@ -180,11 +176,11 @@ We can confirm that the posterior estimates of $\mu$ are correct by plotting the
 #| out-width: 100%
 ggplot() +
   geom_point(data = df_mu, aes(x = d13c, y = d15n,
-                               colour = group)) +
+                               colour = group_name)) +
   geom_point(data = demo.siber.data.2, aes(x = iso1, y = iso2,
-                                 colour = group)) +
-  facet_wrap( ~ community) + 
-    scale_colour_viridis_d(option = "A", begin = 0.25, end = 0.85,
+                                           colour = group_name)) +
+  facet_wrap( ~ community_name) + 
+  scale_colour_viridis_d(option = "A", begin = 0.25, end = 0.85,
                          name = "Groups", alpha = 0.75) + 
   theme_bw(
     base_size = 15
@@ -208,8 +204,8 @@ We are also going to extract $\mu$ in long format for creating ellipse, as the f
 ```{r, message=FALSE}
 df_mu_long <- extract_mu(ellipses_posterior, pkg = "SIBER") %>% 
   separate_wider_delim(sample_name, cols_remove = FALSE,
-                       delim = ".", names = c("community_id",
-                                              "group_id")) %>%
+                       delim = ".", names = c("community",
+                                              "group")) %>%
   left_join(cg_names)
 ```
 
@@ -227,8 +223,8 @@ df_el <- niche_ellipse(dat_mu = df_mu_long,
                        dat_sigma = df_sigma, 
                        set_seed = 4, n = 20) %>%
   separate_wider_delim(sample_name, cols_remove = FALSE,
-                       delim = ".", names = c("community_id",
-                                              "group_id")) %>%
+                       delim = ".", names = c("community",
+                                              "group")) %>%
   left_join(cg_names)
 ```
 
@@ -237,12 +233,12 @@ Now that we have the ellipses created we can plot them
 ```{r}
 ggplot(data = df_el, 
        aes(x = d13c, y = d15n, 
-                         group = interaction(sample_number, 
-                                             sample_name), 
-                         colour = group)) + 
+           group = interaction(sample_number, 
+                               sample_name), 
+           colour = group_name)) + 
   geom_polygon(linewidth = 0.5, fill = NA) + 
-   facet_wrap( ~ community) + 
-    scale_colour_viridis_d(option = "A", begin = 0.25, end = 0.85,
+  facet_wrap( ~ community_name) + 
+  scale_colour_viridis_d(option = "A", begin = 0.25, end = 0.85,
                          name = "Groups", alpha = 0.75) + 
   theme_bw(
     base_size = 15
