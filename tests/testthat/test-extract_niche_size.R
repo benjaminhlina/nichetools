@@ -160,7 +160,7 @@ test_that("output data is the correct size, class, and column names are valid", 
   expect_true(all(!is.na(col_names)), info = "There are NA values in column names.")
   expect_true(all(col_names != ""), info = "There are empty strings in column names.")
   # Check that the "ID" column exists
-  expect_true("id" %in% colnames(test_3), info = "The 'ID' column is missing in the output data.")
+  expect_true("id" %in% colnames(test_3), info = "The 'id' column is missing in the output data.")
 
 })
 
