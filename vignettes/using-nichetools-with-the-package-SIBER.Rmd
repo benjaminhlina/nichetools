@@ -402,7 +402,7 @@ ggplot(data = layman_bc, aes(x = labels,
                              y = post_est, 
                              point_fill = community_name)) + 
   stat_pointinterval(
-    point_size = 4,
+    point_size = 2,
     interval_colour = "grey60",
     position = position_dodge(0.4),
     shape = 21
@@ -417,7 +417,7 @@ ggplot(data = layman_bc, aes(x = labels,
     panel.grid = element_blank(),
     axis.text = element_markdown(),
     legend.position = "inside",
-    legend.position.inside = c(0.88, 0.82),
+    legend.position.inside = c(0.89, 0.84),
   ) +
   labs(
     x = "Community Metrics",
