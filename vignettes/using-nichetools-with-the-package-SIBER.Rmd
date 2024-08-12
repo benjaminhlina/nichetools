@@ -417,7 +417,7 @@ ggplot(data = layman_bc, aes(x = labels,
     panel.grid = element_blank(),
     axis.text = element_markdown(),
     legend.position = "inside",
-    legend.position.inside = c(0.90, 0.86),
+    legend.position.inside = c(0.91, 0.90),
   ) +
   labs(
     x = "Community Metrics",
