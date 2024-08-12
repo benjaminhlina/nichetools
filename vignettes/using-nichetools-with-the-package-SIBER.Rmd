@@ -309,18 +309,18 @@ Lastly, we can visualize the extracted niche sizes using {ggplot2}.
 #| out-width: 100%
 ggplot() +
   geom_violin(data = seb_convert, aes(x = community_name,
-                               y = sea,
-                               fill = group_name)) + 
+                                      y = sea,
+                                      fill = group_name)) + 
   scale_fill_viridis_d(option = "A", begin = 0.25, end = 0.85,
                        name = "Groups", alpha = 0.75) + 
   geom_point(data = sea_c, aes(x = community_name, 
                                y = est, 
                                group = group_name,
-                               ), 
-             size = 2.5,
-             fill = "white",
-             shape = 21,
-             position = position_dodge(width = 0.9)) +
+  ), 
+  size = 2.5,
+  fill = "white",
+  shape = 21,
+  position = position_dodge(width = 0.9)) +
   theme_bw(
     base_size = 15
   ) + 
@@ -363,7 +363,7 @@ Once we have created our Bayesian estimates for each community metric we can use
 
 ```{r}
 layman_bc <- extract_layman(layman_b, community_df = c_names) %>% 
-   mutate(
+  mutate(
     labels = factor(case_when(
       metric %in% "dX_range" ~ paste0("\U03B4","<sup>", 13, "</sup>",
                                       "C<br>Range"),
