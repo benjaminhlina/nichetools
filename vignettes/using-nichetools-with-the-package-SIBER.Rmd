@@ -121,8 +121,9 @@ Next we will grab the isotopes we need and the community and group ids, and we w
 
 ```{r}
 demo_siber_data <- demo.siber.data.2 %>% 
-  dplyr::select(iso1, iso2, group, community) %>% 
-  as.data.frame()
+  dplyr::select(iso1, iso2, group, community) %>%
+  arrange(community, group) %>% 
+  as.data.frame() 
 ```
 
 ### Convert to {SIBER} object
