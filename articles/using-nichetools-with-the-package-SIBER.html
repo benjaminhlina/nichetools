@@ -102,12 +102,14 @@ which is great when working with large data sets.</p>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://easystats.github.io/bayestestR/" class="external-link">bayestestR</a></span><span class="op">)</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mjskay.github.io/ggdist/" class="external-link">ggdist</a></span><span class="op">)</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://wilkelab.org/ggtext/" class="external-link">ggtext</a></span><span class="op">)</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://benjaminhlina.github.io/nichetools/">nichetools</a></span><span class="op">)</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com" class="external-link">patchwork</a></span><span class="op">)</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://purrr.tidyverse.org/" class="external-link">purrr</a></span><span class="op">)</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">SIBER</span><span class="op">)</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org" class="external-link">tidyr</a></span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://sjmgarnier.github.io/viridis/" class="external-link">viridis</a></span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <p>For the purpose of the vignette we will be using the
 <code>demo.siber.data.2</code> data frame that is available within
@@ -397,7 +399,7 @@ level of the ellipse you can do so using the argument
 <span>    x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">delta</span><span class="op">^</span><span class="fl">13</span>,<span class="st">"C (‰)"</span><span class="op">)</span><span class="op">)</span>, </span>
 <span>    y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">delta</span><span class="op">^</span><span class="fl">15</span>,<span class="st">"N (‰)"</span><span class="op">)</span><span class="op">)</span> </span>
 <span>  <span class="op">)</span></span></code></pre></div>
-<p><img src="using-nichetools-with-the-package-SIBER_files/figure-html/unnamed-chunk-17-1.png" width="700"></p>
+<p><img src="using-nichetools-with-the-package-SIBER_files/figure-html/unnamed-chunk-17-1.png" width="100%"></p>
 </div>
 <div class="section level3">
 <h3 id="extract-niche-size">Extract Niche Size<a class="anchor" aria-label="anchor" href="#extract-niche-size"></a>
@@ -458,15 +460,91 @@ ellipse area (SEA), central standard ellipse area (SEAc), and total area
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span></span>
 <span>    x <span class="op">=</span> <span class="st">"Communities"</span>, </span>
 <span>    y <span class="op">=</span> <span class="st">"Niche Size p(‰ | x)"</span><span class="op">)</span> </span></code></pre></div>
-<p><img src="using-nichetools-with-the-package-SIBER_files/figure-html/unnamed-chunk-23-1.png" width="700"></p>
+<p><img src="using-nichetools-with-the-package-SIBER_files/figure-html/unnamed-chunk-23-1.png" width="100%"></p>
 </div>
 <div class="section level3">
 <h3 id="niche-similarties">Niche Similarties<a class="anchor" aria-label="anchor" href="#niche-similarties"></a>
 </h3>
 </div>
 <div class="section level3">
-<h3 id="bayesian-estimates-of-community-metrics">Bayesian Estimates of Community Metrics<a class="anchor" aria-label="anchor" href="#bayesian-estimates-of-community-metrics"></a>
+<h3 id="bayesian-estimates-of-laymans-community-metrics">Bayesian Estimates of Layman’s Community Metrics<a class="anchor" aria-label="anchor" href="#bayesian-estimates-of-laymans-community-metrics"></a>
 </h3>
+<p>First I highly recommend reading <a href="https://esajournals.onlinelibrary.wiley.com/doi/abs/10.1890/0012-9658%282007%2988%5B42%3ACSIRPF%5D2.0.CO%3B2" class="external-link">Post
+et al. 2007</a> to understand the following six community metrics, that
+we are going to estimate using a Bayesian framework.</p>
+<p>To create Bayesian estiamtes of Layman’s community metrics we first
+need to use <code><a href="https://rdrr.io/pkg/SIBER/man/extractPosteriorMeans.html" class="external-link">extractPosteriorMeans()</a></code> from
+<code>{SIBER}</code> to extract posterior estimates of means for each
+community and group.</p>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mu_post</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SIBER/man/extractPosteriorMeans.html" class="external-link">extractPosteriorMeans</a></span><span class="op">(</span><span class="va">siber_example</span>, <span class="va">ellipses_posterior</span><span class="op">)</span></span></code></pre></div>
+<p>Next we need to use <code><a href="https://rdrr.io/pkg/SIBER/man/bayesianLayman.html" class="external-link">bayesianLayman()</a></code> from
+<code>{SIBER}</code> and use our extracted posterior means to create
+Bayesian estiamtes for each community metric.</p>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">layman_b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SIBER/man/bayesianLayman.html" class="external-link">bayesianLayman</a></span><span class="op">(</span>mu.post <span class="op">=</span> <span class="va">mu_post</span><span class="op">)</span></span></code></pre></div>
+<p>Once we have created our Bayesian estimates for each community metric
+we can use <code><a href="../reference/extract_layman.html">extract_layman()</a></code> to extract these estimates. We
+will also create the variable <code>labels</code> which will first
+assign a new name to each community metric and secondly will reorder
+these names based on how these metrics are often viewed.</p>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">layman_bc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/extract_layman.html">extract_layman</a></span><span class="op">(</span><span class="va">layman_b</span>, community_df <span class="op">=</span> <span class="va">c_names</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span></span>
+<span>    labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html" class="external-link">case_when</a></span><span class="op">(</span></span>
+<span>      <span class="va">metric</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="st">"dX_range"</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"\U03B4"</span>,<span class="st">"&lt;sup&gt;"</span>, <span class="fl">13</span>, <span class="st">"&lt;/sup&gt;"</span>,</span>
+<span>                                      <span class="st">"C&lt;br&gt;Range"</span><span class="op">)</span>,</span>
+<span>      <span class="va">metric</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="st">"dY_range"</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"\U03B4"</span>,<span class="st">"&lt;sup&gt;"</span>, <span class="fl">15</span>, <span class="st">"&lt;/sup&gt;"</span>,</span>
+<span>                                      <span class="st">"N&lt;br&gt;Range"</span><span class="op">)</span>,</span>
+<span>      <span class="va">metric</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="st">"TA"</span> <span class="op">~</span> <span class="st">"Total Area"</span>,</span>
+<span>      <span class="va">metric</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="st">"CD"</span> <span class="op">~</span> <span class="st">"Distance to&lt;br&gt;Centroid"</span>,</span>
+<span>      <span class="va">metric</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="st">"NND"</span> <span class="op">~</span> <span class="st">"Nearest&lt;br&gt;Neighbor&lt;br&gt;Distance"</span>,</span>
+<span>      <span class="va">metric</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="st">"SDNND"</span> <span class="op">~</span> <span class="st">"SD Nearest&lt;br&gt;Neighbor&lt;br&gt;Distance"</span>,</span>
+<span>    <span class="op">)</span>,</span>
+<span>    levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"\U03B4&lt;sup&gt;13&lt;/sup&gt;C&lt;br&gt;Range"</span>,</span>
+<span>               <span class="st">"\U03B4&lt;sup&gt;15&lt;/sup&gt;N&lt;br&gt;Range"</span>,</span>
+<span>               <span class="st">"Total Area"</span>,</span>
+<span>               <span class="st">"Distance to&lt;br&gt;Centroid"</span>,</span>
+<span>               <span class="st">"Nearest&lt;br&gt;Neighbor&lt;br&gt;Distance"</span>,</span>
+<span>               <span class="st">"SD Nearest&lt;br&gt;Neighbor&lt;br&gt;Distance"</span><span class="op">)</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
+<p>Prior to using point interval plots we need to create a colour
+palette that will be used to identify each community.</p>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">viridis_colors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://sjmgarnier.github.io/viridisLite/reference/viridis.html" class="external-link">viridis</a></span><span class="op">(</span><span class="fl">2</span>, begin <span class="op">=</span> <span class="fl">0.25</span>, end <span class="op">=</span> <span class="fl">0.85</span>,</span>
+<span>                          option <span class="op">=</span> <span class="st">"G"</span>,</span>
+<span>                          alpha <span class="op">=</span> <span class="fl">0.75</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p>Lastly, we can visualize the distributions of the posterior estimates
+using <code><a href="http://mjskay.github.io/ggdist/reference/stat_pointinterval.html" class="external-link">stat_pointinterval()</a></code> from {ggdist}.</p>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">layman_bc</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">labels</span>, </span>
+<span>                             y <span class="op">=</span> <span class="va">post_est</span>, </span>
+<span>                             point_fill <span class="op">=</span> <span class="va">community_name</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="http://mjskay.github.io/ggdist/reference/stat_pointinterval.html" class="external-link">stat_pointinterval</a></span><span class="op">(</span></span>
+<span>    point_size <span class="op">=</span> <span class="fl">4</span>,</span>
+<span>    interval_colour <span class="op">=</span> <span class="st">"grey60"</span>,</span>
+<span>    position <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_dodge.html" class="external-link">position_dodge</a></span><span class="op">(</span><span class="fl">0.4</span><span class="op">)</span>,</span>
+<span>    shape <span class="op">=</span> <span class="fl">21</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_fill_manual</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Community"</span>, </span>
+<span>                    aesthetics <span class="op">=</span> <span class="st">"point_fill"</span>,</span>
+<span>                    values <span class="op">=</span> <span class="va">viridis_colors</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span></span>
+<span>    base_size <span class="op">=</span> <span class="fl">15</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span></span>
+<span>    panel.grid <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>    axis.text <span class="op">=</span> <span class="fu"><a href="https://wilkelab.org/ggtext/reference/element_markdown.html" class="external-link">element_markdown</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>    legend.position <span class="op">=</span> <span class="st">"inside"</span>,</span>
+<span>    legend.position.inside <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.85</span>, <span class="fl">0.86</span><span class="op">)</span>,</span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="st">"Community Metrics"</span>,</span>
+<span>    y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"p("</span>, <span class="st">"‰"</span>, <span class="st">"|X)"</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
+<p><img src="using-nichetools-with-the-package-SIBER_files/figure-html/unnamed-chunk-28-1.png" width="100%"></p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
