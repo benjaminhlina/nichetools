@@ -38,6 +38,7 @@ BugReports: https://github.com/benjaminhlina/nichetools/issues
 Suggests: 
     bayestestR,
     ggplot2,
+    ggdist,
     ggtext,
     ggh4x,
     janitor,
@@ -46,6 +47,7 @@ Suggests:
     rjags,
     rmarkdown,
     stringr,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    viridis
 Config/testthat/edition: 3
 VignetteBuilder: knitr
