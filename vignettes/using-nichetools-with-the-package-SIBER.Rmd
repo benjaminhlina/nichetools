@@ -326,12 +326,14 @@ ggplot() +
   ) + 
   labs(
     x = "Communities", 
-    y = "Niche Size (p(‰ | x)") 
+    y = "Niche Size p(‰ | x)") 
 
 ```
 
 
 ### Niche Similarties 
+
+
 
 ### Bayesian Estimates of Community Metrics
 
