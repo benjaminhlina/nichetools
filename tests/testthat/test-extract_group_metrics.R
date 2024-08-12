@@ -1,5 +1,4 @@
 library(SIBER)
-library(nichetools)
 # create the siber object
 # str(demo.siber.data.2)
 
@@ -20,8 +19,6 @@ siber_example <- createSiberObject(demo.siber.data.1)
 group_ml <- groupMetricsML(siber_example)
 # unit test for extract_sigma
 test_that("test if it doesn't error with basic siber object ", {
-
-
 
   expect_no_error(
     group_extract <- extract_group_metrics(
