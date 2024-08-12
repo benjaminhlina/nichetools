@@ -67,7 +67,7 @@ extract_group_metrics <- function(data = NULL,
     cli::cli_abort("Invalid characters for 'data_format'. Allowed character
     strings are 'wide' or 'long'.")
   }
-  df_layman_ml <- data |>
+  df_group_ml <- data |>
     as.data.frame() |>
     tibble::rownames_to_column(var = "metric") |>
     tidyr::pivot_longer(cols = -metric,
@@ -82,11 +82,11 @@ extract_group_metrics <- function(data = NULL,
 
   if(data_format %in% "long") {
 
-    return(df_layman_ml)
+    return(df_group_ml)
   }
   if(data_format %in% "wide") {
 
-    df_layman_ml <- df_layman_ml |>
+    df_group_ml <- df_group_ml |>
       tidyr::pivot_wider()
 
   }
