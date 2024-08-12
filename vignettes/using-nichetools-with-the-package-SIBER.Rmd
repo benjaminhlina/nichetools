@@ -333,8 +333,8 @@ ggplot() +
   ) + 
   labs(
     x = "Communities", 
-    y = "Niche Size p(‰ | x)") 
-
+    y = expression(paste("Niche Size p(", "‰"^2, "| x)"))
+  )
 ```
 
 
