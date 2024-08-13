@@ -167,12 +167,33 @@ extract_layman <- function(data,
 
     df_layman <- df_layman |>
       tidyr::pivot_longer(
-      cols = -c({{second_column}}, community),
-      names_to = "metric",
-      values_to = "post_est"
-    )
+        cols = -c({{second_column}}, community),
+        names_to = "metric",
+        values_to = "post_est"
+      ) |>
+      dplyr::mutate(
+        labels = factor(dplyr::case_when(
+          metric %in% "dX_range" ~ paste0("\U03B4","<sup>", isotope_x, "</sup>",
+                                          element_x, "<br>Range"),
+          metric %in% "dY_range" ~ paste0("\U03B4","<sup>", isotope_y, "</sup>",
+                                          element_y, "<br>Range"),
+          metric %in% "TA" ~ "Total Area",
+          metric %in% "CD" ~ "Distance to<br>Centroid",
+          metric %in% "NND" ~ "Nearest<br>Neighbor<br>Distance",
+          metric %in% "SDNND" ~ "SD Nearest<br>Neighbor<br>Distance",
+        ),
+        levels = c(paste0("\U03B4","<sup>", isotope_x, "</sup>",
+                          element_x, "<br>Range"),
+                   paste0("\U03B4","<sup>", isotope_y, "</sup>",
+                          element_y, "<br>Range"),
+                   "Total Area",
+                   "Distance to<br>Centroid",
+                   "Nearest<br>Neighbor<br>Distance",
+                   "SD Nearest<br>Neighbor<br>Distance")
+        )
+      )
 
-  return(df_layman)
+    return(df_layman)
   }
   if (data_format %in% "wide"){
     return(df_layman)
