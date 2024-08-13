@@ -344,7 +344,7 @@ ggplot() +
 
 ### Bayesian Estimates of Layman's Community Metrics
 
-First I highly recommend reading [Post et al. 2007](https://esajournals.onlinelibrary.wiley.com/doi/abs/10.1890/0012-9658%282007%2988%5B42%3ACSIRPF%5D2.0.CO%3B2) to understand the following six community metrics, that we are going to estimate using a Bayesian framework. 
+First I highly recommend reading [Layman et al. 2007](https://esajournals.onlinelibrary.wiley.com/doi/abs/10.1890/0012-9658%282007%2988%5B42%3ACSIRPF%5D2.0.CO%3B2) to understand the following six community metrics, that we are going to estimate using a Bayesian framework. 
 
 To create Bayesian estiamtes of Layman's community metrics we first need to use `extractPosteriorMeans()` from 
 `{SIBER}` to extract posterior estimates of means for each community and group. 
