@@ -69,7 +69,7 @@ test_that("test if lenght of wide and long  siber object ", {
     expect_s3_class(object = df_laymen, class =  "data.frame")
     # excreted dimensions
     expected_rows <- 48000
-    expected_cols <- 4
+    expected_cols <- 5
 
 
     # Check the dimensions using expect_equal
