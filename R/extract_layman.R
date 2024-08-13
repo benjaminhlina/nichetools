@@ -21,6 +21,22 @@
 #' that the user is working with (e.g., `"region"`).
 #' @param data_format a `character` string that decides whether the returned object is
 #' in long or wide format. Default is `"long"`, with the alternative supplied being `"wide"`.
+#' @param isotope_x a `numeric` that will be used in the labeling processes for
+#' the range of the x. Default is `13` (e.g., \eqn{\delta}^13 C).
+#' This will create a column called `labels`, that will only be created when `data_format`
+#' is set to `long`.
+#' @param isotope_y a `numeric` that will be used in the labeling processes for
+#' the range of the y isotope. Default is `15` (e.g., \eqn{\delta}^15 N).
+#' #' This will create a column called `labels`, that will only be created when `data_format`
+#' is set to `long`.
+#' @param element_x a `character` that will be used in the labeling process for the range of the x
+#' isotope. Default is `C` (e.g., \eqn{\delta}^13 C).
+#' This will create a column called `labels`, that will only be created when `data_format`
+#' is set to `long`.
+#' @param element_y  a `character` that will be used in the labeling process for the range of the y
+#' isotope. Default is `N` (e.g., \eqn{\delta}^13 N).
+#' #' This will create a column called `labels`, that will only be created when `data_format`
+#' is set to `long`.
 #'
 #' @return A `tibble` containing four rows when `data_format` is set to its
 #' default which is `long`. These four rows are the following, `community`,
@@ -78,7 +94,12 @@
 
 extract_layman <- function(data,
                            community_df = NULL,
-                           data_format = NULL) {
+                           data_format = NULL,
+                           isotope_x = NULL,
+                           isotope_y = NULL,
+                           element_x = NULL,
+                           element_y = NULL
+) {
 
 
   if (!is.list(data)) {

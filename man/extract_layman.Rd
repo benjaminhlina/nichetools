@@ -4,7 +4,15 @@
 \alias{extract_layman}
 \title{extract Layman metrics}
 \usage{
-extract_layman(data, community_df = NULL, data_format = NULL)
+extract_layman(
+  data,
+  community_df = NULL,
+  data_format = NULL,
+  isotope_x = NULL,
+  isotope_y = NULL,
+  element_x = NULL,
+  element_y = NULL
+)
 }
 \arguments{
 \item{data}{a \code{list} created by the function \code{bayesianLayman()} from the package
@@ -21,6 +29,26 @@ that the user is working with (e.g., \code{"region"}).}
 
 \item{data_format}{a \code{character} string that decides whether the returned object is
 in long or wide format. Default is \code{"long"}, with the alternative supplied being \code{"wide"}.}
+
+\item{isotope_x}{a \code{numeric} that will be used in the labeling processes for
+the range of the x. Default is \code{13} (e.g., \eqn{\delta}^13 C).
+This will create a column called \code{labels}, that will only be created when \code{data_format}
+is set to \code{long}.}
+
+\item{isotope_y}{a \code{numeric} that will be used in the labeling processes for
+the range of the y isotope. Default is \code{15} (e.g., \eqn{\delta}^15 N).
+#' This will create a column called \code{labels}, that will only be created when \code{data_format}
+is set to \code{long}.}
+
+\item{element_x}{a \code{character} that will be used in the labeling process for the range of the x
+isotope. Default is \code{C} (e.g., \eqn{\delta}^13 C).
+This will create a column called \code{labels}, that will only be created when \code{data_format}
+is set to \code{long}.}
+
+\item{element_y}{a \code{character} that will be used in the labeling process for the range of the y
+isotope. Default is \code{N} (e.g., \eqn{\delta}^13 N).
+#' This will create a column called \code{labels}, that will only be created when \code{data_format}
+is set to \code{long}.}
 }
 \value{
 A \code{tibble} containing four rows when \code{data_format} is set to its
