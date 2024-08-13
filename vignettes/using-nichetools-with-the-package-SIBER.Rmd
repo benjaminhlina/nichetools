@@ -359,29 +359,10 @@ Next we need to use `bayesianLayman()` from `{SIBER}` and use our extracted post
 layman_b <- bayesianLayman(mu.post = mu_post)
 ```
 
-Once we have created our Bayesian estimates for each community metric we can use `extract_layman()` to extract these estimates. We will also create the variable `labels` which will first assign a new name to each community metric and secondly will reorder these names based on how these metrics are often viewed. 
+Once we have created our Bayesian estimates for each community metric we can use `extract_layman()` to extract these estimates. The function will also create the variable `labels` which will first assign a new name to each community metric and secondly will reorder these names based on how these metrics are often viewed. 
 
 ```{r}
-layman_bc <- extract_layman(layman_b, community_df = c_names) %>% 
-  mutate(
-    labels = factor(case_when(
-      metric %in% "dX_range" ~ paste0("\U03B4","<sup>", 13, "</sup>",
-                                      "C<br>Range"),
-      metric %in% "dY_range" ~ paste0("\U03B4","<sup>", 15, "</sup>",
-                                      "N<br>Range"),
-      metric %in% "TA" ~ "Total Area",
-      metric %in% "CD" ~ "Distance to<br>Centroid",
-      metric %in% "NND" ~ "Nearest<br>Neighbor<br>Distance",
-      metric %in% "SDNND" ~ "SD Nearest<br>Neighbor<br>Distance",
-    ),
-    levels = c("\U03B4<sup>13</sup>C<br>Range",
-               "\U03B4<sup>15</sup>N<br>Range",
-               "Total Area",
-               "Distance to<br>Centroid",
-               "Nearest<br>Neighbor<br>Distance",
-               "SD Nearest<br>Neighbor<br>Distance")
-    )
-  )
+layman_bc <- extract_layman(layman_b, community_df = c_names)
 ```
 
 Prior to using point interval plots we need to create a colour palette that will be used to identify each community.  
