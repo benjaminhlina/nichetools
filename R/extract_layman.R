@@ -127,7 +127,7 @@ extract_layman <- function(data,
 
 
   # sett data formatt
-  if(is.null(data_format)) {
+  if (is.null(data_format)) {
     data_format <- "long"
   }
 
@@ -135,6 +135,26 @@ extract_layman <- function(data,
     cli::cli_abort("Invalid characters for 'data_format'. Allowed character
     strings are 'wide' or 'long'.")
   }
+
+  # ---- set isotopes values -----=
+  if (is.null(isotope_x)) {
+    isotope_x <- 13
+  }
+
+  if (is.null(isotope_y)) {
+    isotope_y <- 15
+  }
+
+  # ---- set elemental number -----
+  if (is.null(element_x)) {
+    element_x <- "C"
+  }
+
+  if (is.null(element_y)) {
+    element_y <- "N"
+  }
+
+
 
   df_layman <- data |>
     purrr::map(~ as_tibble(.x)) |>
