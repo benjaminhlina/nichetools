@@ -37,22 +37,21 @@ We will first load the packages that were just mentioned
   library(ggdist)
   library(ggtext)
   library(nichetools)
-  library(patchwork)
   library(purrr)
   library(SIBER)
   library(tidyr)
   library(viridis)
 }
 ```
-For the purpose of the vignette we will be using the `demo.siber.data.2` data frame that is available within `{SIBER}`. We will first look at the structure of this data frame using the `{dplyr}` function `glimpse()` For your purposes you will need to replace this with your data frame either by loading a csv, rds, or qs. You can do this multiple ways, I prefer using `readr::read_csv()` but base R's `read.csv()` works perfectly fine. Note, `{SIBER}` functions do not take `tibbles` or `data.tables` so you will have to convert either to `data.frame` class prior to running funcgtions in `{SIBER}`. 
+For the purpose of the vignette we will be using the `demo.siber.data.2` data frame that is available within `{SIBER}`. We will first look at the structure of this data frame using the `{dplyr}` function `glimpse()` For your purposes you will need to replace this with your data frame either by loading a csv, rds, or qs. You can do this multiple ways, I prefer using `readr::read_csv()` but base R's `read.csv()` works perfectly fine. Note, `{SIBER}` functions do not take `tibbles` or `data.tables` so you will have to convert either to `data.frame` class prior to running functions in `{SIBER}`. 
 
 ```{r}
 glimpse(demo.siber.data.2)
 ```
 
-You will notice that the community and group column are character strings that are the actual names of the communities and groups. Similarly, you will likely have names associated with the communities and groups you are working with, instead of 1, 2, 3 ect. I advise changing them into factors thus allow you to know the order for each column. The reason why this is important, is that functions in `{SIBER}` use `for` loops based on the indexing of the `SiberObject`. If this order does not match up you can have issues with the names of the communities and groups you are working with.
+You will notice that the community and group column are character strings that are the actual names of the communities and groups. I advise changing them into factors thus allow you to know the order for each column prior to converting them into a `numeric` and then a `charcter`. The reason why this is important, is that functions in `{SIBER}` use `for` loops based on the indexing of the `SiberObject`. If this order does not match up you can have issues with the names of the communities and groups you are working with.
 
-So first, change these into factors, then preserve the column and create an id column that is the numerical order that will become the community and group names fed to `createSiberObject()`. 
+So first, let us change these into a `factor`, then preserve the column and create an id column that is the numerical order that will become the community and group names provided to `createSiberObject()`. 
 
 ```{r}
 demo.siber.data.2 <- demo.siber.data.2 %>%
@@ -108,16 +107,17 @@ ggplot(data = demo.siber.data.2, aes(x = iso1, y = iso2,
   theme(
     strip.background = element_blank(),
     panel.grid = element_blank(), 
+    axis.title = element_markdown(),
     legend.position = "inside",
     legend.position.inside = c(0.65, 0.75)
   ) + 
   labs(
-    x = expression(paste(delta^13,"C (‰)")), 
-    y = expression(paste(delta^15,"N (‰)")) 
+    x = paste0("\U03B4","<sup>", 13, "</sup>", "C", " (‰)"),
+    y = paste0("\U03B4","<sup>", 15, "</sup>", "N", " (‰)")
   )
 ```
 
-Next we will grab the isotopes we need and the community and group ids, and we will  rename them to `community` and `group`. This is important as `creatSiberObject()` will 1) only take the following order with the following names `iso1`, `iso2`, `group`, and `community` and 2) we will transform this `tibble` into a `data.frame` as `{SIBER}` will only work with `data.frame`. In this case we were using tibbles but we could also be working with `data.table` and will need to do the same thing. 
+Next we will grab the isotopes we need and the community and group ids that have already been renamed  to `community` and `group`. This is important as `creatSiberObject()` will 1) only take the following order with the following names `iso1`, `iso2`, `group`, and `community` and 2) we will transform this `tibble` into a `data.frame` as `{SIBER}` will only work with `data.frame`. In this case we were using tibbles but we could also be working with `data.table` and will need to do the same thing. 
 
 ```{r}
 demo_siber_data <- demo.siber.data.2 %>% 
@@ -128,7 +128,7 @@ demo_siber_data <- demo.siber.data.2 %>%
 
 ### Convert to {SIBER} object
 
-We will convert to a `{SIBER}` object, once we have the `{SIBER}` object we can start our analysis. 
+We will convert to a `{SIBER}` object.
 
 ```{r}
 siber_example <- createSiberObject(demo_siber_data)
@@ -149,7 +149,7 @@ parms$n.thin <- 10     # thin the posterior by this many
 parms$n.chains <- 2        # run this many chains
 ```
 
-Next we need to define the priors for each parameter of the model. This includes fitting the ellipses using an Inverse Wishart prior on the covariance matrix $\Sigma$ , and a vague normal prior on the means ($\mu$).
+Next we need to define the priors for each parameter of the model. This includes fitting the ellipses using an Inverse Wishart prior on the covariance matrix ($\Sigma$), and a vague normal prior on the means ($\mu$).
 
 ```{r}
 # fit the ellipses which uses an Inverse Wishart prior on the 
@@ -169,7 +169,7 @@ ellipses_posterior <- siberMVN(siber_example, parms, priors)
 
 ### Extract posterior distributions for μ and Σ
 
-We will first extract posterior distribution for $\mu$ using `extract_mu()` in `{nichetools}`. We will need to set the argument `pkg` to `"SIBER"` and because of what we are going to do with the data afterwards. We are going to set `data_format` to `"wide"`. This argument takes `"long"` or `"wide"` which dictates whether the data object returned is in wide or long format. We will also use the function `seperate_wider_delim()` from {tidyr} to seperate the community and groups names as they are joined by a `.`. We then will use `left_join()` and the `cg_names` data frame we created above to add in the correct community and group names. 
+We will first extract posterior distribution for $\mu$ using `extract_mu()` in `{nichetools}`. We will need to set the argument `pkg` to `"SIBER"` and the argument `data_format` to `"wide"`. This argument takes `"long"` or `"wide"` which dictates whether the data object returned is in wide or long format. We will also use the function `seperate_wider_delim()` from {tidyr} to separate the community and groups names as they are joined by a `.`. We then will use `left_join()` and the `cg_names` data frame we created above to add in the correct community and group names. 
 
 ```{r, message = FALSE}
 df_mu <- extract_mu(ellipses_posterior, pkg = "SIBER", 
@@ -180,7 +180,7 @@ df_mu <- extract_mu(ellipses_posterior, pkg = "SIBER",
   left_join(cg_names)
 ```
 
-We can confirm that the posterior estimates of $\mu$ are correct by plotting them with {ggplot2} 
+We can confirm that the posterior estimates of $\mu$ are correct by plotting them with {ggplot2}.
 
 ```{r}
 #| out-width: 100%
@@ -198,18 +198,19 @@ ggplot() +
   theme(
     strip.background = element_blank(),
     panel.grid = element_blank(), 
+    axis.title = element_markdown(),
     legend.position = "inside",
     legend.position.inside = c(0.65, 0.75)
   ) + 
   labs(
-    x = expression(paste(delta^13,"C (‰)")), 
-    y = expression(paste(delta^15,"N (‰)")) 
+    x = paste0("\U03B4","<sup>", 13, "</sup>", "C", " (‰)"),
+    y = paste0("\U03B4","<sup>", 15, "</sup>", "N", " (‰)")
   )
 ```
 
-Notice the density of points in the center of the raw data with the corresponding colours. This density of points are the posterior estimates from the model for $\mu$ and are an indication that the model is iterating over the groups and communities correctly.  
+Notice the density of points in the center of the raw data for the corresponding colours. This density of points are the posterior estimates from the model for $\mu$ and are an indication that the model is iterating over the groups and communities correctly.  
 
-We are also going to extract $\mu$ in long format for creating ellipse, as the functions that create ellipse need the data frame of $\mu$ to be in long format. 
+We are also going to extract $\mu$ in long format for creating ellipse, as the function that create ellipse needs the data frame of $\mu$ to be in long format. 
 
 ```{r, message=FALSE}
 df_mu_long <- extract_mu(ellipses_posterior, pkg = "SIBER") %>% 
@@ -225,7 +226,7 @@ Next we are going to extract posterior estimates of $\Sigma$ using `extract_sigm
 df_sigma <- extract_sigma(ellipses_posterior, pkg = "SIBER")
 ```
 
-Lastly, we are going to feed each $\mu$ and $\Sigma$ estimate to `niche_ellipse()` to estimate each ellipse. There are few things to know about this function and they include the following: 1) it will randomly sample 10 ellipse from the total posterior disturbitons of $\mu$ and $\Sigma$, this seems quite standard, however you can adjust the number of samples by changing the argument `n`. 2) to make the function consistently randomly sample the same set you will need to set `set_seed` to a numerical value. If this is not set then it will randomly sample a different set of 10 ellipses every time. 3) if you would like the function to not randomly sample set the argument `random` to `FALSE`. 4) by default it will tell you how long it takes to generate the ellipse and will have progress bars at each step. If you want to turn this off set `message` to `FALSE`. 5) if you are wanting to change the confidence level of the ellipse you can do so using the argument `p_ell`. This value is bound between 0 and 1. 
+Lastly, we are going to feed each $\mu$ and $\Sigma$ estimate to `niche_ellipse()` to estimate each ellipse. There are few things to know about this function and they include the following: 1) it will randomly sample 10 ellipse from the total posterior distribution of $\mu$ and $\Sigma$, this seems quite standard, however, you can adjust the number of samples by changing the argument `n`. 2) to make the function consistently randomly sample the same set you will need to set `set_seed` to a numerical value. If this is not set then it will randomly sample a different set of 10 ellipses every time. 3) if you would like the function to not randomly sample set the argument `random` to `FALSE`. 4) by default it will tell you how long it takes to generate the ellipse and will have progress bars at each step. If you want to turn this off set `message` to `FALSE`. 5) if you are wanting to change the confidence level of the ellipse you can do so using the argument `p_ell`. This value is bound between 0 and 1. 
 
 ```{r, message = FALSE}
 df_el <- niche_ellipse(dat_mu = df_mu_long,
@@ -257,12 +258,13 @@ ggplot(data = df_el,
     strip.background = element_blank(),
     panel.grid = element_blank(), 
     legend.position = "inside",
+    axis.title = element_markdown(),
     legend.background = element_blank(), 
     legend.position.inside = c(0.65, 0.75)
   ) + 
   labs(
-    x = expression(paste(delta^13,"C (‰)")), 
-    y = expression(paste(delta^15,"N (‰)")) 
+    x = paste0("\U03B4","<sup>", 13, "</sup>", "C", " (‰)"),
+    y = paste0("\U03B4","<sup>", 15, "</sup>", "N", " (‰)")
   )
 ```
 
@@ -274,7 +276,7 @@ We can use `siberEllipses()` from {SIBER} to estimate niche size for each poster
 sea_b <- siberEllipses(corrected.posteriors = ellipses_posterior)
 ```
 
-Next using `extract_niche_size()` from {nichetools} we can extract niche size which will also add in the correct names for the community and groups we are working with. 
+Next using `extract_niche_size()` from `{nichetools}` to extract niche size which will also add in the correct names for the communities and groups we are working with. 
 
 ```{r}
 seb_convert <- extract_niche_size(data = sea_b,
@@ -282,20 +284,20 @@ seb_convert <- extract_niche_size(data = sea_b,
                                   community_df = cg_names)
 ```
 
-We will also extract the parametric estimate for niche size using `groupMetricsML()` from {SIBER}. 
+We will also extract the parametric estimate for niche size using `groupMetricsML()` from `{SIBER}`. 
 
 ```{r}
 group_ml <- groupMetricsML(siber_example)
 ```
 
-We can convert the output of this function into something we can work with using `extract_group_metrics()`. 
+We can convert the output of this function using `extract_group_metrics()`. 
 
 ```{r}
 group_convert <- extract_group_metrics(data = group_ml,
                                        community_df = cg_names)
 ```
 
-The object returned will have maximum-liklihod estimates for standard ellipse area (SEA), central standard ellipse area (SEAc), and total area (TA). For plotting niche size we will use the SEAc. 
+The object returned will have maximum-likelihood estimates for the standard ellipse area (SEA), the central standard ellipse area (SEAc), and the total area (TA). For plotting niche size we will use `SEAc`. 
 
 ```{r}
 sea_c <- group_convert %>% 
@@ -341,19 +343,18 @@ ggplot() +
 ### Niche Similarties 
 
 
-
 ### Bayesian Estimates of Layman's Community Metrics
 
-First I highly recommend reading [Layman et al. 2007](https://esajournals.onlinelibrary.wiley.com/doi/abs/10.1890/0012-9658%282007%2988%5B42%3ACSIRPF%5D2.0.CO%3B2) to understand the following six community metrics, that we are going to estimate using a Bayesian framework. 
+First I highly recommend reading [Layman et al. 2007](https://esajournals.onlinelibrary.wiley.com/doi/abs/10.1890/0012-9658%282007%2988%5B42%3ACSIRPF%5D2.0.CO%3B2) to understand the six community metrics that will be estimating using a Bayesian framework in this section. 
 
-To create Bayesian estiamtes of Layman's community metrics we first need to use `extractPosteriorMeans()` from 
+To create Bayesian estimates of Layman's community metrics we first need to use `extractPosteriorMeans()` from 
 `{SIBER}` to extract posterior estimates of means for each community and group. 
 
 ```{r}
 mu_post <- extractPosteriorMeans(siber_example, ellipses_posterior)
 ```
 
-Next we need to use `bayesianLayman()` from `{SIBER}` and use our extracted posterior means to create Bayesian estiamtes for each community metric.  
+Next we need to use `bayesianLayman()` from `{SIBER}` and use our extracted posterior means to create Bayesian estimates for each community metric.  
 
 ```{r}
 layman_b <- bayesianLayman(mu.post = mu_post)
@@ -365,7 +366,7 @@ Once we have created our Bayesian estimates for each community metric we can use
 layman_bc <- extract_layman(layman_b, community_df = c_names)
 ```
 
-Prior to using point interval plots we need to create a colour palette that will be used to identify each community.  
+Prior to creating a point interval plot, we need to create a colour palette that will be used to identify each community.  
 
 ```{r}
 viridis_colors <- viridis(2, begin = 0.25, end = 0.85,
