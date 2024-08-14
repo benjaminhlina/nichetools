@@ -61,7 +61,7 @@
                         <h4 data-toc-skip class="author">Benjamin L.
 Hlina</h4>
             
-            <h4 data-toc-skip class="date">Updated: 2024-08-13</h4>
+            <h4 data-toc-skip class="date">Updated: 2024-08-14</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/benjaminhlina/nichetools/blob/main/vignettes/using-nichetools-with-the-package-SIBER.Rmd" class="external-link"><code>vignettes/using-nichetools-with-the-package-SIBER.Rmd</code></a></small>
       <div class="d-none name"><code>using-nichetools-with-the-package-SIBER.Rmd</code></div>
@@ -89,10 +89,10 @@ habitat occupancy).</p>
 <p>First we will load the necessary packages to preform the analysis and
 visualization. We will use <a href="https://cran.r-project.org/package=SIBER" class="external-link">{SIBER}</a> and <a href="https://benjaminhlina.github.io/nichetools/">{nichetools}</a> to
 preform the analysis. We will use <a href="https://easystats.github.io/bayestestR/" class="external-link">{bayestestR}</a> to
-calcuate and extract etis and medians for posterior distubtions that we
-want to plot. We will use <a href="https://dplyr.tidyverse.org/" class="external-link">{dplyr}</a>, <a href="https://tidyr.tidyverse.org/" class="external-link">{tidyr}</a>, and <a href="https://purrr.tidyverse.org/" class="external-link">{purrr}</a> to manipulate data and
-iterate processes. Lastly, we will use <a href="https://ggplot2.tidyverse.org/" class="external-link">{ggplot2}</a>, <a href="https://wilkelab.org/ggtext/" class="external-link">{ggtext}</a>, and <a href="https://patchwork.data-imaginist.com/" class="external-link">{patchwork}</a> to plot,
-add labels, and arrange plots.</p>
+calcuate and extract medians and Equal-Tailed Interval (ETI) of
+posterior distributions that we want to plot. We will use <a href="https://dplyr.tidyverse.org/" class="external-link">{dplyr}</a>, <a href="https://tidyr.tidyverse.org/" class="external-link">{tidyr}</a>, and <a href="https://purrr.tidyverse.org/" class="external-link">{purrr}</a> to manipulate data and
+iterate processes. Lastly, we will use <a href="https://ggplot2.tidyverse.org/" class="external-link">{ggplot2}</a>, <a href="https://wilkelab.org/ggtext/" class="external-link">{ggtext}</a>, and <a href="https://mjskay.github.io/ggdist/" class="external-link">{ggdist}</a> to plot and add
+labels.</p>
 <p>I will add that many of the <a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a> and
 <a href="https://tidyr.tidyverse.org" class="external-link">tidyr</a> functions and processes can be replaced using <a href="https://CRAN.R-project.org/package=data.table" class="external-link">{data.table}</a>
 which is great when working with large data sets.</p>
@@ -105,7 +105,6 @@ which is great when working with large data sets.</p>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mjskay.github.io/ggdist/" class="external-link">ggdist</a></span><span class="op">)</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://wilkelab.org/ggtext/" class="external-link">ggtext</a></span><span class="op">)</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://benjaminhlina.github.io/nichetools/">nichetools</a></span><span class="op">)</span></span>
-<span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com" class="external-link">patchwork</a></span><span class="op">)</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://purrr.tidyverse.org/" class="external-link">purrr</a></span><span class="op">)</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">SIBER</span><span class="op">)</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org" class="external-link">tidyr</a></span><span class="op">)</span></span>
@@ -121,7 +120,7 @@ using <code>readr::read_csv()</code> but base R’s
 <code><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv()</a></code> works perfectly fine. Note, <code>{SIBER}</code>
 functions do not take <code>tibbles</code> or <code>data.tables</code>
 so you will have to convert either to <code>data.frame</code> class
-prior to running funcgtions in <code>{SIBER}</code>.</p>
+prior to running functions in <code>{SIBER}</code>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">demo.siber.data.2</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 150</span></span>
@@ -131,18 +130,18 @@ prior to running funcgtions in <code>{SIBER}</code>.</p>
 <span><span class="co">#&gt; $ group     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "city", "city", "city", "city", "city", "city", "city", "cit…</span></span>
 <span><span class="co">#&gt; $ community <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "dublin", "dublin", "dublin", "dublin", "dublin", "dublin", …</span></span></code></pre></div>
 <p>You will notice that the community and group column are character
-strings that are the actual names of the communities and groups.
-Similarly, you will likely have names associated with the communities
-and groups you are working with, instead of 1, 2, 3 ect. I advise
-changing them into factors thus allow you to know the order for each
-column. The reason why this is important, is that functions in
-<code>{SIBER}</code> use <code>for</code> loops based on the indexing of
-the <code>SiberObject</code>. If this order does not match up you can
-have issues with the names of the communities and groups you are working
-with.</p>
-<p>So first, change these into factors, then preserve the column and
-create an id column that is the numerical order that will become the
-community and group names fed to <code><a href="https://rdrr.io/pkg/SIBER/man/createSiberObject.html" class="external-link">createSiberObject()</a></code>.</p>
+strings that are the actual names of the communities and groups. I
+advise changing them into factors thus allow you to know the order for
+each column prior to converting them into a <code>numeric</code> and
+then a <code>charcter</code>. The reason why this is important, is that
+functions in <code>{SIBER}</code> use <code>for</code> loops based on
+the indexing of the <code>SiberObject</code>. If this order does not
+match up you can have issues with the names of the communities and
+groups you are working with.</p>
+<p>So first, let us change these into a <code>factor</code>, then
+preserve the column and create an id column that is the numerical order
+that will become the community and group names provided to
+<code><a href="https://rdrr.io/pkg/SIBER/man/createSiberObject.html" class="external-link">createSiberObject()</a></code>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">demo.siber.data.2</span> <span class="op">&lt;-</span> <span class="va">demo.siber.data.2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span></span>
@@ -206,16 +205,17 @@ structure.</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span></span>
 <span>    strip.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>    panel.grid <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span>, </span>
+<span>    axis.title <span class="op">=</span> <span class="fu"><a href="https://wilkelab.org/ggtext/reference/element_markdown.html" class="external-link">element_markdown</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>    legend.position <span class="op">=</span> <span class="st">"inside"</span>,</span>
 <span>    legend.position.inside <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.65</span>, <span class="fl">0.75</span><span class="op">)</span></span>
 <span>  <span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span></span>
-<span>    x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">delta</span><span class="op">^</span><span class="fl">13</span>,<span class="st">"C (‰)"</span><span class="op">)</span><span class="op">)</span>, </span>
-<span>    y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">delta</span><span class="op">^</span><span class="fl">15</span>,<span class="st">"N (‰)"</span><span class="op">)</span><span class="op">)</span> </span>
+<span>    x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"\U03B4"</span>,<span class="st">"&lt;sup&gt;"</span>, <span class="fl">13</span>, <span class="st">"&lt;/sup&gt;"</span>, <span class="st">"C"</span>, <span class="st">" (‰)"</span><span class="op">)</span>,</span>
+<span>    y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"\U03B4"</span>,<span class="st">"&lt;sup&gt;"</span>, <span class="fl">15</span>, <span class="st">"&lt;/sup&gt;"</span>, <span class="st">"N"</span>, <span class="st">" (‰)"</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
 <p><img src="using-nichetools-with-the-package-SIBER_files/figure-html/unnamed-chunk-6-1.png" width="100%"></p>
 <p>Next we will grab the isotopes we need and the community and group
-ids, and we will rename them to <code>community</code> and
+ids that have already been renamed to <code>community</code> and
 <code>group</code>. This is important as <code>creatSiberObject()</code>
 will 1) only take the following order with the following names
 <code>iso1</code>, <code>iso2</code>, <code>group</code>, and
@@ -233,8 +233,7 @@ the same thing.</p>
 <div class="section level3">
 <h3 id="convert-to-siber-object">Convert to {SIBER} object<a class="anchor" aria-label="anchor" href="#convert-to-siber-object"></a>
 </h3>
-<p>We will convert to a <code>{SIBER}</code> object, once we have the
-<code>{SIBER}</code> object we can start our analysis.</p>
+<p>We will convert to a <code>{SIBER}</code> object.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">siber_example</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SIBER/man/createSiberObject.html" class="external-link">createSiberObject</a></span><span class="op">(</span><span class="va">demo_siber_data</span><span class="op">)</span></span></code></pre></div>
 <p>Now that we have converted this to a <code>{SIBER}</code> object we
@@ -256,8 +255,8 @@ extracted using functions in <a href="https://benjaminhlina.github.io/nichetools
 <p>Next we need to define the priors for each parameter of the model.
 This includes fitting the ellipses using an Inverse Wishart prior on the
 covariance matrix
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Σ</mi><annotation encoding="application/x-tex">\Sigma</annotation></semantics></math>
-, and a vague normal prior on the means
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Σ</mi><annotation encoding="application/x-tex">\Sigma</annotation></semantics></math>),
+and a vague normal prior on the means
 (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>μ</mi><annotation encoding="application/x-tex">\mu</annotation></semantics></math>).</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># fit the ellipses which uses an Inverse Wishart prior on the </span></span>
@@ -279,12 +278,11 @@ covariance matrix
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>μ</mi><annotation encoding="application/x-tex">\mu</annotation></semantics></math>
 using <code><a href="../reference/extract_mu.html">extract_mu()</a></code> in <a href="https://benjaminhlina.github.io/nichetools/">nichetools</a>. We will
 need to set the argument <code>pkg</code> to <code>"SIBER"</code> and
-because of what we are going to do with the data afterwards. We are
-going to set <code>data_format</code> to <code>"wide"</code>. This
+the argument <code>data_format</code> to <code>"wide"</code>. This
 argument takes <code>"long"</code> or <code>"wide"</code> which dictates
 whether the data object returned is in wide or long format. We will also
 use the function <code>seperate_wider_delim()</code> from {tidyr} to
-seperate the community and groups names as they are joined by a
+separate the community and groups names as they are joined by a
 <code>.</code>. We then will use <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join()</a></code> and the
 <code>cg_names</code> data frame we created above to add in the correct
 community and group names.</p>
@@ -297,7 +295,7 @@ community and group names.</p>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">cg_names</span><span class="op">)</span></span></code></pre></div>
 <p>We can confirm that the posterior estimates of
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>μ</mi><annotation encoding="application/x-tex">\mu</annotation></semantics></math>
-are correct by plotting them with {ggplot2}</p>
+are correct by plotting them with {ggplot2}.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df_mu</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">d13c</span>, y <span class="op">=</span> <span class="va">d15n</span>,</span>
@@ -313,15 +311,16 @@ are correct by plotting them with {ggplot2}</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span></span>
 <span>    strip.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>    panel.grid <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span>, </span>
+<span>    axis.title <span class="op">=</span> <span class="fu"><a href="https://wilkelab.org/ggtext/reference/element_markdown.html" class="external-link">element_markdown</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>    legend.position <span class="op">=</span> <span class="st">"inside"</span>,</span>
 <span>    legend.position.inside <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.65</span>, <span class="fl">0.75</span><span class="op">)</span></span>
 <span>  <span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span></span>
-<span>    x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">delta</span><span class="op">^</span><span class="fl">13</span>,<span class="st">"C (‰)"</span><span class="op">)</span><span class="op">)</span>, </span>
-<span>    y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">delta</span><span class="op">^</span><span class="fl">15</span>,<span class="st">"N (‰)"</span><span class="op">)</span><span class="op">)</span> </span>
+<span>    x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"\U03B4"</span>,<span class="st">"&lt;sup&gt;"</span>, <span class="fl">13</span>, <span class="st">"&lt;/sup&gt;"</span>, <span class="st">"C"</span>, <span class="st">" (‰)"</span><span class="op">)</span>,</span>
+<span>    y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"\U03B4"</span>,<span class="st">"&lt;sup&gt;"</span>, <span class="fl">15</span>, <span class="st">"&lt;/sup&gt;"</span>, <span class="st">"N"</span>, <span class="st">" (‰)"</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
 <p><img src="using-nichetools-with-the-package-SIBER_files/figure-html/unnamed-chunk-13-1.png" width="100%"></p>
-<p>Notice the density of points in the center of the raw data with the
+<p>Notice the density of points in the center of the raw data for the
 corresponding colours. This density of points are the posterior
 estimates from the model for
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>μ</mi><annotation encoding="application/x-tex">\mu</annotation></semantics></math>
@@ -329,8 +328,8 @@ and are an indication that the model is iterating over the groups and
 communities correctly.</p>
 <p>We are also going to extract
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>μ</mi><annotation encoding="application/x-tex">\mu</annotation></semantics></math>
-in long format for creating ellipse, as the functions that create
-ellipse need the data frame of
+in long format for creating ellipse, as the function that create ellipse
+needs the data frame of
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>μ</mi><annotation encoding="application/x-tex">\mu</annotation></semantics></math>
 to be in long format.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
@@ -351,11 +350,11 @@ and
 estimate to <code><a href="../reference/niche_ellipse.html">niche_ellipse()</a></code> to estimate each ellipse. There
 are few things to know about this function and they include the
 following: 1) it will randomly sample 10 ellipse from the total
-posterior disturbitons of
+posterior distribution of
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>μ</mi><annotation encoding="application/x-tex">\mu</annotation></semantics></math>
 and
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Σ</mi><annotation encoding="application/x-tex">\Sigma</annotation></semantics></math>,
-this seems quite standard, however you can adjust the number of samples
+this seems quite standard, however, you can adjust the number of samples
 by changing the argument <code>n</code>. 2) to make the function
 consistently randomly sample the same set you will need to set
 <code>set_seed</code> to a numerical value. If this is not set then it
@@ -393,12 +392,13 @@ level of the ellipse you can do so using the argument
 <span>    strip.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>    panel.grid <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span>, </span>
 <span>    legend.position <span class="op">=</span> <span class="st">"inside"</span>,</span>
+<span>    axis.title <span class="op">=</span> <span class="fu"><a href="https://wilkelab.org/ggtext/reference/element_markdown.html" class="external-link">element_markdown</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>    legend.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span>, </span>
 <span>    legend.position.inside <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.65</span>, <span class="fl">0.75</span><span class="op">)</span></span>
 <span>  <span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span></span>
-<span>    x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">delta</span><span class="op">^</span><span class="fl">13</span>,<span class="st">"C (‰)"</span><span class="op">)</span><span class="op">)</span>, </span>
-<span>    y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">delta</span><span class="op">^</span><span class="fl">15</span>,<span class="st">"N (‰)"</span><span class="op">)</span><span class="op">)</span> </span>
+<span>    x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"\U03B4"</span>,<span class="st">"&lt;sup&gt;"</span>, <span class="fl">13</span>, <span class="st">"&lt;/sup&gt;"</span>, <span class="st">"C"</span>, <span class="st">" (‰)"</span><span class="op">)</span>,</span>
+<span>    y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"\U03B4"</span>,<span class="st">"&lt;sup&gt;"</span>, <span class="fl">15</span>, <span class="st">"&lt;/sup&gt;"</span>, <span class="st">"N"</span>, <span class="st">" (‰)"</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
 <p><img src="using-nichetools-with-the-package-SIBER_files/figure-html/unnamed-chunk-17-1.png" width="100%"></p>
 </div>
@@ -409,25 +409,27 @@ level of the ellipse you can do so using the argument
 niche size for each posterior sample for each community and group.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sea_b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SIBER/man/siberEllipses.html" class="external-link">siberEllipses</a></span><span class="op">(</span>corrected.posteriors <span class="op">=</span> <span class="va">ellipses_posterior</span><span class="op">)</span></span></code></pre></div>
-<p>Next using <code><a href="../reference/extract_niche_size.html">extract_niche_size()</a></code> from {nichetools} we can
-extract niche size which will also add in the correct names for the
-community and groups we are working with.</p>
+<p>Next using <code><a href="../reference/extract_niche_size.html">extract_niche_size()</a></code> from
+<a href="https://benjaminhlina.github.io/nichetools/">nichetools</a> to extract niche size which will also add in
+the correct names for the communities and groups we are working
+with.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">seb_convert</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/extract_niche_size.html">extract_niche_size</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">sea_b</span>,</span>
 <span>                                  pkg <span class="op">=</span> <span class="st">"SIBER"</span>,</span>
 <span>                                  community_df <span class="op">=</span> <span class="va">cg_names</span><span class="op">)</span></span></code></pre></div>
 <p>We will also extract the parametric estimate for niche size using
-<code><a href="https://rdrr.io/pkg/SIBER/man/groupMetricsML.html" class="external-link">groupMetricsML()</a></code> from {SIBER}.</p>
+<code><a href="https://rdrr.io/pkg/SIBER/man/groupMetricsML.html" class="external-link">groupMetricsML()</a></code> from <code>{SIBER}</code>.</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">group_ml</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SIBER/man/groupMetricsML.html" class="external-link">groupMetricsML</a></span><span class="op">(</span><span class="va">siber_example</span><span class="op">)</span></span></code></pre></div>
-<p>We can convert the output of this function into something we can work
-with using <code><a href="../reference/extract_group_metrics.html">extract_group_metrics()</a></code>.</p>
+<p>We can convert the output of this function using
+<code><a href="../reference/extract_group_metrics.html">extract_group_metrics()</a></code>.</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">group_convert</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/extract_group_metrics.html">extract_group_metrics</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">group_ml</span>,</span>
 <span>                                       community_df <span class="op">=</span> <span class="va">cg_names</span><span class="op">)</span></span></code></pre></div>
-<p>The object returned will have maximum-liklihod estimates for standard
-ellipse area (SEA), central standard ellipse area (SEAc), and total area
-(TA). For plotting niche size we will use the SEAc.</p>
+<p>The object returned will have maximum-likelihood estimates for the
+standard ellipse area (SEA), the central standard ellipse area (SEAc),
+and the total area (TA). For plotting niche size we will use
+<code>SEAc</code>.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sea_c</span> <span class="op">&lt;-</span> <span class="va">group_convert</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">metric</span> <span class="op">==</span> <span class="st">"SEAc"</span><span class="op">)</span></span></code></pre></div>
@@ -472,9 +474,9 @@ ellipse area (SEA), central standard ellipse area (SEAc), and total area
 <h3 id="bayesian-estimates-of-laymans-community-metrics">Bayesian Estimates of Layman’s Community Metrics<a class="anchor" aria-label="anchor" href="#bayesian-estimates-of-laymans-community-metrics"></a>
 </h3>
 <p>First I highly recommend reading <a href="https://esajournals.onlinelibrary.wiley.com/doi/abs/10.1890/0012-9658%282007%2988%5B42%3ACSIRPF%5D2.0.CO%3B2" class="external-link">Layman
-et al. 2007</a> to understand the following six community metrics, that
-we are going to estimate using a Bayesian framework.</p>
-<p>To create Bayesian estiamtes of Layman’s community metrics we first
+et al. 2007</a> to understand the six community metrics that will be
+estimating using a Bayesian framework in this section.</p>
+<p>To create Bayesian estimates of Layman’s community metrics we first
 need to use <code><a href="https://rdrr.io/pkg/SIBER/man/extractPosteriorMeans.html" class="external-link">extractPosteriorMeans()</a></code> from
 <code>{SIBER}</code> to extract posterior estimates of means for each
 community and group.</p>
@@ -482,7 +484,7 @@ community and group.</p>
 <code class="sourceCode R"><span><span class="va">mu_post</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SIBER/man/extractPosteriorMeans.html" class="external-link">extractPosteriorMeans</a></span><span class="op">(</span><span class="va">siber_example</span>, <span class="va">ellipses_posterior</span><span class="op">)</span></span></code></pre></div>
 <p>Next we need to use <code><a href="https://rdrr.io/pkg/SIBER/man/bayesianLayman.html" class="external-link">bayesianLayman()</a></code> from
 <code>{SIBER}</code> and use our extracted posterior means to create
-Bayesian estiamtes for each community metric.</p>
+Bayesian estimates for each community metric.</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">layman_b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SIBER/man/bayesianLayman.html" class="external-link">bayesianLayman</a></span><span class="op">(</span>mu.post <span class="op">=</span> <span class="va">mu_post</span><span class="op">)</span></span></code></pre></div>
 <p>Once we have created our Bayesian estimates for each community metric
@@ -492,7 +494,7 @@ first assign a new name to each community metric and secondly will
 reorder these names based on how these metrics are often viewed.</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">layman_bc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/extract_layman.html">extract_layman</a></span><span class="op">(</span><span class="va">layman_b</span>, community_df <span class="op">=</span> <span class="va">c_names</span><span class="op">)</span></span></code></pre></div>
-<p>Prior to using point interval plots we need to create a colour
+<p>Prior to creating a point interval plot, we need to create a colour
 palette that will be used to identify each community.</p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">viridis_colors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://sjmgarnier.github.io/viridisLite/reference/viridis.html" class="external-link">viridis</a></span><span class="op">(</span><span class="fl">2</span>, begin <span class="op">=</span> <span class="fl">0.25</span>, end <span class="op">=</span> <span class="fl">0.85</span>,</span>
