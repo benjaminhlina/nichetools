@@ -67,6 +67,7 @@ more about the following metrics please review
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">extract_layman</span><span class="op">(</span></span>
 <span>  <span class="va">data</span>,</span>
+<span>  type <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  community_df <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  data_format <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  isotope_x <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -83,6 +84,12 @@ more about the following metrics please review
 <dl><dt id="arg-data">data<a class="anchor" aria-label="anchor" href="#arg-data"></a></dt>
 <dd><p>a <code>list</code> created by the function <code><a href="https://rdrr.io/pkg/SIBER/man/bayesianLayman.html" class="external-link">bayesianLayman()</a></code> from the package
 <a href="https://CRAN.R-project.org/package=SIBER" class="external-link">SIBER</a>.</p></dd>
+
+
+<dt id="arg-type">type<a class="anchor" aria-label="anchor" href="#arg-type"></a></dt>
+<dd><p>a <code>character</code> that is either <code>"bay"</code> or <code>"ml"</code> which indicates
+whether the community metrics to be extracted are from a Bayesian analysis or
+a maximum-likelihood.</p></dd>
 
 
 <dt id="arg-community-df">community_df<a class="anchor" aria-label="anchor" href="#arg-community-df"></a></dt>
