@@ -11,6 +11,9 @@
 #'
 #' @param data a `list` created by the function `bayesianLayman()` from the package
 #' [{SIBER}](https://CRAN.R-project.org/package=SIBER).
+#' @param type a `character` that is either `"bay"` or `"ml"` which indicates
+#' whether the community metrics to be extracted are from a Bayesian analysis or
+#' a maximum-likelihood.
 #' @param community_df a two column data frame. One of the columns has to be named
 #' `community` and the data in the column will be `numerics` as a `character`
 #' string(e.g., `"1", "2", "3"`). This is the order of the community names
@@ -93,6 +96,7 @@
 
 
 extract_layman <- function(data,
+                           type = NULL,
                            community_df = NULL,
                            data_format = NULL,
                            isotope_x = NULL,
@@ -102,12 +106,15 @@ extract_layman <- function(data,
 ) {
 
 
-  if (!is.list(data)) {
-    cli::cli_abort(c(
-      "The `data` argument must be a list.",
-      "i" = "Please provide data in list format."
-    ))
+  if (is.null(type)) {
+    type <- "bay"
   }
+
+  if (!(type %in% c("bay", "ml"))) {
+    cli::cli_abort("Invalid characters for 'type'. Allowed character
+    strings are 'bay' or 'ml'.")
+  }
+
 
   # Check if `community_df` is a two-column data.frame
   if (!is.null(community_df)) {

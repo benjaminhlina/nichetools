@@ -6,6 +6,7 @@
 \usage{
 extract_layman(
   data,
+  type = NULL,
   community_df = NULL,
   data_format = NULL,
   isotope_x = NULL,
@@ -17,6 +18,10 @@ extract_layman(
 \arguments{
 \item{data}{a \code{list} created by the function \code{bayesianLayman()} from the package
 \href{https://CRAN.R-project.org/package=SIBER}{{SIBER}}.}
+
+\item{type}{a \code{character} that is either \code{"bay"} or \code{"ml"} which indicates
+whether the community metrics to be extracted are from a Bayesian analysis or
+a maximum-likelihood.}
 
 \item{community_df}{a two column data frame. One of the columns has to be named
 \code{community} and the data in the column will be \code{numerics} as a \code{character}
