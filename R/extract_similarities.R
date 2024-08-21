@@ -18,7 +18,6 @@
 #' and groups the user is working with (e.g., `"region"`, `"common_name"`).
 #'
 #' @examples
-#' library(nichtools)
 #' library(purrr)
 #' library(SIBER)
 #'
