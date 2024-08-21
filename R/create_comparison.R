@@ -4,7 +4,7 @@
 #' estimates for proportion of niche similarities.
 #'
 #' @param data a data.frame that is the names of the community and group names
-#' @param comaprsion a `character`that is either `"within"` or `"among"` indicating
+#' @param comparison a `character`that is either `"within"` or `"among"` indicating
 #' whether the comparisons are within a community and between groups or
 #' among communities for the same groups.
 #'
