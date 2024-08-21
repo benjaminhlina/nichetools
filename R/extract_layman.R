@@ -142,42 +142,95 @@ extract_layman <- function(data,
     cli::cli_abort("Invalid characters for 'data_format'. Allowed character
     strings are 'wide' or 'long'.")
   }
+# ---- set isotopes values -----=
+    if (is.null(isotope_x)) {
+      isotope_x <- 13
+    }
 
-  # ---- set isotopes values -----=
-  if (is.null(isotope_x)) {
-    isotope_x <- 13
+    if (is.null(isotope_y)) {
+      isotope_y <- 15
+    }
+
+    # ---- set elemental number -----
+    if (is.null(element_x)) {
+      element_x <- "C"
+    }
+
+    if (is.null(element_y)) {
+      element_y <- "N"
+    }
+
+
+  if(type %in% "bay") {
+
+    if (!is.list(data)) {
+    cli::cli_abort(c(
+      "The `data` argument must be a list.",
+      "i" = "Please provide data in list format."
+    ))
   }
 
-  if (is.null(isotope_y)) {
-    isotope_y <- 15
+
+    df_layman <- data |>
+      purrr::map(~ as_tibble(.x)) |>
+      dplyr::bind_rows(.id = "community") |>
+      dplyr::left_join(community_df, by = "community")
+
+    if (data_format %in% "long") {
+
+      second_column <- names(df_layman)[8]
+
+      df_layman <- df_layman |>
+        tidyr::pivot_longer(
+          cols = -c({{second_column}}, community),
+          names_to = "metric",
+          values_to = "post_est"
+        ) |>
+        dplyr::mutate(
+          labels = factor(dplyr::case_when(
+            metric %in% "dX_range" ~ paste0("\U03B4","<sup>", isotope_x, "</sup>",
+                                            element_x, "<br>Range"),
+            metric %in% "dY_range" ~ paste0("\U03B4","<sup>", isotope_y, "</sup>",
+                                            element_y, "<br>Range"),
+            metric %in% "TA" ~ "Total Area",
+            metric %in% "CD" ~ "Distance to<br>Centroid",
+            metric %in% "NND" ~ "Nearest<br>Neighbor<br>Distance",
+            metric %in% "SDNND" ~ "SD Nearest<br>Neighbor<br>Distance",
+          ),
+          levels = c(paste0("\U03B4","<sup>", isotope_x, "</sup>",
+                            element_x, "<br>Range"),
+                     paste0("\U03B4","<sup>", isotope_y, "</sup>",
+                            element_y, "<br>Range"),
+                     "Total Area",
+                     "Distance to<br>Centroid",
+                     "Nearest<br>Neighbor<br>Distance",
+                     "SD Nearest<br>Neighbor<br>Distance")
+          )
+        )
+
+      return(df_layman)
+    }
+    if (data_format %in% "wide"){
+      return(df_layman)
+    }
   }
+  if (type %in% "ml") {
+    if (!is.matrix(data)) {
+      cli::cli_abort(c(
+        "The `data` argument must be a matrix.",
+        "i" = "Please provide data in matrix format."
+      ))
+    }
 
-  # ---- set elemental number -----
-  if (is.null(element_x)) {
-    element_x <- "C"
-  }
-
-  if (is.null(element_y)) {
-    element_y <- "N"
-  }
-
-
-
-  df_layman <- data |>
-    purrr::map(~ as_tibble(.x)) |>
-    dplyr::bind_rows(.id = "community") |>
-    dplyr::left_join(community_df, by = "community")
-
-  if (data_format %in% "long") {
-
-    second_column <- names(df_layman)[8]
-
-    df_layman <- df_layman |>
-      tidyr::pivot_longer(
-        cols = -c({{second_column}}, community),
-        names_to = "metric",
-        values_to = "post_est"
-      ) |>
+    df_layman <- data %>%
+      as.data.frame() %>%
+      dplyr::mutate(
+        metric = rownames(.)
+      ) %>%
+      tidyr::pivot_longer(cols = -metric,
+                   names_to = "community",
+                   values_to = "estimate") %>%
+      dplyr::left_join(community_df, by = "community") %>%
       dplyr::mutate(
         labels = factor(dplyr::case_when(
           metric %in% "dX_range" ~ paste0("\U03B4","<sup>", isotope_x, "</sup>",
@@ -186,7 +239,7 @@ extract_layman <- function(data,
                                           element_y, "<br>Range"),
           metric %in% "TA" ~ "Total Area",
           metric %in% "CD" ~ "Distance to<br>Centroid",
-          metric %in% "NND" ~ "Nearest<br>Neighbor<br>Distance",
+          metric %in% "MNND" ~ "Nearest<br>Neighbor<br>Distance",
           metric %in% "SDNND" ~ "SD Nearest<br>Neighbor<br>Distance",
         ),
         levels = c(paste0("\U03B4","<sup>", isotope_x, "</sup>",
@@ -200,9 +253,7 @@ extract_layman <- function(data,
         )
       )
 
-    return(df_layman)
-  }
-  if (data_format %in% "wide"){
+
     return(df_layman)
   }
 }
