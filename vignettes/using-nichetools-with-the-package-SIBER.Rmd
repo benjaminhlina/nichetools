@@ -343,6 +343,52 @@ ggplot() +
 ### Niche Similarties 
 
 
+```{r}
+# ---- ellipse overlap ----
+# first we need to make all pairings for within community
+cg_names_within_com <- cg_names %>%
+  create_comparisons()
+
+```
+
+
+```{r}
+# ---- maximum likelihood for within eco ----
+# The overlap of the maximum likelihood fitted standard ellipses are
+# estimated using
+
+ml_within_overlap <- cg_names_within_com %>%
+  map(~ maxLikOverlap(.x$cg_1, .x$cg_2, siber_example,
+                      p.interval = NULL, n = 100), .progress = TRUE)
+glimpse(ml_within_overlap)
+```
+
+
+```{r}
+# ---- extract maximum likelihood compare ----
+ml_95_within_com <- extract_similarities(ml_within_overlap, type = "ml", 
+                                         community_df = cg_names)
+
+ml_95_within_com
+```
+
+```{r}
+bayes95_overlap <- cg_names_within_com %>%
+  map(~ bayesianOverlap(.x$cg_1, .x$cg_2, ellipses_posterior,
+                        draws = 100, p.interval = 0.95,
+                        n = 100),
+      .progress = TRUE
+  )
+```
+
+
+```{r}
+# # ---- extract bays overlap among species within an ecoregion ----
+bays_95_overlap <- extract_similarities(bayes95_overlap, type = "bay",
+                                        community_df = cg_names)
+```
+
+
 ### Bayesian Estimates of Layman's Community Metrics
 
 First I highly recommend reading [Layman et al. 2007](https://esajournals.onlinelibrary.wiley.com/doi/abs/10.1890/0012-9658%282007%2988%5B42%3ACSIRPF%5D2.0.CO%3B2) to understand the six community metrics that will be estimating using a Bayesian framework in this section. 
