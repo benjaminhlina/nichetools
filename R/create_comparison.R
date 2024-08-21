@@ -9,6 +9,8 @@
 #' among communities for the same groups.
 #'
 #' @examples
+#'
+#' # ---- load siber ----
 #' library(SIBER)
 #'
 #'# ---- create community names data frame ----

@@ -18,7 +18,8 @@ Creates a list with all of the comparisons needed to create  Bayesian and maximu
 estimates for proportion of niche similarities.
 }
 \examples{
-library(nichtools)
+
+# ---- load siber ----
 library(SIBER)
 
 # ---- create community names data frame ----

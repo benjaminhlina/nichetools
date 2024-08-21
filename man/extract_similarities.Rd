@@ -28,7 +28,6 @@ and groups the user is working with (e.g., \code{"region"}, \code{"common_name"}
 Extract niche similarities from objects created by \code{{SIBER}}.
 }
 \examples{
-library(nichtools)
 library(purrr)
 library(SIBER)
 
