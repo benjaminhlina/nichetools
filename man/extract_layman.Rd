@@ -79,7 +79,7 @@ library(SIBER)
 # uncomenet to use
 # str(demo.siber.data)
 
-# ---- create coummnity names data frame ----
+# ---- create community names data frame ----
 # uncomment to use
 # str(demo.siber.data.2)
 
@@ -93,7 +93,7 @@ dplyr::distinct(community, community_names)
 # ---- create the siber object ----
 siber.example <- createSiberObject(demo.siber.data)
 
-# ---- view Baysain estimates of mu and sigma produced by SIBER ---
+# ---- view Bayesian estimates of mu and sigma produced by SIBER ---
 # uncomment to use
 # str(post_sam_siber)
 
@@ -105,7 +105,7 @@ mu_post <- extractPosteriorMeans(siber.example, post_sam_siber)
 
 layman_b <- bayesianLayman(mu.post = mu_post)
 
-# ---- use nichetools to extract Baysian estimats of Layman metrics ----
+# ---- use nichetools to extract Bayesian estimates of Layman metrics ----
 
 layman_be <- extract_layman(layman_b, community_df = c_names)
 

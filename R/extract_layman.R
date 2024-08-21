@@ -55,7 +55,7 @@
 #' # uncomenet to use
 #' # str(demo.siber.data)
 #'
-#' # ---- create coummnity names data frame ----
+#' # ---- create community names data frame ----
 #' # uncomment to use
 #' # str(demo.siber.data.2)
 #'
@@ -69,7 +69,7 @@
 #' # ---- create the siber object ----
 #' siber.example <- createSiberObject(demo.siber.data)
 #'
-#' # ---- view Baysain estimates of mu and sigma produced by SIBER ---
+#' # ---- view Bayesian estimates of mu and sigma produced by SIBER ---
 #' # uncomment to use
 #' # str(post_sam_siber)
 #'
@@ -81,7 +81,7 @@
 #'
 #' layman_b <- bayesianLayman(mu.post = mu_post)
 #'
-#' # ---- use nichetools to extract Baysian estimats of Layman metrics ----
+#' # ---- use nichetools to extract Bayesian estimates of Layman metrics ----
 #'
 #' layman_be <- extract_layman(layman_b, community_df = c_names)
 #'
@@ -222,15 +222,15 @@ extract_layman <- function(data,
       ))
     }
 
-    df_layman <- data %>%
-      as.data.frame() %>%
+    df_layman <- data |>
+      as.data.frame() |>
       dplyr::mutate(
-        metric = rownames(.)
-      ) %>%
+        metric = rownames(data)
+      ) |>
       tidyr::pivot_longer(cols = -metric,
                    names_to = "community",
-                   values_to = "estimate") %>%
-      dplyr::left_join(community_df, by = "community") %>%
+                   values_to = "estimate") |>
+      dplyr::left_join(community_df, by = "community") |>
       dplyr::mutate(
         labels = factor(dplyr::case_when(
           metric %in% "dX_range" ~ paste0("\U03B4","<sup>", isotope_x, "</sup>",
