@@ -37,7 +37,15 @@ test_that("test if it doesn't error with basic siber object ", {
 # Test if data is not a list
 test_that("data is not a list", {
   data_not_list <- 1:5
-  expect_error(extract_layman(data_not_list), "The `data` argument must be a list.")
+  cn <- data.frame(
+    name = "1",
+    community = "3"
+  )
+  expect_error(
+    extract_layman(data = data_not_list,
+                   type = "bay",
+                   community_df = cn
+                   ), "The `data` argument must be a list.")
 })
 
 # Test if community_df is not a data.frame
@@ -45,7 +53,8 @@ test_that("community_df is not a data.frame", {
   data_list <- list(a = 1, b = 2)
   community_df_not_df <- matrix(1:10, nrow = 5, ncol = 2)
   expect_error(
-    extract_layman(layman_b, community_df_not_df),
+    extract_layman(layman_b, community_df_not_df,
+                   type = "bay"),
     "The `community_df` argument must be a data.frame.")
 })
 
@@ -54,7 +63,7 @@ test_that("community_df does not have 2 columns", {
   data_list <- list(a = 1, b = 2)
   community_df_not_2_columns <- data.frame(x = 1:5)
   expect_error(
-  extract_layman(layman_b, community_df_not_2_columns),
+  extract_layman(layman_b, community_df = community_df_not_2_columns),
               "The `community_df` argument must be a data.frame with exactly two columns.")
 })
 
