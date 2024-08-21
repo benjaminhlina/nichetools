@@ -9,7 +9,6 @@
 #' among communities for the same groups.
 #'
 #' @examples
-#' library(nichtools)
 #' library(SIBER)
 #'
 #'# ---- create community names data frame ----
