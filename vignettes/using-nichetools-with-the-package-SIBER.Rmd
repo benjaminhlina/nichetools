@@ -347,6 +347,22 @@ ggplot() +
 
 First I highly recommend reading [Layman et al. 2007](https://esajournals.onlinelibrary.wiley.com/doi/abs/10.1890/0012-9658%282007%2988%5B42%3ACSIRPF%5D2.0.CO%3B2) to understand the six community metrics that will be estimating using a Bayesian framework in this section. 
 
+To create maximum-likelihood estimate of Layman's community metrics we first need to use `communityMetricsML()` from `{SIBER}`. 
+
+```{r}
+community_ml <- communityMetricsML(siber_example)
+```
+
+
+Then we can extract these estimates using `extract_layman()` with the `type` argument set to 
+`"ml"`. The default for this argument is `"bay"`. 
+
+```{r}
+layman_ml <- extract_layman(community_ml, 
+                            type = "ml", 
+                            community_df = c_names)
+```
+
 To create Bayesian estimates of Layman's community metrics we first need to use `extractPosteriorMeans()` from 
 `{SIBER}` to extract posterior estimates of means for each community and group. 
 
@@ -363,7 +379,7 @@ layman_b <- bayesianLayman(mu.post = mu_post)
 Once we have created our Bayesian estimates for each community metric we can use `extract_layman()` to extract these estimates. The function will also create the variable `labels` which will first assign a new name to each community metric and secondly will reorder these names based on how these metrics are often viewed. 
 
 ```{r}
-layman_bc <- extract_layman(layman_b, community_df = c_names)
+layman_be <- extract_layman(layman_b, community_df = c_names)
 ```
 
 Prior to creating a point interval plot, we need to create a colour palette that will be used to identify each community.  
@@ -380,15 +396,24 @@ Lastly, we can visualize the distributions of the posterior estimates using `sta
 ```{r}
 #| out-width: 100%
 
-ggplot(data = layman_bc, aes(x = labels, 
-                             y = post_est, 
-                             point_fill = community_name)) + 
+ggplot() + 
   stat_pointinterval(
+    data = layman_be, aes(x = labels, 
+                          y = post_est, 
+                          point_fill = community_name),
     point_size = 2.5,
     interval_colour = "grey60",
     position = position_dodge(0.4),
     shape = 21
   ) + 
+  geom_point(data = layman_ml, aes(x = labels, 
+                                   y = estimate,
+                                   group = community_name), 
+             shape = 21,
+             fill = "white",
+             # size = 2,
+             alpha = 0.5, 
+             position = position_dodge(0.4),) + 
   scale_fill_manual(name = "Community", 
                     aesthetics = "point_fill",
                     values = viridis_colors) + 
