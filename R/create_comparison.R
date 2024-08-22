@@ -3,7 +3,7 @@
 #' Creates a list with all of the comparisons needed to create  Bayesian and maximum-likelihood
 #' estimates for proportion of niche similarities.
 #'
-#' @param data a data.frame that is the names of the community and group names
+#' @param data a `data.frame` that is the names of the community and group names
 #' @param comparison a `character`that is either `"within"` or `"among"` indicating
 #' whether the comparisons are within a community and between groups or
 #' among communities for the same groups.

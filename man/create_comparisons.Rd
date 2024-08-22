@@ -7,7 +7,7 @@
 create_comparisons(data, comparison = NULL)
 }
 \arguments{
-\item{data}{a data.frame that is the names of the community and group names}
+\item{data}{a \code{data.frame} that is the names of the community and group names}
 
 \item{comparison}{a \code{character}that is either \code{"within"} or \code{"among"} indicating
 whether the comparisons are within a community and between groups or
