@@ -47,7 +47,7 @@ create_comparisons <- function(data,
   }
 
   if (!(comparison %in% c("within", "among"))) {
-    cli_abort("Error: 'comparison' must be either 'within' or 'among'.")
+    cli::cli_abort("'comparison' must be either 'within' or 'among'.")
   }
 
   compare_community <- data |>
