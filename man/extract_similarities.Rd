@@ -51,7 +51,11 @@ dplyr::distinct(community, group, community_names, group_name)
 # ---- create comparsions ----
 cg_names_within_c <- create_comparisons(cg_names)
 
-ml_within_overlap <- cg_names_within_c \%>\%
+demo.siber.data.2 <- demo.siber.data.2[,1:4]
+
+siber_example <- createSiberObject(demo.siber.data.2)
+
+ml_within_overlap <- cg_names_within_c |>
 map(~ maxLikOverlap(.x$cg_1, .x$cg_2, siber_example,
 p.interval = NULL, n = 100), .progress = TRUE)
 
