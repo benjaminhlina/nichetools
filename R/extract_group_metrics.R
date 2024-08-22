@@ -80,14 +80,17 @@ extract_group_metrics <- function(data = NULL,
     dplyr::left_join(community_df, by = c("community", "group"))
   # dplyr::select(metric, community, group, {community})
 
-  if(data_format %in% "long") {
+  if (data_format %in% "long") {
 
     return(df_group_ml)
   }
-  if(data_format %in% "wide") {
+  if (data_format %in% "wide") {
 
     df_group_ml <- df_group_ml |>
-      tidyr::pivot_wider()
+      tidyr::pivot_wider(names_from = "metric",
+                         values_from = "est")
+
+    return(df_group_ml)
 
   }
 }
