@@ -457,9 +457,8 @@ ggplot() +
                                    group = community_name), 
              shape = 21,
              fill = "white",
-             # size = 2,
              alpha = 0.5, 
-             position = position_dodge(0.4),) + 
+             position = position_dodge(0.4)) + 
   scale_fill_manual(name = "Community", 
                     aesthetics = "point_fill",
                     values = viridis_colors) + 
