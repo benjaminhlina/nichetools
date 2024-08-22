@@ -89,13 +89,16 @@ and groups the user is working with (e.g., <code>"region"</code>, <code>"common_
 <span class="r-in"><span><span class="va">demo.siber.data.2</span><span class="op">$</span><span class="va">group</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">demo.siber.data.2</span><span class="op">$</span><span class="va">group_name</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">demo.siber.data.2</span><span class="op">$</span><span class="va">community_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">demo.siber.data.2</span><span class="op">$</span><span class="va">community</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">demo.siber.data.2</span><span class="op">$</span><span class="va">community_name</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">demo.siber.data.2</span><span class="op">$</span><span class="va">community</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">demo.siber.data.2</span><span class="op">$</span><span class="va">community</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">demo.siber.data.2</span><span class="op">$</span><span class="va">community_names</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in `$&lt;-.data.frame`(`*tmp*`, community, value = character(0)):</span> replacement has 0 rows, data has 150</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">cg_names</span> <span class="op">&lt;-</span> <span class="va">demo.siber.data.2</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="va">community</span>, <span class="va">group</span>, <span class="va">community_names</span>, <span class="va">group_name</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in dplyr::distinct(demo.siber.data.2, community, group, community_names,     group_name):</span> Must use existing variables.</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">✖</span> `community_names` not found in `.data`.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># ---- create comparsions ----</span></span></span>
 <span class="r-in"><span><span class="va">cg_names_within_c</span> <span class="op">&lt;-</span> <span class="fu"><a href="create_comparisons.html">create_comparisons</a></span><span class="op">(</span><span class="va">cg_names</span><span class="op">)</span></span></span>
@@ -112,7 +115,7 @@ and groups the user is working with (e.g., <code>"region"</code>, <code>"common_
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">ml_95_within_com</span> <span class="op">&lt;-</span> <span class="fu">extract_similarities</span><span class="op">(</span><span class="va">ml_within_overlap</span>, type <span class="op">=</span> <span class="st">"ml"</span>,</span></span>
 <span class="r-in"><span>community_df <span class="op">=</span> <span class="va">cg_names</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'ml_within_overlap' not found</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'cg_names' not found</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
