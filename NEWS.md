@@ -1,3 +1,16 @@
+# nichetools 0.3.0
+
+### 22-August-2024
+
+*`extract_similiarties()`, `create_comparisons()`, `extract_group_metric()` 
+as well as additional arguments have been added to `extract_layman()` to extract
+either maximum-likelihood or Bayesian estimates. 
+
+* Test for all new functions have been added, however, they will need to be 
+expanded upon.
+
+* {SIBER} vignette is now completed
+
 # nichetools 0.2.1
 
 ### 21-June-2024
