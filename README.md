@@ -24,8 +24,8 @@ devtools::install_github("benjaminhlina/nichetools")
 You can install the r-universe version of {nichetools} using the following:
 ``` r
 install.packages("nichetools", 
-repos = c("https://benjaminhlina.r-universe.dev", 
-"https://cran.r-project.org"))
+                 repos = c("https://benjaminhlina.r-universe.dev", 
+                           "https://cran.r-project.org"))
 ```
 
 You can install the CRAN version of {nichetools} using the following:
@@ -42,8 +42,17 @@ the vignettes using the following code:
 ``` r
 vignette("using-nichetools-with-the-package-nicheROVER")
 ```
-The vignettes are also available online under the [articles section](https://benjaminhlina.github.io/nichetools/articles/using-nichetools-with-the-package-nicheROVER.html) of the package
-and on my [blog](https://blog.benjaminhlina.com/posts/post-with-code/nichetools/). 
+
+OR 
+
+``` r
+vignette("using-nichetools-with-the-package-SIBER")
+```
+
+The vignettes are also available online under the articles section of the website. 
+See the following links, [{nicheROVER}](https://benjaminhlina.github.io/nichetools/articles/) 
+[{SIBER}](https://benjaminhlina.github.io/nichetools/articles/using-nichetools-with-the-package-SIBER.html)
+or on my [blog](https://blog.benjaminhlina.com/). 
 
 I highly suggest going through the vignettes as they will walk you through 
 how to use {nichetools} in tandem with {nicheROVER} or {SIBER}.
@@ -58,4 +67,4 @@ To cite this package please cite the following publications
 
 -   Layman, C.A., Arrington, D.A., Montaña, C.G., and Post, D.M. 2007. Can stable isotope ratios provide for community-wide measures of trophic structure? Ecology 88(1): 42–48. [link]( https://doi.org/10.1890/0012-9658(2007)88[42:CSIRPF]2.0.CO;2)
 
--   Hlina B.L. 2024. nichetools: Complementary package to nicheROVER and SIBER. R package version 0.2.1. https://benjaminhlina.github.io/nichetools/
+-   Hlina B.L. 2024. nichetools: Complementary package to nicheROVER and SIBER. R package version 0.3.0. https://benjaminhlina.github.io/nichetools/
