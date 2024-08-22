@@ -108,7 +108,7 @@ extract_similarities <- function(data,
         area_2 = area.2,
       ) |>
       dplyr::mutate(
-        prop_overlap = overlap / ((area_2 + area_1) - overlap)
+        prop_overlap = overlap / (area_2 + area_1 - overlap)
       )
   }
   if (type %in% "bay") {
@@ -122,7 +122,7 @@ extract_similarities <- function(data,
         area_2 = area2,
       ) |>
       dplyr::mutate(
-        prop_overlap = overlap / ((area_2 + area_1) - overlap)
+        prop_overlap = overlap / (area_2 + area_1 - overlap)
       )
   }
 
