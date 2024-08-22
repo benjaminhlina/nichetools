@@ -42,14 +42,14 @@ as.character()
 
 demo.siber.data.2$community_name <- as.factor(demo.siber.data.2$community)
 
-demo.siber.data.2$community <- as.numeric(demo.siber.data.2$community_names) |>
+demo.siber.data.2$community <- as.numeric(demo.siber.data.2$community_name) |>
 as.character()
 
-cg_names <- demo.siber.data.2 |>
-dplyr::distinct(community, group, community_names, group_name)
+cg_name <- demo.siber.data.2 |>
+dplyr::distinct(community, group, community_name, group_name)
 
 # ---- create comparsions ----
-cg_names_within_c <- create_comparisons(cg_names)
+cg_names_within_c <- create_comparisons(cg_name)
 
 demo.siber.data.2 <- demo.siber.data.2[,1:4]
 
@@ -60,6 +60,6 @@ map(~ maxLikOverlap(.x$cg_1, .x$cg_2, siber_example,
 p.interval = NULL, n = 100), .progress = TRUE)
 
 ml_95_within_com <- extract_similarities(ml_within_overlap, type = "ml",
-community_df = cg_names)
+community_df = cg_name)
 
 }
