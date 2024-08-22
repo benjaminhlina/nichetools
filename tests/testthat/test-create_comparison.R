@@ -40,7 +40,8 @@ test_that("create_comparisons returns correct output for 'among' comparison", {
 })
 
 test_that("create_comparisons uses 'within' as default comparison", {
-  result <- create_comparisons(cg_names)
+  result <- create_comparisons(cg_names,
+                               comparison = "within")
 
   # Expected output
   expected <- list(
