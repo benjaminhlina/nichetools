@@ -40,7 +40,7 @@
 
 
 create_comparisons <- function(data,
-                               comparison = NULL) {
+                               comparison = c("within", "among")) {
 
   # Check if data is a tibble, data.frame, or data.table
   if (!inherits(data, c("tbl_df", "data.frame", "data.table"))) {
