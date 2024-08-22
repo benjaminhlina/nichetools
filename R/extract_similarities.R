@@ -30,7 +30,7 @@
 #' demo.siber.data.2$group <- as.numeric(demo.siber.data.2$group_name) |>
 #' as.character()
 #'
-#' demo.siber.data.2$community_names <- as.factor(demo.siber.data.2$community)
+#' demo.siber.data.2$community_name <- as.factor(demo.siber.data.2$community)
 #'
 #' demo.siber.data.2$community <- as.numeric(demo.siber.data.2$community_names) |>
 #' as.character()
