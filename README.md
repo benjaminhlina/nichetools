@@ -5,7 +5,6 @@
 [![CRAN status](https://www.r-pkg.org/badges/version/nichetools)](https://CRAN.R-project.org/package=nichetools)
 [![nichetools status badge](https://benjaminhlina.r-universe.dev/badges/nichetools)](https://benjaminhlina.r-universe.dev/nichetools)
 [![R-CMD-check](https://github.com/benjaminhlina/nichetool/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/benjaminhlina/nichetools/actions/workflows/R-CMD-check.yaml)
-[![Codecov test coverage](https://codecov.io/gh/benjaminhlina/nichetools/graph/badge.svg?token=mk3RjaD0hb)](https://app.codecov.io/gh/benjaminhlina/nichetools)
 [![Codecov test coverage](https://codecov.io/gh/benjaminhlina/nichetools/graph/badge.svg)](https://app.codecov.io/gh/benjaminhlina/nichetools)
 <!-- badges: end -->
 
