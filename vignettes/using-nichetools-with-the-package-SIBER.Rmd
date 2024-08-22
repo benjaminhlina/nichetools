@@ -342,50 +342,100 @@ ggplot() +
 
 ### Niche Similarties 
 
+Now that we have extracted Bayesian estimates of niche size we are likely wanting to know how much do these niches have in common or are similar. 
 
+We can use maximum-likelihood and Bayesian frameworks to estimate the percentage of similarity within communities between groups and/or among communities with groups being consistent. We can use functions in `{SIBER}` to create maximum-likelihood and Bayesian estimates of niche similarity followed by functions in `{nichetools}` to extract these similarities.
+
+First we need to create our comparisons that we are wanting to evaluate. We can use the function `create_comparisons()` to generate a list that has two-column data frames of each comparison.  
 ```{r}
-# ---- ellipse overlap ----
-# first we need to make all pairings for within community
 cg_names_within_com <- cg_names %>%
-  create_comparisons()
-
+  create_comparisons(comparison = "within")
 ```
 
+Next we can feed this listed data frames to either `maxLikOverlap()` or `bayesianOverlap()` using `map()` from `{purrr}`. For this exercise I have not changed `.progress` argument of `map()` but when working with large data sets I often turn this argument to `TRUE` to provide a progress update. 
 
 ```{r}
-# ---- maximum likelihood for within eco ----
-# The overlap of the maximum likelihood fitted standard ellipses are
-# estimated using
-
 ml_within_overlap <- cg_names_within_com %>%
   map(~ maxLikOverlap(.x$cg_1, .x$cg_2, siber_example,
-                      p.interval = NULL, n = 100), .progress = TRUE)
-glimpse(ml_within_overlap)
+                      p.interval = 0.95, do.plot = TRUE, n = 100))
 ```
 
+Next we can extract estimates using `extract_similarities()` with the `type` argument set to `"ml"`. 
 
 ```{r}
-# ---- extract maximum likelihood compare ----
-ml_95_within_com <- extract_similarities(ml_within_overlap, type = "ml", 
+ml_95_within_com <- extract_similarities(ml_within_overlap, 
+                                         type = "ml", 
                                          community_df = cg_names)
-
-ml_95_within_com
 ```
 
+Now we will repeat the process for `bayesianOverlap()`, first supplying the function with our list of data frames, next having `map()` itterate over this list. 
 ```{r}
 bayes95_overlap <- cg_names_within_com %>%
   map(~ bayesianOverlap(.x$cg_1, .x$cg_2, ellipses_posterior,
                         draws = 100, p.interval = 0.95,
-                        n = 100),
-      .progress = TRUE
+                        n = 100)
   )
+```
+
+Next we can extract estimates using `extract_similarities()` with the `type` argument set to `"bay"`. 
+
+```{r}
+bays_95_overlap <- extract_similarities(bayes95_overlap, 
+                                        type = "bay",
+                                        community_df = cg_names)
+```
+
+
+Now that we have extracted  maximum-likelihood and Bayesian estimates we can visualize them. 
+
+Prior to creating a point interval plot, we need to create a colour palette that will be used to identify each community.  
+
+```{r}
+viridis_colors_s <- viridis(4, begin = 0.25, end = 0.85,
+                          option = "A",
+                          alpha = 0.75
+)
 ```
 
 
 ```{r}
-# # ---- extract bays overlap among species within an ecoregion ----
-bays_95_overlap <- extract_similarities(bayes95_overlap, type = "bay",
-                                        community_df = cg_names)
+#| out-width: 100%
+
+ggplot() + 
+  stat_pointinterval(data = bays_95_overlap,
+              aes(x = group_1, 
+                  y = prop_overlap, 
+                  point_fill = group_1), 
+    interval_colour = "grey60",
+    point_size = 3,
+    position = position_dodge(0.4),
+    shape = 21) + 
+  
+  geom_point(data = ml_95_within_com, aes(x = group_1, 
+                                   y = prop_overlap,
+                                   group = group_1), 
+             shape = 21,
+             fill = "white",
+             size = 2,
+             alpha = 0.5, 
+             position = position_dodge(0.4)) + 
+  facet_wrap(~ group_2) + 
+  scale_fill_manual(name = "Group", 
+                    aesthetics = "point_fill",
+                    values = viridis_colors_s) + 
+  theme_bw(
+    base_size = 15
+  ) + 
+  theme(
+    panel.grid = element_blank(),
+    strip.background = element_blank(),
+    legend.position = "inside",
+    legend.position.inside = c(0.15, 0.85),
+  ) +
+  labs(
+    x = "Group",
+    y = expression(paste("p(", "‰", "|X)"))
+  )
 ```
 
 
