@@ -50,7 +50,7 @@ create_comparisons <- function(data,
     cli_abort("Error: 'comparison' must be either 'within' or 'among'.")
   }
 
-  compare_community <- cg_names |>
+  compare_community <- data |>
     dplyr::mutate(
       cg_1 = paste(community, group, sep = "."),
       cg_2 = paste(community, group, sep = "."),
