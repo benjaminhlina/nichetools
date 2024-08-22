@@ -50,8 +50,8 @@ vignette("using-nichetools-with-the-package-SIBER")
 ```
 
 The vignettes are also available online under the articles section of the website. 
-See the following links, [{nicheROVER}](https://benjaminhlina.github.io/nichetools/articles/) 
-[{SIBER}](https://benjaminhlina.github.io/nichetools/articles/using-nichetools-with-the-package-SIBER.html)
+See the following links, [{how to use {nichetools} with nicheROVER](https://benjaminhlina.github.io/nichetools/articles/) and 
+[how to use {nichetools} with SIBER](https://benjaminhlina.github.io/nichetools/articles/using-nichetools-with-the-package-SIBER.html)
 or on my [blog](https://blog.benjaminhlina.com/). 
 
 I highly suggest going through the vignettes as they will walk you through 
