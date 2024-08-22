@@ -72,7 +72,6 @@ more about the following metrics please review
 }
 \examples{
 
-library(nichetools)
 library(SIBER)
 
 # ---- bring in SIBER demo data ----

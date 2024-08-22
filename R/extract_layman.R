@@ -48,7 +48,6 @@
 #' @seealso [SIBER::bayesianLayman()] and [SIBER::createSiberObject()]
 #' @examples
 #'
-#' library(nichetools)
 #' library(SIBER)
 #'
 #' # ---- bring in SIBER demo data ----
