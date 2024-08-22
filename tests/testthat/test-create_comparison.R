@@ -1,4 +1,6 @@
 library(tibble)
+# library(nichetools)
+# library(testthat)
 # Assume that cg_names is a pre-defined dataset similar to the one expected in the function.
 
 # Sample cg_names data for testing
@@ -59,3 +61,10 @@ test_that("create_comparisons throws an error for invalid comparison type", {
     regexp = "'comparison' must be either 'within' or 'among'.")
 })
 
+
+test_that("create_comparisons handles empty data correctly", {
+  empty_data <- list(community = character(0),
+                     group = character(0))
+  expect_error(result <- create_comparisons(empty_data, comparison = "within"))
+
+})
