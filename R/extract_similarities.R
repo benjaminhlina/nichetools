@@ -39,7 +39,8 @@
 #' dplyr::distinct(community, group, community_name, group_name)
 #'
 #' # ---- create comparsions ----
-#' cg_names_within_c <- create_comparisons(cg_name)
+#' cg_names_within_c <- create_comparisons(cg_name,
+#'                                         comparison = "within")
 #'
 #' demo.siber.data.2 <- demo.siber.data.2[,1:4]
 #'
