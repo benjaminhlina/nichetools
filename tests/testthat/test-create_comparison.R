@@ -40,11 +40,11 @@ test_that("create_comparisons returns correct output for 'among' comparison", {
 })
 
 test_that("create_comparisons uses 'within' as default comparison", {
-  result <- create_comparisons(cg_names,
+  results <- create_comparisons(cg_names,
                                comparison = "within")
 
   # Expected output
-  expected <- list(
+  expected_1 <- list(
     `A.G1_A.G2` = tibble(cg_1 = "A.G1", cg_2 = "A.G2"),
     `A.G2_A.G1` = tibble(cg_1 = "A.G2", cg_2 = "A.G1"),
     `B.G1_B.G2` = tibble(cg_1 = "B.G1", cg_2 = "B.G2"),
@@ -52,7 +52,7 @@ test_that("create_comparisons uses 'within' as default comparison", {
 
   )
 
-  expect_equal(result, expected)
+  expect_equal(results, expected_1)
 })
 
 test_that("create_comparisons throws an error for invalid comparison type", {
