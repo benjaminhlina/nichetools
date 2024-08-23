@@ -4,7 +4,7 @@
 \alias{create_comparisons}
 \title{create comparisons}
 \usage{
-create_comparisons(data, comparison = NULL)
+create_comparisons(data, comparison = c("within", "among"))
 }
 \arguments{
 \item{data}{a \code{data.frame} that is the names of the community and group names}
@@ -40,6 +40,7 @@ cg_names <- demo.siber.data.2 |>
 dplyr::distinct(community, group, community_names, group_name)
 
 # ---- create comparsions ----
-create_comparisons(cg_names)
+create_comparisons(cg_names,
+                  comparison = "within")
 
 }

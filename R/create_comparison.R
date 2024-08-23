@@ -31,7 +31,8 @@
 #' dplyr::distinct(community, group, community_names, group_name)
 #'
 #' # ---- create comparsions ----
-#' create_comparisons(cg_names)
+#' create_comparisons(cg_names,
+#'                   comparison = "within")
 #'
 #' @import dplyr
 #' @import purrr
