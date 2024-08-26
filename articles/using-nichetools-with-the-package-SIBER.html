@@ -61,7 +61,7 @@
                         <h4 data-toc-skip class="author">Benjamin L.
 Hlina</h4>
             
-            <h4 data-toc-skip class="date">Updated: 2024-08-23</h4>
+            <h4 data-toc-skip class="date">Updated: 2024-08-26</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/benjaminhlina/nichetools/blob/main/vignettes/using-nichetools-with-the-package-SIBER.Rmd" class="external-link"><code>vignettes/using-nichetools-with-the-package-SIBER.Rmd</code></a></small>
       <div class="d-none name"><code>using-nichetools-with-the-package-SIBER.Rmd</code></div>
@@ -531,21 +531,18 @@ palette that will be used to identify each community.</p>
 <span>  <span class="fu"><a href="http://mjskay.github.io/ggdist/reference/stat_pointinterval.html" class="external-link">stat_pointinterval</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">bays_95_overlap</span>,</span>
 <span>              <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">group_1</span>, </span>
 <span>                  y <span class="op">=</span> <span class="va">prop_overlap</span>, </span>
-<span>                  point_fill <span class="op">=</span> <span class="va">group_1</span><span class="op">)</span>, </span>
+<span>                  point_fill <span class="op">=</span> <span class="va">group_2</span><span class="op">)</span>, </span>
 <span>    interval_colour <span class="op">=</span> <span class="st">"grey60"</span>,</span>
 <span>    point_size <span class="op">=</span> <span class="fl">3</span>,</span>
-<span>    position <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_dodge.html" class="external-link">position_dodge</a></span><span class="op">(</span><span class="fl">0.4</span><span class="op">)</span>,</span>
 <span>    shape <span class="op">=</span> <span class="fl">21</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">ml_95_within_com</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">group_1</span>, </span>
 <span>                                   y <span class="op">=</span> <span class="va">prop_overlap</span>,</span>
-<span>                                   group <span class="op">=</span> <span class="va">group_1</span><span class="op">)</span>, </span>
+<span>                                   group <span class="op">=</span> <span class="va">group_2</span><span class="op">)</span>, </span>
 <span>             shape <span class="op">=</span> <span class="fl">21</span>,</span>
 <span>             fill <span class="op">=</span> <span class="st">"white"</span>,</span>
 <span>             size <span class="op">=</span> <span class="fl">2</span>,</span>
-<span>             alpha <span class="op">=</span> <span class="fl">0.5</span>, </span>
-<span>             position <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_dodge.html" class="external-link">position_dodge</a></span><span class="op">(</span><span class="fl">0.4</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="op">~</span> <span class="va">group_2</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>             alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_fill_manual</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Group"</span>, </span>
 <span>                    aesthetics <span class="op">=</span> <span class="st">"point_fill"</span>,</span>
 <span>                    values <span class="op">=</span> <span class="va">viridis_colors_s</span><span class="op">)</span> <span class="op">+</span> </span>
