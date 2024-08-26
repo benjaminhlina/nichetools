@@ -78,9 +78,9 @@ create_comparisons <- function(data,
     dplyr::filter(!(g_1 != g_2 ))
   }
 
+  # this is the differences   filter(!(g_1 != g_2 ))
 
 
-  # this is the differences   filter(!(g_1 != g_2 )) |>
   compare_community_2 <- compare_community_1 |>
     dplyr::select(-c("c_1", "c_2", "g_1", "g_2")) |>
     dplyr::mutate(
