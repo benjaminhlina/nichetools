@@ -405,21 +405,18 @@ ggplot() +
   stat_pointinterval(data = bays_95_overlap,
               aes(x = group_1, 
                   y = prop_overlap, 
-                  point_fill = group_1), 
+                  point_fill = group_2), 
     interval_colour = "grey60",
     point_size = 3,
-    position = position_dodge(0.4),
     shape = 21) + 
   
   geom_point(data = ml_95_within_com, aes(x = group_1, 
                                    y = prop_overlap,
-                                   group = group_1), 
+                                   group = group_2), 
              shape = 21,
              fill = "white",
              size = 2,
-             alpha = 0.5, 
-             position = position_dodge(0.4)) + 
-  facet_wrap(~ group_2) + 
+             alpha = 0.5) + 
   scale_fill_manual(name = "Group", 
                     aesthetics = "point_fill",
                     values = viridis_colors_s) + 
