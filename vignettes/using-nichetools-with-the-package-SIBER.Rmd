@@ -357,7 +357,7 @@ Next we can feed this listed data frames to either `maxLikOverlap()` or `bayesia
 ```{r}
 ml_within_overlap <- cg_names_within_com %>%
   map(~ maxLikOverlap(.x$cg_1, .x$cg_2, siber_example,
-                      p.interval = 0.95, do.plot = TRUE, n = 100))
+                      p.interval = 0.95, n = 100))
 ```
 
 Next we can extract estimates using `extract_similarities()` with the `type` argument set to `"ml"`. 
