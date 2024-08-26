@@ -1,8 +1,8 @@
 
-library(testthat)
-library(nichetools)
-library(purrr)
-library(dplyr)
+# library(testthat)
+# library(nichetools)
+# library(purrr)
+# library(dplyr)
 library(SIBER)
 
 demo.siber.data.2$group_name <- as.factor(demo.siber.data.2$group)
