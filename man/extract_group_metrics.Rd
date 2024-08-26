@@ -8,7 +8,7 @@ extract_group_metrics(data = NULL, community_df = NULL, data_format = NULL)
 }
 \arguments{
 \item{data}{a \code{matrix} produced by the function \code{groupMetricsML()} in the
-package \link{{SIBER}}(https://CRAN.R-project.org/package=SIBER.}
+package \href{https://CRAN.R-project.org/package=SIBER}{{SIBER}}.}
 
 \item{community_df}{a four column data frame. One of the columns has to be named
 \code{community} and the data in the column will be \code{numeric} as a \code{character}
@@ -33,7 +33,7 @@ default which is \code{long}. These four rows are the following, \code{community
 \description{
 Extract group metrics within each community from a matrix object
 that is produced by \code{groupMetricsML()} function from
-\link{{SIBER}}(https://CRAN.R-project.org/package=SIBER. These metrics
+\href{https://CRAN.R-project.org/package=SIBER}{{SIBER}}. These metrics
 are the following   the convex hull total area (TA), Standard Ellipse Area (SEA), and the
 corresponding small sample size corrected version SEAc based on the maximum likelihood
 estimates of the means and covariance matrices of each group.
