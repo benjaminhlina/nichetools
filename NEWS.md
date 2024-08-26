@@ -6,8 +6,7 @@
 as well as additional arguments have been added to `extract_layman()` to extract
 either maximum-likelihood or Bayesian estimates. 
 
-* Test for all new functions have been added, however, they will need to be 
-expanded upon.
+* Test for all new functions have been added.
 
 * {SIBER} vignette is now completed
 
