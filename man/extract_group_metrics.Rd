@@ -8,7 +8,7 @@ extract_group_metrics(data = NULL, community_df = NULL, data_format = NULL)
 }
 \arguments{
 \item{data}{a \code{matrix} produced by the function \code{groupMetricsML()} in the
-package \url{{SIBER}}.}
+package \link{{SIBER}}(https://CRAN.R-project.org/package=SIBER.}
 
 \item{community_df}{a four column data frame. One of the columns has to be named
 \code{community} and the data in the column will be \code{numeric} as a \code{character}
@@ -32,8 +32,41 @@ default which is \code{long}. These four rows are the following, \code{community
 }
 \description{
 Extract group metrics within each community from a matrix object
-that is produced by \code{groupMetricsML()} function from \url{{SIBER}}. These metrics
+that is produced by \code{groupMetricsML()} function from
+\link{{SIBER}}(https://CRAN.R-project.org/package=SIBER. These metrics
 are the following   the convex hull total area (TA), Standard Ellipse Area (SEA), and the
 corresponding small sample size corrected version SEAc based on the maximum likelihood
 estimates of the means and covariance matrices of each group.
+}
+\examples{
+library(SIBER)
+
+# ---- create community names data frame ----
+# uncomment to use
+# str(demo.siber.data.2)
+
+demo.siber.data.2$group_name <- as.factor(demo.siber.data.2$group)
+
+demo.siber.data.2$group <- as.numeric(demo.siber.data.2$group_name) |>
+as.character()
+
+demo.siber.data.2$community_name <- as.factor(demo.siber.data.2$community)
+
+demo.siber.data.2$community <- as.numeric(demo.siber.data.2$community_name) |>
+as.character()
+
+cg_name <- demo.siber.data.2 |>
+dplyr::distinct(community, group, community_name, group_name)
+
+# ---- create comparsions ----
+
+demo.siber.data.2 <- demo.siber.data.2[,1:4]
+
+siber_example <- createSiberObject(demo.siber.data.2)
+
+# extract group metrics
+group_ml <- groupMetricsML(siber_example)
+
+group_convert <- extract_group_metrics(data = group_ml,
+                                community_df = cg_name)
 }
