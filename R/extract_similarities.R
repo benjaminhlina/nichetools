@@ -66,6 +66,11 @@ extract_similarities <- function(data,
   }
 
   # Check if `community_df` is a four-column data.frame
+  if (is.null(community_df)) {
+    cli::cli_abort(c(
+      "The `community_df` argument needs to be supplied"
+    ))
+  }
   if (!is.null(community_df)) {
     if (!is.data.frame(community_df) || ncol(community_df) != 4) {
       cli::cli_abort(c(
@@ -76,9 +81,9 @@ extract_similarities <- function(data,
   }
 
   # column names are community and group of community_df
-  if (!any(c("community", "group") %in% colnames(community_df))) {
-    cli::cli_abort("The data frame does not contain a column named
-                   'community' and 'group'.")
+  if (!all(c("community", "group", "community_name",
+             "group_name") %in% colnames(community_df))) {
+    cli::cli_abort("The data frame does not contain a column named 'community', 'group', 'community_name', or 'group_name'.")
   }
 
   niche_similarities <- data |>
