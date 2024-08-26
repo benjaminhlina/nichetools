@@ -92,6 +92,28 @@ create_comparisons <- function(data,
         factor()
     ) |>
     dplyr::arrange(names) |>
+    dplyr::mutate(
+      names = as.character(names)
+    )
+
+  # create compare filter
+  compare_filter <- compare_community_2 |>
+    dplyr::distinct(names) |>
+    (`[[`)("names") |>
+    strsplit("_") |>
+    lapply(sort) |>
+    sapply(paste, collapse = "_") |>
+    unique()
+
+  # filter out duplicates
+
+  compare_community_3 <- compare_community_2 |>
+    dplyr::filter(names %in% compare_filter)
+
+
+
+  # split
+  compare_community_4 <- compare_community_3 |>
     split(~ names) |>
     purrr::map(~ .x |>
                  dplyr::select(-names) |>
@@ -100,5 +122,5 @@ create_comparisons <- function(data,
                    cg_2 = as.character(cg_2),
                  ))
 
-  return(compare_community_2)
+  return(compare_community_4)
 }
