@@ -430,7 +430,7 @@ ggplot() +
     panel.grid = element_blank(),
     strip.background = element_blank(),
     legend.position = "inside",
-    legend.position.inside = c(0.15, 0.75),
+    legend.position.inside = c(0.15, 0.8),
   ) +
   labs(
     x = "Group",
