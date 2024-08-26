@@ -398,6 +398,7 @@ viridis_colors_s <- viridis(4, begin = 0.25, end = 0.85,
 ```
 
 
+Now we can use point interval plots to visually represent posterior distributions.  
 ```{r}
 #| out-width: 100%
 
@@ -408,7 +409,8 @@ ggplot() +
                   point_fill = group_2), 
     interval_colour = "grey60",
     point_size = 3,
-    shape = 21) + 
+    shape = 21,
+    position = position_dodge(0.4)) + 
   
   geom_point(data = ml_95_within_com, aes(x = group_1, 
                                    y = prop_overlap,
@@ -416,7 +418,8 @@ ggplot() +
              shape = 21,
              fill = "white",
              size = 2,
-             alpha = 0.5) + 
+             alpha = 0.5, 
+             position = position_dodge(0.4)) + 
   scale_fill_manual(name = "Group", 
                     aesthetics = "point_fill",
                     values = viridis_colors_s) + 
