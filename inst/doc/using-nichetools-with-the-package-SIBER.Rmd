@@ -9,11 +9,11 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
-
+  
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
+collapse = TRUE,
+comment = "#>"
 )
 ```
 
@@ -342,10 +342,122 @@ ggplot() +
 
 ### Niche Similarties 
 
+Now that we have extracted Bayesian estimates of niche size we are likely wanting to know how much do these niches have in common or are similar. 
+
+We can use maximum-likelihood and Bayesian frameworks to estimate the percentage of similarity within communities between groups and/or among communities with groups being consistent. We can use functions in `{SIBER}` to create maximum-likelihood and Bayesian estimates of niche similarity followed by functions in `{nichetools}` to extract these similarities.
+
+First we need to create our comparisons that we are wanting to evaluate. We can use the function `create_comparisons()` to generate a list that has two-column data frames of each comparison.  
+```{r}
+cg_names_within_com <- cg_names %>%
+  create_comparisons(comparison = "within")
+```
+
+Next we can feed this listed data frames to either `maxLikOverlap()` or `bayesianOverlap()` using `map()` from `{purrr}`. For this exercise I have not changed `.progress` argument of `map()` but when working with large data sets I often turn this argument to `TRUE` to provide a progress update. 
+
+```{r}
+ml_within_overlap <- cg_names_within_com %>%
+  map(~ maxLikOverlap(.x$cg_1, .x$cg_2, siber_example,
+                      p.interval = 0.95, n = 100))
+```
+
+Next we can extract estimates using `extract_similarities()` with the `type` argument set to `"ml"`. 
+
+```{r}
+ml_95_within_com <- extract_similarities(ml_within_overlap, 
+                                         type = "ml", 
+                                         community_df = cg_names)
+```
+
+Now we will repeat the process for `bayesianOverlap()`, first supplying the function with our list of data frames, next having `map()` itterate over this list. 
+```{r}
+bayes95_overlap <- cg_names_within_com %>%
+  map(~ bayesianOverlap(.x$cg_1, .x$cg_2, ellipses_posterior,
+                        draws = 100, p.interval = 0.95,
+                        n = 100)
+  )
+```
+
+Next we can extract estimates using `extract_similarities()` with the `type` argument set to `"bay"`. 
+
+```{r}
+bays_95_overlap <- extract_similarities(bayes95_overlap, 
+                                        type = "bay",
+                                        community_df = cg_names)
+```
+
+
+Now that we have extracted  maximum-likelihood and Bayesian estimates we can visualize them. 
+
+Prior to creating a point interval plot, we need to create a colour palette that will be used to identify each community.  
+
+```{r}
+viridis_colors_s <- viridis(4, begin = 0.25, end = 0.85,
+                          option = "A",
+                          alpha = 0.75
+)
+```
+
+
+Now we can use point interval plots to visually represent posterior distributions.  
+```{r}
+#| out-width: 100%
+
+ggplot() + 
+  stat_pointinterval(data = bays_95_overlap,
+              aes(x = group_1, 
+                  y = prop_overlap, 
+                  point_fill = group_2), 
+    interval_colour = "grey60",
+    point_size = 3,
+    shape = 21,
+    position = position_dodge(0.4)) + 
+  
+  geom_point(data = ml_95_within_com, aes(x = group_1, 
+                                   y = prop_overlap,
+                                   group = group_2), 
+             shape = 21,
+             fill = "white",
+             size = 2,
+             alpha = 0.5, 
+             position = position_dodge(0.4)) + 
+  scale_fill_manual(name = "Group", 
+                    aesthetics = "point_fill",
+                    values = viridis_colors_s) + 
+  theme_bw(
+    base_size = 15
+  ) + 
+  theme(
+    panel.grid = element_blank(),
+    strip.background = element_blank(),
+    legend.position = "inside",
+    legend.position.inside = c(0.15, 0.80),
+  ) +
+  labs(
+    x = "Group",
+    y = expression(paste("p(", "‰", "|X)"))
+  )
+```
+
 
 ### Bayesian Estimates of Layman's Community Metrics
 
 First I highly recommend reading [Layman et al. 2007](https://esajournals.onlinelibrary.wiley.com/doi/abs/10.1890/0012-9658%282007%2988%5B42%3ACSIRPF%5D2.0.CO%3B2) to understand the six community metrics that will be estimating using a Bayesian framework in this section. 
+
+To create maximum-likelihood estimate of Layman's community metrics we first need to use `communityMetricsML()` from `{SIBER}`. 
+
+```{r}
+community_ml <- communityMetricsML(siber_example)
+```
+
+
+Then we can extract these estimates using `extract_layman()` with the `type` argument set to 
+`"ml"`. The default for this argument is `"bay"`. 
+
+```{r}
+layman_ml <- extract_layman(community_ml, 
+                            type = "ml", 
+                            community_df = c_names)
+```
 
 To create Bayesian estimates of Layman's community metrics we first need to use `extractPosteriorMeans()` from 
 `{SIBER}` to extract posterior estimates of means for each community and group. 
@@ -363,7 +475,7 @@ layman_b <- bayesianLayman(mu.post = mu_post)
 Once we have created our Bayesian estimates for each community metric we can use `extract_layman()` to extract these estimates. The function will also create the variable `labels` which will first assign a new name to each community metric and secondly will reorder these names based on how these metrics are often viewed. 
 
 ```{r}
-layman_bc <- extract_layman(layman_b, community_df = c_names)
+layman_be <- extract_layman(layman_b, community_df = c_names)
 ```
 
 Prior to creating a point interval plot, we need to create a colour palette that will be used to identify each community.  
@@ -380,15 +492,23 @@ Lastly, we can visualize the distributions of the posterior estimates using `sta
 ```{r}
 #| out-width: 100%
 
-ggplot(data = layman_bc, aes(x = labels, 
-                             y = post_est, 
-                             point_fill = community_name)) + 
+ggplot() + 
   stat_pointinterval(
+    data = layman_be, aes(x = labels, 
+                          y = post_est, 
+                          point_fill = community_name),
     point_size = 2.5,
     interval_colour = "grey60",
     position = position_dodge(0.4),
     shape = 21
   ) + 
+  geom_point(data = layman_ml, aes(x = labels, 
+                                   y = estimate,
+                                   group = community_name), 
+             shape = 21,
+             fill = "white",
+             alpha = 0.5, 
+             position = position_dodge(0.4)) + 
   scale_fill_manual(name = "Community", 
                     aesthetics = "point_fill",
                     values = viridis_colors) + 
