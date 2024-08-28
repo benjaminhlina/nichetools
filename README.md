@@ -1,4 +1,5 @@
-# nichetools <img src="man/figures/hex_sticker.png" align="right" width="120" />
+# nichetools 
+<img src="man/figures/hex_sticker.png" align="right" width="120" />
 
 <!-- badges: start -->
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
