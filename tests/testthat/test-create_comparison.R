@@ -55,6 +55,7 @@ test_that("create_comparisons uses 'within' as default comparison", {
   expect_equal(results, expected_1)
 })
 
+
 test_that("create_comparisons throws an error for invalid comparison type", {
   expect_error(
     create_comparisons(cg_names,
