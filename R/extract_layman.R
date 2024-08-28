@@ -114,6 +114,23 @@ extract_layman <- function(data,
     strings are 'bay' or 'ml'.")
   }
 
+  if (type %in% "ml") {
+    if (!is.matrix(data)) {
+      cli::cli_abort(c(
+        "The `data` argument must be a matrix.",
+        "i" = "Please provide data in matrix format."
+      ))
+    }
+  }
+  if (type %in% "bay") {
+
+    if (!is.list(data)) {
+      cli::cli_abort(c(
+        "The `data` argument must be a list.",
+        "i" = "Please provide data in list format."
+      ))
+    }
+  }
 
   # Check if `community_df` is a two-column data.frame
   if (!is.null(community_df)) {
