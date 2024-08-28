@@ -48,9 +48,6 @@ create_comparisons <- function(data,
     cli::cli_abort("'data' must be a tibble, data.frame, or data.table.")
   }
 
-   if (is.null(comparison)) {
-    comparison <- "within"
-  }
 
   if (length(comparison) != 1 || !(comparison %in% c("within", "among"))) {
     cli::cli_abort("'comparison' must be either 'within' or 'among'.")
