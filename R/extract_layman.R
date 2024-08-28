@@ -222,12 +222,6 @@ extract_layman <- function(data,
     }
   }
   if (type %in% "ml") {
-    if (!is.matrix(data)) {
-      cli::cli_abort(c(
-        "The `data` argument must be a matrix.",
-        "i" = "Please provide data in matrix format."
-      ))
-    }
 
     df_layman <- data |>
       as.data.frame() |>
@@ -235,8 +229,8 @@ extract_layman <- function(data,
         metric = rownames(data)
       ) |>
       tidyr::pivot_longer(cols = -metric,
-                   names_to = "community",
-                   values_to = "estimate") |>
+                          names_to = "community",
+                          values_to = "estimate") |>
       dplyr::left_join(community_df, by = "community") |>
       dplyr::mutate(
         labels = factor(dplyr::case_when(
@@ -264,3 +258,5 @@ extract_layman <- function(data,
     return(df_layman)
   }
 }
+
+
