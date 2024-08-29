@@ -61,7 +61,7 @@
                         <h4 data-toc-skip class="author">Benjamin L.
 Hlina</h4>
             
-            <h4 data-toc-skip class="date">Updated: 2024-08-28</h4>
+            <h4 data-toc-skip class="date">Updated: 2024-08-29</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/benjaminhlina/nichetools/blob/main/vignettes/using-nichetools-with-the-package-SIBER.Rmd" class="external-link"><code>vignettes/using-nichetools-with-the-package-SIBER.Rmd</code></a></small>
       <div class="d-none name"><code>using-nichetools-with-the-package-SIBER.Rmd</code></div>
@@ -89,7 +89,7 @@ habitat occupancy).</p>
 <p>First we will load the necessary packages to preform the analysis and
 visualization. We will use <a href="https://cran.r-project.org/package=SIBER" class="external-link">{SIBER}</a> and <a href="https://benjaminhlina.github.io/nichetools/">{nichetools}</a> to
 preform the analysis. We will use <a href="https://easystats.github.io/bayestestR/" class="external-link">{bayestestR}</a> to
-calcuate and extract medians and Equal-Tailed Interval (ETI) of
+calculate and extract medians and Equal-Tailed Interval (ETI) of
 posterior distributions that we want to plot. We will use <a href="https://dplyr.tidyverse.org/" class="external-link">{dplyr}</a>, <a href="https://tidyr.tidyverse.org/" class="external-link">{tidyr}</a>, and <a href="https://purrr.tidyverse.org/" class="external-link">{purrr}</a> to manipulate data and
 iterate processes. Lastly, we will use <a href="https://ggplot2.tidyverse.org/" class="external-link">{ggplot2}</a>, <a href="https://wilkelab.org/ggtext/" class="external-link">{ggtext}</a>, and <a href="https://mjskay.github.io/ggdist/" class="external-link">{ggdist}</a> to plot and add
 labels.</p>
@@ -113,10 +113,10 @@ which is great when working with large data sets.</p>
 <p>For the purpose of the vignette we will be using the
 <code>demo.siber.data.2</code> data frame that is available within
 <code>{SIBER}</code>. We will first look at the structure of this data
-frame using the <a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a> function <code><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse()</a></code> For
-your purposes you will need to replace this with your data frame either
-by loading a csv, rds, or qs. You can do this multiple ways, I prefer
-using <code>readr::read_csv()</code> but base R’s
+frame using the <a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a> function <code><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse()</a></code>.
+For your purposes you will need to replace this with your data frame
+either by loading a csv, rds, or qs file. You can do this multiple ways,
+I prefer using <code>readr::read_csv()</code> for a csv but base R’s
 <code><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv()</a></code> works perfectly fine. Note, <code>{SIBER}</code>
 functions do not take <code>tibbles</code> or <code>data.tables</code>
 so you will have to convert either to <code>data.frame</code> class
@@ -131,16 +131,16 @@ prior to running functions in <code>{SIBER}</code>.</p>
 <span><span class="co">#&gt; $ community <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "dublin", "dublin", "dublin", "dublin", "dublin", "dublin", …</span></span></code></pre></div>
 <p>You will notice that the community and group column are character
 strings that are the actual names of the communities and groups. I
-advise changing them into factors thus allow you to know the order for
+advise changing them into factors, thus allow you to know the order for
 each column prior to converting them into a <code>numeric</code> and
 then a <code>charcter</code>. The reason why this is important, is that
 functions in <code>{SIBER}</code> use <code>for</code> loops based on
 the indexing of the <code>SiberObject</code>. If this order does not
 match up you can have issues with the names of the communities and
 groups you are working with.</p>
-<p>So first, let us change these into a <code>factor</code>, then
-preserve the column and create an id column that is the numerical order
-that will become the community and group names provided to
+<p>Let us change these into a <code>factor</code>, then preserve the
+column and create an id column that is the numerical order that will
+become the community and group names provided to
 <code><a href="https://rdrr.io/pkg/SIBER/man/createSiberObject.html" class="external-link">createSiberObject()</a></code>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">demo.siber.data.2</span> <span class="op">&lt;-</span> <span class="va">demo.siber.data.2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -172,9 +172,9 @@ that will become the community and group names provided to
 are the names of our communities and groups with their associated id
 values. We will use these data frames later on to join up the actual
 names, allowing us to know what estimates belong to which communities
-and groups, preserving the names that we have originally assigned them.
-Again this is done because it is unlikely you will have communities and
-groups named 1, 2, 3 ect. and instead will have actual names.</p>
+and groups. We are doing this because it is unlikely you will have
+communities and groups named 1, 2, 3 ect. and instead will have actual
+names.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># ---- create name with group and community data frame ----</span></span>
 <span><span class="va">cg_names</span> <span class="op">&lt;-</span> <span class="va">demo.siber.data.2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -221,9 +221,9 @@ will 1) only take the following order with the following names
 <code>iso1</code>, <code>iso2</code>, <code>group</code>, and
 <code>community</code> and 2) we will transform this <code>tibble</code>
 into a <code>data.frame</code> as <code>{SIBER}</code> will only work
-with <code>data.frame</code>. In this case we were using tibbles but we
-could also be working with <code>data.table</code> and will need to do
-the same thing.</p>
+with a <code>data.frame</code>. In this case we were using
+<code>tibbles</code> but we could also be working with
+<code>data.table</code> and will need to do the same thing.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">demo_siber_data</span> <span class="op">&lt;-</span> <span class="va">demo.siber.data.2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">iso1</span>, <span class="va">iso2</span>, <span class="va">group</span>, <span class="va">community</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -233,13 +233,15 @@ the same thing.</p>
 <div class="section level3">
 <h3 id="convert-to-siber-object">Convert to {SIBER} object<a class="anchor" aria-label="anchor" href="#convert-to-siber-object"></a>
 </h3>
-<p>We will convert to a <code>{SIBER}</code> object.</p>
+<p>First convert to our isotope data into a <code>{SIBER}</code>
+object.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">siber_example</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SIBER/man/createSiberObject.html" class="external-link">createSiberObject</a></span><span class="op">(</span><span class="va">demo_siber_data</span><span class="op">)</span></span></code></pre></div>
-<p>Now that we have converted this to a <code>{SIBER}</code> object we
-can start doing some analysis using a Bayesian framework. The data and
-metrics generated through this analysis by <code>{SIBER}</code> can be
-extracted using functions in <a href="https://benjaminhlina.github.io/nichetools/">nichetools</a>.</p>
+<p>Now that this is a <code>{SIBER}</code> object we can start doing
+some analysis using a frequentist (e.g., maximum-likelihood) or a
+Bayesian framework. The data and metrics generated through this analysis
+by <code>{SIBER}</code> can be extracted using functions in
+<a href="https://benjaminhlina.github.io/nichetools/">nichetools</a>.</p>
 </div>
 <div class="section level3">
 <h3 id="bayesian-ellipse-analysis">Bayesian Ellipse Analysis<a class="anchor" aria-label="anchor" href="#bayesian-ellipse-analysis"></a>
@@ -281,11 +283,11 @@ need to set the argument <code>pkg</code> to <code>"SIBER"</code> and
 the argument <code>data_format</code> to <code>"wide"</code>. This
 argument takes <code>"long"</code> or <code>"wide"</code> which dictates
 whether the data object returned is in wide or long format. We will also
-use the function <code>seperate_wider_delim()</code> from {tidyr} to
-separate the community and groups names as they are joined by a
-<code>.</code>. We then will use <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join()</a></code> and the
-<code>cg_names</code> data frame we created above to add in the correct
-community and group names.</p>
+use the function <code>seperate_wider_delim()</code> from
+<a href="https://tidyr.tidyverse.org" class="external-link">tidyr</a> to separate the community and groups names as they
+are joined by a <code>.</code>. We then will use
+<code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join()</a></code> and the <code>cg_names</code> data frame we
+created above to add in the correct community and group names.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df_mu</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/extract_mu.html">extract_mu</a></span><span class="op">(</span><span class="va">ellipses_posterior</span>, pkg <span class="op">=</span> <span class="st">"SIBER"</span>, </span>
 <span>                    data_format <span class="op">=</span> <span class="st">"wide"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -374,7 +376,7 @@ level of the ellipse you can do so using the argument
 <span>                       delim <span class="op">=</span> <span class="st">"."</span>, names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"community"</span>,</span>
 <span>                                              <span class="st">"group"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">cg_names</span><span class="op">)</span></span></code></pre></div>
-<p>Now that we have the ellipses created we can plot them</p>
+<p>Now that we have the ellipses created we can plot them.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df_el</span>, </span>
 <span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">d13c</span>, y <span class="op">=</span> <span class="va">d15n</span>, </span>
@@ -410,8 +412,8 @@ niche size for each posterior sample for each community and group.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sea_b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SIBER/man/siberEllipses.html" class="external-link">siberEllipses</a></span><span class="op">(</span>corrected.posteriors <span class="op">=</span> <span class="va">ellipses_posterior</span><span class="op">)</span></span></code></pre></div>
 <p>Next using <code><a href="../reference/extract_niche_size.html">extract_niche_size()</a></code> from
-<a href="https://benjaminhlina.github.io/nichetools/">nichetools</a> to extract niche size which will also add in
-the correct names for the communities and groups we are working
+<a href="https://benjaminhlina.github.io/nichetools/">nichetools</a> we can extract niche size which will also add
+in the correct names for the communities and groups we are working
 with.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">seb_convert</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/extract_niche_size.html">extract_niche_size</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">sea_b</span>,</span>
@@ -480,7 +482,10 @@ of niche similarity followed by functions in <a href="https://benjaminhlina.gith
 to extract these similarities.</p>
 <p>First we need to create our comparisons that we are wanting to
 evaluate. We can use the function <code><a href="../reference/create_comparisons.html">create_comparisons()</a></code> to
-generate a list that has two-column data frames of each comparison.</p>
+generate a list that has two-column data frames of each comparison. You
+can change the argument <code>comparison</code> to <code>"among"</code>
+to compare communities for the same group, versus <code>"within"</code>
+which compares groups within a community.</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cg_names_within_com</span> <span class="op">&lt;-</span> <span class="va">cg_names</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/create_comparisons.html">create_comparisons</a></span><span class="op">(</span>comparison <span class="op">=</span> <span class="st">"within"</span><span class="op">)</span></span></code></pre></div>
@@ -503,7 +508,7 @@ set to <code>"ml"</code>.</p>
 <span>                                         community_df <span class="op">=</span> <span class="va">cg_names</span><span class="op">)</span></span></code></pre></div>
 <p>Now we will repeat the process for <code><a href="https://rdrr.io/pkg/SIBER/man/bayesianOverlap.html" class="external-link">bayesianOverlap()</a></code>,
 first supplying the function with our list of data frames, next having
-<code><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map()</a></code> itterate over this list.</p>
+<code><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map()</a></code> iterate over this list.</p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bayes95_overlap</span> <span class="op">&lt;-</span> <span class="va">cg_names_within_com</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map</a></span><span class="op">(</span><span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/SIBER/man/bayesianOverlap.html" class="external-link">bayesianOverlap</a></span><span class="op">(</span><span class="va">.x</span><span class="op">$</span><span class="va">cg_1</span>, <span class="va">.x</span><span class="op">$</span><span class="va">cg_2</span>, <span class="va">ellipses_posterior</span>,</span>
@@ -646,6 +651,10 @@ using <code><a href="http://mjskay.github.io/ggdist/reference/stat_pointinterval
 <span>    y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"p("</span>, <span class="st">"‰"</span>, <span class="st">"|X)"</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
 <p><img src="using-nichetools-with-the-package-SIBER_files/figure-html/unnamed-chunk-37-1.png" width="100%"></p>
+<p>Congratulations, we have successfully used functions from
+<code>{SIBER}</code> to extract and visually represent trophic
+communities and niche size and similarities. If you something doesn’t
+work/is confusing please reach out.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
