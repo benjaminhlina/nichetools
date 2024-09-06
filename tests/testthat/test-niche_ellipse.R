@@ -4,7 +4,7 @@
 # library(nichetools)
 # library(testthat)
 # }
-
+#
 
 test_that("Test if object type returned is list ", {
   n_ellipse <- niche_ellipse(
@@ -241,14 +241,17 @@ test_that("n raises error if non-numeric value is passed", {
 })
 
 
-# test_that("set_seed defaults to a numeric value when random is TRUE", {
-#   result <- niche_ellipse(
-#     dat_mu = mu_est_long,
-#     dat_sigma = sigma_est_wide,
-#     random = TRUE,
-#     message = FALSE)
-#
-#
-#   expect_true(is.numeric(result$set_seed))
-#   expect_true(result$set_seed > 0)
-# })
+test_that("Test message output", {
+  time_spent <- 0.03
+  time_unit <- "secs"
+
+ expect_message(niche_ellipse(
+    dat_mu = mu_est_long,
+    dat_sigma = sigma_est_wide,
+    random = TRUE,
+    set_seed = 14,
+    message = TRUE),
+    paste("Total time processing was", time_spent, time_unit)
+  )
+})
+
