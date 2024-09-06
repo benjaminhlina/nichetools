@@ -89,7 +89,8 @@ test_that("extract_similarities works for valid 'bay' type", {
                     "area_1", "area_2", "prop_overlap") %in% colnames(result)))
   expect_equal(result$prop_overlap[1], 0.01
                # 4.30e-160 / (37.4 + 25.2 - 4.30e-160
-                            ))  # Check prop_overlap calculation
+                            )
+  )  # Check prop_overlap calculation
 })
 
 
