@@ -1,5 +1,5 @@
 .onAttach <- function(libname, pkgname) {
-  packageStartupMessage("version 0.3.0 ('visiting-friends').\nHave you loaded {nicheROVER} or {SIBER}? If not, please do so.")
+  packageStartupMessage("version 0.3.1 ('visiting-friends').\nHave you loaded {nicheROVER} or {SIBER}? If not, please do so.")
 }
 utils::globalVariables(c("sample_name", "sample_number", "metric", "x", "y",
                          "V1", "V2",
