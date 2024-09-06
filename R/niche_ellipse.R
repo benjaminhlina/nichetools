@@ -108,9 +108,9 @@ niche_ellipse <- function(
     random <- TRUE
   }
 
-  if (!(random %in% c(TRUE, FALSE))) {
+  if (!(is.logical(random) && random %in% c(TRUE, FALSE))) {
 
-    cli::cli_abort("The 'random' is a logical that is TRUE or FALSE.")
+    cli::cli_abort("Argument 'random' is a logical that is TRUE or FALSE.")
   }
 
 
