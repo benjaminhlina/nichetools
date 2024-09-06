@@ -191,3 +191,64 @@ test_that("test print out doesn't show when set to false", {
                                   message = FALSE)
   )
 })
+
+
+test_that("test 'random' errors apprpriately", {
+  # Test case 1: p_ell is NULL, it should be set to 0.95
+  expect_error(niche_ellipse(
+      dat_mu = mu_est_long,
+      dat_sigma = sigma_est_wide,
+      set_seed = 4,
+      random = NA,
+      message = FALSE,
+
+    ),
+    regexp = "Argument 'random' is a logical that is TRUE or FALSE."
+  )
+})
+
+
+
+
+
+
+test_that("set_seed raises error if non-numeric value is passed", {
+  expect_error(niche_ellipse(dat_mu = mu_est_long,
+                             dat_sigma = sigma_est_wide,
+                             random = TRUE,
+                             message = FALSE,
+                             set_seed = "abc"),
+               "Argument 'set_seed' must be a numeric")
+})
+
+test_that("n defaults to 10 when random is TRUE", {
+  result <- niche_ellipse(dat_mu = mu_est_long,
+                          dat_sigma = sigma_est_wide,
+                          random = TRUE,
+                          message = FALSE)
+
+  n_sample <- length(unique(result$sample_number))
+  expect_equal(n_sample, 10)
+})
+
+test_that("n raises error if non-numeric value is passed", {
+  expect_error(niche_ellipse(dat_mu = mu_est_long,
+                             dat_sigma = sigma_est_wide,
+                             random = TRUE,
+                             message = FALSE,
+                             n = "abc"),
+               "Argument 'n' must be a numeric")
+})
+
+
+# test_that("set_seed defaults to a numeric value when random is TRUE", {
+#   result <- niche_ellipse(
+#     dat_mu = mu_est_long,
+#     dat_sigma = sigma_est_wide,
+#     random = TRUE,
+#     message = FALSE)
+#
+#
+#   expect_true(is.numeric(result$set_seed))
+#   expect_true(result$set_seed > 0)
+# })
