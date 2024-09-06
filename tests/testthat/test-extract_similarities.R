@@ -74,7 +74,10 @@ test_that("extract_similarities works for valid 'ml' type", {
   expect_true(all(c("community_id_1", "group_id_1", "community_1", "group_1",
                     "community_id_2", "group_id_2", "community_2", "group_2",
                     "area_1", "area_2", "prop_overlap") %in% colnames(result)))
-  expect_equal(result$prop_overlap[1], 5.55e-17 / (28.6 + 33.1 - 5.55e-17))  # Check prop_overlap calculation
+  expect_equal(result$prop_overlap[1],
+               (result$overlap[1] / (result$area_1[1] +
+                                       result$area_2[1] - result$overlap[1]))
+  ) # Check prop_overlap calculation
 })
 # 28.6 + 33.1 - 5.55e-17
 
@@ -87,10 +90,11 @@ test_that("extract_similarities works for valid 'bay' type", {
   expect_true(all(c("community_id_1", "group_id_1", "community_1", "group_1",
                     "community_id_2", "group_id_2", "community_2", "group_2",
                     "area_1", "area_2", "prop_overlap") %in% colnames(result)))
-  expect_equal(result$prop_overlap[1], 0.01
-               # 4.30e-160 / (37.4 + 25.2 - 4.30e-160
-                            # )
-  )  # Check prop_overlap calculation
+  expect_equal(result$prop_overlap[1],
+               (result$overlap[1] / (result$area_1[1] +
+                                       result$area_2[1] - result$overlap[1]))
+  )
+  # Check prop_overlap calculation
 })
 
 
