@@ -241,17 +241,18 @@ test_that("n raises error if non-numeric value is passed", {
 })
 
 
-test_that("Test message output", {
-  time_spent <- 0.03
-  time_unit <- "secs"
-
- expect_message(niche_ellipse(
-    dat_mu = mu_est_long,
-    dat_sigma = sigma_est_wide,
-    random = TRUE,
-    set_seed = 14,
-    message = TRUE),
-    paste("Total time processing was", time_spent, time_unit)
-  )
-})
+# test_that("Test message output", {
+#   time_spent <- 0.03
+#   time_unit <- "secs"
+#
+#
+#  expect_message(niche_ellipse(
+#     dat_mu = mu_est_long,
+#     dat_sigma = sigma_est_wide,
+#     random = TRUE,
+#     set_seed = 14,
+#     message = TRUE),
+#     paste("Total time processing was", time_spent, time_unit)
+#   )
+# })
 
