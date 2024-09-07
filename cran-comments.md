@@ -2,8 +2,6 @@
 
 0 errors | 0 warnings | 0 note
 
-* I have added multiple new functions, tests to complement these functions and 
-a new vignette that walks through how to use the package with {SIBER}. 
-
-* I have updated the documentation for `extract_group_metrics()` to fix    invalid file URI:
-URI: {SIBER} as the URL was forgotten about. 
+* small update as I have added a few more tests and have amended the tests that
+were causing r-devel-windows-x86_64 command checks to fail for version 0.3.0. 
+This version is 0.3.1.
