@@ -210,3 +210,45 @@ test_that("Check if column order", {
   )
   expect_equal(names(df_mu_test_1), expected_names)
 })
+
+# Test 4: Invalid community_df (not a data.frame or not 4 columns)
+test_that("extract_mu throws an error if community_df is not a valid data.frame", {
+  invalid_community_df <- data.frame(community = c("A", "B"), group = c("G1", "G2"))
+  expect_error(extract_mu(data = post_sam_siber,
+                          pkg = "SIBER",
+                          community_df = invalid_community_df),
+               "The `community_df` argument must be a data.frame with exactly four columns.")
+})
+
+# Test 5: Missing 'community' or 'group' column in community_df
+test_that("extract_mu throws an error if community_df isn't 4 columns", {
+  invalid_community_df <- data.frame(
+    col2 = c("A", "B", "C"),
+    col3 = c(1, 2, 3),
+    col4 = c(4, 5, 6)
+  )
+
+  expect_error(
+    extract_mu(data = post_sam_siber,
+               pkg = "SIBER",
+               community_df = invalid_community_df),
+    regexp = "The `community_df` argument must be a data.frame with exactly four columns.")
+
+})
+test_that("extract_mu throws an error if community_df is missing 'community' or 'group' columns", {
+
+
+  invalid_community_df_2 <- data.frame(
+    col2 = c("A", "B", "C"),
+    col3 = c(1, 2, 3),
+    col4 = c(4, 5, 6),
+    col5 = c(4, 6, 3)
+  )
+
+
+  expect_error(
+    extract_mu(data = post_sam_siber,
+               pkg = "SIBER",
+               community_df = invalid_community_df_2),
+    regexp = "The data frame does not contain a column named 'community' and 'group'.")
+})
