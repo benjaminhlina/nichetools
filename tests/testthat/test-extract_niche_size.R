@@ -213,12 +213,55 @@ test_that("output coilumn number", {
     community_df = cg_names
   )
 
-expected_cols <- 6
-expected_rows <- 20000
+  expected_cols <- 6
+  expected_rows <- 20000
 
-# Check the dimensions using expect_equal
-expect_equal(nrow(test_7), expected_rows,
-             info = "Number of rows is not as expected.")
-expect_equal(ncol(test_7), expected_cols,
-             info = "Number of columns is not as expected.")
+  # Check the dimensions using expect_equal
+  expect_equal(nrow(test_7), expected_rows,
+               info = "Number of rows is not as expected.")
+  expect_equal(ncol(test_7), expected_cols,
+               info = "Number of columns is not as expected.")
+})
+
+
+# Test 4: Invalid community_df (not a data.frame or not 4 columns)
+test_that("extract_niche_size throws an error if community_df is not a valid data.frame", {
+  invalid_community_df <- data.frame(community = c("A", "B"), group = c("G1", "G2"))
+  expect_error(extract_niche_size(data = sea_b,
+                                  pkg = "SIBER",
+                                  community_df = invalid_community_df),
+               "The `community_df` argument must be a data.frame with exactly four columns.")
+})
+
+# Test 5: Missing 'community' or 'group' column in community_df
+test_that("extract_niche_size throws an error if community_df isn't 4 columns", {
+  invalid_community_df <- data.frame(
+    col2 = c("A", "B", "C"),
+    col3 = c(1, 2, 3),
+    col4 = c(4, 5, 6)
+  )
+
+  expect_error(
+    extract_niche_size(data = sea_b,
+                       pkg = "SIBER",
+               community_df = invalid_community_df),
+    regexp = "The `community_df` argument must be a data.frame with exactly four columns.")
+
+})
+test_that("extract_niche_size throws an error if community_df is missing 'community' or 'group' columns", {
+
+
+  invalid_community_df_2 <- data.frame(
+    col2 = c("A", "B", "C"),
+    col3 = c(1, 2, 3),
+    col4 = c(4, 5, 6),
+    col5 = c(4, 6, 3)
+  )
+
+
+  expect_error(
+    extract_niche_size(data = sea_b,
+                       pkg = "SIBER",
+               community_df = invalid_community_df_2),
+    regexp = "The data frame does not contain a column named 'community' and 'group'.")
 })
