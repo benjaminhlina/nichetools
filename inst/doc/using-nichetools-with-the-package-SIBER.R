@@ -109,11 +109,8 @@ ellipses_posterior <- siberMVN(siber_example, parms, priors)
 
 ## ----message = FALSE--------------------------------------------------------------------------------------------------------------------------------------------------
 df_mu <- extract_mu(ellipses_posterior, pkg = "SIBER", 
-                    data_format = "wide") %>%
-  separate_wider_delim(sample_name, cols_remove = FALSE,
-                       delim = ".", names = c("community",
-                                              "group")) %>%
-  left_join(cg_names)
+                    data_format = "wide", 
+                    community_df = cg_names)
 
 ## ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ggplot() +
@@ -140,11 +137,8 @@ ggplot() +
   )
 
 ## ----message=FALSE----------------------------------------------------------------------------------------------------------------------------------------------------
-df_mu_long <- extract_mu(ellipses_posterior, pkg = "SIBER") %>% 
-  separate_wider_delim(sample_name, cols_remove = FALSE,
-                       delim = ".", names = c("community",
-                                              "group")) %>%
-  left_join(cg_names)
+df_mu_long <- extract_mu(ellipses_posterior, pkg = "SIBER", 
+                         community_df = cg_names)
 
 ## ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 df_sigma <- extract_sigma(ellipses_posterior, pkg = "SIBER")
