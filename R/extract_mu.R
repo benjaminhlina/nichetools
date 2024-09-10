@@ -44,9 +44,31 @@
 #' extract_mu(
 #' data = niw_fish_post
 #' )
+#'
+#' library(SIBER)
+#'
+#'# ---- create community names data frame ----
+#' # uncomment to use
+#' # str(demo.siber.data.2)
+#'
+#' demo.siber.data.2$group_name <- as.factor(demo.siber.data.2$group)
+#'
+#' demo.siber.data.2$group <- as.numeric(demo.siber.data.2$group_name) |>
+#' as.character()
+#'
+#' demo.siber.data.2$community_name <- as.factor(demo.siber.data.2$community)
+#'
+#' demo.siber.data.2$community <- as.numeric(demo.siber.data.2$community_name) |>
+#' as.character()
+#'
+#' cg_name <- demo.siber.data.2 |>
+#' dplyr::distinct(community, group, community_name, group_name)
+#'
+#'
 #' extract_mu(
 #' data = post_sam_siber,
-#' pkg = "SIBER"
+#' pkg = "SIBER",
+#' community_df = cg_name
 #' )
 #'
 #' @import dplyr
