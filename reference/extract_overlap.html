@@ -38,7 +38,7 @@ nicheROVER."></head><body>
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>extract overlap</h1>
-      <small class="dont-index">Source: <a href="https://github.com/benjaminhlina/nichetools/blob/v0.3.1-CRAN/R/extract_overlap.R" class="external-link"><code>R/extract_overlap.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/benjaminhlina/nichetools/blob/main/R/extract_overlap.R" class="external-link"><code>R/extract_overlap.R</code></a></small>
       <div class="d-none name"><code>extract_overlap.Rd</code></div>
     </div>
 
@@ -86,7 +86,7 @@ following function <code>overlap()</code> in the package
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">extract_overlap</span><span class="op">(</span>data <span class="op">=</span> <span class="va">over_stat</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 16,000 × 5</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 16,000 × 6</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    sample_name_a    id sample_name_b sample_number niche_overlap</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> ARCS              1 ARCS          1                    <span style="color: #BB0000;">NA</span>    </span>
@@ -100,6 +100,7 @@ following function <code>overlap()</code> in the package
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> ARCS              1 ARCS          3                    <span style="color: #BB0000;">NA</span>    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> ARCS              1 BDWF          3                     0.095</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 15,990 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: niche_overlap_perc &lt;dbl&gt;</span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

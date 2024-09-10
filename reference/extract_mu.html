@@ -38,7 +38,7 @@ SIBER."></head><body>
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>extract \(\mu\)</h1>
-      <small class="dont-index">Source: <a href="https://github.com/benjaminhlina/nichetools/blob/v0.3.1-CRAN/R/extract_mu.R" class="external-link"><code>R/extract_mu.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/benjaminhlina/nichetools/blob/main/R/extract_mu.R" class="external-link"><code>R/extract_mu.R</code></a></small>
       <div class="d-none name"><code>extract_mu.Rd</code></div>
     </div>
 
@@ -55,7 +55,8 @@ SIBER."></head><body>
 <span>  pkg <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  isotope_a <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  isotope_b <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  data_format <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  data_format <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  community_df <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -90,6 +91,20 @@ used in the analysis. Defaults to <code>"d15n"</code>.</p></dd>
 <dd><p>a <code>character</code> string that decides whether the returned object is
 in long or wide format. Default is <code>"long"</code>, with the alternative supplied
 being <code>"wide"</code>.</p></dd>
+
+
+<dt id="arg-community-df">community_df<a class="anchor" aria-label="anchor" href="#arg-community-df"></a></dt>
+<dd><p>a four column data frame. One of the columns has to be named
+<code>community</code> and the data in the column will be <code>numeric</code> as a <code>character</code>
+string(e.g., <code>"1", "2", "3"</code>). This is the order of the community names
+and will be used to join the actual community names to the correct data.
+These are the same class and values required by the function, <code><a href="https://rdrr.io/pkg/SIBER/man/createSiberObject.html" class="external-link">createSiberObject()</a></code>
+from <a href="https://CRAN.R-project.org/package=SIBER" class="external-link">SIBER</a>.
+The second column will be the names of the groups that are needed to supply
+required by the function, <code><a href="https://rdrr.io/pkg/SIBER/man/createSiberObject.html" class="external-link">createSiberObject()</a></code>
+from <a href="https://CRAN.R-project.org/package=SIBER" class="external-link">SIBER</a>.
+The third and fourth columns contains the actual names of the communities
+and groups the user is working with (e.g., <code>"region"</code>, <code>"common_name"</code>).</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -126,24 +141,47 @@ columns supplied to <code>niw.post()</code> or  <code><a href="https://rdrr.io/p
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> mu     ARCS                    5 d13c     -<span style="color: #BB0000;">23.9</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> mu     ARCS                    5 d15n      12.6</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 7,990 more rows</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">SIBER</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># ---- create community names data frame ----</span></span></span>
+<span class="r-in"><span><span class="co"># uncomment to use</span></span></span>
+<span class="r-in"><span><span class="co"># str(demo.siber.data.2)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">demo.siber.data.2</span><span class="op">$</span><span class="va">group_name</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">demo.siber.data.2</span><span class="op">$</span><span class="va">group</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">demo.siber.data.2</span><span class="op">$</span><span class="va">group</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">demo.siber.data.2</span><span class="op">$</span><span class="va">group_name</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">demo.siber.data.2</span><span class="op">$</span><span class="va">community_name</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">demo.siber.data.2</span><span class="op">$</span><span class="va">community</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">demo.siber.data.2</span><span class="op">$</span><span class="va">community</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">demo.siber.data.2</span><span class="op">$</span><span class="va">community_name</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">cg_name</span> <span class="op">&lt;-</span> <span class="va">demo.siber.data.2</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="va">community</span>, <span class="va">group</span>, <span class="va">community_name</span>, <span class="va">group_name</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">extract_mu</span><span class="op">(</span></span></span>
 <span class="r-in"><span>data <span class="op">=</span> <span class="va">post_sam_siber</span>,</span></span>
-<span class="r-in"><span>pkg <span class="op">=</span> <span class="st">"SIBER"</span></span></span>
+<span class="r-in"><span>pkg <span class="op">=</span> <span class="st">"SIBER"</span>,</span></span>
+<span class="r-in"><span>community_df <span class="op">=</span> <span class="va">cg_name</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 48,000 × 5</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    metric sample_name sample_number isotope  mu_est</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> mu     1.1                     1 d13c    -<span style="color: #BB0000;">9.05</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> mu     1.1                     1 d15n     0.062<span style="text-decoration: underline;">2</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> mu     1.1                     2 d13c    -<span style="color: #BB0000;">8.91</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> mu     1.1                     2 d15n     0.429 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> mu     1.1                     3 d13c    -<span style="color: #BB0000;">9.11</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> mu     1.1                     3 d15n     0.444 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> mu     1.1                     4 d13c    -<span style="color: #BB0000;">9.00</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> mu     1.1                     4 d15n     0.088<span style="text-decoration: underline;">1</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> mu     1.1                     5 d13c    -<span style="color: #BB0000;">9.01</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> mu     1.1                     5 d15n    -<span style="color: #BB0000;">0.073</span><span style="color: #BB0000; text-decoration: underline;">4</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 48,000 × 9</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    metric community group sample_name sample_number community_name group_name</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> mu     1         1     1.1                     1 dublin         city      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> mu     1         1     1.1                     1 dublin         city      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> mu     1         1     1.1                     2 dublin         city      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> mu     1         1     1.1                     2 dublin         city      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> mu     1         1     1.1                     3 dublin         city      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> mu     1         1     1.1                     3 dublin         city      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> mu     1         1     1.1                     4 dublin         city      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> mu     1         1     1.1                     4 dublin         city      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> mu     1         1     1.1                     5 dublin         city      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> mu     1         1     1.1                     5 dublin         city      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 47,990 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 2 more variables: isotope &lt;chr&gt;, mu_est &lt;dbl&gt;</span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

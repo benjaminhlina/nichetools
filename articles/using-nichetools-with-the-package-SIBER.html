@@ -61,9 +61,9 @@
                         <h4 data-toc-skip class="author">Benjamin L.
 Hlina</h4>
             
-            <h4 data-toc-skip class="date">Updated: 2024-09-07</h4>
+            <h4 data-toc-skip class="date">Updated: 2024-09-10</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/benjaminhlina/nichetools/blob/v0.3.1-CRAN/vignettes/using-nichetools-with-the-package-SIBER.Rmd" class="external-link"><code>vignettes/using-nichetools-with-the-package-SIBER.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/benjaminhlina/nichetools/blob/main/vignettes/using-nichetools-with-the-package-SIBER.Rmd" class="external-link"><code>vignettes/using-nichetools-with-the-package-SIBER.Rmd</code></a></small>
       <div class="d-none name"><code>using-nichetools-with-the-package-SIBER.Rmd</code></div>
     </div>
 
@@ -290,11 +290,8 @@ are joined by a <code>.</code>. We then will use
 created above to add in the correct community and group names.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df_mu</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/extract_mu.html">extract_mu</a></span><span class="op">(</span><span class="va">ellipses_posterior</span>, pkg <span class="op">=</span> <span class="st">"SIBER"</span>, </span>
-<span>                    data_format <span class="op">=</span> <span class="st">"wide"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate_wider_delim.html" class="external-link">separate_wider_delim</a></span><span class="op">(</span><span class="va">sample_name</span>, cols_remove <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>                       delim <span class="op">=</span> <span class="st">"."</span>, names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"community"</span>,</span>
-<span>                                              <span class="st">"group"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">cg_names</span><span class="op">)</span></span></code></pre></div>
+<span>                    data_format <span class="op">=</span> <span class="st">"wide"</span>, </span>
+<span>                    community_df <span class="op">=</span> <span class="va">cg_names</span><span class="op">)</span></span></code></pre></div>
 <p>We can confirm that the posterior estimates of
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>μ</mi><annotation encoding="application/x-tex">\mu</annotation></semantics></math>
 are correct by plotting them with {ggplot2}.</p>
@@ -335,11 +332,8 @@ needs the data frame of
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>μ</mi><annotation encoding="application/x-tex">\mu</annotation></semantics></math>
 to be in long format.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">df_mu_long</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/extract_mu.html">extract_mu</a></span><span class="op">(</span><span class="va">ellipses_posterior</span>, pkg <span class="op">=</span> <span class="st">"SIBER"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate_wider_delim.html" class="external-link">separate_wider_delim</a></span><span class="op">(</span><span class="va">sample_name</span>, cols_remove <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>                       delim <span class="op">=</span> <span class="st">"."</span>, names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"community"</span>,</span>
-<span>                                              <span class="st">"group"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">cg_names</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">df_mu_long</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/extract_mu.html">extract_mu</a></span><span class="op">(</span><span class="va">ellipses_posterior</span>, pkg <span class="op">=</span> <span class="st">"SIBER"</span>, </span>
+<span>                         community_df <span class="op">=</span> <span class="va">cg_names</span><span class="op">)</span></span></code></pre></div>
 <p>Next we are going to extract posterior estimates of
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Σ</mi><annotation encoding="application/x-tex">\Sigma</annotation></semantics></math>
 using <code><a href="../reference/extract_sigma.html">extract_sigma()</a></code>.</p>
