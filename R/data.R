@@ -62,7 +62,7 @@
 
 #' A `list` of the posterior estimates of \eqn{\mu} and \eqn{\Sigma} from `{SIBER}`
 #'
-#' Posterior estimates of \eqn{\mu} and \eqn{\Sigma} using the `demo.siber.data`
+#' Posterior estimates of \eqn{\mu} and \eqn{\Sigma} using the `demo.siber.data.2`
 #' data set from [{SIBER}](https://cran.r-project.org/package=SIBER).
 #' This `list` is produced  using the function `siberMVN()` from
 #' [{SIBER}](https://cran.r-project.org/package=SIBER).
