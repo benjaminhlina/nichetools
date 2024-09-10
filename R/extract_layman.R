@@ -58,6 +58,11 @@
 #' # uncomment to use
 #' # str(demo.siber.data.2)
 #'
+#' demo.siber.data.2$group_name <- as.factor(demo.siber.data.2$group)
+#'
+#' demo.siber.data.2$group <- as.numeric(demo.siber.data.2$group_name) |>
+#' as.character()
+#'
 #' demo.siber.data.2$community_names <- as.factor(demo.siber.data.2$community)
 #'
 #' demo.siber.data.2$community <- as.numeric(demo.siber.data.2$community_names) |>
@@ -65,8 +70,10 @@
 #' c_names <- demo.siber.data.2 |>
 #' dplyr::distinct(community, community_names)
 #'
+#'
+#' demo.siber.data_2 <- demo.siber.data.2[,1:4]
 #' # ---- create the siber object ----
-#' siber.example <- createSiberObject(demo.siber.data)
+#' siber.example <- createSiberObject(demo.siber.data_2)
 #'
 #' # ---- view Bayesian estimates of mu and sigma produced by SIBER ---
 #' # uncomment to use
