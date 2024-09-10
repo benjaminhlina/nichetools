@@ -29,7 +29,7 @@ test_that("test that the object type and length are correct ", {
   expect_s3_class(object = df_overlap_test, class =  "data.frame")
   # excreted dimensions
   expected_rows <- 16000
-  expected_cols <- 5
+  expected_cols <- 6
 
 
   # Check the dimensions using expect_equal
@@ -46,7 +46,7 @@ test_that("test that the object type and length are correct ", {
   expect_s3_class(object = df_overlap_test, class =  "data.frame")
   # excreted dimensions
   expected_rows <- 16000
-  expected_cols <- 5
+  expected_cols <- 6
 
 
   # Check the dimensions using expect_equal
@@ -59,7 +59,8 @@ test_that("test that the object type and length are correct ", {
 test_that("Check if column names extracted are correct", {
 
   expected_names <- c("sample_name_a", "id",
-  "sample_name_b", "sample_number", "niche_overlap")
+  "sample_name_b", "sample_number", "niche_overlap",
+  "niche_overlap_perc")
 
   df_overlap_test_1 <- extract_overlap(
     data = over_stat
