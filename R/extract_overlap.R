@@ -65,6 +65,9 @@ extract_overlap <- function(data,
     dplyr::rename(
       {{name_a}} := species_a,
       {{name_b}} := species_b
+    ) %>%
+    dplyr::mutate(
+      niche_overlap_perc = niche_overlap * 100
     )
 
   return(overlap_df)
