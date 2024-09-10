@@ -82,7 +82,8 @@ extract_mu <- function(data,
                        pkg = NULL,
                        isotope_a = NULL,
                        isotope_b = NULL,
-                       data_format = NULL) {
+                       data_format = NULL,
+                       community_df = NULL) {
 
   # Check if data is a list
   if (!inherits(data, "list")) {
