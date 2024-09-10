@@ -160,6 +160,11 @@ default which is <code>long</code>. These four rows are the following, <code>com
 <span class="r-in"><span><span class="co"># uncomment to use</span></span></span>
 <span class="r-in"><span><span class="co"># str(demo.siber.data.2)</span></span></span>
 <span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">demo.siber.data.2</span><span class="op">$</span><span class="va">group_name</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">demo.siber.data.2</span><span class="op">$</span><span class="va">group</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">demo.siber.data.2</span><span class="op">$</span><span class="va">group</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">demo.siber.data.2</span><span class="op">$</span><span class="va">group_name</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">demo.siber.data.2</span><span class="op">$</span><span class="va">community_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">demo.siber.data.2</span><span class="op">$</span><span class="va">community</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">demo.siber.data.2</span><span class="op">$</span><span class="va">community</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">demo.siber.data.2</span><span class="op">$</span><span class="va">community_names</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
@@ -167,8 +172,10 @@ default which is <code>long</code>. These four rows are the following, <code>com
 <span class="r-in"><span><span class="va">c_names</span> <span class="op">&lt;-</span> <span class="va">demo.siber.data.2</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="va">community</span>, <span class="va">community_names</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">demo.siber.data_2</span> <span class="op">&lt;-</span> <span class="va">demo.siber.data.2</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span></span></span>
 <span class="r-in"><span><span class="co"># ---- create the siber object ----</span></span></span>
-<span class="r-in"><span><span class="va">siber.example</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SIBER/man/createSiberObject.html" class="external-link">createSiberObject</a></span><span class="op">(</span><span class="va">demo.siber.data</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">siber.example</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SIBER/man/createSiberObject.html" class="external-link">createSiberObject</a></span><span class="op">(</span><span class="va">demo.siber.data_2</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># ---- view Bayesian estimates of mu and sigma produced by SIBER ---</span></span></span>
 <span class="r-in"><span><span class="co"># uncomment to use</span></span></span>
@@ -177,20 +184,30 @@ default which is <code>long</code>. These four rows are the following, <code>com
 <span class="r-in"><span><span class="co"># ---- extract posterior estimates of mu -----</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">mu_post</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SIBER/man/extractPosteriorMeans.html" class="external-link">extractPosteriorMeans</a></span><span class="op">(</span><span class="va">siber.example</span>, <span class="va">post_sam_siber</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in post[[ct]]:</span> subscript out of bounds</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># ---- Bayesian estimates of layman metrics using SIBER ----</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">layman_b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SIBER/man/bayesianLayman.html" class="external-link">bayesianLayman</a></span><span class="op">(</span>mu.post <span class="op">=</span> <span class="va">mu_post</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'mu_post' not found</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># ---- use nichetools to extract Bayesian estimates of Layman metrics ----</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">layman_be</span> <span class="op">&lt;-</span> <span class="fu">extract_layman</span><span class="op">(</span><span class="va">layman_b</span>, community_df <span class="op">=</span> <span class="va">c_names</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'layman_b' not found</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">layman_be</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'layman_be' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 48,000 × 5</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    community community_names metric   post_est labels                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 1         dublin          dY_range     6.71 δ&lt;sup&gt;15&lt;/sup&gt;N&lt;br&gt;Range         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 1         dublin          dX_range     8.14 δ&lt;sup&gt;13&lt;/sup&gt;C&lt;br&gt;Range         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 1         dublin          TA          13.7  Total Area                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 1         dublin          CD           4.27 Distance to&lt;br&gt;Centroid          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 1         dublin          NND          5.08 Nearest&lt;br&gt;Neighbor&lt;br&gt;Distance  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 1         dublin          SDNND        3.57 SD Nearest&lt;br&gt;Neighbor&lt;br&gt;Distan…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 1         dublin          dY_range     6.20 δ&lt;sup&gt;15&lt;/sup&gt;N&lt;br&gt;Range         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 1         dublin          dX_range     8.19 δ&lt;sup&gt;13&lt;/sup&gt;C&lt;br&gt;Range         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 1         dublin          TA          10.6  Total Area                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 1         dublin          CD           4.19 Distance to&lt;br&gt;Centroid          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 47,990 more rows</span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
