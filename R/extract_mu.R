@@ -173,6 +173,21 @@ extract_mu <- function(data,
     if (!inherits(data, "list")) {
       cli::cli_abort("Input 'data' must be a list.")
     }
+    # Check if `community_df` is a four-column data.frame
+    if (!is.null(community_df)) {
+      if (!is.data.frame(community_df) || ncol(community_df) != 4) {
+        cli::cli_abort(c(
+          "The `community_df` argument must be a data.frame with exactly four columns.",
+          "i" = "Please provide a data.frame with four columns."
+        ))
+      }
+    }
+
+    # column names are community and group of community_df
+    if (!any(c("community", "group") %in% colnames(community_df))) {
+      cli::cli_abort("The data frame does not contain a column named
+                   'community' and 'group'.")
+    }
 
 
     id_isotope <- c(isotope_a, isotope_b)
@@ -203,7 +218,12 @@ extract_mu <- function(data,
       dplyr::rename(
         mu_est = V1
       ) |>
-      dplyr::select(metric, sample_name,sample_number, isotope, mu_est)
+      dplyr::select(metric, sample_name,sample_number, isotope, mu_est) %>%
+      separate_wider_delim(sample_name, cols_remove = FALSE,
+                           delim = ".", names = c("community",
+                                                  "group")) %>%
+      left_join(community_df, by = c("community",
+                                     "group"))
 
     if (data_format %in% "long") {
 
