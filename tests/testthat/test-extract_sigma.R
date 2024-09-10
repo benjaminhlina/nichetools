@@ -8,6 +8,22 @@ test_that("test if it doesn't error with basic niw object ", {
 
   )
 })
+test_that("test if it wide-long 't error with basic niw object ", {
+  expect_error(extract_sigma(
+      data = niw_fish_post,
+      data_format = "x"
+    ), "Invalid characters for 'data_format'. Allowed character strings are 'wide' or 'long'.")
+
+
+})
+test_that("test if pkg 't error with basic niw object ", {
+  expect_error(extract_sigma(
+      data = niw_fish_post,
+      pkg = "nicherover"
+    ), "Invalid characters for 'pkg'. Allowed character strings are 'nicheROVER' or 'SIBER'.")
+
+
+})
 test_that("test if list", {
   expect_no_error(
     df_sigma_test <- extract_sigma(
