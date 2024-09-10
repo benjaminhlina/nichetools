@@ -174,11 +174,8 @@ We will first extract posterior distribution for $\mu$ using `extract_mu()` in `
 
 ```{r, message = FALSE}
 df_mu <- extract_mu(ellipses_posterior, pkg = "SIBER", 
-                    data_format = "wide") %>%
-  separate_wider_delim(sample_name, cols_remove = FALSE,
-                       delim = ".", names = c("community",
-                                              "group")) %>%
-  left_join(cg_names)
+                    data_format = "wide", 
+                    community_df = cg_names)
 ```
 
 We can confirm that the posterior estimates of $\mu$ are correct by plotting them with {ggplot2}.
@@ -214,11 +211,8 @@ Notice the density of points in the center of the raw data for the corresponding
 We are also going to extract $\mu$ in long format for creating ellipse, as the function that create ellipse needs the data frame of $\mu$ to be in long format. 
 
 ```{r, message=FALSE}
-df_mu_long <- extract_mu(ellipses_posterior, pkg = "SIBER") %>% 
-  separate_wider_delim(sample_name, cols_remove = FALSE,
-                       delim = ".", names = c("community",
-                                              "group")) %>%
-  left_join(cg_names)
+df_mu_long <- extract_mu(ellipses_posterior, pkg = "SIBER", 
+                         community_df = cg_names)
 ```
 
 Next we are going to extract posterior estimates of $\Sigma$ using `extract_sigma()`. 
