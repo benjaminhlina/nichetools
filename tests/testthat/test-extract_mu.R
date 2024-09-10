@@ -8,6 +8,14 @@ test_that("Test if data object is list ", {
 
 })
 
+test_that("Test if data object is list ", {
+  expect_error(extract_mu(
+    data = niw_fish_post,
+    pkg = "nicherover"
+  ), "Invalid characters for 'pkg'. Allowed character strings are 'nicheROVER' or 'SIBER'.")
+
+})
+
 
 test_that("error if data isn't a list", {
   dat <- data.frame(
@@ -42,6 +50,15 @@ test_that("test that the object type and length are correct ", {
                info = "Number of columns is not as expected.")
 })
 
+
+test_that("test that wide and long errror are correct ", {
+  expect_error(extract_mu(
+    data = niw_fish_post,
+    data_format = "wider"
+  ), "Invalid characters for 'data_format'. Allowed character strings are 'wide' or 'long'.")
+})
+
+
 test_that("test that the object type and length are correct ", {
   df_mu_test <- extract_mu(
     data = niw_fish_post, data_format = "wide"
@@ -71,6 +88,25 @@ test_that("Check if column names extracted are correct", {
   )
 
   expect_equal(names(df_mu_test), expected_names)
+})
+
+
+test_that("test that isotope a and b error when not characters ", {
+  expect_error(extract_mu(
+    data = niw_fish_post,
+    data_format = "wide",
+    isotope_a = 1
+  ), "The supplied argument for 'isotope_a' must be a character.")
+
+})
+
+test_that("test that isotope a and b error when not characters ", {
+  expect_error(extract_mu(
+    data = niw_fish_post,
+    data_format = "wide",
+    isotope_b = 1
+  ), "The supplied argument for 'isotope_b' must be a character.")
+
 })
 
 
@@ -117,6 +153,8 @@ test_that("Test if data object is list ", {
   expect_type(object = df_mu, type = "list")
 
 })
+
+
 
 
 test_that("error if data isn't a list", {
