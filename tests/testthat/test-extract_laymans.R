@@ -108,7 +108,14 @@ test_that("test if lenght of wide and long  siber object ", {
   expect_equal(ncol(df_laymen), expected_cols,
                info = "Number of columns is not as expected.")
 })
+# test if lenght of dataframe is correct for wide and long
+test_that("test of wide and long  eorrr siber object ", {
 
+  expect_error(extract_layman(
+    data = layman_b,
+    community_df = c_names, data_format = "wided"
+  ),"Invalid characters for 'data_format'. Allowed character strings are 'wide' or 'long'.")
+})
 
 
 test_that("if type is supplid something other than ml or bay", {
@@ -195,14 +202,14 @@ test_that("process_data produces correct output structure and transformations", 
                         "Distance to<br>Centroid",
                         "Nearest<br>Neighbor<br>Distance",
                         "SD Nearest<br>Neighbor<br>Distance"),
-    levels = c(paste0("\U03B4","<sup>", 13, "</sup>",
-             "C", "<br>Range"),
-      paste0("\U03B4","<sup>", 15, "</sup>",
-             "N", "<br>Range"),
-      "Total Area",
-      "Distance to<br>Centroid",
-      "Nearest<br>Neighbor<br>Distance",
-      "SD Nearest<br>Neighbor<br>Distance"))
+                      levels = c(paste0("\U03B4","<sup>", 13, "</sup>",
+                                        "C", "<br>Range"),
+                                 paste0("\U03B4","<sup>", 15, "</sup>",
+                                        "N", "<br>Range"),
+                                 "Total Area",
+                                 "Distance to<br>Centroid",
+                                 "Nearest<br>Neighbor<br>Distance",
+                                 "SD Nearest<br>Neighbor<br>Distance"))
   )
 })
 
