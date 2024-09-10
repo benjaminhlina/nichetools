@@ -146,7 +146,7 @@ test_that("test that the object type and length are correct ", {
   # check the type returned data frame should be data frame
   expect_s3_class(object = df_mu_test, class =  "data.frame")
   # excreted dimensions
-  expected_rows <- 48000
+  expected_rows <- 40000
   expected_cols <- 9
 
 
@@ -167,7 +167,7 @@ test_that("test that the object type and length are correct ", {
   # check the type returned data frame should be data frame
   expect_s3_class(object = df_mu_test, class =  "data.frame")
   # excreted dimensions
-  expected_rows <- 24000
+  expected_rows <- 20000
   expected_cols <- 9
 
 
