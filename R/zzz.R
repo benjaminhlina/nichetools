@@ -10,5 +10,6 @@ utils::globalVariables(c("sample_name", "sample_number", "metric", "x", "y",
                          "community_name", "group_name",
                          "area.1", "area.2", "area1", "area2",
                          "overlap", "area_1", "area_2",
+                         "niche_overlap_perc", "niche_overlap",
                          "species_a", "species_b", "isotope",
                          "post_sample", "mu_est", "ellipse_name"))
