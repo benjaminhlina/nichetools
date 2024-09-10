@@ -223,7 +223,9 @@ extract_mu <- function(data,
                            delim = ".", names = c("community",
                                                   "group")) %>%
       left_join(community_df, by = c("community",
-                                     "group"))
+                                     "group")) %>%
+      dplyr::select(metric:sample_number, community_name,
+                      group_name, isotope, mu_est)
 
     if (data_format %in% "long") {
 
