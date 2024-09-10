@@ -23,28 +23,28 @@ demo_siber_data <- demo.siber.data.2 |>
   dplyr::select(iso1:community)
 
 siber_example <- createSiberObject(demo_siber_data)
-
-
-
-# ---- create priors -----
-# options for running jags
-parms_1 <- list()
-parms_1$n.iter <- 2 * 10^4   # number of iterations to run the model for
-parms_1$n.burnin <- 1 * 10^3 # discard the first set of values
-parms_1$n.thin <- 10     # thin the posterior by this many
-parms_1$n.chains <- 2        # run this many chains
-
-# define the priors
-priors_1 <- list()
-priors_1$R <- 1 * diag(2)
-priors_1$k <- 2
-priors_1$tau.mu <- 1.0E-3
-
-# ---- fit ellipse -----
-# fit the ellipses which uses an Inverse Wishart prior
-# on the covariance matrix Sigma, and a vague normal prior on the
-# means. Fitting is via the JAGS method.
-ellipses_posterior <- siberMVN(siber_example, parms_1, priors_1)
+#
+#
+#
+# # ---- create priors -----
+# # options for running jags
+# parms_1 <- list()
+# parms_1$n.iter <- 2 * 10^4   # number of iterations to run the model for
+# parms_1$n.burnin <- 1 * 10^3 # discard the first set of values
+# parms_1$n.thin <- 10     # thin the posterior by this many
+# parms_1$n.chains <- 2        # run this many chains
+#
+# # define the priors
+# priors_1 <- list()
+# priors_1$R <- 1 * diag(2)
+# priors_1$k <- 2
+# priors_1$tau.mu <- 1.0E-3
+#
+# # ---- fit ellipse -----
+# # fit the ellipses which uses an Inverse Wishart prior
+# # on the covariance matrix Sigma, and a vague normal prior on the
+# # means. Fitting is via the JAGS method.
+# ellipses_posterior <- siberMVN(siber_example, parms_1, priors_1)
 
 
 # ---- create comparsions ----
@@ -58,7 +58,7 @@ ml_within_overlap <- cg_names_within_com %>%
                       p.interval = 0.95, n = 100))
 
 bayes95_overlap <- cg_names_within_com %>%
-  map(~ bayesianOverlap(.x$cg_1, .x$cg_2, ellipses_posterior,
+  map(~ bayesianOverlap(.x$cg_1, .x$cg_2, post_sam_siber,
                         draws = 100, p.interval = 0.95,
                         n = 100)
   )
