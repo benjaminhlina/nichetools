@@ -1,4 +1,5 @@
 
+
 # unit test for extract_sigma
 test_that("test if it doesn't error with basic niw object ", {
   expect_no_error(
@@ -126,6 +127,33 @@ test_that("that isotope a and b will throw erros if charcter not supplied", {
 
 }
 )
+
+df <- nicheROVER::fish %>%
+  janitor::clean_names()
+
+## ----message = FALSE--------------------------------------------------------------------------------------------------------------------------------------------------
+nsample <- 1000
+
+## ----message = FALSE--------------------------------------------------------------------------------------------------------------------------------------------------
+fish_par <- df %>%
+  split(.$species) %>%
+  map(~ select(., d13c, d15n, d34s)) %>%
+  map(~ nicheROVER::niw.post(nsample = nsample, X = .))
+
+test_that("test isotope_n to be 3", {
+  ### test isotope_n
+  expect_no_error(
+    extract_sigma(
+    data = fish_par,
+    isotope_n = 3,
+  )
+  )
+
+}
+)
+
+
+
 
 
 test_that("test if it doesn't error with basic siber object ", {
