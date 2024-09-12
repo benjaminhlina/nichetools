@@ -10,17 +10,17 @@ test_that("test if it doesn't error with basic niw object ", {
 })
 test_that("test if it wide-long 't error with basic niw object ", {
   expect_error(extract_sigma(
-      data = niw_fish_post,
-      data_format = "x"
-    ), "Invalid characters for 'data_format'. Allowed character strings are 'wide' or 'long'.")
+    data = niw_fish_post,
+    data_format = "x"
+  ), "Invalid characters for 'data_format'. Allowed character strings are 'wide' or 'long'.")
 
 
 })
 test_that("test if pkg 't error with basic niw object ", {
   expect_error(extract_sigma(
-      data = niw_fish_post,
-      pkg = "nicherover"
-    ), "Invalid characters for 'pkg'. Allowed character strings are 'nicheROVER' or 'SIBER'.")
+    data = niw_fish_post,
+    pkg = "nicherover"
+  ), "Invalid characters for 'pkg'. Allowed character strings are 'nicheROVER' or 'SIBER'.")
 
 
 })
@@ -92,12 +92,11 @@ test_that("test that the object type and length are correct ", {
 test_that("that supplying both isotope names works ", {
   df <- extract_sigma(
     data = niw_fish_post,
-    isotope_a = "cal_d13c",
-    isotope_b = "cal_d15n",
+    isotope_names = c("cal_d13c","cal_d15n"),
     data_format = "long"
 
   )
- expect_type(object = df$id, type = "character")
+  expect_type(object = df$id, type = "character")
 
   expect_match(object = df$id, regexp = "cal_d13c", all = FALSE)
   expect_match(object = df$id, regexp = "cal_d15n", all = FALSE)
@@ -107,15 +106,22 @@ test_that("that supplying both isotope names works ", {
 test_that("that isotope a and b will throw erros if charcter not supplied", {
   expect_error(df <- extract_sigma(
     data = niw_fish_post,
-    isotope_a = 10,
+    isotope_names = 10,
 
-  ), regexp = "The supplied argument for 'isotope_a' must be a character."
+  ), regexp = "The supplied argument for 'isotope_names' must be a vector of characters"
   )
   expect_error(df <- extract_sigma(
     data = niw_fish_post,
-    isotope_b = 10,
+    isotope_names = c(10, 11),
 
-  ), regexp = "The supplied argument for 'isotope_b' must be a character"
+  ), regexp = "The supplied argument for 'isotope_names' must be a vector of characters."
+  )
+
+  expect_error(df <- extract_sigma(
+    data = niw_fish_post,
+    isotope_names = c("10"),
+
+  ), regexp = "The 'isotope_names' vector must have exactly 2 elements, representing isotope_a and isotope_b."
   )
 
 }
@@ -205,8 +211,7 @@ test_that("that supplying both isotope names works ", {
   df <- extract_sigma(
     data = post_sam_siber,
     pkg = "SIBER",
-    isotope_a = "cal_d15n",
-    isotope_b = "cal_d13c",
+    isotope_names = c("cal_d15n", "cal_d13c"),
     data_format = "long"
 
   )
@@ -220,16 +225,23 @@ test_that("that supplying both isotope names works ", {
 test_that("that isotope a and b will throw erros if charcter not supplied", {
   expect_error(df <- extract_sigma(
     data = niw_fish_post,
-    isotope_a = 10,
+    isotope_names = 10,
 
-  ), regexp = "The supplied argument for 'isotope_a' must be a character."
+  ), regexp = "The supplied argument for 'isotope_names' must be a vector of characters"
   )
   expect_error(df <- extract_sigma(
     data = niw_fish_post,
-    isotope_b = 10,
+    isotope_names = c(10, 11)
 
-  ), regexp = "The supplied argument for 'isotope_b' must be a character"
+  ), regexp = "The supplied argument for 'isotope_names' must be a vector of characters"
   )
+  expect_error(df <- extract_sigma(
+    data = niw_fish_post,
+    isotope_names = c("10")
+
+  ), regexp = "The 'isotope_names' vector must have exactly 2 elements, representing isotope_a and isotope_b."
+  )
+
 
 }
 )
