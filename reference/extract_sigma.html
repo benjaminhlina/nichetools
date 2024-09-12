@@ -53,8 +53,8 @@ or <a href="https://cran.r-project.org/package=SIBER" class="external-link">SIBE
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">extract_sigma</span><span class="op">(</span></span>
 <span>  <span class="va">data</span>,</span>
 <span>  pkg <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  isotope_a <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  isotope_b <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  isotope_n <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  isotope_names <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  data_format <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -76,14 +76,14 @@ you're using. Defaults to <code>"nicheROVER"</code>.
 Alternatively the user can supply the argument with <code>"SIBER"</code>.</p></dd>
 
 
-<dt id="arg-isotope-a">isotope_a<a class="anchor" aria-label="anchor" href="#arg-isotope-a"></a></dt>
-<dd><p>a <code>character</code> string to change the column name
-of the first isotope used in the analysis. Defaults to <code>"d13c"</code>.</p></dd>
+<dt id="arg-isotope-n">isotope_n<a class="anchor" aria-label="anchor" href="#arg-isotope-n"></a></dt>
+<dd><p>a <code>numeric</code> either <code>2</code> or <code>3</code> that is the number of isotopes
+used in the anlsysis. Will default to <code>2</code>.</p></dd>
 
 
-<dt id="arg-isotope-b">isotope_b<a class="anchor" aria-label="anchor" href="#arg-isotope-b"></a></dt>
-<dd><p>a <code>character</code> string to change the name of second isotope
-used in the analysis. Defaults to <code>"d15n"</code>.</p></dd>
+<dt id="arg-isotope-names">isotope_names<a class="anchor" aria-label="anchor" href="#arg-isotope-names"></a></dt>
+<dd><p>is a vector of <code>character</code> string used change the column name
+of isotopes used in the analysis. Defaults to <code>c("d13c", "d15n")</code>.</p></dd>
 
 
 <dt id="arg-data-format">data_format<a class="anchor" aria-label="anchor" href="#arg-data-format"></a></dt>
