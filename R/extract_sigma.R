@@ -72,55 +72,6 @@ extract_sigma <-  function(data,
     strings are 'wide' or 'long'.")
   }
 
-  if (is.null(isotope_n)) {
-    isotope_n <- 2
-  }
-  if (!is.numeric(isotope_n) || !(isotope_n %in% c(2, 3))) {
-    cli::cli_abort("Argument 'isotope_n' must be a numeric value and either 2 or 3.")
-  }
-
-  if (isotope_n == 2) {
-  # defaults of isotpoe a and b
-  if (is.null(isotope_names)) {
-    isotope_names <- c("d13c", "d15n")
-  }
-
-  # Check if isotope_names is a character vector
-  if (!is.vector(isotope_names) || !is.character(isotope_names)) {
-    cli::cli_abort("The supplied argument for 'isotope_names' must be a vector of characters.")
-  }
-
-  # Check if isotope_names has exactly 2 elements
-  if (length(isotope_names) != 2) {
-    cli::cli_abort("The 'isotope_names' vector must have exactly 2 elements, representing isotope_a and isotope_b.")
-  }
-  }
-  if (isotope_n == 3){
-    # defaults of isotpoe a and b
-    if (is.null(isotope_names)) {
-      isotope_names <- c("d13c", "d15n", "d34s")
-    }
-
-    # Check if isotope_names is a character vector
-    if (!is.vector(isotope_names) || !is.character(isotope_names)) {
-      cli::cli_abort("The supplied argument for 'isotope_names' must be a vector of characters.")
-    }
-
-    # Check if isotope_names has exactly 2 elements
-    if (length(isotope_names) != 3) {
-      cli::cli_abort("The 'isotope_names' vector must have exactly 3 elements, representing isotope_a and isotope_b.")
-    }
-  }
-
-  # # Check if isotope_a is character
-  # if (!is.character(isotope_a)) {
-  #   cli::cli_abort("The supplied argument for 'isotope_a' must be a character.")
-  # }
-  #
-  # # Check if isotope_b is character
-  # if (!is.character(isotope_b)) {
-  #   cli::cli_abort("The supplied argument for 'isotope_b' must be a character.")
-  # }
 
   if (pkg %in% "nicheROVER") {
     # Check if data is a list
@@ -128,6 +79,44 @@ extract_sigma <-  function(data,
       cli::cli_abort("Input 'data' must be a list.")
     }
     # create name vector that will be used to id isotopes.
+    if (is.null(isotope_n)) {
+      isotope_n <- 2
+    }
+    if (!is.numeric(isotope_n) || !(isotope_n %in% c(2, 3))) {
+      cli::cli_abort("Argument 'isotope_n' must be a numeric value and either 2 or 3.")
+    }
+
+    if (isotope_n == 2) {
+      if (is.null(isotope_names)) {
+        isotope_names <- c("d13c", "d15n")
+      }
+
+      # Check if isotope_names is a character vector
+      if (!is.vector(isotope_names) || !is.character(isotope_names)) {
+        cli::cli_abort("The supplied argument for 'isotope_names' must be a vector of characters.")
+      }
+
+      # Check if isotope_names has exactly 2 elements
+      if (length(isotope_names) != 2) {
+        cli::cli_abort("The 'isotope_names' vector must have exactly 2 elements, representing isotope_a and isotope_b.")
+      }
+    }
+    if (isotope_n == 3) {
+      # defaults of isotpoe a and b
+      if (is.null(isotope_names)) {
+        isotope_names <- c("d13c", "d15n", "d34s")
+      }
+
+      # Check if isotope_names is a character vector
+      if (!is.vector(isotope_names) || !is.character(isotope_names)) {
+        cli::cli_abort("The supplied argument for 'isotope_names' must be a vector of characters.")
+      }
+
+      # Check if isotope_names has exactly 2 elements
+      if (length(isotope_names) != 3) {
+        cli::cli_abort("The 'isotope_names' vector must have exactly 3 elements, representing isotope_a,  isotope_b, and isotope_c.")
+      }
+    }
     id_isotope <- isotope_names
     # extract sigma
     df_sigma <- purrr::map(data, purrr::pluck, 2) |>
