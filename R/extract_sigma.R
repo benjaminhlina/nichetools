@@ -146,6 +146,8 @@ extract_sigma <-  function(data,
       tidyr::separate(isotope, into = c("isotope", "sample_number"),
                       sep = "\\.")
 
+
+
     if (data_format %in% "wide") {
 
       df_sigma <- df_sigma |>
@@ -159,11 +161,25 @@ extract_sigma <-  function(data,
     }
   }
 
+
   if (pkg %in% "SIBER") {
     if (!inherits(data, "list")) {
       cli::cli_abort("Input 'data' must be a list.")
     }
 
+    if (is.null(isotope_names)) {
+      isotope_names <- c("d13c", "d15n")
+    }
+
+    # Check if isotope_names is a character vector
+    if (!is.vector(isotope_names) || !is.character(isotope_names)) {
+      cli::cli_abort("The supplied argument for 'isotope_names' must be a vector of characters.")
+    }
+
+    # Check if isotope_names has exactly 2 elements
+    if (length(isotope_names) != 2) {
+      cli::cli_abort("The 'isotope_names' vector must have exactly 2 elements, representing isotope_a and isotope_b.")
+    }
     # create name vector that will be used to id isotopes.
     id_isotope <- isotope_names
 
@@ -226,3 +242,4 @@ extract_sigma <-  function(data,
     }
   }
 }
+
