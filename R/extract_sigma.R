@@ -11,10 +11,10 @@
 #' @param pkg a `character` string that is the name of the package that
 #' you're using. Defaults to `"nicheROVER"`.
 #' Alternatively the user can supply the argument with `"SIBER"`.
-#' @param isotope_a a `character` string to change the column name
-#' of the first isotope used in the analysis. Defaults to `"d13c"`.
-#' @param isotope_b a `character` string to change the name of second isotope
-#' used in the analysis. Defaults to `"d15n"`.
+#' @param isotope_n a `numeric` either `2` or `3` that is the number of isotopes
+#' used in the anlsysis. Will default to `2`.
+#' @param isotope_names is a vector of `character` string used change the column name
+#' of isotopes used in the analysis. Defaults to `c("d13c", "d15n")`.
 #' @param data_format a `character` string that decides whether the returned object is
 #' in long or wide format. Default is `"wide"`, with the alternative supplied being `"long"`.
 #'
@@ -47,8 +47,8 @@
 
 extract_sigma <-  function(data,
                            pkg = NULL,
-                           isotope_a = NULL,
-                           isotope_b = NULL,
+                           isotope_n = NULL,
+                           isotope_names = NULL,
                            data_format = NULL) {
 
   # Set pkg to "nicheROVER" if it is NULL
@@ -72,23 +72,6 @@ extract_sigma <-  function(data,
     strings are 'wide' or 'long'.")
   }
 
-  # defaults of isotpoe a and b
-  if (is.null(isotope_a)) {
-    isotope_a <- "d13c"
-  }
-
-  if (is.null(isotope_b)) {
-    isotope_b <- "d15n"
-  }
-  # Check if isotope_a is character
-  if (!is.character(isotope_a)) {
-    cli::cli_abort("The supplied argument for 'isotope_a' must be a character.")
-  }
-
-  # Check if isotope_b is character
-  if (!is.character(isotope_b)) {
-    cli::cli_abort("The supplied argument for 'isotope_b' must be a character.")
-  }
 
   if (pkg %in% "nicheROVER") {
     # Check if data is a list
@@ -96,7 +79,45 @@ extract_sigma <-  function(data,
       cli::cli_abort("Input 'data' must be a list.")
     }
     # create name vector that will be used to id isotopes.
-    id_isotope <- c(isotope_a, isotope_b)
+    if (is.null(isotope_n)) {
+      isotope_n <- 2
+    }
+    if (!is.numeric(isotope_n) || !(isotope_n %in% c(2, 3))) {
+      cli::cli_abort("Argument 'isotope_n' must be a numeric value and either 2 or 3.")
+    }
+
+    if (isotope_n == 2) {
+      if (is.null(isotope_names)) {
+        isotope_names <- c("d13c", "d15n")
+      }
+
+      # Check if isotope_names is a character vector
+      if (!is.vector(isotope_names) || !is.character(isotope_names)) {
+        cli::cli_abort("The supplied argument for 'isotope_names' must be a vector of characters.")
+      }
+
+      # Check if isotope_names has exactly 2 elements
+      if (length(isotope_names) != 2) {
+        cli::cli_abort("The 'isotope_names' vector must have exactly 2 elements, representing isotope_a and isotope_b.")
+      }
+    }
+    if (isotope_n == 3) {
+      # defaults of isotpoe a and b
+      if (is.null(isotope_names)) {
+        isotope_names <- c("d13c", "d15n", "d34s")
+      }
+
+      # Check if isotope_names is a character vector
+      if (!is.vector(isotope_names) || !is.character(isotope_names)) {
+        cli::cli_abort("The supplied argument for 'isotope_names' must be a vector of characters.")
+      }
+
+      # Check if isotope_names has exactly 2 elements
+      if (length(isotope_names) != 3) {
+        cli::cli_abort("The 'isotope_names' vector must have exactly 3 elements, representing isotope_a,  isotope_b, and isotope_c.")
+      }
+    }
+    id_isotope <- isotope_names
     # extract sigma
     df_sigma <- purrr::map(data, purrr::pluck, 2) |>
       purrr::imap(~ tibble::as_tibble(.x) |>
@@ -114,6 +135,8 @@ extract_sigma <-  function(data,
       tidyr::separate(isotope, into = c("isotope", "sample_number"),
                       sep = "\\.")
 
+
+
     if (data_format %in% "wide") {
 
       df_sigma <- df_sigma |>
@@ -127,13 +150,30 @@ extract_sigma <-  function(data,
     }
   }
 
+
   if (pkg %in% "SIBER") {
     if (!inherits(data, "list")) {
       cli::cli_abort("Input 'data' must be a list.")
     }
 
+    if (is.null(isotope_names)) {
+      isotope_names <- c("d13c", "d15n")
+    }
+
+    # Check if isotope_names is a character vector
+    if (!is.vector(isotope_names) || !is.character(isotope_names)) {
+      cli::cli_abort("The supplied argument for 'isotope_names' must be a vector of characters.")
+    }
+
+    # Check if isotope_names has exactly 2 elements
+    if (length(isotope_names) != 2) {
+      cli::cli_abort("The 'isotope_names' vector must have exactly 2 elements, representing isotope_a and isotope_b.")
+    }
     # create name vector that will be used to id isotopes.
-    id_isotope <- c(isotope_a, isotope_b)
+    id_isotope <- isotope_names
+
+    isotope_a <- isotope_names[1]
+    isotope_b <- isotope_names[2]
 
 
     df_sigma <- data |>
@@ -191,3 +231,4 @@ extract_sigma <-  function(data,
     }
   }
 }
+

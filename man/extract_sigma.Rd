@@ -7,8 +7,8 @@
 extract_sigma(
   data,
   pkg = NULL,
-  isotope_a = NULL,
-  isotope_b = NULL,
+  isotope_n = NULL,
+  isotope_names = NULL,
   data_format = NULL
 )
 }
@@ -22,11 +22,11 @@ or \href{https://cran.r-project.org/package=SIBER}{{SIBER}}, respectfully.}
 you're using. Defaults to \code{"nicheROVER"}.
 Alternatively the user can supply the argument with \code{"SIBER"}.}
 
-\item{isotope_a}{a \code{character} string to change the column name
-of the first isotope used in the analysis. Defaults to \code{"d13c"}.}
+\item{isotope_n}{a \code{numeric} either \code{2} or \code{3} that is the number of isotopes
+used in the anlsysis. Will default to \code{2}.}
 
-\item{isotope_b}{a \code{character} string to change the name of second isotope
-used in the analysis. Defaults to \code{"d15n"}.}
+\item{isotope_names}{is a vector of \code{character} string used change the column name
+of isotopes used in the analysis. Defaults to \code{c("d13c", "d15n")}.}
 
 \item{data_format}{a \code{character} string that decides whether the returned object is
 in long or wide format. Default is \code{"wide"}, with the alternative supplied being \code{"long"}.}
