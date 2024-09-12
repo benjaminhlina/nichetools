@@ -95,19 +95,35 @@ test_that("test that isotope a and b error when not characters ", {
   expect_error(extract_mu(
     data = niw_fish_post,
     data_format = "wide",
-    isotope_a = 1
-  ), "The supplied argument for 'isotope_a' must be a character.")
+    isotope_names = 1
+  ), "The supplied argument for 'isotope_names' must be a vector of characters.")
 
 })
-
 test_that("test that isotope a and b error when not characters ", {
   expect_error(extract_mu(
     data = niw_fish_post,
     data_format = "wide",
-    isotope_b = 1
-  ), "The supplied argument for 'isotope_b' must be a character.")
+    isotope_names = c(1, 2)
+  ), "The supplied argument for 'isotope_names' must be a vector of characters.")
 
 })
+test_that("test that isotope a and b error when not characters ", {
+  expect_error(extract_mu(
+    data = niw_fish_post,
+    data_format = "wide",
+    isotope_names = c("d13c")
+  ), "The 'isotope_names' vector must have exactly 2 elements, representing isotope_a and isotope_b.")
+
+})
+
+# test_that("test that isotope a and b error when not characters ", {
+#   expect_error(extract_mu(
+#     data = niw_fish_post,
+#     data_format = "wide",
+#     isotope_b = 1
+#   ), "The supplied argument for 'isotope_b' must be a character.")
+#
+# })
 
 
 test_that("Check if column order", {
