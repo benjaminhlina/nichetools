@@ -11,10 +11,8 @@
 #' @param pkg a `character` string that is the name of the package that
 #' you're using. Defaults to `"nicheROVER"`.
 #' Alternatively the user can supply the argument with `"SIBER"`.
-#' @param isotope_a a `character` string to change the column name
-#' of the first isotope used in the analysis. Defaults to `"d13c"`.
-#' @param isotope_b a `character` string to change the name of second isotope
-#' used in the analysis. Defaults to `"d15n"`.
+#' @param isotope_name is a vector of `character` string used change the column name
+#' of isotopes used in the analysis. Defaults to `c("d13c", "d15n")`.
 #' @param data_format a `character` string that decides whether the returned object is
 #' in long or wide format. Default is `"long"`, with the alternative supplied
 #' being `"wide"`.
