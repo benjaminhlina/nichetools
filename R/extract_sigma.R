@@ -178,13 +178,13 @@ extract_sigma <-  function(data,
 
     if (data_format %in% "wide") {
 
-      df_sigma <- df_sigma |>
+      df_sigma_extract <- df_sigma_extract |>
         tidyr::pivot_wider(names_from = id,
                            values_from = post_sample)
-      return(df_sigma)
+      return(df_sigma_extract)
     }
     if (data_format %in% "long") {
-      return(df_sigma)
+      return(df_sigma_extract)
 
     }
   }
