@@ -144,13 +144,92 @@ test_that("test isotope_n to be 3", {
   ### test isotope_n
   expect_no_error(
     extract_sigma(
-    data = fish_par,
-    isotope_n = 3,
-  )
+      data = fish_par,
+      isotope_n = 3,
+    )
   )
 
 }
 )
+
+test_that("test error when isotope_n = 2 or 3", {
+
+  expect_error(
+    extract_sigma(
+      data = fish_par,
+      isotope_n = 2
+    ),
+    regex = "Argument 'isotope_n' does not match the number of isotopes being used."
+  )
+}
+)
+test_that("test error when isotope_n = 3 but names do not work", {
+
+  expect_error(
+    extract_sigma(
+      data = fish_par,
+      isotope_n = 3,
+      isotope_names = c("d_13c", "d_15n")
+    ),
+    regex = "The 'isotope_names' vector must have exactly 3 elements, representing isotope_a, isotope_b, and isotope_c."
+  )
+
+  expect_error(
+    extract_sigma(
+      data = niw_fish_post,
+      isotope_n = 3,
+      isotope_names = c(1)
+    ), "The supplied argument for 'isotope_names' must be a vector of characters."
+  )
+}
+)
+test_that("test error when isotope_n = 3 but names do not work", {
+
+  expect_error(
+    extract_sigma(
+      data = niw_fish_post,
+      isotope_n = 2,
+      isotope_names = c("d_13c")
+    ),
+    regex = "The 'isotope_names' vector must have exactly 2 elements, representing isotope_a and isotope_b."
+  )
+  expect_error(
+    extract_sigma(
+      data = niw_fish_post,
+      isotope_n = 2,
+      isotope_names = c(1)
+    ), "The supplied argument for 'isotope_names' must be a vector of characters."
+  )
+
+}
+)
+
+
+
+test_that("test error when isotope_n = 2 or 3", {
+
+  expect_error(
+    extract_sigma(
+      data = niw_fish_post,
+      isotope_n = 3
+    ),
+    regex = "Argument 'isotope_n' does not match the number of isotopes being used."
+  )
+}
+)
+test_that("test error when isotope_n = 2 or 3", {
+
+  expect_error(
+    extract_sigma(
+      data = niw_fish_post,
+      isotope_n = 4
+    ),
+    regex = "Argument 'isotope_n' must be a numeric value and either 2 or 3"
+  )
+}
+)
+
+
 
 
 
@@ -250,27 +329,8 @@ test_that("that supplying both isotope names works ", {
 
 }
 )
-test_that("that isotope a and b will throw erros if charcter not supplied", {
-  expect_error(df <- extract_sigma(
-    data = niw_fish_post,
-    isotope_names = 10,
-
-  ), regexp = "The supplied argument for 'isotope_names' must be a vector of characters"
-  )
-  expect_error(df <- extract_sigma(
-    data = niw_fish_post,
-    isotope_names = c(10, 11)
-
-  ), regexp = "The supplied argument for 'isotope_names' must be a vector of characters"
-  )
-  expect_error(df <- extract_sigma(
-    data = niw_fish_post,
-    isotope_names = c("10")
-
-  ), regexp = "The 'isotope_names' vector must have exactly 2 elements, representing isotope_a and isotope_b."
-  )
 
 
-}
-)
+
+
 
