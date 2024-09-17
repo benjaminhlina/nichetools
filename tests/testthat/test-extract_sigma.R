@@ -255,6 +255,25 @@ test_that("test if list", {
   expect_type(object = df_sigma_test, type = "list")
 })
 
+
+
+
+test_that("test if list", {
+  expect_error(extract_sigma(
+      data = post_sam_siber,
+      pkg = "SIBER",
+      isotope_names = 1
+    ), "The supplied argument for 'isotope_names' must be a vector of characters."
+    )
+  expect_error(extract_sigma(
+      data = post_sam_siber,
+      pkg = "SIBER",
+      isotope_names = c("d13c")
+    ), "The 'isotope_names' vector must have exactly 2 elements, representing isotope_a and isotope_b."
+    )
+
+
+})
 test_that("error if data isn't a list", {
   dat <- data.frame(
     x = seq(0, 100, length.out = 10),
