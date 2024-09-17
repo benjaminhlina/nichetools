@@ -136,14 +136,33 @@ extract_sigma <-  function(data,
       if (length(isotope_names) != 3) {
         cli::cli_abort("The 'isotope_names' vector must have exactly 3 elements, representing isotope_a,  isotope_b, and isotope_c.")
       }
+
+      df_sigma <- purrr::map(data, purrr::pluck, 2) |>
+        purrr::imap(~ tibble::as_tibble(.x))
+
+      isotope_number <- df_sigma |>
+        purrr::map(~ nrow(.x)) |>
+        dplyr::bind_rows(.id = "isotope_num") |>
+        dplyr::mutate(
+          id = 1
+        ) %>%
+        tidyr::pivot_longer(-id)
+
+      isotope_length <- unique(isotope_number$value)
+
+      if (isotope_length != 3) {
+        cli::cli_abort("Argument 'isotope_n' does not match the number of isotopes
+                       being used.")
+      }
+
     }
-    id_isotope <- isotope_names
+
     # extract sigma
-    df_sigma <- purrr::map(data, purrr::pluck, 2) |>
-      purrr::imap(~ tibble::as_tibble(.x) |>
+    df_sigma_extract <- df_sigma |>
+      purrr::imap(~ .x |>
                     dplyr::mutate(
                       metric = "sigma",
-                      id = id_isotope,
+                      id = isotope_names,
                       sample_name = .y
                     )
       ) |>
