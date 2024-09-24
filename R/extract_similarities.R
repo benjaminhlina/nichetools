@@ -4,7 +4,9 @@
 #'
 #' @param data a `list` of results from either `maxLikOverlap()` or
 #' `bayesianOverlap()`.
-#' @param type description
+#' @param type a `character` that is either `"bay"` or `"ml"` which indicates
+#' whether the community metrics to be extracted are from a Bayesian analysis or
+#' a maximum-likelihood.
 #' @param community_df a four column data frame. One of the columns has to be named
 #' `community` and the data in the column will be `numeric` as a `character`
 #' string(e.g., `"1", "2", "3"`). This is the order of the community names

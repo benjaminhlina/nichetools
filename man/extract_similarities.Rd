@@ -10,7 +10,9 @@ extract_similarities(data, type = c("bay", "ml"), community_df = NULL)
 \item{data}{a \code{list} of results from either \code{maxLikOverlap()} or
 \code{bayesianOverlap()}.}
 
-\item{type}{description}
+\item{type}{a \code{character} that is either \code{"bay"} or \code{"ml"} which indicates
+whether the community metrics to be extracted are from a Bayesian analysis or
+a maximum-likelihood.}
 
 \item{community_df}{a four column data frame. One of the columns has to be named
 \code{community} and the data in the column will be \code{numeric} as a \code{character}
