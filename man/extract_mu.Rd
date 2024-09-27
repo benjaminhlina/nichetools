@@ -23,7 +23,8 @@ you're using. Defaults to \code{"nicheROVER"}.
 Alternatively the user can supply the argument with \code{"SIBER"}.}
 
 \item{isotope_names}{is a vector of \code{character} string used change the column name
-of isotopes used in the analysis. Defaults to \code{c("d13c", "d15n")}.}
+of isotopes used in the analysis. Defaults to \code{c("d13c", "d15n")}. To be used when
+\code{pkg} is set to \code{"SIBER"}.}
 
 \item{data_format}{a \code{character} string that decides whether the returned object is
 in long or wide format. Default is \code{"long"}, with the alternative supplied
@@ -39,7 +40,8 @@ The second column will be the names of the groups that are needed to supply
 required by the function, \code{createSiberObject()}
 from \href{https://CRAN.R-project.org/package=SIBER}{{SIBER}}.
 The third and fourth columns contains the actual names of the communities
-and groups the user is working with (e.g., \code{"region"}, \code{"common_name"}).}
+and groups the user is working with (e.g., \code{"region"}, \code{"common_name"}).
+To be used when \code{pkg} is set to \code{"SIBER"}.}
 }
 \value{
 Returns a \code{tibble} of extracted estimates of \eqn{\mu} created by the

@@ -12,7 +12,8 @@
 #' you're using. Defaults to `"nicheROVER"`.
 #' Alternatively the user can supply the argument with `"SIBER"`.
 #' @param isotope_names is a vector of `character` string used change the column name
-#' of isotopes used in the analysis. Defaults to `c("d13c", "d15n")`.
+#' of isotopes used in the analysis. Defaults to `c("d13c", "d15n")`. To be used when
+#' `pkg` is set to `"SIBER"`.
 #' @param data_format a `character` string that decides whether the returned object is
 #' in long or wide format. Default is `"long"`, with the alternative supplied
 #' being `"wide"`.
@@ -27,6 +28,7 @@
 #' from [{SIBER}](https://CRAN.R-project.org/package=SIBER).
 #' The third and fourth columns contains the actual names of the communities
 #' and groups the user is working with (e.g., `"region"`, `"common_name"`).
+#'  To be used when `pkg` is set to `"SIBER"`.
 #'
 #' @return Returns a `tibble` of extracted estimates of \eqn{\mu} created by the
 #' function `niw.post()` or `siberMVN()` in the packages
