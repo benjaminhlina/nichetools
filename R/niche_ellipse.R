@@ -14,10 +14,10 @@
 #' @param p_ell is the confidence interval of each ellipse estimate.
 #' Default is 0.95 (i.e., 95% confidence interval).
 #' This value is bound by 0 and 1 and has to be a `numeric`.
-#' @param isotope_a character string that is the column name of the first
-#' isotope used in `dat_sigma`. Defaults to `"d13c"`.
-#' @param isotope_b character string that is the column name of the second
-#' isotope used in `dat_sigma`. Defaults to `"d15n"`.
+#' @param isotope_n a `numeric` either `2` or `3` that is the number of isotopes
+#' used in the anlsysis. Will default to `2`.
+#' @param isotope_names is a vector of `character` string used change the column name
+#' of isotopes used in the analysis. Defaults to `c("d13c", "d15n")`.
 #' @param random logical value indicating whether or not to randomly sample
 #' posterior distributions for \eqn{\mu} and \eqn{\Sigma} to create a sub-sample
 #' of ellipse. Default is `TRUE`.
@@ -55,8 +55,8 @@
 niche_ellipse <- function(
     dat_mu,
     dat_sigma,
-    isotope_a = NULL,
-    isotope_b = NULL,
+    isotope_n = NULL,
+    isotope_names = NULL,
     p_ell = NULL,
     random = NULL,
     set_seed = NULL,
@@ -75,26 +75,22 @@ niche_ellipse <- function(
   if (!inherits(dat_sigma, what = c("tbl_df", "tbl", "data.frame"))) {
     cli::cli_abort("Input 'dat_sigma' must be class data.frame.")
   }
-
-
-  if (is.null(isotope_a)) {
-    isotope_a <- "d13c"
+  # create name vector that will be used to id isotopes.
+  if (is.null(isotope_n)) {
+    isotope_n <- 2
   }
-  if (is.null(isotope_b)) {
-    isotope_b <- "d15n"
-  }
-  # Validate if isotope_a is a character
-  if (!is.character(isotope_a)) {
-    cli::cli_abort("Argument 'isotope_a' must be a character.")
+  if (!is.numeric(isotope_n) || !(isotope_n %in% c(2, 3))) {
+    cli::cli_abort("Argument 'isotope_n' must be a numeric value and either 2 or 3.")
   }
 
-  # Validate if isotope_b is a character
-  if (!is.character(isotope_b)) {
-    cli::cli_abort("Argument 'isotope_b' must be a character.")
+  if (isotope_n == 2) {
+    if (is.null(isotope_names)) {
+      isotope_names <- c("d13c", "d15n")
+    }
   }
 
 
-  if(is.null(p_ell)) {
+  if (is.null(p_ell)) {
     p_ell <- 0.95
   }
   # Additional parameter validation, if needed
@@ -136,6 +132,9 @@ niche_ellipse <- function(
     set.seed(set_seed)
 
     sample_numbers <- sample(dat_mu$sample_number, n)
+
+    isotope_a <- isotope_name[1]
+    isotope_b <- isotope_name[2]
     # prepare mu for ellipse
     mu <- dat_mu |>
       dplyr::select(sample_name, sample_number, mu_est) |>
