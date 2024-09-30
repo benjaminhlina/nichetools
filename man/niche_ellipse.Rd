@@ -7,8 +7,8 @@
 niche_ellipse(
   dat_mu,
   dat_sigma,
-  isotope_a = NULL,
-  isotope_b = NULL,
+  isotope_n = NULL,
+  isotope_names = NULL,
   p_ell = NULL,
   random = NULL,
   set_seed = NULL,
@@ -27,11 +27,11 @@ This \code{data.frame} needs be in wide format, that is \eqn{\Sigma} (covariance
 matrices stacked on top of each other. See example of how to convert to
 wide format. This can be produced using \code{extract_sigma()}.}
 
-\item{isotope_a}{character string that is the column name of the first
-isotope used in \code{dat_sigma}. Defaults to \code{"d13c"}.}
+\item{isotope_n}{a \code{numeric} either \code{2} or \code{3} that is the number of isotopes
+used in the anlsysis. Will default to \code{2}.}
 
-\item{isotope_b}{character string that is the column name of the second
-isotope used in \code{dat_sigma}. Defaults to \code{"d15n"}.}
+\item{isotope_names}{is a vector of \code{character} string used change the column name
+of isotopes used in the analysis. Defaults to \code{c("d13c", "d15n")}.}
 
 \item{p_ell}{is the confidence interval of each ellipse estimate.
 Default is 0.95 (i.e., 95\% confidence interval).
