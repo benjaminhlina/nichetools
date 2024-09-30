@@ -1,7 +1,7 @@
 ---
 title: "Using {nichetools} with nicheROVER"
 author: Benjamin L. Hlina
-date: "Updated: `r Sys.Date()`"
+date: "2024-03-15"
 output: rmarkdown::html_vignette
 
 vignette: >
