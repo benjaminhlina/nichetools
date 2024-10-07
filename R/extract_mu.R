@@ -216,12 +216,12 @@ extract_mu <- function(data,
       dplyr::rename(
         mu_est = V1
       ) |>
-      dplyr::select(metric, sample_name,sample_number, isotope, mu_est) %>%
+      dplyr::select(metric, sample_name,sample_number, isotope, mu_est)  |>
       separate_wider_delim(sample_name, cols_remove = FALSE,
                            delim = ".", names = c("community",
-                                                  "group")) %>%
+                                                  "group"))  |>
       left_join(community_df, by = c("community",
-                                     "group")) %>%
+                                     "group"))  |>
       dplyr::select(metric:sample_number, community_name,
                     group_name, isotope, mu_est)
 
