@@ -224,7 +224,7 @@ extract_layman <- function(data,
 
       return(df_layman)
     }
-    if (data_format %in% "wide"){
+    if (data_format %in% "wide") {
       return(df_layman)
     }
   }
