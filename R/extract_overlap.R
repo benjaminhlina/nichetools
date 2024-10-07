@@ -60,12 +60,12 @@ extract_overlap <- function(data,
     tidyr::pivot_longer(cols = -c(id, species_a),
                         names_to = "species_b",
                         values_to = "niche_overlap") |>
-    tidyr::separate(species_b, into = c("species_b", "sample_number"),
-                    sep = "\\.") |>
+    tidyr::separate_wider_delim(species_b, names = c("species_b", "sample_number"),
+                    delim = ".") |>
     dplyr::rename(
       {{name_a}} := species_a,
       {{name_b}} := species_b
-    ) %>%
+    ) |>
     dplyr::mutate(
       niche_overlap_perc = niche_overlap * 100
     )
