@@ -221,7 +221,7 @@ extract_sigma <-  function(data,
         df <- .x[, 1:4] |>
           t() |>
           as.numeric() |>
-          matrix(ncol = 2, byrow = T) |>
+          matrix(ncol = 2, byrow = TRUE) |>
           as.data.frame() |>
           tibble::as_tibble()
 
