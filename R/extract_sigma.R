@@ -109,7 +109,7 @@ extract_sigma <-  function(data,
         dplyr::bind_rows(.id = "isotope_num") |>
         dplyr::mutate(
           id = 1
-        ) %>%
+        ) |>
         tidyr::pivot_longer(-id)
 
       isotope_length <- unique(isotope_number$value)
@@ -145,7 +145,7 @@ extract_sigma <-  function(data,
         dplyr::bind_rows(.id = "isotope_num") |>
         dplyr::mutate(
           id = 1
-        ) %>%
+        ) |>
         tidyr::pivot_longer(-id)
 
       isotope_length <- unique(isotope_number$value)
