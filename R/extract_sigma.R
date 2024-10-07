@@ -171,8 +171,9 @@ extract_sigma <-  function(data,
                           names_to = "isotope",
                           values_to = "post_sample"
       ) |>
-      tidyr::separate(isotope, into = c("isotope", "sample_number"),
-                      sep = "\\.")
+      tidyr::separate_wider_delim(isotope, names = c("isotope", "sample_number"),
+
+                        delim = ".")
 
 
 
