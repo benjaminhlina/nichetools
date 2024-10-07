@@ -32,11 +32,11 @@ extract_overlap <- function(data,
   }
 
   # set name_a null
-  if (is.null(name_a)){
+  if (is.null(name_a)) {
     name_a <- "sample_name_a"
   }
   # set name_b null
-  if (is.null(name_b)){
+  if (is.null(name_b)) {
     name_b <- "sample_name_b"
   }
 
