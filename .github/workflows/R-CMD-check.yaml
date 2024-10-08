@@ -48,12 +48,12 @@ jobs:
           Get-Command g++ | Select-Object -ExpandProperty Definition
           mingw32-make --version
           Get-Command mingw32-make | Select-Object -ExpandProperty Definition
-          Invoke-WebRequest "https://sourceforge.net/projects/mcmc-jags/files/JAGS/4.x/Windows/JAGS-4.3.1.exe/download" -OutFile "C:\JAGS-4.3.1.exe"
+          curl "https://sourceforge.net/projects/mcmc-jags/files/JAGS/4.x/Windows/JAGS-4.3.1.exe/download" -o "C:\JAGS.4.3.1.exe"
         shell: powershell
 
       - name: Install JAGS on Windows
         if: runner.os == 'Windows'
-        run: C:\JAGS-4.3.1.exe /S
+        run: C:\JAGS-4.3.1.exe
         shell: cmd
 
       - name: Install Mac system dependencies
