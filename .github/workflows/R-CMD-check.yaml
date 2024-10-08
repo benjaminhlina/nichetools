@@ -49,8 +49,8 @@ jobs:
           mingw32-make --version
           Get-Command mingw32-make | Select-Object -ExpandProperty Definition
           (New-Object System.Net.WebClient)
-          .Headers.Add("User-Agent: Other")
-          .DownloadFile('https://sourceforge.net/projects/mcmc-jags/files/JAGS/4.x/Windows/JAGS-4.3.1.exe/download', 'C:\JAGS-4.3.1.exe')
+          Headers.Add("User-Agent: Other")
+          DownloadFile('https://sourceforge.net/projects/mcmc-jags/files/JAGS/4.x/Windows/JAGS-4.3.1.exe/download', 'C:\JAGS-4.3.1.exe')
         shell: powershell
 
       - name: Install JAGS on Windows
