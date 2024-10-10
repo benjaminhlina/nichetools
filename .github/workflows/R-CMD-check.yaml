@@ -41,20 +41,12 @@ jobs:
           http-user-agent: ${{ matrix.config.http-user-agent }}
           use-public-rspm: true
 
-      - name: Install most Windows system dependencies
-        if: runner.os == 'Windows'
-        run: |
-          pacman -Syu mingw-w64-x86_64-make --noconfirm
-          g++ --version
-          Get-Command g++ | Select-Object -ExpandProperty Definition
-          mingw32-make --version
-          Get-Command mingw32-make | Select-Object -ExpandProperty Definition
-          curl.exe -L -o "C:\JAGS-4.3.1.exe" "https://sourceforge.net/projects/mcmc-jags/files/JAGS/4.x/Windows/JAGS-4.3.1.exe/download"
-        shell: powershell
-
       - name: Install JAGS on Windows
         if: runner.os == 'Windows'
-        run: C:\JAGS-4.3.1.exe /S
+        run: |
+          curl.exe -o wjags.exe -L0 -k --url https://downloads.sourceforge.net/project/mcmc-jags/JAGS/4.x/Windows/JAGS-4.3.1.exe
+          wjags.exe /S
+          del wjags.exe
         shell: cmd
 
       - name: Install JAGS on Mac
