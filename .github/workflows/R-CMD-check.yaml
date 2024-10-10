@@ -61,10 +61,12 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          packages:
-            any::rjags
           extra-packages: any::rcmdcheck
           needs: check
+
+      - name: install rjags
+        run: install.packages("rjags", type = "source")
+        shell: Rscript {0}
 
       - uses: r-lib/actions/check-r-package@v2
         with:
