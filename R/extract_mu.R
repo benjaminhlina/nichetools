@@ -12,7 +12,8 @@
 #' you're using. Defaults to `"nicheROVER"`.
 #' Alternatively the user can supply the argument with `"SIBER"`.
 #' @param isotope_names is a vector of `character` string used change the column name
-#' of isotopes used in the analysis. Defaults to `c("d13c", "d15n")`.
+#' of isotopes used in the analysis. Defaults to `c("d13c", "d15n")`. To be used when
+#' `pkg` is set to `"SIBER"`.
 #' @param data_format a `character` string that decides whether the returned object is
 #' in long or wide format. Default is `"long"`, with the alternative supplied
 #' being `"wide"`.
@@ -27,6 +28,7 @@
 #' from [{SIBER}](https://CRAN.R-project.org/package=SIBER).
 #' The third and fourth columns contains the actual names of the communities
 #' and groups the user is working with (e.g., `"region"`, `"common_name"`).
+#'  To be used when `pkg` is set to `"SIBER"`.
 #'
 #' @return Returns a `tibble` of extracted estimates of \eqn{\mu} created by the
 #' function `niw.post()` or `siberMVN()` in the packages
@@ -98,28 +100,9 @@ extract_mu <- function(data,
                    'nicheROVER' or 'SIBER'.")
   }
 
-  # defaults of isotpoe a and b
-  if (is.null(isotope_names)) {
-    isotope_names <- c("d13c", "d15n")
-  }
-
-  # Check if isotope_names is a character vector
-  if (!is.vector(isotope_names) || !is.character(isotope_names)) {
-    cli::cli_abort("The supplied argument for 'isotope_names' must be a vector of characters.")
-  }
-
-  # Check if isotope_names has exactly 2 elements
-  if (length(isotope_names) != 2) {
-    cli::cli_abort("The 'isotope_names' vector must have exactly 2 elements, representing isotope_a and isotope_b.")
-  }
-
-  # # Check if isotope_b is character
-  # if (!is.character(isotope_b)) {
-  #   cli::cli_abort("The supplied argument for 'isotope_b' must be a character.")
-  # }
 
 
-  # sett data formatt
+  # sett data format
   if (is.null(data_format)) {
     data_format <- "long"
   }
@@ -191,6 +174,20 @@ extract_mu <- function(data,
     }
 
 
+    # defaults of isotpoe a and b
+    if (is.null(isotope_names)) {
+      isotope_names <- c("d13c", "d15n")
+    }
+
+    # Check if isotope_names is a character vector
+    if (!is.vector(isotope_names) || !is.character(isotope_names)) {
+      cli::cli_abort("The supplied argument for 'isotope_names' must be a vector of characters.")
+    }
+
+    # Check if isotope_names has exactly 2 elements
+    if (length(isotope_names) != 2) {
+      cli::cli_abort("'isotope_names' must have exactly 2 elements, representing isotope_a and isotope_b")
+    }
     id_isotope <- isotope_names
 
 
@@ -199,7 +196,7 @@ extract_mu <- function(data,
         df <- .x[, 5:6] |>
           t() |>
           as.numeric() |>
-          matrix(ncol = 1, byrow = T) |>
+          matrix(ncol = 1, byrow = TRUE) |>
           as.data.frame() |>
           tibble::as_tibble()
 
@@ -219,12 +216,12 @@ extract_mu <- function(data,
       dplyr::rename(
         mu_est = V1
       ) |>
-      dplyr::select(metric, sample_name,sample_number, isotope, mu_est) %>%
+      dplyr::select(metric, sample_name,sample_number, isotope, mu_est)  |>
       separate_wider_delim(sample_name, cols_remove = FALSE,
                            delim = ".", names = c("community",
-                                                  "group")) %>%
+                                                  "group"))  |>
       left_join(community_df, by = c("community",
-                                     "group")) %>%
+                                     "group"))  |>
       dplyr::select(metric:sample_number, community_name,
                     group_name, isotope, mu_est)
 
