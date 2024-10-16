@@ -64,7 +64,7 @@ jobs:
           extra-packages: any::rcmdcheck
           needs: check
 
-      - name: install rjags
+      - name: Install rjags
         run: install.packages("rjags", type = "source")
         shell: Rscript {0}
 
