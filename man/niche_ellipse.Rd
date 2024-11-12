@@ -28,7 +28,7 @@ matrices stacked on top of each other. See example of how to convert to
 wide format. This can be produced using \code{extract_sigma()}.}
 
 \item{isotope_n}{a \code{numeric} either \code{2} or \code{3} that is the number of isotopes
-used in the anlsysis. Will default to \code{2}.}
+used in the analysis. Will default to \code{2}.}
 
 \item{isotope_names}{is a vector of \code{character} string used change the column name
 of isotopes used in the analysis. Defaults to \code{c("d13c", "d15n")}.}

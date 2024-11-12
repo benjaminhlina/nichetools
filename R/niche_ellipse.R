@@ -15,7 +15,7 @@
 #' Default is 0.95 (i.e., 95% confidence interval).
 #' This value is bound by 0 and 1 and has to be a `numeric`.
 #' @param isotope_n a `numeric` either `2` or `3` that is the number of isotopes
-#' used in the anlsysis. Will default to `2`.
+#' used in the analysis. Will default to `2`.
 #' @param isotope_names is a vector of `character` string used change the column name
 #' of isotopes used in the analysis. Defaults to `c("d13c", "d15n")`.
 #' @param random logical value indicating whether or not to randomly sample
