@@ -244,7 +244,7 @@ niche_ellipse <- function(
       # ----- mu ----
 
       # select columns we need
-      mu_select <- df_mu |>
+      mu_select <- dat_mu |>
         dplyr::select(sample_name, sample_number, isotope, mu_est) |>
         filter(sample_number %in% sample_numbers)
 
@@ -266,7 +266,7 @@ niche_ellipse <- function(
       # transform to long as it is easier to keep the format
       # required for the function
       # to be wide
-      sigma_long <- df_sigma |>
+      sigma_long <- dat_sigma |>
         tidyr::pivot_longer(cols = -c(metric, sample_name, sample_number,
                                       isotope),
                             names_to = "id",
@@ -467,7 +467,7 @@ niche_ellipse <- function(
     # ----- mu ----
 
     # select columns we need
-    mu_select <- df_mu |>
+    mu_select <- dat_mu |>
       dplyr::select(sample_name, sample_number, isotope, mu_est)
 
     # split into three different dataframes based on the iso combos
@@ -488,7 +488,7 @@ niche_ellipse <- function(
     # transform to long as it is easier to keep the format
     # required for the function
     # to be wide
-    sigma_long <- df_sigma |>
+    sigma_long <- dat_sigma |>
       tidyr::pivot_longer(cols = -c(metric, sample_name, sample_number,
                                     isotope),
                           names_to = "id",
