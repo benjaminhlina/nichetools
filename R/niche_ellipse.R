@@ -66,7 +66,6 @@ niche_ellipse <- function(
   # options(error = recover)
   start_time <- Sys.time()
 
-
   # Check if dat_mu is a data.frame
   if (!inherits(x = dat_mu, what = c("tbl_df", "tbl", "data.frame"))) {
     cli::cli_abort("Input 'dat_mu' must be class data.frame.")
@@ -86,6 +85,14 @@ niche_ellipse <- function(
   if (isotope_n == 2) {
     if (is.null(isotope_names)) {
       isotope_names <- c("d13c", "d15n")
+    }
+    if (!is.character(isotope_names)) {
+      cli::cli_abort("Argument 'isotope_names' must be a character.")
+    }
+  }
+  if (isotope_n == 3) {
+    if (is.null(isotope_names)) {
+      isotope_names <- c("d13c", "d15n", "d34s")
     }
   }
 
