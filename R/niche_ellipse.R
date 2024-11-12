@@ -48,6 +48,7 @@
 #' @importFrom stats runif
 #' @import tibble
 #' @import tidyr
+#' @import tidyselect
 #' @export
 
 
