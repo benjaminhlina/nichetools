@@ -12,4 +12,6 @@ utils::globalVariables(c("sample_name", "sample_number", "metric", "x", "y",
                          "overlap", "area_1", "area_2",
                          "niche_overlap_perc", "niche_overlap",
                          "species_a", "species_b", "isotope",
-                         "post_sample", "mu_est", "ellipse_name"))
+                         "post_sample", "mu_est", "ellipse_name",
+                         "iso_a", "iso_ab", "iso_b", "iso_combos"
+                         ))
