@@ -222,25 +222,9 @@ niche_ellipse <- function(
       sample_numbers <- sample(dat_mu$sample_number, n)
 
       # ---- create every combo in table ----
-      iso_combo <- tidyr::expand_grid(iso_a = isotope_names,
-                                      iso_b = isotope_names) |>
-        dplyr::filter(iso_a < iso_b) |>
-        dplyr::mutate(
-          iso_ab = paste(iso_a, iso_b, sep = "_")
-        ) |>
-        dplyr::distinct(iso_ab) |>
-        tidyr::separate_wider_delim(iso_ab, names = c("iso_a", "iso_b"),
-                                    delim = "_")
 
-      # created id column
-      iso_combo$id <- 1:nrow(iso_combo)
+      split_iso <- create_isotope_pairs()
 
-      # pivot longer to create vector that  can be used to filter combinations
-      split_iso <- split(iso_combo, iso_combo$id) |>
-        purrr::map(~ tidyr::pivot_longer(.x, cols = -id,
-                                         values_to = "iso_name") |>
-                     getElement("iso_name")
-        )
       # ----- mu ----
 
       # select columns we need
