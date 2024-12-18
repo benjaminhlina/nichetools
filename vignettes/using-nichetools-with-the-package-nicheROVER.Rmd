@@ -1,11 +1,11 @@
 ---
-title: "Using {nichetools} with nicheROVER"
+title: "Using {nichetools} and {nicheROVER} with two isotopes"
 author: Benjamin L. Hlina
 date: "2024-03-15"
 output: rmarkdown::html_vignette
 
 vignette: >
-  %\VignetteIndexEntry{Using {nichetools} with nicheROVER}
+  %\VignetteIndexEntry{Using {nichetools} and {nicheROVER} with two isotopes}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 
 ### Our Objectives
 
-The purpose of this vignette is to use [{nicheROVER}](https://cran.r-project.org/package=nicheROVER) and [{nichetools}](https://benjaminhlina.github.io/nichetools/) to extract and then visualize estimates of trophic niche size and similarities for multiple freshwater fish using [{ggplot2}](https://ggplot2.tidyverse.org/). 
+The purpose of this vignette is to use [{nicheROVER}](https://cran.r-project.org/package=nicheROVER) and [{nichetools}](https://benjaminhlina.github.io/nichetools/) to extract and then visualize estimates of isotopic niche size and similarities using two isotopes for multiple freshwater fish using [{ggplot2}](https://ggplot2.tidyverse.org/). 
 
 This vignette can be used for additional purposes including estimating niche size and similarities among different groups of aquatic and/or terrestrial species. Furthermore, niche size and similarities for different behaviours exhibited within a population can be made using behavioural data generated from acoustic telemetry (e.g., differences in habitat occupancy).
 
@@ -44,7 +44,7 @@ I will add that many of the `{dplyr}` and `{tidyr}` functions and processes can 
 }
 ```
 
-For the purpose of the vignette we will be using the `fish` data frame that is available within `{nicheROVER}`. We will remove $\delta$<sup>34</sup>S for simplicity of the vignette. If more than two isotopes or metrics are being used to compare niche sizes and similarities, please use the functions for each pairing. Right now some functions (i.e., `niche_ellipse()`) in `{nichetools}` doesn't have the ability to work with more than two isotopes. This will become a feature at some point but for now. Please be patient and use the functions for each pairing you have.
+For the purpose of the vignette we will be using the `fish` data frame that is available within `{nicheROVER}`. We will remove $\delta$<sup>34</sup>S for simplicity of the vignette. If more than two isotopes or metrics are being used to compare niche sizes and similarities, please remember to use the `isotope_n` argument in the following functions `extract_sigma()` and `niche_ellipse()`. 
 
 We will first use the function `janitor::clean_names()` to clean up column names. For your purposes you will need to replace fish with your data frame either by loading a csv, rds, or qs, with your data. You can do this multiple ways, I prefer using `readr::read_csv()` but base R's `read.csv()` works perfectly fine.   
 
@@ -217,7 +217,7 @@ sigma_plots[[1]] +
 
 ### Estimate niche ellipse 
 
-We then will use `niche_ellipse()` to easily extract ellipse for each $\Sigma$ estimate (i.e., 1000). If you are to have additional isotopes or metrics, you will need to create mu and sigma objects for each pairing, as currently this function only handles two isotopes. In the future, there likely will be the ability to specify the number of isotopes you have with the default being two. The reason for the lack of functionality is `ellipse::ellipse()` can only work within two-dimensions, not three, so you will have to create multiple `ellipse()` calls for each combination of isotopes or metrics and I haven't had the time to implement this. The function will also tell you how long it took to process as with large sets of isotope data it is nice to know the time it takes for the function to work. The function also has the argument `random` which by default is set to `TRUE`. This argument randomly subsamples and returns 10 ellipse estimates out of the total number of samples taken in this case it is 1,000. The `set_seed` argument allows you to change the `set.seed` value by giving a numerical value to make the results of the function reproducable, default is a random value. I highly suggest using set_seed otherwise it will subsample different values, there is no default value because CRAN will not allow for a default value. You can change the number of subsamples but 10 seems pretty standard. If you'd like all 1,000 ellipses you can set `random` to `FALSE`. 
+We then will use `niche_ellipse()` to easily extract ellipse for each $\Sigma$ estimate (i.e., 1000). The function will  tell you how long it took to process as with large sets of isotope data it is nice to know the time it takes for the function to work. The function also has the argument `random` which by default is set to `TRUE`. This argument randomly subsamples and returns `10` ellipse estimates out of the total number of samples taken in this case it is 1,000. The `set_seed` argument allows you to change the `set.seed` value by giving a numerical value to make the results of the function reproducible, default is a random value. I highly suggest using set_seed otherwise it will subsample different values, there is no default value because CRAN will not allow for a default value. You can change the number of subsamples but 10 seems pretty standard. If you'd like all 1,000 ellipses you can set `random` to `FALSE`. 
 
 ```{r}
 ellipse_df <- niche_ellipse(dat_mu = df_mu, dat_sigma = df_sigma,

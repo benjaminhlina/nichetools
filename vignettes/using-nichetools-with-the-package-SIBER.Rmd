@@ -393,7 +393,7 @@ viridis_colors_s <- viridis(4, begin = 0.25, end = 0.85,
 
 
 Now we can use point interval plots to visually represent posterior distributions.  
-```{r}
+```{r, eval = FALSE}
 #| out-width: 100%
 
 ggplot() + 
@@ -483,7 +483,7 @@ viridis_colors <- viridis(2, begin = 0.25, end = 0.85,
 
 Lastly, we can visualize the distributions of the posterior estimates using `stat_pointinterval()` from {ggdist}. 
 
-```{r}
+```{r, eval = FALSE}
 #| out-width: 100%
 
 ggplot() + 
