@@ -109,7 +109,7 @@ extract_sigma <-  function(data,
         dplyr::bind_rows(.id = "isotope_num") |>
         dplyr::mutate(
           id = 1
-        ) %>%
+        ) |>
         tidyr::pivot_longer(-id)
 
       isotope_length <- unique(isotope_number$value)
@@ -145,7 +145,7 @@ extract_sigma <-  function(data,
         dplyr::bind_rows(.id = "isotope_num") |>
         dplyr::mutate(
           id = 1
-        ) %>%
+        ) |>
         tidyr::pivot_longer(-id)
 
       isotope_length <- unique(isotope_number$value)
@@ -171,8 +171,9 @@ extract_sigma <-  function(data,
                           names_to = "isotope",
                           values_to = "post_sample"
       ) |>
-      tidyr::separate(isotope, into = c("isotope", "sample_number"),
-                      sep = "\\.")
+      tidyr::separate_wider_delim(isotope, names = c("isotope", "sample_number"),
+
+                        delim = ".")
 
 
 
@@ -220,7 +221,7 @@ extract_sigma <-  function(data,
         df <- .x[, 1:4] |>
           t() |>
           as.numeric() |>
-          matrix(ncol = 2, byrow = T) |>
+          matrix(ncol = 2, byrow = TRUE) |>
           as.data.frame() |>
           tibble::as_tibble()
 
