@@ -91,30 +91,6 @@ test_that("Check if column names extracted are correct", {
 })
 
 
-test_that("test that isotope a and b error when not characters ", {
-  expect_error(extract_mu(
-    data = niw_fish_post,
-    data_format = "wide",
-    isotope_names = 1
-  ), "The supplied argument for 'isotope_names' must be a vector of characters.")
-
-})
-test_that("test that isotope a and b error when not characters ", {
-  expect_error(extract_mu(
-    data = niw_fish_post,
-    data_format = "wide",
-    isotope_names = c(1, 2)
-  ), "The supplied argument for 'isotope_names' must be a vector of characters.")
-
-})
-test_that("test that isotope a and b error when not characters ", {
-  expect_error(extract_mu(
-    data = niw_fish_post,
-    data_format = "wide",
-    isotope_names = c("d13c")
-  ), "The 'isotope_names' vector must have exactly 2 elements, representing isotope_a and isotope_b.")
-
-})
 
 # test_that("test that isotope a and b error when not characters ", {
 #   expect_error(extract_mu(
@@ -305,4 +281,35 @@ test_that("extract_mu throws an error if community_df is missing 'community' or 
                pkg = "SIBER",
                community_df = invalid_community_df_2),
     regexp = "The data frame does not contain a column named 'community' and 'group'.")
+})
+
+test_that("test that isotope a and b error when not characters ", {
+  expect_error(extract_mu(
+    data = post_sam_siber,
+    pkg = "SIBER",
+    community_df = cg_names,
+    data_format = "wide",
+    isotope_names = 1
+  ), "The supplied argument for 'isotope_names' must be a vector of characters.")
+
+})
+test_that("test that isotope a and b error when not characters ", {
+  expect_error(extract_mu(
+    data = post_sam_siber,
+    pkg = "SIBER",
+    community_df = cg_names,
+    data_format = "wide",
+    isotope_names = c(1, 2)
+  ), "The supplied argument for 'isotope_names' must be a vector of characters.")
+
+})
+test_that("test that isotope a and b error when not characters ", {
+  expect_error(extract_mu(
+    data = post_sam_siber,
+    pkg = "SIBER",
+    community_df = cg_names,
+    data_format = "wide",
+    isotope_names = c("d13c")
+  ), "'isotope_names' must have exactly 2 elements, representing isotope_a and isotope_b")
+
 })

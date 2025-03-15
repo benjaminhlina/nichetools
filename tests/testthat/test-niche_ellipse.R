@@ -89,8 +89,7 @@ test_that("Check if naming works", {
       dat_sigma = sigma_est_wide,
       set_seed = 4,
       message = FALSE,
-      isotope_a = "cal_d13c",
-      isotope_b = "cal_d15n",
+      isotope_names = c("cal_d13c", "cal_d15n"),
     )
 
   )
@@ -110,19 +109,10 @@ test_that("Test if isotope_a errors if not a charcters", {
     dat_mu = mu_est_long,
     dat_sigma = sigma_est_wide,
     message = FALSE,
-    isotope_a = 6), regexp = "Argument 'isotope_a' must be a character."
+    isotope_names = 6), regexp = "Argument 'isotope_names' must be a character."
   )
 })
 
-test_that("Test if isotope_b errors if not a charcters", {
-  expect_error(niche_ellipse(
-    dat_mu = mu_est_long,
-    dat_sigma = sigma_est_wide,
-    set_seed = 4,
-    message = FALSE,
-    isotope_b = 4), regexp = "Argument 'isotope_b' must be a character."
-  )
-})
 
 
 test_that("Parameter 'p_ell' is can take other values than 0.95", {

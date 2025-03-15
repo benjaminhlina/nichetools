@@ -90,7 +90,7 @@ extract_group_metrics <- function(data = NULL,
 
 
   # set data formatt
-  if(is.null(data_format)) {
+  if (is.null(data_format)) {
     data_format <- "long"
   }
 

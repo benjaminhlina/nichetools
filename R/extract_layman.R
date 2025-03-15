@@ -183,7 +183,7 @@ extract_layman <- function(data,
     element_y <- "N"
   }
 
-  if(type %in% "bay") {
+  if (type %in% "bay") {
 
     df_layman <- data |>
       purrr::map(~ as_tibble(.x)) |>
@@ -224,7 +224,7 @@ extract_layman <- function(data,
 
       return(df_layman)
     }
-    if (data_format %in% "wide"){
+    if (data_format %in% "wide") {
       return(df_layman)
     }
   }
