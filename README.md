@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# nichetools <img src="man/figures/hex_sticker.png" align="right" width="120" />
+# nichetools <a href="https://benjaminhlina.github.io/nichetools/"> <img src="man/figures/hex_sticker.png" align="right" height="138" alt="trps website" /></a>
 
 <!-- badges: start -->
 
@@ -16,7 +16,7 @@ badge](https://benjaminhlina.r-universe.dev/badges/nichetools)](https://benjamin
 coverage](https://codecov.io/gh/benjaminhlina/nichetools/graph/badge.svg)](https://app.codecov.io/gh/benjaminhlina/nichetools)
 <!-- badges: end -->
 
-{nichetools}\](<https://benjaminhlina.github.io/nichetools/>) is a
+[{nichetools}](https://benjaminhlina.github.io/nichetools/) is a
 complementary package to
 [{nicheROVER}](https://cran.r-project.org/package=nicheROVER) and
 [{SIBER}](https://cran.r-project.org/package=SIBER) that allows the user
