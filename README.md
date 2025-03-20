@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# nichetools <a href="https://benjaminhlina.github.io/nichetools/"> <img src="man/figures/hex_sticker.png" align="right" height="138" alt="trps website" /></a>
+# nichetools <a href="https://benjaminhlina.github.io/nichetools/"> <img src="man/figures/hex_sticker.png" align="right" width="120" alt="trps website" /></a>
 
 <!-- badges: start -->
 
@@ -11,8 +11,8 @@ stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://
 status](https://www.r-pkg.org/badges/version/nichetools)](https://CRAN.R-project.org/package=nichetools)
 [![nichetools status
 badge](https://benjaminhlina.r-universe.dev/badges/nichetools)](https://benjaminhlina.r-universe.dev/nichetools)
-[![R-CMD-check](https://github.com/benjaminhlina/nichetool/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/benjaminhlina/nichetools/actions/workflows/R-CMD-check.yaml)
-[![Codecov test
+[![R-CMD-check](https://github.com/benjaminhlina/nichetool/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/benjaminhlina/nichetools/actions/workflows/R-CMD-check.yaml)[![Codecov
+test
 coverage](https://codecov.io/gh/benjaminhlina/nichetools/graph/badge.svg)](https://app.codecov.io/gh/benjaminhlina/nichetools)
 <!-- badges: end -->
 
