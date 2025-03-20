@@ -16,7 +16,7 @@ Description: Provides functions complementary to packages 'nicheROVER' and 'SIBE
         Jackson et al. (2011) <doi:10.1111/j.1365-2656.2011.01806.x>, and
         Layman et al. (2007) <doi:10.1890/0012-9658(2007)88[42:CSIRPF]2.0.CO;2>,
         respectfully.
-Depends: R (>= 2.10)
+Depends: R (>= 4.1.0)
 Imports: 
     cli,
     dplyr,
