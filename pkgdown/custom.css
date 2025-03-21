@@ -1,0 +1,15 @@
+.pkgdown.github-ribbon {
+  background-color: #3d538b !important; /* Change to your desired color */
+  color: #ffffff !important; /* Ensure text is readable */
+}
+
+/* If there's an <a> link inside the ribbon */
+.pkgdown.github-ribbon a {
+  color: #ffffff !important;
+}
+
+/* Hover effect */
+.pkgdown.github-ribbon a:hover {
+  background-color: #217dbb !important;
+  color: #ffcc00 !important;
+}
