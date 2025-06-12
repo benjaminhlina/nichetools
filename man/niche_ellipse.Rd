@@ -13,7 +13,8 @@ niche_ellipse(
   random = NULL,
   set_seed = NULL,
   n = NULL,
-  message = TRUE
+  message = TRUE,
+  ...
 )
 }
 \arguments{
@@ -51,6 +52,9 @@ Default is \code{10}.}
 
 \item{message}{control whether the time processing is displayed after the
 end of the function. Default is \code{TRUE}.}
+
+\item{...}{additional paramaters to pass to \code{ellipse::ellipse()}. See that
+function for more detail.}
 }
 \value{
 A \code{tibble} containing, \code{sample_name}, \code{sample_number}, and the
