@@ -29,6 +29,8 @@
 #' Default is `10`.
 #' @param message control whether the time processing is displayed after the
 #' end of the function. Default is `TRUE`.
+#' @param ... additional paramaters to pass to `ellipse::ellipse()`. See that
+#' function for more detail.
 #'
 #' @return A `tibble` containing, `sample_name`, `sample_number`, and the
 #' isotopes that were used in the estimation of ellipse
@@ -61,7 +63,8 @@ niche_ellipse <- function(
     random = NULL,
     set_seed = NULL,
     n = NULL,
-    message = TRUE
+    message = TRUE,
+    ...
 ) {
   # options(error = recover)
   start_time <- Sys.time()
@@ -166,7 +169,8 @@ niche_ellipse <- function(
       ellipse::ellipse(x = first,
                        centre = second,
                        which = c(1, 2),
-                       level = p_ell),
+                       level = p_ell,
+                       ...),
       .progress = "Create ellipses")
 
     # Converting ellipse estimates into tibble
