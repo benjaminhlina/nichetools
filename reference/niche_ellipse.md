@@ -101,7 +101,7 @@ and
 ``` r
 niche_ellipse(dat_mu = mu_est_long,
               dat_sigma = sigma_est_wide)
-#> → Total time processing was 0.08 secs
+#> → Total time processing was 0.05 secs
 #> # A tibble: 3,600 × 4
 #>    sample_name sample_number  d13c  d15n
 #>    <chr>               <dbl> <dbl> <dbl>
