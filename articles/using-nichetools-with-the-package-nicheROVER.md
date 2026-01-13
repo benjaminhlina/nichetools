@@ -317,7 +317,7 @@ to `FALSE`.
 ``` r
 ellipse_df <- niche_ellipse(dat_mu = df_mu, dat_sigma = df_sigma,
                             set_seed = 4)
-#> → Total time processing was 0.09 secs
+#> → Total time processing was 0.11 secs
 ```
 
 ### Plot ellipses, densities of each istope, and isotope biplot
