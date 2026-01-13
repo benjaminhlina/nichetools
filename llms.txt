@@ -87,7 +87,7 @@ To cite this package please cite the following publications
   [link](https://doi.org/10.1890/0012-9658(2007)88%5B42:CSIRPF%5D2.0.CO;2)
 
 - Hlina B.L. 2024. nichetools: Complementary package to nicheROVER and
-  SIBER. R package version 0.3.1.
+  SIBER. R package version 0.3.3.
   <https://benjaminhlina.github.io/nichetools/>
 
 # Package index
