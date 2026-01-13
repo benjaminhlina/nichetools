@@ -2,6 +2,5 @@
 
 0 errors | 0 warnings | 0 note
 
-* small update as I have added a few more tests and have amended the tests that
-were causing r-devel-windows-x86_64 command checks to fail for version 0.3.0. 
-This version is 0.3.1.
+* small update as I was notified that `dplyr::id()` was no longer being 
+supported. I needed to move `id` to being a global variable and have done so. 
